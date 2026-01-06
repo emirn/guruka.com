@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts and sort by date
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+
+<BaseLayout
+  title="Blog - GURUKA"
+  description="Latest insights on brain training, cognitive science, and mental wellness from the GURUKA team."
+>
+  <div class="container mx-auto py-12">
+    <div class="max-w-3xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="font-display text-3xl md:text-4xl font-bold mb-4">
+          GURUKA Blog
+        </h1>
+        <p class="text-[hsl(var(--muted-foreground))]">
+          Insights on brain training, cognitive science, and mental wellness
+        </p>
+      </div>
+
+      <!-- Posts List -->
+      <div class="space-y-6">
+        {sortedPosts.map((post) => {
+          const wordCount = post.body?.split(/\s+/).length || 0;
+          const readingTime = Math.max(1, Math.round(wordCount / 200));
+          const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+
+          return (
+            <article class="game-card p-6 hover:scale-[1.02] transition-transform duration-300">
+              <a href={`/blog/${post.slug}/`} class="block">
+                <h2 class="font-display text-xl md:text-2xl font-bold mb-2 text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-colors">
+                  {post.data.title}
+                </h2>
+
+                <div class="w-16 h-1 bg-[hsl(var(--primary))] my-3"></div>
+
+                <p class="text-[hsl(var(--muted-foreground))] mb-4">
+                  {post.data.description}
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4 text-sm text-[hsl(var(--muted-foreground))]">
+                  <span class="flex items-center gap-1">
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                      <line x1="16" x2="16" y1="2" y2="6" />
+                      <line x1="8" x2="8" y1="2" y2="6" />
+                      <line x1="3" x2="21" y1="10" y2="10" />
+                    </svg>
+                    {formattedDate}
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    {readingTime} min read
+                  </span>
+                </div>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+
+      {sortedPosts.length === 0 && (
+        <div class="text-center py-12">
+          <p class="text-[hsl(var(--muted-foreground))]">No blog posts yet. Check back soon!</p>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

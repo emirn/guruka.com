@@ -1,0 +1,47 @@
+---
+const audiences = [
+  {
+    emoji: '&#x1F393;',
+    title: 'Students',
+    description: 'Improve focus and memory for better academic performance',
+  },
+  {
+    emoji: '&#x1F4BC;',
+    title: 'Professionals',
+    description: 'Stay sharp and boost productivity at work',
+  },
+  {
+    emoji: '&#x1F9D3;',
+    title: 'Seniors',
+    description: 'Keep your mind active and maintain cognitive health',
+  },
+];
+---
+
+<section class="py-20 bg-[hsl(var(--muted)/0.3)]">
+  <div class="container mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">
+        For Everyone
+      </h2>
+      <p class="text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto">
+        GURUKA adapts to your skill level, making it perfect for all ages
+      </p>
+    </div>
+
+    <!-- Audience Cards -->
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      {audiences.map((audience, index) => (
+        <div
+          class="text-center p-6 rounded-2xl bg-[hsl(var(--card))] border border-[hsl(var(--border))]"
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          <div class="text-5xl mb-4" set:html={audience.emoji}></div>
+          <h3 class="font-display text-xl font-bold mb-2">{audience.title}</h3>
+          <p class="text-[hsl(var(--muted-foreground))] text-sm">{audience.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

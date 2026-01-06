@@ -1,0 +1,78 @@
+---
+// Hero section component
+---
+
+<section class="relative overflow-hidden">
+  <!-- Background Elements -->
+  <div class="absolute inset-0 bg-gradient-hero opacity-5"></div>
+  <div class="absolute top-20 left-10 w-72 h-72 bg-[hsl(var(--primary)/0.1)] rounded-full blur-3xl animate-pulse-slow"></div>
+  <div class="absolute bottom-20 right-10 w-96 h-96 bg-[hsl(var(--secondary)/0.1)] rounded-full blur-3xl animate-pulse-slow"></div>
+
+  <div class="container mx-auto py-20 md:py-32 relative">
+    <div class="max-w-3xl mx-auto text-center animate-fade-in">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[hsl(var(--primary)/0.1)] text-[hsl(var(--primary))] text-sm font-medium mb-6">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+        </svg>
+        Science-backed brain training
+      </div>
+
+      <!-- Headline -->
+      <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+        Train Your Brain,{' '}
+        <span class="text-gradient">Sharpen Your Mind</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="text-lg md:text-xl text-[hsl(var(--muted-foreground))] mb-8 max-w-2xl mx-auto">
+        GURUKA offers evidence-based cognitive exercises designed to improve memory,
+        speed, and mental agility. Train daily and track your progress.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="https://app.guruka.com"
+          class="inline-flex items-center justify-center gap-2 rounded-lg text-lg font-medium transition-colors bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-[hsl(var(--primary)/0.9)] h-12 px-8"
+        >
+          Start Training
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+        <a
+          href="/science"
+          class="inline-flex items-center justify-center gap-2 rounded-lg text-lg font-medium transition-colors border border-[hsl(var(--border))] bg-[hsl(var(--background))] hover:bg-[hsl(var(--muted))] h-12 px-8"
+        >
+          Learn the Science
+        </a>
+      </div>
+
+      <!-- Social Proof -->
+      <div class="mt-12 flex items-center justify-center gap-8 text-[hsl(var(--muted-foreground))]">
+        <div class="flex items-center gap-2">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          <span class="text-sm">10,000+ Users</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+            <path d="M4 22h16" />
+            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+          </svg>
+          <span class="text-sm">1M+ Sessions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

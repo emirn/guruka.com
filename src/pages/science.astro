@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const researchSections = [
+  {
+    title: 'Speed Match: Processing Speed Training',
+    description: 'Based on the n-back paradigm, one of the most researched cognitive training tasks.',
+    icon: 'zap',
+    research: [
+      {
+        title: 'Jaeggi et al. (2008)',
+        finding: 'Found that n-back training can improve fluid intelligence, with benefits transferring to novel tasks.',
+        doi: '10.1073/pnas.0801268105',
+      },
+      {
+        title: 'Au et al. (2015)',
+        finding: 'Meta-analysis showed consistent improvements in working memory from n-back training.',
+        doi: '10.1037/xge0000009',
+      },
+    ],
+  },
+  {
+    title: 'Memory Matrix: Spatial Working Memory',
+    description: 'Targets the visuospatial sketchpad component of working memory.',
+    icon: 'grid',
+    research: [
+      {
+        title: 'Klingberg et al. (2002)',
+        finding: 'Demonstrated that spatial working memory training leads to improvements in non-trained tasks.',
+        doi: '10.1016/S0022-0965(02)00093-7',
+      },
+      {
+        title: 'Holmes et al. (2009)',
+        finding: 'Showed lasting improvements in working memory following adaptive spatial training.',
+        doi: '10.1111/j.1469-7610.2009.02093.x',
+      },
+    ],
+  },
+  {
+    title: 'Sequence Recall: Dual-Task Training',
+    description: 'Combines multiple cognitive demands to train executive function.',
+    icon: 'list',
+    research: [
+      {
+        title: 'Dahlin et al. (2008)',
+        finding: 'Updating training showed transfer effects to working memory tasks.',
+        doi: '10.1111/j.1467-9280.2008.02204.x',
+      },
+      {
+        title: 'Karbach & Kray (2009)',
+        finding: 'Task-switching training showed broad cognitive benefits across age groups.',
+        doi: '10.1037/a0015012',
+      },
+    ],
+  },
+];
+
+const caveats = [
+  'Individual results vary significantly based on baseline abilities and engagement.',
+  'Transfer to real-world tasks is still debated in the scientific community.',
+  'Consistency and effort matter more than total time spent.',
+  'Brain training should complement, not replace, physical exercise, sleep, and social engagement.',
+  'Claims of preventing dementia or significantly increasing IQ are not well-supported.',
+];
+
+const recommendations = [
+  { title: 'Train regularly', description: '15-20 minutes daily is more effective than occasional long sessions.' },
+  { title: 'Vary your games', description: "Rotate between all three games to train different cognitive skills." },
+  { title: 'Challenge yourself', description: "Push to higher levels where you make mistakes - that's where learning happens." },
+  { title: 'Stay consistent', description: 'Build a streak and make training a habit for best results.' },
+  { title: 'Get enough sleep', description: 'Sleep is crucial for memory consolidation and cognitive function.' },
+];
+---
+
+<BaseLayout
+  title="The Science Behind GURUKA - Brain Training Research"
+  description="Learn about the neuroscience research behind GURUKA's cognitive training games and how they can help improve memory, speed, and mental agility."
+>
+  <div class="container mx-auto py-8 md:py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <div class="inline-flex p-3 rounded-2xl bg-[hsl(var(--primary)/0.1)] mb-4">
+        <svg class="h-8 w-8 text-[hsl(var(--primary))]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+        </svg>
+      </div>
+      <h1 class="font-display text-3xl md:text-4xl font-bold mb-4">
+        The Science Behind GURUKA
+      </h1>
+      <p class="text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto">
+        Our games are based on decades of cognitive psychology research.
+        Here's what the science says about brain training.
+      </p>
+    </div>
+
+    <!-- Introduction -->
+    <div class="max-w-3xl mx-auto mb-12">
+      <div class="bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))] p-6 md:p-8">
+        <div class="flex items-start gap-4">
+          <svg class="h-8 w-8 text-[hsl(var(--primary))] flex-shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a8 8 0 0 1 8 8c0 5.4-8 12-8 12S4 15.4 4 10a8 8 0 0 1 8-8Z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <div>
+            <h2 class="font-display text-xl font-bold mb-3">
+              Evidence-Based Approach
+            </h2>
+            <p class="text-[hsl(var(--muted-foreground))] mb-4">
+              GURUKA's games are designed based on well-established cognitive training paradigms
+              from neuroscience research. Each game targets specific cognitive functions that have
+              been shown to be trainable under controlled conditions.
+            </p>
+            <p class="text-[hsl(var(--muted-foreground))]">
+              While the field of cognitive training continues to evolve, we've selected tasks
+              with the strongest evidence for producing measurable improvements in trained abilities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Research by Game -->
+    <div class="max-w-3xl mx-auto mb-12">
+      <h2 class="font-display text-2xl font-bold mb-6 text-center">
+        Research Behind Each Game
+      </h2>
+
+      <div class="space-y-4">
+        {researchSections.map((section) => (
+          <details class="group bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
+            <summary class="flex items-center gap-3 p-6 cursor-pointer list-none">
+              <div class="p-2 rounded-lg bg-[hsl(var(--primary)/0.1)]">
+                {section.icon === 'zap' && (
+                  <svg class="h-5 w-5 text-[hsl(var(--primary))]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+                  </svg>
+                )}
+                {section.icon === 'grid' && (
+                  <svg class="h-5 w-5 text-[hsl(var(--primary))]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="7" height="7" x="3" y="3" rx="1" />
+                    <rect width="7" height="7" x="14" y="3" rx="1" />
+                    <rect width="7" height="7" x="14" y="14" rx="1" />
+                    <rect width="7" height="7" x="3" y="14" rx="1" />
+                  </svg>
+                )}
+                {section.icon === 'list' && (
+                  <svg class="h-5 w-5 text-[hsl(var(--primary))]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="10" x2="21" y1="6" y2="6" />
+                    <line x1="10" x2="21" y1="12" y2="12" />
+                    <line x1="10" x2="21" y1="18" y2="18" />
+                    <path d="M4 6h1v4" />
+                    <path d="M4 10h2" />
+                    <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
+                  </svg>
+                )}
+              </div>
+              <div class="flex-1">
+                <div class="font-display font-bold">{section.title}</div>
+                <div class="text-sm text-[hsl(var(--muted-foreground))]">{section.description}</div>
+              </div>
+              <svg class="h-5 w-5 text-[hsl(var(--muted-foreground))] transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 pt-2 space-y-4">
+              {section.research.map((study) => (
+                <div class="p-4 rounded-lg bg-[hsl(var(--muted)/0.5)]">
+                  <div class="font-medium mb-1">{study.title}</div>
+                  <p class="text-sm text-[hsl(var(--muted-foreground))] mb-2">{study.finding}</p>
+                  <a
+                    href={`https://doi.org/${study.doi}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 text-xs text-[hsl(var(--primary))] hover:underline"
+                  >
+                    DOI: {study.doi}
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" x2="21" y1="14" y2="3" />
+                    </svg>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <!-- Caveats -->
+    <div class="max-w-3xl mx-auto mb-12">
+      <div class="bg-[hsl(var(--destructive)/0.05)] border border-[hsl(var(--destructive)/0.2)] rounded-xl p-6 md:p-8">
+        <div class="flex items-start gap-4">
+          <svg class="h-6 w-6 text-[hsl(var(--destructive))] flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" x2="12" y1="8" y2="12" />
+            <line x1="12" x2="12.01" y1="16" y2="16" />
+          </svg>
+          <div>
+            <h2 class="font-display text-xl font-bold mb-4">
+              Important Caveats
+            </h2>
+            <ul class="space-y-3">
+              {caveats.map((caveat) => (
+                <li class="flex items-start gap-2 text-[hsl(var(--muted-foreground))]">
+                  <span class="text-[hsl(var(--destructive))]">&#8226;</span>
+                  {caveat}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-[hsl(var(--success)/0.05)] border border-[hsl(var(--success)/0.2)] rounded-xl p-6 md:p-8">
+        <div class="flex items-start gap-4">
+          <svg class="h-6 w-6 text-[hsl(var(--success))] flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <path d="m9 11 3 3L22 4" />
+          </svg>
+          <div>
+            <h2 class="font-display text-xl font-bold mb-4">
+              Training Recommendations
+            </h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {recommendations.map((rec) => (
+                <div class="p-3 rounded-lg bg-[hsl(var(--card))]">
+                  <div class="font-medium mb-1">{rec.title}</div>
+                  <p class="text-sm text-[hsl(var(--muted-foreground))]">{rec.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="max-w-3xl mx-auto mt-12 text-center">
+      <h2 class="font-display text-2xl font-bold mb-4">Ready to Apply the Science?</h2>
+      <p class="text-[hsl(var(--muted-foreground))] mb-6">Start training with evidence-based cognitive exercises.</p>
+      <a
+        href="https://app.guruka.com"
+        class="inline-flex items-center justify-center gap-2 rounded-lg text-lg font-medium transition-colors bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-[hsl(var(--primary)/0.9)] h-12 px-8"
+      >
+        Start Training Free
+      </a>
+    </div>
+  </div>
+</BaseLayout>
