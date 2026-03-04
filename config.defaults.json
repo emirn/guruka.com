@@ -1,0 +1,161 @@
+{
+  "branding": {
+    "badge": "",
+    "site": {
+      "name": "My Blog",
+      "tagline": "Insights and updates",
+      "description": "A blog about...",
+      "url": "https://blog.example.com",
+      "language": "en",
+      "favicon_url": ""
+    },
+    "logo": {
+      "type": "text",
+      "text": "BRAND",
+      "image_url": "",
+      "style": "plain"
+    },
+    "colors": {
+      "primary": "",
+      "secondary": "",
+      "primary_text": "",
+      "background": "",
+      "background_secondary": "",
+      "text_primary": "",
+      "text_secondary": "",
+      "text_muted": "",
+      "border": ""
+    },
+    "dark_mode": {
+      "enabled": true,
+      "default": "dark",
+      "toggle_position": "footer",
+      "colors": {
+        "text_primary": "",
+        "text_secondary": "",
+        "text_muted": "",
+        "background": "",
+        "background_secondary": "",
+        "border": ""
+      }
+    }
+  },
+  "hero": {
+    "enabled": true,
+    "title": "",
+    "subtitle": "",
+    "show_on_all_pages": false
+  },
+  "gradient": ["", "", ""],
+  "typography": {
+    "font_family": "Inter, system-ui, sans-serif",
+    "heading_font_family": "Inter, system-ui, sans-serif",
+    "google_fonts": ["Inter:wght@400;500;600;700"]
+  },
+  "header": {
+    "style": "pill",
+    "show_search": true,
+    "nav_links": [
+      { "label": "Home", "url": "/" },
+      { "label": "Contacts", "url": "/contacts/" }
+    ],
+    "cta_button": {
+      "enabled": true,
+      "label": "Request a demo",
+      "url": "https://example.com/demo",
+      "style": "primary",
+      "target": "_self"
+    }
+  },
+  "footer": {
+    "show_logo": true,
+    "show_tagline": true,
+    "columns": [
+      {
+        "title": "Navigation",
+        "links": [
+          { "label": "Home", "url": "/" },
+          { "label": "Contacts", "url": "/contacts/" }
+        ]
+      }
+    ],
+    "social_links": {
+      "twitter": "",
+      "linkedin": "",
+      "facebook": "",
+      "instagram": "",
+      "youtube": "",
+      "github": "",
+      "tiktok": "",
+      "bluesky": "",
+      "threads": "",
+      "rss": true
+    },
+    "copyright_text": "{{YEAR}} {{SITE_NAME}}",
+    "powered_by_text": "",
+    "powered_by_url": "https://aicw.io",
+    "show_powered_by": false
+  },
+  "newsletter": {
+    "enabled": false,
+    "position": "footer",
+    "code": ""
+  },
+  "blog": {
+    "section_title": "LATEST",
+    "posts_per_page": 9,
+    "show_categories": false,
+    "show_date": true,
+    "show_author": true,
+    "show_excerpt": true,
+    "show_reading_time": false,
+    "show_table_of_contents": true,
+    "show_related_posts": true,
+    "pagination_style": "pages",
+    "date_format": "MMM d, yyyy"
+  },
+  "article": {
+    "show_social_share": true,
+    "social_share_buttons": ["facebook", "linkedin", "twitter", "copy"],
+    "show_author_bio": false,
+    "show_tags": false
+  },
+  "seo": {
+    "title_separator": " | ",
+    "default_og_image": "",
+    "twitter_handle": "",
+    "enable_json_ld": true,
+    "canonical_domain": "",
+    "robots_no_index": false,
+    "preview_banner_text": "Preview Mode - This site is not indexed by search engines"
+  },
+  "tracking": {
+    "widget_code": "",
+    "custom_head_code": "",
+    "custom_body_code": ""
+  },
+  "search": {
+    "enabled": true,
+    "placeholder": "Search articles...",
+    "show_in_header": true
+  },
+  "aicw": {
+    "enabled": false,
+    "tracking_id": "",
+    "domain": ""
+  },
+  "robots_txt": {},
+  "llms_txt": {
+    "enabled": false,
+    "include_articles": true,
+    "max_articles": 50,
+    "include_categories": true,
+    "custom_content": ""
+  },
+  "pdf": {
+    "popup": true,
+    "popup_download_enabled": true,
+    "generate_thumbnail": false,
+    "generate_thumbnail_max_size": 200
+  }
+}

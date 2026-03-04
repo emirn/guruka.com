@@ -1,0 +1,323 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ImageLightbox from '../../../components/ImageLightbox.astro';
+import PdfLightbox from '../../../components/PdfLightbox.astro';
+import { getConfig } from '../../../lib/config';
+
+const config = getConfig();
+const booksPath = config.books?.path || 'books';
+const siteUrl = config.branding.site.url;
+const orgName = config.seo.json_ld?.organization_name || config.branding.site.name;
+
+export const getStaticPaths = (async () => {
+  const cfg = getConfig();
+  if (!cfg.books?.enabled) return [];
+
+  const books = await getCollection('books');
+  const allChapters = await getCollection('book-chapters');
+  const bp = cfg.books.path || 'books';
+
+  const paths: any[] = [];
+  for (const book of books) {
+    const bookChapters = allChapters
+      .filter((ch) => ch.data.book === book.slug)
+      .sort((a, b) => a.data.chapter_number - b.data.chapter_number);
+
+    for (const chapter of bookChapters) {
+      const chapterSlug = chapter.slug.split('/').pop()!;
+      paths.push({
+        params: { book: book.slug, chapter: chapterSlug },
+        props: { chapter, book, allChapters: bookChapters },
+      });
+    }
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { chapter, book, allChapters } = Astro.props;
+const { Content } = await chapter.render();
+const rawContent = chapter.body || '';
+
+const { title, chapter_number } = chapter.data;
+const bookTitle = book.data.title;
+const image_cover = book.data.image_cover;
+const downloads = book.data.downloads;
+const purchaseLinks = book.data.purchaseLinks;
+
+// Word count and reading time
+const wordCount = rawContent.split(/\s+/).filter((word: string) => word.length > 0).length;
+const readingTime = Math.max(1, Math.round(wordCount / 200));
+
+// Prev/next chapters
+const currentIndex = allChapters.findIndex((c: any) => c.slug === chapter.slug);
+const prevChapter = currentIndex > 0 ? allChapters[currentIndex - 1] : null;
+const nextChapter = currentIndex < allChapters.length - 1 ? allChapters[currentIndex + 1] : null;
+
+const chapterSlug = chapter.slug.split('/').pop();
+const chapterDescription = `${title} - Chapter ${chapter_number} of ${bookTitle}. ${readingTime} minute read.`;
+
+// JSON-LD
+const chapterJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Chapter",
+  "name": title,
+  "description": chapterDescription,
+  "position": chapter_number,
+  "isPartOf": {
+    "@type": "Book",
+    "name": bookTitle,
+    "author": { "@type": "Person", "name": book.data.author },
+    "publisher": { "@type": "Organization", "name": orgName, "url": siteUrl },
+    "image": `${siteUrl}${image_cover}`,
+    "url": `${siteUrl}/${booksPath}/${book.slug}/`,
+  },
+  "url": `${siteUrl}/${booksPath}/${book.slug}/${chapterSlug}/`,
+  "wordCount": wordCount,
+  "timeRequired": `PT${readingTime}M`,
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": bookTitle, "item": `${siteUrl}/${booksPath}/${book.slug}/` },
+    { "@type": "ListItem", "position": 3, "name": `Chapter ${chapter_number}: ${title}`, "item": `${siteUrl}/${booksPath}/${book.slug}/${chapterSlug}/` },
+  ],
+};
+
+const faqJsonLd = chapter.data.faq ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": chapter.data.faq.map((q: any) => ({
+    "@type": "Question",
+    "name": q.question,
+    "acceptedAnswer": { "@type": "Answer", "text": q.answer },
+  })),
+} : null;
+
+const howToJsonLd = chapter.data.howTo ? {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": chapter.data.howTo.name,
+  "description": chapter.data.howTo.description,
+  "totalTime": chapter.data.howTo.total_time,
+  "step": chapter.data.howTo.steps.map((s: any, i: number) => ({
+    "@type": "HowToStep",
+    "position": i + 1,
+    "name": s.name,
+    "text": s.text,
+  })),
+} : null;
+---
+
+<BaseLayout
+  title={`${title} | ${bookTitle}`}
+  description={chapterDescription}
+  canonical={`${siteUrl}/${booksPath}/${book.slug}/${chapterSlug}/`}
+  type="article"
+  image={image_cover}
+>
+  {config.seo.enable_json_ld && (
+    <Fragment slot="head">
+      <script type="application/ld+json" set:html={JSON.stringify(chapterJsonLd)} />
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+      {faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
+      {howToJsonLd && <script type="application/ld+json" set:html={JSON.stringify(howToJsonLd)} />}
+    </Fragment>
+  )}
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" data-pagefind-body>
+    <div class="lg:grid lg:grid-cols-[220px_1fr] lg:gap-8">
+
+      <!-- Sidebar - Chapter List -->
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <a href={`/${booksPath}/${book.slug}/`} class="text-sm text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] hover:text-[var(--color-primary)] mb-4 block">
+            &larr; Back to Book
+          </a>
+          <h3 class="font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] mb-3 text-sm">Chapters</h3>
+          <nav class="space-y-1 text-sm max-h-[60vh] overflow-y-auto pr-2">
+            {allChapters.map((ch: any) => {
+              const slug = ch.slug.split('/').pop();
+              const isActive = ch.slug === chapter.slug;
+              return (
+                <a
+                  href={`/${booksPath}/${book.slug}/${slug}/`}
+                  class:list={[
+                    'block py-1.5 px-2 rounded transition-colors',
+                    isActive
+                      ? 'bg-[var(--color-primary)] bg-opacity-10 text-[var(--color-primary)] font-medium'
+                      : 'text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-dark-text-primary)] hover:bg-[var(--color-bg-secondary)] dark:hover:bg-[var(--color-dark-bg-secondary)]',
+                  ]}
+                >
+                  <span class="text-xs mr-1">{ch.data.chapter_number}.</span>
+                  <span class="line-clamp-1">{ch.data.title.replace(/^Chapter \d+:\s*/, '').substring(0, 30)}</span>
+                </a>
+              );
+            })}
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <article class="max-w-4xl">
+        <header class="mb-8">
+          <!-- Breadcrumb -->
+          <nav class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] mb-4 flex-wrap">
+            <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+            <span>/</span>
+            <a href={`/${booksPath}/${book.slug}/`} class="hover:text-[var(--color-primary)] transition-colors truncate max-w-[200px]">{bookTitle}</a>
+            <span>/</span>
+            <span class="text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)]">Chapter {chapter_number}</span>
+          </nav>
+
+          <div class="text-sm text-[var(--color-primary)] font-medium mb-2">
+            Chapter {chapter_number} of {allChapters.length}
+          </div>
+
+          <h1 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)]">
+            {title}
+          </h1>
+
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)]">
+            <span>{readingTime} min read</span>
+            <span>&middot;</span>
+            <span>{wordCount.toLocaleString()} words</span>
+          </div>
+        </header>
+
+        <!-- Content -->
+        <div class="prose prose-lg max-w-none dark:prose-invert prose-headings:font-bold prose-headings:text-[var(--color-text-primary)] dark:prose-headings:text-[var(--color-dark-text-primary)] prose-p:text-[var(--color-text-secondary)] dark:prose-p:text-[var(--color-dark-text-secondary)] prose-a:text-[var(--color-primary)] dark:prose-a:text-[var(--color-dark-primary)] prose-a:underline prose-img:rounded-xl prose-img:cursor-zoom-in mb-12">
+          <Content />
+        </div>
+
+        <!-- FAQ Section -->
+        {chapter.data.faq && chapter.data.faq.length > 0 && (
+          <div class="mt-12">
+            <hr class="border-[var(--color-border)] dark:border-[var(--color-dark-border)] mb-8" />
+            <h2 class="text-2xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] mb-6">
+              Frequently Asked Questions
+            </h2>
+            <div class="space-y-6">
+              {chapter.data.faq.map((item: any) => (
+                <div class="bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)] rounded-lg p-6">
+                  <h3 class="text-lg font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] mb-2">
+                    {item.question}
+                  </h3>
+                  <p class="text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] leading-relaxed">
+                    {item.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Download/Purchase Block -->
+        {(downloads || purchaseLinks) && (
+          <div class="bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)] rounded-xl p-6 my-8 border border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <img src={image_cover} alt={bookTitle} class="w-20 h-auto rounded shadow-md flex-shrink-0" />
+              <div class="flex-1">
+                <h3 class="font-bold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] mb-1">Get the Full Book</h3>
+                <p class="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] mb-3">Download for free or buy the print version</p>
+                <div class="flex flex-wrap gap-2">
+                  {downloads && downloads.map((dl: any) => (
+                    <a
+                      href={dl.url}
+                      class="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[var(--color-border)] dark:border-[var(--color-dark-border)] text-[var(--color-primary)] rounded-lg text-sm font-medium hover:bg-[var(--color-bg-primary)] dark:hover:bg-[var(--color-dark-bg-primary)] transition-colors"
+                    >
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                      {dl.format.toUpperCase()}
+                    </a>
+                  ))}
+                  {purchaseLinks && purchaseLinks.map((link: any) => (
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-500 text-white rounded-lg text-sm font-medium hover:bg-amber-600 transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <!-- Chapter Navigation -->
+        <nav class="flex flex-col sm:flex-row gap-4 border-t border-[var(--color-border)] dark:border-[var(--color-dark-border)] pt-8 mt-8">
+          {prevChapter ? (
+            <a
+              href={`/${booksPath}/${book.slug}/${prevChapter.slug.split('/').pop()}/`}
+              class="flex-1 group p-4 rounded-lg border border-[var(--color-border)] dark:border-[var(--color-dark-border)] hover:border-[var(--color-primary)] hover:bg-[var(--color-bg-secondary)] dark:hover:bg-[var(--color-dark-bg-secondary)] transition-all"
+            >
+              <div class="text-xs text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] mb-1">&larr; Previous</div>
+              <div class="font-medium text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] group-hover:text-[var(--color-primary)] transition-colors line-clamp-1">
+                {prevChapter.data.title}
+              </div>
+            </a>
+          ) : (
+            <div class="flex-1"></div>
+          )}
+          {nextChapter ? (
+            <a
+              href={`/${booksPath}/${book.slug}/${nextChapter.slug.split('/').pop()}/`}
+              class="flex-1 group p-4 rounded-lg border border-[var(--color-border)] dark:border-[var(--color-dark-border)] hover:border-[var(--color-primary)] hover:bg-[var(--color-bg-secondary)] dark:hover:bg-[var(--color-dark-bg-secondary)] transition-all text-right"
+            >
+              <div class="text-xs text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] mb-1">Next &rarr;</div>
+              <div class="font-medium text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] group-hover:text-[var(--color-primary)] transition-colors line-clamp-1">
+                {nextChapter.data.title}
+              </div>
+            </a>
+          ) : (
+            <div class="flex-1"></div>
+          )}
+        </nav>
+
+        <!-- Back to Book -->
+        <div class="border-t border-[var(--color-border)] dark:border-[var(--color-dark-border)] pt-8 mt-8">
+          <a
+            href={`/${booksPath}/${book.slug}/`}
+            class="inline-flex items-center gap-2 text-[var(--color-primary)] hover:underline transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back to {bookTitle}
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <ImageLightbox />
+  <PdfLightbox />
+</BaseLayout>
+
+<style>
+  :global([data-theme="dark"]) .prose {
+    --tw-prose-body: var(--color-dark-text-secondary);
+    --tw-prose-headings: var(--color-dark-text-primary);
+    --tw-prose-links: var(--color-dark-primary);
+    --tw-prose-bold: var(--color-dark-text-primary);
+    --tw-prose-counters: var(--color-dark-text-secondary);
+    --tw-prose-bullets: var(--color-dark-text-muted);
+    --tw-prose-hr: var(--color-dark-border);
+    --tw-prose-quotes: var(--color-dark-text-primary);
+    --tw-prose-quote-borders: var(--color-dark-primary);
+    --tw-prose-captions: var(--color-dark-text-muted);
+    --tw-prose-code: var(--color-dark-text-primary);
+    --tw-prose-pre-code: var(--color-dark-text-secondary);
+    --tw-prose-pre-bg: var(--color-dark-bg-secondary);
+    --tw-prose-th-borders: var(--color-dark-border);
+    --tw-prose-td-borders: var(--color-dark-border);
+  }
+</style>

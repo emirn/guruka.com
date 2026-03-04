@@ -1,22 +1,73 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { existsSync, readFileSync } from 'fs';
+import { resolve } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
+// Note: Pagefind is run as a post-build step via CLI (see package.json build script)
+// The astro-pagefind integration is kept for dev server middleware only
+import pagefind from 'astro-pagefind';
+import { validateImages } from './src/integrations/validate-images.js';
+import { ogImages } from './src/integrations/og-images.js';
+import { pdfThumbnails } from './src/integrations/pdf-thumbnails.js';
+import { sitemapCopy } from './src/integrations/sitemap-copy.js';
+
+// Load site config if available
+function getSiteConfig() {
+  try {
+    const configPath = './data/site-config.json';
+    if (existsSync(configPath)) {
+      return JSON.parse(readFileSync(configPath, 'utf-8'));
+    }
+  } catch {}
+  return null;
+}
 
 // https://astro.build/config
+// Note: Using object form (not function form) for defineConfig to ensure integration hooks run properly
+const siteConfig = getSiteConfig();
+const siteUrl = siteConfig?.branding?.site?.url;
+if (!siteUrl) {
+  throw new Error('Missing site URL: data/site-config.json must have branding.site.url');
+}
+const siteName = siteConfig?.branding?.site?.name;
+if (!siteName) {
+  throw new Error('Missing site name: data/site-config.json must have branding.site.name');
+}
+
+// Always include pagefind integration for dev server middleware
+// ogImages BEFORE validateImages so OG images exist during validation
+const integrations = [sitemap(), mdx(), pagefind(), ogImages(), pdfThumbnails(), validateImages(), sitemapCopy()];
+
+// Conditionally add React integration
+if (siteConfig?.integrations?.react) {
+  try {
+    const react = (await import('@astrojs/react')).default;
+    integrations.push(react());
+  } catch {
+    console.warn('Warning: @astrojs/react not installed. Install it with: npm install @astrojs/react react react-dom');
+  }
+}
+
+// Redirects from site config (set in project's template_settings.redirects)
+const redirects = siteConfig?.redirects || {};
+
 export default defineConfig({
-  site: 'https://guruka.com',
-  output: 'static',
-
-  build: {
-    format: 'directory',
-  },
-
+  site: siteUrl,
+  trailingSlash: 'always',
+  redirects,
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, './src')
+      }
+    }
   },
-
-  integrations: [
-    sitemap()
-  ]
+  integrations
 });

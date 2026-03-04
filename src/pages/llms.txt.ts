@@ -1,0 +1,89 @@
+import type { APIRoute } from 'astro';
+import { getConfig } from '../lib/config';
+import { getPublishedArticles } from '../lib/articles';
+import { getCategoriesWithCounts } from '../lib/categories';
+
+export const GET: APIRoute = async () => {
+  const config = getConfig();
+
+  // Return 404 if llms.txt is disabled
+  if (!config.llms_txt?.enabled) {
+    return new Response('Not found', { status: 404 });
+  }
+
+  const siteUrl = config.seo.canonical_domain || config.branding.site.url;
+  const lines: string[] = [];
+
+  // Site header
+  lines.push(`# ${config.branding.site.name}`);
+  lines.push('');
+
+  // Site description
+  if (config.branding.site.description) {
+    lines.push(`> ${config.branding.site.description}`);
+    lines.push('');
+  }
+
+  // Custom content (product description, etc.)
+  if (config.llms_txt.custom_content) {
+    lines.push(config.llms_txt.custom_content.trim());
+    lines.push('');
+  }
+
+  // Categories section
+  if (config.llms_txt.include_categories !== false && config.categories?.enabled) {
+    const categories = await getCategoriesWithCounts();
+    if (categories.length > 0) {
+      lines.push('## Categories');
+      lines.push('');
+      for (const cat of categories) {
+        lines.push(`- [${cat.name}](${siteUrl}${cat.url}): ${cat.count} articles`);
+      }
+      lines.push('');
+    }
+  }
+
+  // Articles section
+  if (config.llms_txt.include_articles !== false) {
+    const articles = await getPublishedArticles();
+
+    // Sort by date descending
+    const sortedArticles = articles.sort((a, b) => {
+      const dateA = a.data.published_at?.getTime() || 0;
+      const dateB = b.data.published_at?.getTime() || 0;
+      return dateB - dateA;
+    });
+
+    // Limit number of articles
+    const max_articles = config.llms_txt.max_articles || 50;
+    const limitedArticles = sortedArticles.slice(0, max_articles);
+
+    if (limitedArticles.length > 0) {
+      lines.push('## Articles');
+      lines.push('');
+      for (const article of limitedArticles) {
+        const url = `${siteUrl}/${article.slug}/`;
+        const description = article.data.description
+          ? `: ${truncate(article.data.description, 100)}`
+          : '';
+        lines.push(`- [${article.data.title}](${url})${description}`);
+      }
+      lines.push('');
+    }
+  }
+
+  const content = lines.join('\n');
+
+  return new Response(content, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'public, max-age=3600',
+    },
+  });
+};
+
+function truncate(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text;
+  return text.slice(0, maxLength - 3).trim() + '...';
+}

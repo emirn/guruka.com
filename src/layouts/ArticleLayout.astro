@@ -1,0 +1,298 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import { getConfig, getDefaultAuthor, getAuthorById, getAuthorUrl } from '../lib/config';
+import MobileToc from '../components/MobileToc.astro';
+import SocialShare from '../components/SocialShare.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import CategoryBadge from '../components/CategoryBadge.astro';
+import { generateBlogPosting, generateArticleBreadcrumbs } from '../lib/jsonld';
+import { getTagUrl } from '../lib/tags';
+import ImageLightbox from '../components/ImageLightbox.astro';
+import PdfLightbox from '../components/PdfLightbox.astro';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+// Read project-specific scripts (populated during build from config/styles/)
+let projectScripts = '';
+try {
+  const raw = readFileSync(resolve(process.cwd(), 'src/scripts/project-scripts.js'), 'utf-8');
+  // Skip if file is just the placeholder comment
+  if (raw.replace(/\/\*[\s\S]*?\*\//g, '').trim().length > 0) {
+    projectScripts = raw;
+  }
+} catch { /* no project scripts */ }
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+  headings?: Array<{ depth: number; slug: string; text: string }>;
+  relatedArticles?: CollectionEntry<'articles'>[];
+}
+
+const config = getConfig();
+const { article, headings = [], relatedArticles = [] } = Astro.props;
+const { data } = article;
+
+// Calculate reading time
+const wordCount = article.body?.split(/\s+/).length || 0;
+const readingTime = Math.ceil(wordCount / 200);
+
+// Format date
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+// Extract first image from markdown content for hero fallback
+function extractFirstImage(body: string | undefined): string | null {
+  if (!body) return null;
+  const mdMatch = body.match(/!\[.*?\]\(([^)]+)\)/);
+  if (mdMatch) return mdMatch[1];
+  const htmlMatch = body.match(/<img[^>]+src=["']([^"']+)["']/);
+  if (htmlMatch) return htmlMatch[1];
+  return null;
+}
+
+const heroImage = data.image_hero || extractFirstImage(article.body);
+
+const canonicalUrl = `${config.branding.site.url}/${article.slug}/`;
+
+// OG image: use explicit image_og, or fall back to the generated path
+const ogImagePath = data.image_og || `/assets/${article.slug}/og.webp`;
+
+// Skip template JSON-LD if the article body already contains inline JSON-LD
+const hasInlineJsonLd = article.body?.includes('application/ld+json');
+
+// Categories
+const categories = data.categories || [];
+const showCategories = config.blog.show_categories && config.categories?.enabled && categories.length > 0;
+
+// Tags
+const tags = data.tags || [];
+const showTags = config.tags?.enabled !== false && tags.length > 0;
+const hasInlineToc = article.body?.includes('<div id="toc">') || false;
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  canonical={canonicalUrl}
+  image={ogImagePath}
+  type="article"
+  publishedTime={data.published_at}
+  modifiedTime={data.updated_at}
+  author={data.author || getDefaultAuthor(config)}
+  keywords={data.keywords?.join(', ')}
+  ogTitle={data.og_title}
+  ogDescription={data.og_description}
+  twitterTitle={data.twitter_title}
+  twitterDescription={data.twitter_description}
+>
+  <!-- Article-specific JSON-LD (BlogPosting + Breadcrumbs) - skipped if article has inline JSON-LD -->
+  {config.seo.enable_json_ld && !hasInlineJsonLd && (
+    <Fragment slot="head">
+      <script type="application/ld+json" set:html={JSON.stringify(generateBlogPosting(config, article, canonicalUrl))} />
+      <script type="application/ld+json" set:html={JSON.stringify(generateArticleBreadcrumbs(config, article))} />
+    </Fragment>
+  )}
+
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8" data-pagefind-body data-section={article.slug.includes('/') ? article.slug.split('/')[0] : 'general'}>
+    <!-- Article Header -->
+    <header class="mb-8">
+      {heroImage && (
+        <img
+          src={heroImage}
+          alt={data.title}
+          class="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-xl mb-8"
+        />
+      )}
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] leading-tight mb-4">
+        {data.title}
+      </h1>
+
+      <div class="flex flex-wrap items-center gap-4 text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)]">
+        {config.blog.show_date && (
+          <time datetime={data.published_at.toISOString()}>
+            {formatDate(data.published_at)}
+          </time>
+        )}
+
+        {config.blog.show_date && data.updated_at && (
+          <>
+            <span class="w-1 h-1 rounded-full bg-current"></span>
+            <span>Updated <time datetime={data.updated_at.toISOString()}>{formatDate(data.updated_at)}</time></span>
+          </>
+        )}
+
+        {(() => {
+          // Prefer new authors[] system, fallback to reviewed_by
+          const reviewers = data.authors?.filter(a => a.role === 'reviewer') || [];
+          if (reviewers.length > 0) {
+            const latest = reviewers[0];
+            const authorInfo = getAuthorById(latest.id, config);
+            const name = authorInfo?.name || latest.id;
+            const url = authorInfo ? getAuthorUrl(name) : undefined;
+            return (
+              <>
+                <span class="w-1 h-1 rounded-full bg-current"></span>
+                <span>Reviewed by {url ? <a href={url} class="underline" rel="author">{name}</a> : name}</span>
+              </>
+            );
+          }
+          // Fallback to legacy reviewed_by
+          if (data.reviewed_by && data.reviewed_by.length > 0) {
+            const latest = data.reviewed_by[0];
+            return (
+              <>
+                <span class="w-1 h-1 rounded-full bg-current"></span>
+                <span>Reviewed by <a href={latest.reviewer_url} class="underline" rel="author">{latest.reviewer_name}</a></span>
+              </>
+            );
+          }
+          return null;
+        })()}
+
+        {config.blog.show_author && (data.author || getDefaultAuthor(config)) && (() => {
+          const authorName = data.author || getDefaultAuthor(config);
+          const authorUrl = config.authors?.length ? getAuthorUrl(authorName) : undefined;
+          return authorUrl
+            ? <span>by <a href={authorUrl} class="underline">{authorName}</a></span>
+            : <span>by {authorName}</span>;
+        })()}
+
+        {config.blog.show_reading_time && (
+          <span>{readingTime} min read</span>
+        )}
+      </div>
+
+      {showCategories && (
+        <div class="flex flex-wrap gap-2 mt-4">
+          {categories.map((cat) => (
+            <CategoryBadge category={cat} config={config} size="md" />
+          ))}
+        </div>
+      )}
+
+      {data.keywords && data.keywords.length > 0 && config.article.show_tags && (
+        <div class="flex flex-wrap gap-2 mt-4">
+          {data.keywords.map((keyword) => (
+            <span class="px-3 py-1 text-xs font-medium rounded-full bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)] text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)]">
+              {keyword}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <!-- Mobile Table of Contents -->
+    {config.blog.show_table_of_contents && headings.length > 0 && (
+      <MobileToc headings={headings} />
+    )}
+
+    <!-- Article Content -->
+    <div class="prose prose-lg max-w-none dark:prose-invert prose-headings:font-bold prose-headings:text-[var(--color-text-primary)] dark:prose-headings:text-[var(--color-dark-text-primary)] prose-p:text-[var(--color-text-secondary)] dark:prose-p:text-[var(--color-dark-text-secondary)] prose-a:text-[var(--color-primary)] dark:prose-a:text-[var(--color-dark-primary)] prose-a:underline prose-img:rounded-xl">
+      {config.blog.show_table_of_contents && !hasInlineToc && headings.length > 0 && (
+        <div id="toc" class="not-prose">
+          <ul>
+            {headings.filter(h => h.depth >= 2 && h.depth <= 3).map(h => (
+              <li class={h.depth === 3 ? 'toc-h3' : ''}><a href={`#${h.slug}`}>{h.text}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <slot />
+    </div>
+
+    <!-- Social Share -->
+    {config.article.show_social_share && (
+      <div class="mt-12 pt-8 border-t border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
+        <SocialShare
+          url={canonicalUrl}
+          title={data.title}
+          description={data.description}
+          buttons={config.article.social_share_buttons || ['twitter', 'facebook', 'linkedin', 'copy']}
+        />
+      </div>
+    )}
+
+    <!-- Tags -->
+    {showTags && (
+      <div class="mt-8 pt-6 border-t border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
+        <div class="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <a
+              href={getTagUrl(tag, config)}
+              class="px-3 py-1 text-xs font-medium rounded-full bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)] text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] hover:text-[var(--color-primary)] transition-colors"
+            >
+              #{tag}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Article History -->
+    {(data.authors?.length || data.reviewed_by?.length) && (
+      <section class="mt-12 pt-6 border-t border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
+        <h3 class="text-sm font-semibold text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] uppercase tracking-wide mb-3">Article History</h3>
+        <ul class="space-y-1 text-xs text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)]">
+          <li>{formatDate(data.published_at)} &mdash; Published</li>
+          {data.authors && data.authors.length > 0 ? data.authors.map(a => {
+            const authorInfo = getAuthorById(a.id, config);
+            const name = authorInfo?.name || a.id;
+            const url = authorInfo ? getAuthorUrl(name) : undefined;
+            const roleLabel = a.role === 'reviewer' ? 'Reviewed by' : a.role === 'author' ? 'Written by' : 'Contributed by';
+            return (
+              <li>{formatDate(a.updated_at)} &mdash; {roleLabel} {url ? <a href={url} class="underline">{name}</a> : name}</li>
+            );
+          }) : data.reviewed_by?.map(r => (
+            <li>{formatDate(r.reviewed_at)} &mdash; Reviewed by <a href={r.reviewer_url} class="underline">{r.reviewer_name}</a></li>
+          ))}
+          {data.updated_at && <li>{formatDate(data.updated_at)} &mdash; Last updated</li>}
+        </ul>
+      </section>
+    )}
+
+    <!-- Related Articles -->
+    {config.blog.show_related_posts && relatedArticles.length > 0 && (
+      <section class="mt-16">
+        <h2 class="text-2xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] mb-8">
+          Related Articles
+        </h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {relatedArticles.slice(0, 3).map((related) => (
+            <ArticleCard article={related} config={config} />
+          ))}
+        </div>
+      </section>
+    )}
+  </article>
+  <ImageLightbox />
+  <PdfLightbox />
+  {projectScripts && <script is:inline set:html={projectScripts} />}
+</BaseLayout>
+
+<style>
+  /* Dark mode styles */
+  :global([data-theme="dark"]) .prose {
+    --tw-prose-body: var(--color-dark-text-secondary);
+    --tw-prose-headings: var(--color-dark-text-primary);
+    --tw-prose-links: var(--color-dark-primary);
+    --tw-prose-bold: var(--color-dark-text-primary);
+    --tw-prose-counters: var(--color-dark-text-secondary);
+    --tw-prose-bullets: var(--color-dark-text-muted);
+    --tw-prose-hr: var(--color-dark-border);
+    --tw-prose-quotes: var(--color-dark-text-primary);
+    --tw-prose-quote-borders: var(--color-dark-primary);
+    --tw-prose-captions: var(--color-dark-text-muted);
+    --tw-prose-code: var(--color-dark-text-primary);
+    --tw-prose-pre-code: var(--color-dark-text-secondary);
+    --tw-prose-pre-bg: var(--color-dark-bg-secondary);
+    --tw-prose-th-borders: var(--color-dark-border);
+    --tw-prose-td-borders: var(--color-dark-border);
+  }
+</style>

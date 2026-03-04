@@ -1,0 +1,100 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getConfig } from '../../lib/config';
+
+const config = getConfig();
+
+// Config-gated: return no pages when books feature is disabled
+if (!config.books?.enabled) {
+  return Astro.redirect('/404');
+}
+
+const books = await getCollection('books');
+const sortedBooks = books.sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf());
+
+const booksPath = config.books.path || 'books';
+---
+
+<BaseLayout
+  title="Books & Guides"
+  description="Free books and guides — read online or download."
+  canonical={`${config.branding.site.url}/${booksPath}/`}
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <header class="text-center mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] mb-4">
+        Books & Guides
+      </h1>
+      <p class="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] max-w-2xl mx-auto">
+        In-depth resources — free to read online or download.
+      </p>
+    </header>
+
+    <!-- Books Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {sortedBooks.map((book) => (
+        <article class="bg-[var(--color-bg-primary)] dark:bg-[var(--color-dark-bg-primary)] rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group border border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
+          <a href={`/${booksPath}/${book.slug}/`} class="block aspect-[3/4] overflow-hidden bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)]">
+            <img
+              src={book.data.image_cover}
+              alt={book.data.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </a>
+
+          <div class="p-6">
+            <a href={`/${booksPath}/${book.slug}/`}>
+              <h2 class="text-xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] mb-2 group-hover:text-[var(--color-primary)] transition-colors line-clamp-2">
+                {book.data.title}
+              </h2>
+            </a>
+
+            {book.data.subtitle && (
+              <p class="text-sm text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] mb-3 line-clamp-2">
+                {book.data.subtitle}
+              </p>
+            )}
+
+            <p class="text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] text-sm mb-4 line-clamp-3">
+              {book.data.description}
+            </p>
+
+            <div class="flex items-center gap-4 text-xs text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] mb-4">
+              <span>By {book.data.author}</span>
+              {book.data.page_count && <span>{book.data.page_count} pages</span>}
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              <a
+                href={`/${booksPath}/${book.slug}/`}
+                class="inline-flex items-center gap-1 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+              >
+                Read Online
+              </a>
+              {book.data.downloads && book.data.downloads.length > 0 && (
+                <a
+                  href={book.data.downloads[0].url}
+                  class="inline-flex items-center gap-1 px-4 py-2 border border-[var(--color-border)] dark:border-[var(--color-dark-border)] text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] rounded-lg text-sm font-medium hover:bg-[var(--color-bg-secondary)] dark:hover:bg-[var(--color-dark-bg-secondary)] transition-colors"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  Download
+                </a>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {sortedBooks.length === 0 && (
+      <p class="text-center text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] py-12">
+        No books published yet.
+      </p>
+    )}
+  </div>
+</BaseLayout>

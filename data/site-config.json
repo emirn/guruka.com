@@ -1,0 +1,256 @@
+{
+  "branding": {
+    "badge": "",
+    "site": {
+      "name": "GURUKA",
+      "tagline": "Train Your Brain, Sharpen Your Mind",
+      "description": "Science-backed brain training games to improve memory, processing speed, and mental agility. Play daily and track your progress.",
+      "url": "https://guruka.com",
+      "language": "en",
+      "favicon_url": "",
+      "author": {
+        "name": "GURUKA Team",
+        "bio": "Science-backed brain training experts"
+      }
+    },
+    "logo": {
+      "type": "text",
+      "text": "GURUKA",
+      "image_url": "",
+      "style": "plain",
+      "font_family": "Space Grotesk, system-ui, sans-serif",
+      "font_weight": "700",
+      "layout": "text-only",
+      "mark_text": "",
+      "color": "#FFFFFF",
+      "background_color": "#0f9072",
+      "size": "md",
+      "letter_spacing": "0.02em",
+      "text_transform": "none",
+      "separator": "",
+      "dark_mode": {
+        "color": "#FFFFFF",
+        "background_color": "#0f9072"
+      }
+    },
+    "colors": {
+      "primary": "#0f9072",
+      "secondary": "#f59e0b",
+      "primary_text": "#f9fafb",
+      "background": "#f7f9fc",
+      "background_secondary": "#f0f4f8",
+      "text_primary": "#1a2332",
+      "text_secondary": "#4b5b6d",
+      "text_muted": "#6b7788",
+      "border": "#dfe4ea"
+    },
+    "dark_mode": {
+      "enabled": true,
+      "default": "light",
+      "toggle_position": "footer",
+      "colors": {
+        "text_primary": "#f9fafb",
+        "text_secondary": "#cbd5e1",
+        "text_muted": "#94a3b8",
+        "background": "#0f1729",
+        "background_secondary": "#1e293b",
+        "border": "#334155"
+      }
+    },
+    "illustration_styles": {
+      "primary": "digital_illustration/corporate",
+      "secondary": "digital_illustration/pastel_gradient"
+    },
+    "gradient": [
+      "#0f4a3e",
+      "#0f9072",
+      "#10b981"
+    ],
+    "typography": {
+      "font_family": "Inter, system-ui, sans-serif",
+      "heading_font_family": "Space Grotesk, system-ui, sans-serif",
+      "google_fonts": [
+        "Inter:wght@400;500;600;700",
+        "Space+Grotesk:wght@400;500;600;700"
+      ]
+    }
+  },
+  "hero": {
+    "enabled": false,
+    "title": "",
+    "subtitle": "",
+    "show_on_all_pages": false
+  },
+  "gradient": [
+    "",
+    "",
+    ""
+  ],
+  "typography": {
+    "font_family": "Inter, system-ui, sans-serif",
+    "heading_font_family": "Space Grotesk, system-ui, sans-serif",
+    "google_fonts": [
+      "Inter:wght@400;500;600;700",
+      "Space+Grotesk:wght@400;500;600;700"
+    ]
+  },
+  "header": {
+    "style": "pill",
+    "show_search": true,
+    "nav_links": [
+      {
+        "label": "Games",
+        "url": "/games/"
+      },
+      {
+        "label": "Blog",
+        "url": "/blog/"
+      }
+    ],
+    "cta_button": {
+      "enabled": true,
+      "label": "Play Now",
+      "url": "/games/",
+      "style": "primary",
+      "target": "_self"
+    }
+  },
+  "footer": {
+    "show_logo": true,
+    "show_tagline": true,
+    "columns": [
+      {
+        "title": "Games",
+        "links": [
+          {
+            "label": "Speed Match",
+            "url": "/games/speed-match/"
+          },
+          {
+            "label": "Memory Matrix",
+            "url": "/games/memory-matrix/"
+          },
+          {
+            "label": "Sequence Recall",
+            "url": "/games/sequence-recall/"
+          }
+        ]
+      },
+      {
+        "title": "Learn",
+        "links": [
+          {
+            "label": "Blog",
+            "url": "/blog/"
+          }
+        ]
+      }
+    ],
+    "social_links": {
+      "twitter": "",
+      "linkedin": "",
+      "facebook": "",
+      "instagram": "",
+      "youtube": "",
+      "github": "",
+      "tiktok": "",
+      "bluesky": "",
+      "threads": "",
+      "rss": true
+    },
+    "copyright_text": "{{YEAR}} {{SITE_NAME}}",
+    "powered_by_text": "",
+    "powered_by_url": "https://aicw.io",
+    "show_powered_by": false
+  },
+  "newsletter": {
+    "enabled": false,
+    "position": "footer",
+    "code": ""
+  },
+  "blog": {
+    "section_title": "LATEST",
+    "posts_per_page": 9,
+    "show_categories": false,
+    "show_date": true,
+    "show_author": false,
+    "show_excerpt": true,
+    "show_reading_time": true,
+    "show_table_of_contents": true,
+    "show_related_posts": true,
+    "pagination_style": "pages",
+    "date_format": "MMM d, yyyy"
+  },
+  "article": {
+    "show_social_share": true,
+    "social_share_buttons": [
+      "twitter",
+      "linkedin",
+      "facebook",
+      "copy"
+    ],
+    "show_author_bio": false,
+    "show_tags": false
+  },
+  "seo": {
+    "title_separator": " | ",
+    "default_og_image": "",
+    "twitter_handle": "",
+    "enable_json_ld": true,
+    "canonical_domain": "",
+    "robots_no_index": false,
+    "preview_banner_text": "Preview Mode - This site is not indexed by search engines",
+    "json_ld": {
+      "organization_name": "GURUKA",
+      "organization_logo": "https://guruka.com/favicon.svg"
+    }
+  },
+  "tracking": {
+    "widget_code": "",
+    "custom_head_code": "",
+    "custom_body_code": ""
+  },
+  "search": {
+    "enabled": false,
+    "placeholder": "Search articles...",
+    "show_in_header": true
+  },
+  "aicw": {
+    "enabled": false,
+    "tracking_id": "",
+    "domain": ""
+  },
+  "robots_txt": {},
+  "llms_txt": {
+    "enabled": false,
+    "include_articles": true,
+    "max_articles": 50,
+    "include_categories": true,
+    "custom_content": ""
+  },
+  "pdf": {
+    "popup": true,
+    "popup_download_enabled": true,
+    "generate_thumbnail": false,
+    "generate_thumbnail_max_size": 200
+  },
+  "sections": [
+    {
+      "id": "blog",
+      "label": "Blog",
+      "path": "blog",
+      "show_in_nav": false,
+      "show_on_home": true,
+      "section_title": "BLOG",
+      "layout": "grid",
+      "section_type": "blog"
+    }
+  ],
+  "authors": [
+    {
+      "id": "guruka-team",
+      "name": "GURUKA Team",
+      "url": ""
+    }
+  ]
+}
