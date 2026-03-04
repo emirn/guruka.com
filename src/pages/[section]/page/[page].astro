@@ -1,0 +1,78 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getConfig } from '../../../lib/config';
+import { getAllLocalSections, getArticlesBySection } from '../../../lib/sections';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import ArticleListItem from '../../../components/ArticleListItem.astro';
+import Pagination from '../../../components/Pagination.astro';
+
+export const getStaticPaths = (async () => {
+  const config = getConfig();
+  const allSections = await getAllLocalSections(config);
+  const sections = allSections.filter(s => s.section_type !== 'page');
+
+  if (sections.length === 0) return [];
+
+  const paths = [];
+  for (const section of sections) {
+    const articles = await getArticlesBySection(section.id);
+    const posts_per_page = section.posts_per_page || config.blog.posts_per_page || 9;
+    const totalPages = Math.ceil(articles.length / posts_per_page);
+
+    // Generate paths for page 2 onwards (page 1 is [section]/index.astro)
+    for (let i = 2; i <= totalPages; i++) {
+      paths.push({
+        params: { section: section.path, page: String(i) },
+        props: { sectionConfig: section },
+      });
+    }
+  }
+
+  return paths;
+}) satisfies GetStaticPaths;
+
+const config = getConfig();
+const { sectionConfig } = Astro.props;
+const { page } = Astro.params;
+const currentPage = parseInt(page);
+
+const articles = (await getArticlesBySection(sectionConfig.id))
+  .sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf());
+
+const posts_per_page = sectionConfig.posts_per_page || config.blog.posts_per_page || 9;
+const totalPages = Math.ceil(articles.length / posts_per_page);
+const startIndex = (currentPage - 1) * posts_per_page;
+const paginatedArticles = articles.slice(startIndex, startIndex + posts_per_page);
+const layout = sectionConfig.layout || 'grid';
+---
+
+<BaseLayout
+  title={`${sectionConfig.label} - Page ${currentPage}`}
+  description={sectionConfig.description}
+  canonical={`${config.branding.site.url}/${sectionConfig.path}/page/${currentPage}/`}
+>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    {sectionConfig.section_title && (
+      <h2 class="text-sm font-semibold text-[var(--color-primary)] uppercase tracking-wider mb-8">
+        {sectionConfig.section_title}
+      </h2>
+    )}
+
+    {layout === 'list' ? (
+      <div class="flex flex-col gap-4">
+        {paginatedArticles.map((article) => (
+          <ArticleListItem article={article} config={config} />
+        ))}
+      </div>
+    ) : (
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {paginatedArticles.map((article) => (
+          <ArticleCard article={article} config={config} />
+        ))}
+      </div>
+    )}
+
+    <Pagination currentPage={currentPage} totalPages={totalPages} basePath={`/${sectionConfig.path}`} />
+  </section>
+</BaseLayout>

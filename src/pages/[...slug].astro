@@ -1,0 +1,89 @@
+---
+import type { GetStaticPaths } from 'astro';
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+import GuideLayout from '../layouts/GuideLayout.astro';
+import { getConfig } from '../lib/config';
+import { getPublishedArticles } from '../lib/articles';
+import { getSectionFromSlug, getSections } from '../lib/sections';
+
+const config = getConfig();
+
+// Built-in layout map
+const builtinLayouts: Record<string, any> = {
+  article: ArticleLayout,
+  guide: GuideLayout,
+};
+
+// Discover custom layouts (only resolved when custom_layouts.enabled)
+const customLayoutModules = config.custom_layouts?.enabled
+  ? import.meta.glob('../layouts/custom/*.astro')
+  : {};
+
+async function resolveLayout(templateName: string | undefined) {
+  const name = templateName || 'article';
+
+  // Check built-in layouts first
+  if (builtinLayouts[name]) return builtinLayouts[name];
+
+  // Check custom layouts
+  if (config.custom_layouts?.enabled) {
+    const customPath = `../layouts/custom/${name}.astro`;
+    if (customLayoutModules[customPath]) {
+      const mod = await customLayoutModules[customPath]();
+      return (mod as any).default;
+    }
+  }
+
+  // Fallback to article layout
+  return ArticleLayout;
+}
+
+export const getStaticPaths = (async () => {
+  const articles = await getPublishedArticles();
+
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}) satisfies GetStaticPaths;
+
+const { article } = Astro.props;
+const { Content, headings } = await article.render();
+
+// Determine section and template
+const sectionId = getSectionFromSlug(article.slug);
+const sections = getSections(config);
+const sectionConfig = sectionId ? sections.find(s => s.id === sectionId) : null;
+const Layout = await resolveLayout(sectionConfig?.template);
+
+// Find related articles (only for article layout)
+const allArticles = await getPublishedArticles();
+const isArticleLayout = !sectionConfig?.template || sectionConfig.template === 'article';
+let relatedArticles: typeof allArticles = [];
+
+if (isArticleLayout) {
+  relatedArticles = allArticles
+    .filter((a) => a.slug !== article.slug)
+    .filter((a) => {
+      const currentKeywords = article.data.keywords || [];
+      const currentCategories = article.data.categories || [];
+      const currentTags = article.data.tags || [];
+
+      const otherKeywords = a.data.keywords || [];
+      const otherCategories = a.data.categories || [];
+      const otherTags = a.data.tags || [];
+
+      const sharedKeywords = currentKeywords.some((k) => otherKeywords.includes(k));
+      const sharedCategories = currentCategories.some((c) => otherCategories.includes(c));
+      const sharedTags = currentTags.some((t) => otherTags.includes(t));
+
+      return sharedKeywords || sharedCategories || sharedTags;
+    })
+    .sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf())
+    .slice(0, 3);
+}
+---
+
+<Layout article={article} headings={headings} relatedArticles={relatedArticles} sectionConfig={sectionConfig}>
+  <Content />
+</Layout>

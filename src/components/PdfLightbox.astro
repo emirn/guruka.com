@@ -1,0 +1,113 @@
+---
+import { getConfig } from '../lib/config';
+
+const config = getConfig();
+const pdfConfig = config.pdf || {};
+const popup = pdfConfig.popup !== false;
+const downloadEnabled = pdfConfig.popup_download_enabled !== false;
+---
+
+{popup && (
+<div id="pdf-lightbox-overlay" class="pdf-lightbox-overlay">
+  <div class="pdf-lightbox-actions">
+    {downloadEnabled && (
+      <a id="pdf-lightbox-download" class="pdf-lightbox-download" download aria-label="Download PDF">&#8615;</a>
+    )}
+    <button id="pdf-lightbox-close" class="pdf-lightbox-close" aria-label="Close PDF viewer">&times;</button>
+  </div>
+  <div id="pdf-lightbox-container" class="pdf-lightbox-container"></div>
+  <div id="pdf-lightbox-loading" class="pdf-lightbox-loading">Loading PDF…</div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('pdf-lightbox-overlay');
+    const container = document.getElementById('pdf-lightbox-container');
+    const loading = document.getElementById('pdf-lightbox-loading');
+    const closeBtn = document.getElementById('pdf-lightbox-close');
+    const downloadBtn = document.getElementById('pdf-lightbox-download') as HTMLAnchorElement | null;
+    if (!overlay || !container || !loading || !closeBtn) return;
+
+    const PDF_JS_CDN = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.min.mjs';
+    const PDF_WORKER_CDN = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs';
+
+    let pdfjsLib: any = null;
+
+    async function loadPdfJs() {
+      if (pdfjsLib) return pdfjsLib;
+      pdfjsLib = await import(/* @vite-ignore */ PDF_JS_CDN);
+      pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_CDN;
+      return pdfjsLib;
+    }
+
+    function closeLightbox() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+      container.innerHTML = '';
+      loading.style.display = 'none';
+      if (downloadBtn) {
+        downloadBtn.href = '';
+      }
+    }
+
+    async function openPdf(url: string) {
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      loading.style.display = 'block';
+      container.innerHTML = '';
+
+      // Set download link
+      if (downloadBtn) {
+        downloadBtn.href = url;
+      }
+
+      try {
+        const lib = await loadPdfJs();
+        const pdf = await lib.getDocument(url).promise;
+        loading.style.display = 'none';
+
+        const scale = window.innerWidth < 768 ? 1.0 : 1.5;
+
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const viewport = page.getViewport({ scale });
+          const canvas = document.createElement('canvas');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          container.appendChild(canvas);
+
+          const ctx = canvas.getContext('2d');
+          await page.render({ canvasContext: ctx, viewport }).promise;
+        }
+      } catch (err) {
+        loading.textContent = 'Failed to load PDF.';
+        console.error('PDF lightbox error:', err);
+      }
+    }
+
+    // Attach to all PDF links inside .prose
+    document.querySelectorAll('.prose a[href$=".pdf"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        openPdf((link as HTMLAnchorElement).href);
+      });
+    });
+
+    // Close handlers
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+  });
+</script>
+)}

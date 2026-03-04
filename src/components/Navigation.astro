@@ -1,0 +1,298 @@
+---
+import type { SiteConfig } from '../lib/config';
+import { getLogoTextStyle } from '../lib/config';
+import { discoverAllSections, getEffectiveNavLinks } from '../lib/sections';
+import SearchTrigger from './SearchTrigger.astro';
+
+interface Props {
+  config: SiteConfig;
+}
+
+const { config } = Astro.props;
+const showSearch = config.search?.enabled && config.search?.show_in_header !== false;
+const allSections = await discoverAllSections(config);
+const navLinks = getEffectiveNavLinks(config, allSections);
+const logoStyle = getLogoTextStyle(config);
+---
+
+<header class="bg-[var(--color-bg-primary)]/95 dark:bg-[var(--color-dark-bg-primary)]/95 backdrop-blur-sm border-b border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/" class:list={[
+        "flex items-center gap-2 font-bold text-xl text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] transition-opacity",
+        logoStyle === 'underline-hover' ? 'logo-underline-hover' : 'hover:opacity-80',
+      ]}>
+        {config.branding.logo.type === 'image' && config.branding.logo.image_url ? (
+          <img src={config.branding.logo.image_url} alt={config.branding.site.name} class="h-8 w-auto" />
+        ) : (
+          <span
+            class:list={[
+              logoStyle === 'bordered' && 'px-3 py-1 border-2 rounded-lg logo-bordered',
+              logoStyle === 'pill' && 'px-4 py-1 rounded-full',
+              logoStyle === 'gradient' && 'logo-gradient',
+              logoStyle === 'spaced-caps' && 'uppercase tracking-[0.12em]',
+            ]}
+            style={
+              logoStyle === 'bordered' ? `border-color: ${config.branding.colors.primary}` :
+              logoStyle === 'pill' ? `background-color: ${config.branding.colors.primary}; color: ${config.branding.colors.primary_text || '#fff'}` :
+              ''
+            }
+          >
+            {config.branding.logo.text || config.branding.site.name}
+          </span>
+        )}
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-6">
+        {navLinks.map((link) => (
+          link.children ? (
+            <div class="relative nav-dropdown">
+              <button
+                type="button"
+                class:list={[
+                  link.class_name || "text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-dark-text-primary)] transition-colors font-medium flex items-center gap-1",
+                ]}
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                {link.label}
+                <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="nav-dropdown-menu absolute top-full left-0 mt-2 min-w-[200px] bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-[var(--color-border)] dark:border-[var(--color-dark-border)] py-2 hidden opacity-0 transition-opacity duration-200 z-50">
+                {link.children.map((child) => (
+                  <a
+                    href={child.url}
+                    class:list={[
+                      child.class_name || "block px-4 py-2 text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-dark-text-primary)] hover:bg-[var(--color-bg-secondary)] dark:hover:bg-[var(--color-dark-bg-secondary)] transition-colors",
+                    ]}
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={link.url}
+              class:list={[
+                link.class_name || "text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-dark-text-primary)] transition-colors font-medium"
+              ]}
+            >
+              {link.label}
+            </a>
+          )
+        ))}
+
+        {showSearch && <SearchTrigger />}
+
+        {config.header.cta_button?.enabled && (
+          <a
+            href={config.header.cta_button.url}
+            target={config.header.cta_button.target || '_self'}
+            rel={config.header.cta_button.target === '_blank' ? 'noopener noreferrer' : undefined}
+            class:list={[
+              config.header.cta_button.className || "inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)] transition-colors"
+            ]}
+          >
+            {config.header.cta_button.label}
+          </a>
+        )}
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        type="button"
+        class="md:hidden p-2 text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-dark-text-primary)]"
+        id="mobile-menu-btn"
+        aria-label="Toggle menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="hidden md:hidden pb-4" id="mobile-menu">
+      <div class="flex flex-col gap-2 pt-4 border-t border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
+        {showSearch && (
+          <SearchTrigger class="justify-start" showShortcut={false} />
+        )}
+
+        {navLinks.map((link) => (
+          link.children ? (
+            <div class="mobile-nav-dropdown">
+              <button
+                type="button"
+                class:list={[
+                  link.class_name || "w-full flex items-center justify-between px-3 py-2 text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-dark-text-primary)] hover:bg-[var(--color-bg-secondary)] dark:hover:bg-[var(--color-dark-bg-secondary)] rounded-lg transition-colors font-medium",
+                ]}
+              >
+                {link.label}
+                <svg class="w-4 h-4 transition-transform mobile-dropdown-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="mobile-dropdown-content hidden pl-4 mt-1 space-y-1">
+                {link.children.map((child) => (
+                  <a
+                    href={child.url}
+                    class:list={[
+                      child.class_name || "block px-3 py-2 text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-dark-text-primary)] hover:bg-[var(--color-bg-secondary)] dark:hover:bg-[var(--color-dark-bg-secondary)] rounded-lg transition-colors text-sm",
+                    ]}
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={link.url}
+              class:list={[
+                link.class_name || "px-3 py-2 text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-dark-text-primary)] hover:bg-[var(--color-bg-secondary)] dark:hover:bg-[var(--color-dark-bg-secondary)] rounded-lg transition-colors font-medium"
+              ]}
+            >
+              {link.label}
+            </a>
+          )
+        ))}
+
+        {config.header.cta_button?.enabled && (
+          <a
+            href={config.header.cta_button.url}
+            target={config.header.cta_button.target || '_self'}
+            rel={config.header.cta_button.target === '_blank' ? 'noopener noreferrer' : undefined}
+            class:list={[
+              config.header.cta_button.className || "mt-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)] transition-colors"
+            ]}
+          >
+            {config.header.cta_button.label}
+          </a>
+        )}
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu when a link is clicked (but not dropdown buttons)
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+
+  // Desktop dropdown handling
+  document.querySelectorAll('.nav-dropdown').forEach((dropdown) => {
+    const button = dropdown.querySelector('button');
+    const menu = dropdown.querySelector('.nav-dropdown-menu');
+    const chevron = dropdown.querySelector('svg');
+
+    if (!button || !menu) return;
+
+    let isOpen = false;
+    let closeTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    const openDropdown = () => {
+      // Cancel any pending close
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+        closeTimeout = null;
+      }
+
+      isOpen = true;
+      menu.classList.remove('hidden');
+      button.setAttribute('aria-expanded', 'true');
+      chevron?.classList.add('rotate-180');
+      // Trigger reflow for animation
+      setTimeout(() => menu.classList.remove('opacity-0'), 10);
+    };
+
+    const closeDropdown = (immediate = false) => {
+      // Clear any existing timeout
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+        closeTimeout = null;
+      }
+
+      const doClose = () => {
+        isOpen = false;
+        menu.classList.add('opacity-0');
+        button.setAttribute('aria-expanded', 'false');
+        chevron?.classList.remove('rotate-180');
+        setTimeout(() => menu.classList.add('hidden'), 200);
+        closeTimeout = null;
+      };
+
+      if (immediate) {
+        doClose();
+      } else {
+        // Delayed close for mouseleave - gives user time to reach menu
+        closeTimeout = setTimeout(doClose, 200);
+      }
+    };
+
+    // Click to toggle
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isOpen ? closeDropdown(true) : openDropdown();
+    });
+
+    // Hover support with delayed close
+    dropdown.addEventListener('mouseenter', openDropdown);
+    dropdown.addEventListener('mouseleave', () => closeDropdown(false));
+
+    // Close on click outside (but not on links inside the dropdown)
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const isLinkInsideDropdown = menu.contains(target) && (target.tagName === 'A' || target.closest('a'));
+
+      if (isOpen && !dropdown.contains(target)) {
+        closeDropdown(true); // Immediate close
+      } else if (isLinkInsideDropdown) {
+        // Let the link navigation happen naturally
+        // The page will navigate and the dropdown will be cleaned up
+      }
+    });
+
+    // Keyboard support
+    button.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        closeDropdown(true); // Immediate close
+        button.focus();
+      }
+    });
+  });
+
+  // Mobile dropdown handling
+  document.querySelectorAll('.mobile-nav-dropdown').forEach((dropdown) => {
+    const button = dropdown.querySelector('button');
+    const content = dropdown.querySelector('.mobile-dropdown-content');
+    const chevron = dropdown.querySelector('.mobile-dropdown-chevron');
+
+    button?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = content?.classList.contains('hidden');
+
+      if (isHidden) {
+        content?.classList.remove('hidden');
+        chevron?.classList.add('rotate-180');
+      } else {
+        content?.classList.add('hidden');
+        chevron?.classList.remove('rotate-180');
+      }
+    });
+  });
+</script>

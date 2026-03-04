@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getConfig, authorSlug } from '../../lib/config';
+import { getAllAuthors, getArticlesByAuthor, findAuthorBySlug } from '../../lib/authors';
+
+export async function getStaticPaths() {
+  const config = getConfig();
+
+  // If no authors configured, return no paths
+  if (!config.authors || config.authors.length === 0) {
+    return [];
+  }
+
+  const authors = await getAllAuthors(config);
+
+  return authors.map((author) => ({
+    params: { author: author.slug },
+    props: { authorData: author },
+  }));
+}
+
+interface Props {
+  authorData: {
+    id: string;
+    name: string;
+    url: string;
+    slug: string;
+    pageUrl: string;
+    count: number;
+  };
+}
+
+const config = getConfig();
+const { authorData } = Astro.props;
+
+// Get articles for this author
+const articles = await getArticlesByAuthor(authorData.id, config);
+
+const title = `Articles by ${authorData.name}`;
+const description = `Browse all ${articles.length} articles by ${authorData.name}.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <header class="mb-12 text-center">
+      <nav class="mb-4">
+        <a
+          href="/"
+          class="text-sm text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] hover:text-[var(--color-primary)] transition-colors"
+        >
+          &larr; Back to Home
+        </a>
+      </nav>
+      <h1 class="text-3xl sm:text-4xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] mb-4">
+        {authorData.name}
+      </h1>
+      {authorData.url && (
+        <p class="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)]">
+          <a href={authorData.url} class="underline hover:text-[var(--color-primary)] transition-colors" rel="author" target="_blank">
+            View profile &rarr;
+          </a>
+        </p>
+      )}
+      <p class="text-sm text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] mt-2">
+        {articles.length} {articles.length === 1 ? 'article' : 'articles'}
+      </p>
+    </header>
+
+    <!-- Articles Grid -->
+    {articles.length > 0 ? (
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {articles.map((article) => (
+          <ArticleCard article={article} config={config} />
+        ))}
+      </div>
+    ) : (
+      <p class="text-center text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)]">
+        No articles found by this author.
+      </p>
+    )}
+  </div>
+</BaseLayout>

@@ -1,81 +1,185 @@
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
+import { getConfig, replacePlaceholders } from '../lib/config';
+import SEO from '../components/SEO.astro';
+import PreviewBanner from '../components/PreviewBanner.astro';
+import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import Search from '../components/Search.astro';
+import '../styles/global.css';
+import '../styles/project.css';
 
-interface Props {
+export interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article';
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  author?: string;
   keywords?: string;
   ogTitle?: string;
   ogDescription?: string;
-  ogImage?: string;
-  canonicalUrl?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
 }
 
+const config = getConfig();
 const {
-  title = 'GURUKA - Train Your Brain, Sharpen Your Mind',
-  description = 'GURUKA offers evidence-based cognitive exercises designed to improve memory, speed, and mental agility. Train daily and track your progress.',
-  keywords = 'brain training, cognitive exercises, memory improvement, mental agility, brain games',
-  ogTitle = title,
-  ogDescription = description,
-  ogImage = '/og-image.png',
-  canonicalUrl = Astro.url.href,
+  title,
+  description = config.branding.site.description,
+  canonical,
+  image,
+  imageAlt,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  author,
+  keywords,
+  ogTitle,
+  ogDescription,
+  twitterTitle,
+  twitterDescription,
 } = Astro.props;
+
+// For homepage (no title), use "Site Name | Tagline"
+// For other pages, use "Page Title | Site Name"
+const pageTitle = title
+  ? `${title}${config.seo.title_separator || ' | '}${config.branding.site.name}`
+  : config.branding.site.tagline
+    ? `${config.branding.site.name}${config.seo.title_separator || ' | '}${config.branding.site.tagline}`
+    : config.branding.site.name;
+
+// Generate CSS variables from config colors
+const cssVars = {
+  '--color-primary': config.branding.colors.primary,
+  '--color-primary-hover': config.branding.colors.secondary,
+  '--color-text-primary': config.branding.colors.text_primary,
+  '--color-text-secondary': config.branding.colors.text_secondary,
+  '--color-text-muted': config.branding.colors.text_muted || '#9CA3AF',
+  '--color-bg-primary': config.branding.colors.background,
+  '--color-bg-secondary': config.branding.colors.background_secondary,
+  '--color-border': config.branding.colors.border,
+  '--color-dark-text-primary': config.branding.dark_mode.colors.text_primary,
+  '--color-dark-text-secondary': config.branding.dark_mode.colors.text_secondary,
+  '--color-dark-text-muted': config.branding.dark_mode.colors.text_muted || '#9CA3AF',
+  '--color-dark-bg-primary': config.branding.dark_mode.colors.background,
+  '--color-dark-bg-secondary': config.branding.dark_mode.colors.background_secondary,
+  '--color-dark-border': config.branding.dark_mode.colors.border,
+  '--color-dark-primary': config.branding.dark_mode.colors.primary || config.branding.colors.primary,
+  '--font-family': config.typography.font_family || 'Inter, system-ui, sans-serif',
+  '--font-heading': config.typography.heading_font_family || 'Inter, system-ui, sans-serif',
+  '--logo-border-color': config.branding.colors.primary,
+};
 ---
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="generator" content={Astro.generator} />
+<html lang={config.branding.site.language || 'en'}>
+  <head>
+    <SEO
+      title={pageTitle}
+      description={description}
+      canonical={canonical}
+      image={image}
+      imageAlt={imageAlt}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      author={author}
+      keywords={keywords}
+      ogTitle={ogTitle}
+      ogDescription={ogDescription}
+      twitterTitle={twitterTitle}
+      twitterDescription={twitterDescription}
+      config={config}
+    />
 
-  <!-- Primary Meta Tags -->
-  <title>{title}</title>
-  <meta name="title" content={title} />
-  <meta name="description" content={description} />
-  <meta name="keywords" content={keywords} />
+    <!-- Google Fonts -->
+    {config.typography.google_fonts && config.typography.google_fonts.length > 0 && (
+      <>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href={`https://fonts.googleapis.com/css2?family=${config.typography.google_fonts.join('&family=')}&display=swap`}
+          rel="stylesheet"
+        />
+      </>
+    )}
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href={canonicalUrl} />
+    <!-- Custom Head Code -->
+    {config.tracking.custom_head_code && <Fragment set:html={config.tracking.custom_head_code} />}
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <slot name="head" />
+  </head>
+  <body style={Object.entries(cssVars).map(([k, v]) => `${k}:${v}`).join(';')}>
+    <div class="sticky top-0 z-50">
+      <PreviewBanner config={config} />
+      <Navigation config={config} />
+    </div>
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:title" content={ogTitle} />
-  <meta property="og:description" content={ogDescription} />
-  <meta property="og:image" content={ogImage} />
+    <main>
+      <slot />
+    </main>
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content={canonicalUrl} />
-  <meta property="twitter:title" content={ogTitle} />
-  <meta property="twitter:description" content={ogDescription} />
-  <meta property="twitter:image" content={ogImage} />
+    <Footer config={config} />
 
-  <!-- Theme initialization script - prevent flash -->
-  <script is:inline>
-    (function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
-      }
-    })();
-  </script>
-</head>
-<body class="min-h-screen flex flex-col bg-[hsl(var(--background))] text-[hsl(var(--foreground))]">
-  <Header />
+    <!-- Search Modal -->
+    {config.search?.enabled && <Search config={config} />}
 
-  <main class="flex-1">
-    <slot />
-  </main>
+    <!-- JSON-LD Structured Data -->
+    {config.seo.enable_json_ld && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": config.branding.site.name,
+        "url": config.branding.site.url,
+        "description": config.branding.site.description,
+        "publisher": {
+          "@type": "Organization",
+          "name": config.branding.site.name,
+        }
+      })} />
+    )}
 
-  <Footer />
-</body>
+    <!-- AICW Tracking Script -->
+    {config.aicw?.enabled && config.aicw?.tracking_id && (
+      <script
+        is:inline
+        async
+        defer
+        src="https://aicw.io/track.js"
+        data-id={config.aicw.tracking_id}
+        data-domain={config.aicw.domain || config.seo.canonical_domain?.replace(/^https?:\/\//, '').replace(/\/$/, '') || new URL(config.branding.site.url).hostname}
+      />
+    )}
+
+    <!-- Tracking Widget Code -->
+    {config.tracking.widget_code && <Fragment set:html={config.tracking.widget_code} />}
+
+    <!-- Custom Body Code -->
+    {config.tracking.custom_body_code && <Fragment set:html={config.tracking.custom_body_code} />}
+
+    <!-- Theme Initialization Script -->
+    <script is:inline define:vars={{ darkModeDefault: config.branding.dark_mode.default, darkModeEnabled: config.branding.dark_mode.enabled }}>
+      (function() {
+        if (!darkModeEnabled) return;
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const defaultTheme = darkModeDefault || 'light';
+
+        let theme;
+        if (savedTheme) {
+          theme = savedTheme;
+        } else if (defaultTheme === 'system') {
+          theme = prefersDark ? 'dark' : 'light';
+        } else {
+          theme = defaultTheme;
+        }
+
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </body>
 </html>

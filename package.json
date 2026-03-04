@@ -1,18 +1,30 @@
 {
-  "name": "guruka.com",
+  "name": "astro-blog-template",
   "type": "module",
   "version": "1.0.0",
-  "description": "GURUKA Marketing Website - Science-backed brain training",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "rm -f .astro/data-store.json && astro dev",
+    "build": "rm -f .astro/data-store.json && node scripts/with-prefix.mjs astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.6",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
-    "@tailwindcss/vite": "^4.1.18",
-    "tailwindcss": "^4.1.18"
+    "@pagefind/default-ui": "^1.3.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4",
+    "astro": "^5.16.6",
+    "astro-pagefind": "^1.6.0",
+    "js-yaml": "^4.1.1",
+    "satori": "^0.18.3",
+    "@resvg/resvg-js": "^2.6.2",
+    "pdf-to-image-generator": "^1.0.5",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^4"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9"
   }
 }

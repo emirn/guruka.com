@@ -1,0 +1,231 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import { getConfig } from '../lib/config';
+import type { SectionConfig } from '../lib/config';
+import MobileToc from '../components/MobileToc.astro';
+import ImageLightbox from '../components/ImageLightbox.astro';
+import PdfLightbox from '../components/PdfLightbox.astro';
+import { generateBlogPosting, generateArticleBreadcrumbs } from '../lib/jsonld';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+// Read project-specific scripts (populated during build from config/styles/)
+let projectScripts = '';
+try {
+  const raw = readFileSync(resolve(process.cwd(), 'src/scripts/project-scripts.js'), 'utf-8');
+  if (raw.replace(/\/\*[\s\S]*?\*\//g, '').trim().length > 0) {
+    projectScripts = raw;
+  }
+} catch { /* no project scripts */ }
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+  headings?: Array<{ depth: number; slug: string; text: string }>;
+  sectionConfig?: SectionConfig;
+}
+
+const config = getConfig();
+const { article, headings = [], sectionConfig } = Astro.props;
+const { data } = article;
+
+// Calculate reading time
+const wordCount = article.body?.split(/\s+/).length || 0;
+const readingTime = Math.ceil(wordCount / 200);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+// Extract first image from markdown content for hero fallback
+function extractFirstImage(body: string | undefined): string | null {
+  if (!body) return null;
+  const mdMatch = body.match(/!\[.*?\]\(([^)]+)\)/);
+  if (mdMatch) return mdMatch[1];
+  const htmlMatch = body.match(/<img[^>]+src=["']([^"']+)["']/);
+  if (htmlMatch) return htmlMatch[1];
+  return null;
+}
+
+const heroImage = data.image_hero || extractFirstImage(article.body);
+const canonicalUrl = `${config.branding.site.url}/${article.slug}/`;
+const ogImagePath = data.image_og || `/assets/${article.slug}/og.webp`;
+const hasInlineJsonLd = article.body?.includes('application/ld+json');
+const hasInlineToc = article.body?.includes('<div id="toc">') || false;
+
+// Section breadcrumb info
+const sectionLabel = sectionConfig?.label || sectionConfig?.id || '';
+const sectionPath = sectionConfig?.path || '';
+
+// Filter headings for TOC
+const tocHeadings = headings.filter(h => h.depth >= 2 && h.depth <= 3);
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  canonical={canonicalUrl}
+  image={ogImagePath}
+  type="article"
+  publishedTime={data.published_at}
+  modifiedTime={data.updated_at}
+  author={data.author}
+  keywords={data.keywords?.join(', ')}
+  ogTitle={data.og_title}
+  ogDescription={data.og_description}
+  twitterTitle={data.twitter_title}
+  twitterDescription={data.twitter_description}
+>
+  {config.seo.enable_json_ld && !hasInlineJsonLd && (
+    <Fragment slot="head">
+      <script type="application/ld+json" set:html={JSON.stringify(generateBlogPosting(config, article, canonicalUrl))} />
+      <script type="application/ld+json" set:html={JSON.stringify(generateArticleBreadcrumbs(config, article))} />
+    </Fragment>
+  )}
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" data-pagefind-body data-section={sectionConfig?.id || 'guide'}>
+    <!-- Grid layout: sticky sidebar TOC on desktop, main content -->
+    <div class="lg:grid lg:grid-cols-[220px_1fr] lg:gap-8">
+
+      <!-- Sticky sidebar TOC (desktop only) -->
+      {tocHeadings.length > 0 && (
+        <aside class="hidden lg:block">
+          <nav class="sticky top-24">
+            <p class="text-xs font-semibold text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] uppercase tracking-wider mb-3">
+              On this page
+            </p>
+            <ul class="space-y-1.5 text-sm border-l border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
+              {tocHeadings.map((h) => (
+                <li>
+                  <a
+                    href={`#${h.slug}`}
+                    class:list={[
+                      'block py-0.5 transition-colors border-l-2 -ml-px',
+                      'text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)]',
+                      'hover:text-[var(--color-primary)] hover:border-[var(--color-primary)]',
+                      'border-transparent',
+                      h.depth === 2 ? 'pl-3' : 'pl-6',
+                    ]}
+                  >
+                    {h.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+      )}
+
+      <!-- Main article content -->
+      <article class="max-w-4xl">
+        <!-- Hero image -->
+        {heroImage && (
+          <img
+            src={heroImage}
+            alt={data.title}
+            class="w-full max-h-[28rem] object-contain rounded-xl mb-8"
+          />
+        )}
+
+        <header class="mb-8">
+          <!-- Breadcrumb -->
+          {sectionLabel && (
+            <nav class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] mb-4">
+              <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+              <span>/</span>
+              <a href={`/${sectionPath}/`} class="hover:text-[var(--color-primary)] transition-colors">{sectionLabel}</a>
+              <span>/</span>
+              <span class="text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] truncate">{data.title}</span>
+            </nav>
+          )}
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] leading-tight mb-4">
+            {data.title}
+          </h1>
+
+          {data.description && (
+            <p class="text-xl text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] mb-6">
+              {data.description}
+            </p>
+          )}
+
+          <!-- Meta: reading time, word count, dates -->
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)]">
+            <span>{readingTime} min read</span>
+            <span class="hidden sm:inline">&middot;</span>
+            <span>{wordCount.toLocaleString()} words</span>
+            <span class="hidden sm:inline">&middot;</span>
+            <time datetime={data.published_at.toISOString()}>
+              {formatDate(data.published_at)}
+            </time>
+            {data.updated_at && (
+              <span>
+                &middot; Updated {formatDate(data.updated_at)}
+              </span>
+            )}
+          </div>
+        </header>
+
+        <!-- Mobile TOC -->
+        <MobileToc headings={headings} />
+
+        <!-- Article content -->
+        <div class="prose prose-lg max-w-none dark:prose-invert prose-headings:font-bold prose-headings:text-[var(--color-text-primary)] dark:prose-headings:text-[var(--color-dark-text-primary)] prose-p:text-[var(--color-text-secondary)] dark:prose-p:text-[var(--color-dark-text-secondary)] prose-a:text-[var(--color-primary)] dark:prose-a:text-[var(--color-dark-primary)] prose-a:underline prose-img:rounded-xl">
+          {config.blog.show_table_of_contents && !hasInlineToc && headings.length > 0 && (
+            <div id="toc" class="not-prose lg:hidden">
+              <ul>
+                {headings.filter(h => h.depth >= 2 && h.depth <= 3).map(h => (
+                  <li class={h.depth === 3 ? 'toc-h3' : ''}><a href={`#${h.slug}`}>{h.text}</a></li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <slot />
+        </div>
+
+        <!-- Back to section -->
+        {sectionLabel && (
+          <div class="border-t border-[var(--color-border)] dark:border-[var(--color-dark-border)] pt-8 mt-12">
+            <a
+              href={`/${sectionPath}/`}
+              class="inline-flex items-center gap-2 text-[var(--color-primary)] hover:underline transition-colors"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Back to {sectionLabel}
+            </a>
+          </div>
+        )}
+      </article>
+    </div>
+  </div>
+
+  <ImageLightbox />
+  <PdfLightbox />
+  {projectScripts && <script is:inline set:html={projectScripts} />}
+</BaseLayout>
+
+<style>
+  :global([data-theme="dark"]) .prose {
+    --tw-prose-body: var(--color-dark-text-secondary);
+    --tw-prose-headings: var(--color-dark-text-primary);
+    --tw-prose-links: var(--color-dark-primary);
+    --tw-prose-bold: var(--color-dark-text-primary);
+    --tw-prose-counters: var(--color-dark-text-secondary);
+    --tw-prose-bullets: var(--color-dark-text-muted);
+    --tw-prose-hr: var(--color-dark-border);
+    --tw-prose-quotes: var(--color-dark-text-primary);
+    --tw-prose-quote-borders: var(--color-dark-primary);
+    --tw-prose-captions: var(--color-dark-text-muted);
+    --tw-prose-code: var(--color-dark-text-primary);
+    --tw-prose-pre-code: var(--color-dark-text-secondary);
+    --tw-prose-pre-bg: var(--color-dark-bg-secondary);
+    --tw-prose-th-borders: var(--color-dark-border);
+    --tw-prose-td-borders: var(--color-dark-border);
+  }
+</style>
