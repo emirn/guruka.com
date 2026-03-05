@@ -5,9 +5,17 @@ export function isExternalUrl(path: string): boolean {
   return path.startsWith('http://') || path.startsWith('https://');
 }
 
-/** Extract subfolder from slug (e.g., "blog/foo" → "blog", "foo" → null) */
-export function getSectionFromSlug(slug: string): string | null {
-  const parts = slug.split('/');
+/** Extract subfolder from slug (e.g., "blog/foo" → "blog", "foo" → null).
+ *  When i18n enabled, strips the language prefix first (e.g., "en/blog/foo" → "blog").
+ */
+export function getSectionFromSlug(slug: string, config?: SiteConfig): string | null {
+  let effective = slug;
+  if (config?.i18n?.enabled) {
+    const langs = config.i18n.languages?.map(l => l.code) || [];
+    const first = slug.split('/')[0];
+    if (langs.includes(first)) effective = slug.split('/').slice(1).join('/');
+  }
+  const parts = effective.split('/');
   return parts.length > 1 ? parts[0] : null;
 }
 
@@ -25,9 +33,9 @@ export function getSectionByPath(path: string, config?: SiteConfig): SectionConf
 }
 
 /** Filter published articles by subfolder prefix */
-export async function getArticlesBySection(sectionId: string) {
+export async function getArticlesBySection(sectionId: string, config?: SiteConfig) {
   const articles = await getPublishedArticles();
-  return articles.filter((a) => getSectionFromSlug(a.slug) === sectionId);
+  return articles.filter((a) => getSectionFromSlug(a.slug, config) === sectionId);
 }
 
 /** Title-case a hyphenated id: "legal-ai-tools" → "Legal Ai Tools" */
@@ -46,7 +54,7 @@ export async function discoverAllSections(config?: SiteConfig): Promise<SectionC
   const articles = await getPublishedArticles();
   const discoveredIds = new Set<string>();
   for (const article of articles) {
-    const sectionId = getSectionFromSlug(article.slug);
+    const sectionId = getSectionFromSlug(article.slug, config);
     if (sectionId && !configuredIds.has(sectionId)) {
       discoveredIds.add(sectionId);
     }
@@ -88,7 +96,7 @@ export async function getHomeArticles(config?: SiteConfig) {
   const hasSectionTypes = sections.some((s) => s.section_type);
 
   return articles.filter((article) => {
-    const sectionId = getSectionFromSlug(article.slug);
+    const sectionId = getSectionFromSlug(article.slug, config);
 
     // Root-level articles (no subfolder) always show on home
     if (!sectionId) return true;

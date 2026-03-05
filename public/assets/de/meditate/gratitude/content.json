@@ -1,0 +1,66 @@
+{
+  "lang": "de",
+  "title": "Dankbarkeit",
+  "subtitle": "Finde, was schon gut ist.",
+  "duration": 185.016,
+  "colors": {
+    "bg": "#1a1005",
+    "c1": "rgba(251,191,36,0.8)",
+    "c2": "rgba(245,158,11,0.6)",
+    "c3": "rgba(34,197,94,0.4)"
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Sitz bequem. Schließe deine Augen.\nNimm drei langsame, beruhigende Atemzüge, ein durch die Nase, aus durch den Mund."
+    },
+    {
+      "time": 14.328,
+      "text": "Lass jede Erwartung für die nächsten Minuten los.\nEs gibt keine richtige Antwort. Hier wird nichts bewertet."
+    },
+    {
+      "time": 28.608,
+      "text": "Fang einfach an.\nDenke an deinen Körper, an etwas, das er heute für dich getan hat, ohne gefragt zu werden.\nDeine Lungen haben geatmet. Dein Herz hat geschlagen. Deine Beine haben dich getragen."
+    },
+    {
+      "time": 48.648,
+      "text": "Nimm das einfach wahr.\nLass ein kleines Gefühl von Wertschätzung aufkommen."
+    },
+    {
+      "time": 60.36,
+      "text": "Denke jetzt an einen Menschen in deinem Leben, der die Dinge ein wenig leichter macht, ein wenig wärmer.\nJemand Nahes... oder jemand, den du kaum kennst.\nEin freundlicher Fremder. Ein guter Freund."
+    },
+    {
+      "time": 80.832,
+      "text": "Halte diesen Menschen für einen Moment in deinen Gedanken.\nSpüre die Wärme, die du für ihn empfindest."
+    },
+    {
+      "time": 94.584,
+      "text": "Denke jetzt an etwas Kleines, das du wirklich genießt.\nDen ersten Schluck von etwas Warmem.\nSonnenlicht durch ein Fenster.\nEin Geräusch, das du liebst.\nEtwas Einfaches... und Wahres."
+    },
+    {
+      "time": 113.544,
+      "text": "Erlaube dir, es jetzt zu genießen, einfach nur in der Erinnerung."
+    },
+    {
+      "time": 124.488,
+      "text": "Spüre, wo du Dankbarkeit in deinem Körper fühlst.\nManche Menschen spüren sie in der Brust, ein Öffnen... eine Wärme.\nLass sie sich dort niederlassen."
+    },
+    {
+      "time": 141.912,
+      "text": "Du musst nicht für alles dankbar sein.\nDu musst nicht so tun, als wäre alles perfekt.\nAber jetzt, in diesem Atemzug —\ngibt es etwas Gutes."
+    },
+    {
+      "time": 156.256,
+      "text": "Atme es ein.\nLass es wirklich sein."
+    },
+    {
+      "time": 168.944,
+      "text": "Nimm einen vollen Atemzug.\nWenn du deine Augen öffnest, nimm einen dieser Momente mit dir, in die nächste Stunde."
+    },
+    {
+      "time": 181.392,
+      "text": "Das Gute ist schon da.\nDu hast es gerade angeschaut."
+    }
+  ]
+}

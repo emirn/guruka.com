@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import type { SiteConfig } from '../lib/config';
 import { getDefaultAuthor, getAuthorUrl } from '../lib/config';
+import { getArticleLang, getArticleBaseSlug } from '../lib/articles';
 import CategoryBadge from './CategoryBadge.astro';
 
 interface Props {
@@ -10,7 +11,11 @@ interface Props {
 }
 
 const { article, config } = Astro.props;
-const { data, slug } = article;
+const { data, slug: rawSlug } = article;
+const defaultLang = config.i18n?.defaultLanguage || 'en';
+const lang = getArticleLang(rawSlug, config);
+const baseSlug = getArticleBaseSlug(rawSlug, config);
+const slug = (config.i18n?.enabled && lang !== defaultLang) ? `${lang}/${baseSlug}` : baseSlug;
 const categories = data.categories || [];
 const showCategories = config.blog.show_categories && config.categories?.enabled && categories.length > 0;
 

@@ -105,6 +105,37 @@
        score < challengeScore ? ' gk-cbar-behind' : '');
   };
 
+  /* ── Share Result ── */
+  GK.shareResult = function(score, gameTitle, gamePath, copiedId) {
+    var name = GK.getPlayerName() || 'Someone';
+    var url = window.location.origin + gamePath +
+      '?p_score=' + score +
+      '&p_name=' + encodeURIComponent(name);
+    var text = 'I scored ' + score + ' in ' + gameTitle + ' on GURUKA! Can you beat me?';
+
+    if (navigator.share) {
+      navigator.share({ title: gameTitle, text: text, url: url }).catch(function() {});
+    } else {
+      var full = text + ' ' + url;
+      var showCopied = function() {
+        var copied = document.getElementById(copiedId);
+        if (copied) {
+          copied.style.display = 'block';
+          setTimeout(function() { copied.style.display = 'none'; }, 2500);
+        }
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(full).then(showCopied).catch(function() {
+          GK._fallbackCopy(full);
+          showCopied();
+        });
+      } else {
+        GK._fallbackCopy(full);
+        showCopied();
+      }
+    }
+  };
+
   /* ── Share Buttons ── */
   GK.renderShareButtons = function(containerId, score, gameTitle, gamePath) {
     var container = document.getElementById(containerId);
@@ -254,7 +285,7 @@
         '.gkm-close{position:absolute;top:1rem;right:1.25rem;color:rgba(255,255,255,0.4);font-size:1.75rem;text-decoration:none;z-index:2;line-height:1;transition:color 0.2s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}' +
         '.gkm-close:hover{color:rgba(255,255,255,0.8)}' +
         '.gkm-text{text-align:center;padding:0 2rem;max-width:36rem;min-height:7rem;transition:opacity 0.8s ease;font-size:clamp(1.1rem,4vw,1.5rem);font-weight:300;line-height:1.7;margin-bottom:2rem}' +
-        '.gkm-circle{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation;position:relative;outline:none;-webkit-tap-highlight-color:transparent;transition:transform 0.2s;animation:gkm-idle-pulse 3s ease-in-out infinite}' +
+        '.gkm-circle{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent;transition:transform 0.2s;animation:gkm-idle-pulse 3s ease-in-out infinite}' +
         '.gkm-circle:active{transform:scale(0.97)}' +
         '.gkm-circle>svg{position:absolute;top:0;left:0;width:100%;height:100%}' +
         '.gkm-breathing{animation:gkm-breathe 6s ease-in-out infinite}' +
@@ -263,10 +294,10 @@
         '.gkm-time{font-size:2rem;font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:0.02em;color:rgba(255,255,255,0.9)}' +
         '.gkm-circle-label{font-size:0.75rem;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0.05em;text-transform:uppercase}' +
         '.gkm-circle-icon{color:rgba(255,255,255,0.8)}' +
-        '.gkm-idle-info{text-align:center;margin-top:2rem}' +
+        '.gkm-idle-info{text-align:center;width:100%}' +
         '.gkm-idle-info h2{font-size:1.5rem;font-weight:600;margin:0 0 0.25rem}' +
         '.gkm-idle-info p{font-size:0.95rem;color:rgba(255,255,255,0.5);margin:0}' +
-        '.gkm-end{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity 0.6s ease}' +
+        '.gkm-end{position:absolute;inset:0;z-index:15;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity 0.6s ease}' +
         '.gkm-end.gkm-visible{opacity:1;pointer-events:auto}' +
         '.gkm-end>*{animation:gkm-fade-in 0.6s ease both}' +
         '.gkm-end>:nth-child(2){animation-delay:0.1s}' +
@@ -284,7 +315,8 @@
         '.gkm-btn-ghost:hover{color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.3)}' +
         '.gkm-pause-icon{display:inline-flex;gap:3px;margin-bottom:2px}' +
         '.gkm-pause-icon span{display:block;width:3px;height:14px;background:rgba(255,255,255,0.6);border-radius:1px}' +
-        '.gkm-time-external{font-size:1.5rem;font-weight:400;font-variant-numeric:tabular-nums;color:rgba(255,255,255,0.25);margin-top:1.25rem;min-height:2rem;text-align:center;transition:opacity 0.3s}';
+        '.gkm-time-external{font-size:1.5rem;font-weight:400;font-variant-numeric:tabular-nums;color:rgba(255,255,255,0.25);width:100%;min-height:2rem;text-align:center;transition:opacity 0.3s}' +
+        '@media(max-width:768px){.gkm-circle{position:fixed;bottom:20vh;left:0;right:0;margin:0 auto;z-index:10}.gkm-time-external{position:fixed;bottom:12vh;left:0;right:0;margin:0 auto;z-index:10}.gkm-idle-info{position:fixed;bottom:4vh;left:0;right:0;margin:0 auto;z-index:10}.gkm-ui{justify-content:flex-start;padding-top:10vh}}';
       document.head.appendChild(styleEl);
     }
 
@@ -296,6 +328,12 @@
     }
 
     var state = 'idle';
+    var meditateBase = '/meditate/';
+    var pathParts = window.location.pathname.split('/').filter(Boolean);
+    var knownLangs = ['en','es','de','fr'];
+    if (knownLangs.indexOf(pathParts[0]) !== -1 && pathParts[0] !== 'en') {
+      meditateBase = '/' + pathParts[0] + '/meditate/';
+    }
     var startTime = 0;
     var elapsed = 0;
     var pausedAt = 0;
@@ -315,7 +353,7 @@
     ui.className = 'gkm-ui';
 
     ui.innerHTML =
-      '<a href="/meditate/" class="gkm-close" id="gkm-close" aria-label="Close">&times;</a>' +
+      '<a href="' + meditateBase + '" class="gkm-close" id="gkm-close" aria-label="Close">&times;</a>' +
       '<div class="gkm-text" id="gkm-text"></div>' +
       '<div class="gkm-circle gkm-glow" id="gkm-circle" tabindex="0" role="button" aria-label="Start meditation" style="--gkm-glow-rgb:' + glowRgb + '">' +
         '<svg viewBox="0 0 200 200" style="transform:scaleX(-1)">' +
@@ -338,7 +376,7 @@
         '<div class="gkm-hint" id="gkm-hint"></div>' +
         '<div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">' +
           '<button class="gkm-btn gkm-btn-primary" id="gkm-restart">Start Again</button>' +
-          '<a href="/meditate/" class="gkm-btn gkm-btn-ghost">Back to Meditations</a>' +
+          '<a href="' + meditateBase + '" class="gkm-btn gkm-btn-ghost">Back to Meditations</a>' +
         '</div>' +
       '</div>';
 
@@ -415,15 +453,12 @@
     }
 
     function dismissText(el) {
-      var letters = el.querySelectorAll('.gkm-letter');
-      for (var i = 0; i < letters.length; i++) {
-        letters[i].style.animationDelay = (i * 45) + 'ms';
-        letters[i].classList.add('gkm-letter-exit');
-      }
+      el.style.opacity = '0';
     }
 
     function getSlug() {
-      var p = window.location.pathname.replace(/^\/meditate\//, '').replace(/\/$/, '');
+      var p = window.location.pathname;
+      p = p.replace(/^\/[a-z]{2}\/meditate\//, '').replace(/^\/meditate\//, '').replace(/\/$/, '');
       return p || 'unknown';
     }
 
@@ -464,14 +499,14 @@
       if (newIdx !== currentIdx) {
         currentIdx = newIdx;
         var newText = currentIdx >= 0 ? data.body[currentIdx].text : '';
-        // If already dismissing, just wait a short beat then reveal
-        var revealDelay = dismissing ? 400 : 0;
+        var revealDelay = dismissing ? 800 : 0;
         dismissing = false;
         setTimeout(function() {
           if (newText) {
             revealText(textEl, newText);
           } else {
             textEl.innerHTML = '';
+            textEl.style.opacity = '1';
           }
         }, revealDelay);
       }
@@ -564,7 +599,8 @@
       timeExtEl.textContent = '';
       timeExtEl.style.opacity = '0';
       circleEl.classList.remove('gkm-breathing');
-      circleEl.style.display = 'none';
+      circleEl.style.visibility = 'hidden';
+      timeExtEl.style.visibility = 'hidden';
       closeEl.style.display = 'none';
       setCircleContent(checkIcon);
 
@@ -585,6 +621,8 @@
 
     function restart() {
       endEl.classList.remove('gkm-visible');
+      circleEl.style.visibility = 'visible';
+      timeExtEl.style.visibility = 'visible';
       circleEl.style.display = 'flex';
       if (audio) { audio.currentTime = 0; }
       start();

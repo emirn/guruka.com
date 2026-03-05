@@ -3,7 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 import GuideLayout from '../layouts/GuideLayout.astro';
 import { getConfig } from '../lib/config';
-import { getPublishedArticles } from '../lib/articles';
+import { getPublishedArticles, getArticleLang, getArticleBaseSlug } from '../lib/articles';
 import { getSectionFromSlug, getSections } from '../lib/sections';
 
 const config = getConfig();
@@ -39,32 +39,51 @@ async function resolveLayout(templateName: string | undefined) {
 }
 
 export const getStaticPaths = (async () => {
+  const config = getConfig();
   const articles = await getPublishedArticles();
 
-  return articles.map((article) => ({
-    params: { slug: article.slug },
-    props: { article },
-  }));
+  if (!config.i18n?.enabled) {
+    return articles.map((article) => ({
+      params: { slug: article.slug },
+      props: { article },
+    }));
+  }
+
+  const defaultLang = config.i18n.defaultLanguage || 'en';
+  return articles.map((article) => {
+    const lang = getArticleLang(article.slug, config);
+    const baseSlug = getArticleBaseSlug(article.slug, config);
+    // Default lang: /blog/article/ — Other langs: /es/blog/article/
+    const urlSlug = lang === defaultLang ? baseSlug : `${lang}/${baseSlug}`;
+    return {
+      params: { slug: urlSlug },
+      props: { article, lang },
+    };
+  });
 }) satisfies GetStaticPaths;
 
-const { article } = Astro.props;
+const { article, lang } = Astro.props;
 const { Content, headings } = await article.render();
 
 // Determine section and template
-const sectionId = getSectionFromSlug(article.slug);
+const sectionId = getSectionFromSlug(article.slug, config);
 const sections = getSections(config);
 const sectionConfig = sectionId ? sections.find(s => s.id === sectionId) : null;
 const Layout = await resolveLayout(sectionConfig?.template);
 
-// Find related articles (only for article layout)
+// Find related articles (only for article layout, same language)
 const allArticles = await getPublishedArticles();
 const isArticleLayout = !sectionConfig?.template || sectionConfig.template === 'article';
 let relatedArticles: typeof allArticles = [];
 
 if (isArticleLayout) {
+  const articleLang = lang || getArticleLang(article.slug, config);
   relatedArticles = allArticles
     .filter((a) => a.slug !== article.slug)
     .filter((a) => {
+      // Only relate articles in the same language
+      if (config.i18n?.enabled && getArticleLang(a.slug, config) !== articleLang) return false;
+
       const currentKeywords = article.data.keywords || [];
       const currentCategories = article.data.categories || [];
       const currentTags = article.data.tags || [];
@@ -82,8 +101,32 @@ if (isArticleLayout) {
     .sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf())
     .slice(0, 3);
 }
+
+// Build hreflang array for SEO
+let hreflangs: Array<{ lang: string; href: string }> = [];
+if (config.i18n?.enabled) {
+  const baseUrl = (config.seo.canonical_domain || config.branding.site.url).replace(/\/$/, '');
+  const currentBaseSlug = getArticleBaseSlug(article.slug, config);
+  const defaultLang = config.i18n.defaultLanguage || 'en';
+
+  for (const a of allArticles) {
+    if (getArticleBaseSlug(a.slug, config) === currentBaseSlug && a.slug !== article.slug) {
+      const otherLang = getArticleLang(a.slug, config);
+      const otherUrl = otherLang === defaultLang
+        ? `${baseUrl}/${currentBaseSlug}/`
+        : `${baseUrl}/${otherLang}/${currentBaseSlug}/`;
+      hreflangs.push({ lang: otherLang, href: otherUrl });
+    }
+  }
+  // Add self
+  const selfLang = getArticleLang(article.slug, config);
+  const selfUrl = selfLang === defaultLang
+    ? `${baseUrl}/${currentBaseSlug}/`
+    : `${baseUrl}/${selfLang}/${currentBaseSlug}/`;
+  hreflangs.push({ lang: selfLang, href: selfUrl });
+}
 ---
 
-<Layout article={article} headings={headings} relatedArticles={relatedArticles} sectionConfig={sectionConfig}>
+<Layout article={article} headings={headings} relatedArticles={relatedArticles} sectionConfig={sectionConfig} lang={lang} hreflangs={hreflangs}>
   <Content />
 </Layout>

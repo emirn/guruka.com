@@ -23,6 +23,8 @@ export interface Props {
   ogDescription?: string;
   twitterTitle?: string;
   twitterDescription?: string;
+  lang?: string;
+  hreflangs?: Array<{ lang: string; href: string }>;
 }
 
 const config = getConfig();
@@ -41,6 +43,8 @@ const {
   ogDescription,
   twitterTitle,
   twitterDescription,
+  lang,
+  hreflangs,
 } = Astro.props;
 
 // For homepage (no title), use "Site Name | Tagline"
@@ -75,7 +79,7 @@ const cssVars = {
 ---
 
 <!DOCTYPE html>
-<html lang={config.branding.site.language || 'en'}>
+<html lang={lang || config.branding.site.language || 'en'}>
   <head>
     <SEO
       title={pageTitle}
@@ -93,6 +97,7 @@ const cssVars = {
       twitterTitle={twitterTitle}
       twitterDescription={twitterDescription}
       config={config}
+      hreflangs={hreflangs}
     />
 
     <!-- Google Fonts -->
@@ -109,6 +114,28 @@ const cssVars = {
 
     <!-- Custom Head Code -->
     {config.tracking.custom_head_code && <Fragment set:html={config.tracking.custom_head_code} />}
+
+    <!-- Theme Initialization Script (in head to prevent flash) -->
+    <script is:inline define:vars={{ darkModeDefault: config.branding.dark_mode.default, darkModeEnabled: config.branding.dark_mode.enabled }}>
+      (function() {
+        if (!darkModeEnabled) return;
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const defaultTheme = darkModeDefault || 'light';
+
+        let theme;
+        if (savedTheme) {
+          theme = savedTheme;
+        } else if (defaultTheme === 'system') {
+          theme = prefersDark ? 'dark' : 'light';
+        } else {
+          theme = defaultTheme;
+        }
+
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
 
     <slot name="head" />
   </head>
@@ -160,26 +187,41 @@ const cssVars = {
     <!-- Custom Body Code -->
     {config.tracking.custom_body_code && <Fragment set:html={config.tracking.custom_body_code} />}
 
-    <!-- Theme Initialization Script -->
-    <script is:inline define:vars={{ darkModeDefault: config.branding.dark_mode.default, darkModeEnabled: config.branding.dark_mode.enabled }}>
+    <!-- Browser Language Auto-Detection -->
+    {config.i18n?.enabled && (
+      <script is:inline define:vars={{
+        i18nLangs: config.i18n.languages?.map(l => l.code) || [],
+        i18nDefault: config.i18n.defaultLanguage || 'en'
+      }}>
       (function() {
-        if (!darkModeEnabled) return;
-
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const defaultTheme = darkModeDefault || 'light';
-
-        let theme;
-        if (savedTheme) {
-          theme = savedTheme;
-        } else if (defaultTheme === 'system') {
-          theme = prefersDark ? 'dark' : 'light';
-        } else {
-          theme = defaultTheme;
+        var key = location.hostname + '_lang';
+        if (!localStorage.getItem(key)) {
+          var browserLang = (navigator.language || '').split('-')[0].toLowerCase();
+          if (browserLang && browserLang !== i18nDefault && i18nLangs.indexOf(browserLang) !== -1) {
+            var segments = location.pathname.split('/').filter(Boolean);
+            if (i18nLangs.indexOf(segments[0]) === -1) {
+              localStorage.setItem(key, browserLang);
+              location.href = '/' + browserLang + location.pathname;
+              return;
+            }
+          }
         }
-
-        document.documentElement.setAttribute('data-theme', theme);
+        // Rewrite internal links in main content for current language
+        var contentSegments = location.pathname.split('/').filter(Boolean);
+        var contentLang = i18nLangs.indexOf(contentSegments[0]) !== -1 ? contentSegments[0] : i18nDefault;
+        if (contentLang !== i18nDefault) {
+          var contentPrefix = '/' + contentLang;
+          document.querySelectorAll('main a[href^="/"]').forEach(function(a) {
+            var href = a.getAttribute('href');
+            if (href === '#' || href.startsWith('#')) return;
+            var fs = href.split('/').filter(Boolean)[0];
+            if (i18nLangs.indexOf(fs) !== -1) return;
+            a.setAttribute('href', contentPrefix + href);
+          });
+        }
       })();
-    </script>
+      </script>
+    )}
+
   </body>
 </html>

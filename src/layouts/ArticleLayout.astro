@@ -27,10 +27,12 @@ interface Props {
   article: CollectionEntry<'articles'>;
   headings?: Array<{ depth: number; slug: string; text: string }>;
   relatedArticles?: CollectionEntry<'articles'>[];
+  lang?: string;
+  hreflangs?: Array<{ lang: string; href: string }>;
 }
 
 const config = getConfig();
-const { article, headings = [], relatedArticles = [] } = Astro.props;
+const { article, headings = [], relatedArticles = [], lang, hreflangs } = Astro.props;
 const { data } = article;
 
 // Calculate reading time
@@ -90,6 +92,8 @@ const hasInlineToc = article.body?.includes('<div id="toc">') || false;
   ogDescription={data.og_description}
   twitterTitle={data.twitter_title}
   twitterDescription={data.twitter_description}
+  lang={lang}
+  hreflangs={hreflangs}
 >
   <!-- Article-specific JSON-LD (BlogPosting + Breadcrumbs) - skipped if article has inline JSON-LD -->
   {config.seo.enable_json_ld && !hasInlineJsonLd && (

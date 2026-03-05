@@ -1,0 +1,78 @@
+{
+  "lang": "fr",
+  "title": "Sommeil & Détente",
+  "subtitle": "Laisse la journée partir. Le repos suffit.",
+  "duration": 192.624,
+  "colors": {
+    "bg": "#08061a",
+    "c1": "rgba(99,102,241,0.5)",
+    "c2": "rgba(88,28,135,0.4)",
+    "c3": "rgba(67,56,202,0.3)"
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Allonge-toi confortablement.\nLaisse tes bras tomber doucement le long de ton corps.\nFerme les yeux."
+    },
+    {
+      "time": 11.512,
+      "text": "Prends une lente et douce inspiration par le nez...\net laisse-la partir, lentement, par la bouche."
+    },
+    {
+      "time": 24.832,
+      "text": "Encore, inspire...\net une longue... lente... expiration.\nLaisse ton corps devenir lourd."
+    },
+    {
+      "time": 37.192,
+      "text": "Tu as traversé la journée.\nQuoi qu'il se soit passé, c'est terminé.\nIl n'y a plus rien à résoudre ce soir."
+    },
+    {
+      "time": 51.376,
+      "text": "Sens la surface sous toi, qui soutient tout ton poids.\nLaisse-toi... porter."
+    },
+    {
+      "time": 63.016,
+      "text": "Commence par le sommet de ta tête.\nObserve ton cuir chevelu... ton front. Laisse-les s'adoucir."
+    },
+    {
+      "time": 74.12,
+      "text": "Tes yeux, laisse-les se détendre, s'enfoncer doucement.\nTa mâchoire, laisse-la se relâcher... les dents légèrement écartées."
+    },
+    {
+      "time": 87.576,
+      "text": "Ton cou et tes épaules, laisse-les fondre vers le bas.\nTa poitrine, laisse-la monter et descendre sans aucun effort."
+    },
+    {
+      "time": 100.384,
+      "text": "Tes bras... tes mains.\nTon ventre, laisse-le être doux.\nLe bas de ton dos... tes hanches."
+    },
+    {
+      "time": 110.888,
+      "text": "Tes jambes, lourdes et immobiles.\nTes pieds, relâche-les... complètement."
+    },
+    {
+      "time": 122.288,
+      "text": "Tout ton corps... se repose maintenant."
+    },
+    {
+      "time": 131.24,
+      "text": "Si des pensées arrivent, c'est bien.\nRegarde-les comme des nuages qui traversent un ciel tranquille.\nElles n'ont pas besoin de ton attention. Tu peux les laisser passer."
+    },
+    {
+      "time": 150.104,
+      "text": "Respire lentement.\nInspire... et expire.\nInspire... et expire."
+    },
+    {
+      "time": 160.52,
+      "text": "Tu es en sécurité. Tu es au chaud. La journée est terminée.\nTout ce qu'il reste maintenant... c'est le repos."
+    },
+    {
+      "time": 174.728,
+      "text": "Laisse-toi glisser.\nDe plus en plus profond, dans le silence.\nPlus doux... et plus doux encore."
+    },
+    {
+      "time": 191.76,
+      "text": "Dors bien."
+    }
+  ]
+}

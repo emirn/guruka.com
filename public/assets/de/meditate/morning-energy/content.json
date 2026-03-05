@@ -1,0 +1,66 @@
+{
+  "lang": "de",
+  "title": "Morgenenergie",
+  "subtitle": "Wach sanft auf. Begrüße den Tag.",
+  "duration": 168.048,
+  "colors": {
+    "bg": "#1a0f05",
+    "c1": "rgba(245,158,11,0.8)",
+    "c2": "rgba(251,191,36,0.6)",
+    "c3": "rgba(244,63,94,0.4)"
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Sitz aufrecht, im Bett oder auf einem Stuhl.\nFüße auf dem Boden, wenn es geht.\nLass deine Hände auf den Knien ruhen, Handflächen nach oben."
+    },
+    {
+      "time": 14.392,
+      "text": "Schließe deine Augen und nimm einen großen, einladenden Atemzug —\nals würdest du den Morgen selbst einatmen.\nHalte ihn einen kurzen Moment...\nund lass ihn vollständig los."
+    },
+    {
+      "time": 33.28,
+      "text": "Noch einmal, ein großes Einatmen... und ein volles Ausatmen.\nEin letztes Mal."
+    },
+    {
+      "time": 45.04,
+      "text": "Spüre, wie sich deine Wirbelsäule streckt.\nLass deinen Brustkorb sich mit jedem Atemzug ein wenig mehr öffnen."
+    },
+    {
+      "time": 59.368,
+      "text": "Das ist ein neuer Tag.\nNicht der gleiche wie gestern.\nFrisch. Klar. Deiner."
+    },
+    {
+      "time": 70.84,
+      "text": "Denke an eine Sache, nur eine —\nauf die du dich heute freust.\nEs muss nichts Großes sein.\nEine Tasse Kaffee. Ein Gespräch. Eine Aufgabe, die du wirklich tun willst."
+    },
+    {
+      "time": 89.08,
+      "text": "Halte dieses Bild für einen Moment.\nLass es etwas in dir zum Leuchten bringen."
+    },
+    {
+      "time": 101.104,
+      "text": "Nimm jetzt einen Atemzug und fülle dich mit Absicht.\nWas für ein Mensch möchtest du heute sein?\nWie möchtest du auftreten, für dich selbst... für andere?"
+    },
+    {
+      "time": 118.792,
+      "text": "Denk nicht zu viel nach.\nSpüre es einfach."
+    },
+    {
+      "time": 127.96,
+      "text": "Rolle deine Schultern zurück.\nNimm einen vollen, belebenden Atemzug, ein... halten... und aus."
+    },
+    {
+      "time": 138.752,
+      "text": "Dein Körper wacht auf.\nDein Geist kommt in Fahrt.\nDu hast alles, was du brauchst, für heute."
+    },
+    {
+      "time": 155.616,
+      "text": "Nimm noch einen tiefen Atemzug.\nÖffne deine Augen. Bleib noch einen Moment sitzen."
+    },
+    {
+      "time": 165.808,
+      "text": "Jetzt los.\nDer Tag gehört dir."
+    }
+  ]
+}

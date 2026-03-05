@@ -8,7 +8,7 @@ full_width: true
 #sequence-recall-game {
 max-width: 600px;
 margin: 0 auto;
-padding: 1rem;
+padding: 1.5rem 1rem 3rem;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 color: var(--color-text-primary, #1a2332);
 -webkit-tap-highlight-color: transparent;
@@ -228,6 +228,10 @@ background: var(--color-primary-hover, #0d7a62);
 #sequence-recall-game .sr-wizard-icon { font-size: 2rem; }
 #sequence-recall-game .sr-wizard-title { font-size: 1.1rem; }
 #sequence-recall-game .sr-wizard-desc { font-size: 0.85rem; }
+#sequence-recall-game .sr-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+#sequence-recall-game .sr-title { font-size: 1.3rem; }
+#sequence-recall-game .sr-subtitle { font-size: 0.85rem; margin-bottom: 1rem; }
+#sequence-recall-game .sr-instructions-list li { font-size: 0.85rem; padding: 0.3rem 0; }
 }
 
 /* Header bar */
@@ -716,15 +720,9 @@ gap: 0.5rem;
 grid-template-columns: repeat(3, 1fr);
 }
 }
-@media (max-width: 400px) {
-#sequence-recall-game .sr-math-input {
-width: 80px;
-font-size: 1.1rem;
-}
-}
 @media (max-width: 360px) {
 #sequence-recall-game .sr-color-btn {
-min-height: 52px;
+min-height: 50px;
 }
 #sequence-recall-game .sr-color-box {
 width: 110px;
@@ -743,10 +741,6 @@ grid-template-columns: 1fr 1fr;
 #sequence-recall-game .sr-selected-dot {
 width: 22px;
 height: 22px;
-}
-#sequence-recall-game .sr-undo-btn,
-#sequence-recall-game .sr-submit-btn {
-min-height: 44px;
 }
 }
 @keyframes sr-confetti-fall {
@@ -814,9 +808,9 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 <div class="sr-best-score" id="sr-best-display">
 Personal Best: <strong id="sr-best-value">0</strong> points
 </div>
-<input type="text" id="sr-player-name" class="gk-name-input" placeholder="Your name (for sharing)" maxlength="20">
-<div id="sr-challenge-banner-wrap"></div>
 <button class="sr-btn-primary" id="sr-start-btn">Start Game</button>
+<div id="sr-challenge-banner-wrap"></div>
+<input type="text" id="sr-player-name" class="gk-name-input" placeholder="Your name (for sharing)" maxlength="20">
 </div>
 </div>
 
@@ -877,8 +871,8 @@ Personal Best: <strong id="sr-best-value">0</strong> points
 <a href="/games/" class="sr-btn-secondary">All Games</a>
 </div>
 <div class="gk-share-section">
-<div class="gk-share-title">Share your score</div>
-<div class="gk-share-buttons" id="sr-share-buttons"></div>
+<div class="gk-share-title">Challenge a Friend</div>
+<button class="gk-share-btn" id="sr-share-btn">&#128279; Share Your Score</button>
 <div class="gk-share-copied" id="sr-share-copied" style="display:none;">Link copied!</div>
 </div>
 </div>
@@ -1327,7 +1321,7 @@ html += '<div class="' + cls + '" data-pos="' + j + '">' + (isSelected ? order :
 }
 html += '</div>';
 
-html += '<div class="sr-undo-row" style="margin-top:0.75rem;max-width:240px;width:100%;">';
+html += '<div class="sr-undo-row" style="margin-top:0.75rem;max-width:210px;width:100%;">';
 html += '<button class="sr-undo-btn" id="sr-undo-pos-btn">Undo</button>';
 html += '<button class="sr-submit-btn" id="sr-submit-pos-btn"' + (state.selectedPositions.length < needed ? ' disabled' : '') + '>Submit</button>';
 html += '</div>';
@@ -1483,6 +1477,10 @@ requestAnimationFrame(step);
 }
 
 function endGame() {
+var stickyNav = document.querySelector('.sticky.top-0');
+if (stickyNav) stickyNav.style.display = '';
+var footer = document.querySelector('footer');
+if (footer) footer.style.display = '';
 var accuracy = state.totalAttempts > 0 ? Math.round((state.totalCorrect / state.totalAttempts) * 100) : 0;
 var best = getBestScore();
 var isNewBest = state.score > best;
@@ -1517,7 +1515,6 @@ badge.style.display = 'none';
 }
 
 GK.renderChallengeResult('sr-challenge-result', state.score, challenge);
-GK.renderShareButtons('sr-share-buttons', state.score, 'Sequence Recall', '/games/sequence-recall/');
 
 $('sr-final-level').textContent = state.level > MAX_LEVEL ? MAX_LEVEL : state.level;
 $('sr-final-accuracy').textContent = accuracy + '%';
@@ -1556,6 +1553,11 @@ endGame();
 $('sr-start-btn').addEventListener('click', function() {
 resetGame();
 showWizard(function() {
+window.scrollTo({ top: 0, behavior: 'instant' });
+var stickyNav = document.querySelector('.sticky.top-0');
+if (stickyNav && window.innerWidth <= 768) { stickyNav.style.display = 'none'; document.body.style.paddingTop = '0'; }
+var footer = document.querySelector('footer');
+if (footer && window.innerWidth <= 768) footer.style.display = 'none';
 showScreen('playing');
 GK.renderChallengeBar('sr-playing', challenge);
 startRound();
@@ -1565,12 +1567,20 @@ startRound();
 $('sr-play-again-btn').addEventListener('click', function() {
 resetGame();
 showWizard(function() {
+window.scrollTo({ top: 0, behavior: 'instant' });
+var stickyNav = document.querySelector('.sticky.top-0');
+if (stickyNav && window.innerWidth <= 768) { stickyNav.style.display = 'none'; document.body.style.paddingTop = '0'; }
+var footer = document.querySelector('footer');
+if (footer && window.innerWidth <= 768) footer.style.display = 'none';
 showScreen('playing');
 GK.renderChallengeBar('sr-playing', challenge);
 startRound();
 });
 });
 
+$('sr-share-btn').addEventListener('click', function() {
+GK.shareResult(state.score, 'Sequence Recall', '/games/sequence-recall/', 'sr-share-copied');
+});
 
 initInstructions();
 })();

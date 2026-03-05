@@ -1,0 +1,74 @@
+{
+  "lang": "fr",
+  "title": "Bienveillance Aimante",
+  "subtitle": "Offre de la chaleur, à toi d'abord.",
+  "duration": 187.944,
+  "colors": {
+    "bg": "#1a050f",
+    "c1": "rgba(244,114,182,0.8)",
+    "c2": "rgba(236,72,153,0.6)",
+    "c3": "rgba(251,113,133,0.4)"
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Trouve une assise confortable.\nFerme les yeux.\nLaisse tes mains se poser doucement sur tes genoux."
+    },
+    {
+      "time": 11.488,
+      "text": "Prends quelques respirations faciles.\nSans forcer, juste un souffle doux et naturel."
+    },
+    {
+      "time": 23.848,
+      "text": "Porte ta conscience au centre de ta poitrine, l'espace de ton cœur.\nObserve simplement cette zone.\nRespire dedans... doucement."
+    },
+    {
+      "time": 39.448,
+      "text": "Maintenant, amène à ton esprit une image de toi-même, tel que tu es en ce moment.\nPas la version parfaite.\nJuste toi... comme tu es vraiment aujourd'hui."
+    },
+    {
+      "time": 56.968,
+      "text": "Et avec chaleur, offre-toi ces mots :"
+    },
+    {
+      "time": 61.752,
+      "text": "Que je sois bien.\nQue je sois en paix.\nQue je sois doux avec moi-même aujourd'hui."
+    },
+    {
+      "time": 73.992,
+      "text": "Répète-les encore, lentement, en ressentant chacun d'eux."
+    },
+    {
+      "time": 80.264,
+      "text": "Que je sois bien.\nQue je sois en paix.\nQue je sois doux avec moi-même aujourd'hui."
+    },
+    {
+      "time": 92.432,
+      "text": "Si c'est difficile, ce n'est pas grave.\nObserve simplement la résistance... et respire à travers.\nTu as le droit de t'offrir cela."
+    },
+    {
+      "time": 108.248,
+      "text": "Maintenant, pense à quelqu'un que tu aimes facilement.\nUn ami. Un enfant. Un animal.\nGarde cette personne doucement dans ta conscience."
+    },
+    {
+      "time": 122.304,
+      "text": "Que tu sois bien.\nQue tu sois en paix.\nQue tu sois heureux."
+    },
+    {
+      "time": 132.744,
+      "text": "Laisse cette chaleur s'étendre —\naux gens dans ta vie...\naux gens que tu connais à peine...\naux gens qui souffrent aujourd'hui...\nmême à ceux qui t'ont blessé.\nNon pas parce qu'ils le méritent —\nmais parce que cette chaleur... est la tienne à donner."
+    },
+    {
+      "time": 155.752,
+      "text": "Que tous les êtres soient bien.\nQue tous les êtres soient en paix."
+    },
+    {
+      "time": 170.864,
+      "text": "Reviens à toi-même.\nRespire. Observe si quelque chose a changé."
+    },
+    {
+      "time": 181.616,
+      "text": "Tu portes cela en toi.\nC'est toujours disponible.\nOuvre les yeux, quand tu es prêt."
+    }
+  ]
+}

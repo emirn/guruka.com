@@ -1,0 +1,78 @@
+{
+  "lang": "de",
+  "title": "Schlaf & Abendruhe",
+  "subtitle": "Lass den Tag los. Ruhe ist genug.",
+  "duration": 189.768,
+  "colors": {
+    "bg": "#08061a",
+    "c1": "rgba(99,102,241,0.5)",
+    "c2": "rgba(88,28,135,0.4)",
+    "c3": "rgba(67,56,202,0.3)"
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Leg dich bequem hin.\nLass deine Arme sanft neben dir liegen.\nSchließe deine Augen."
+    },
+    {
+      "time": 10.264,
+      "text": "Nimm einen langsamen, sanften Atemzug durch die Nase ein...\nund lass ihn langsam durch den Mund gehen."
+    },
+    {
+      "time": 24.016,
+      "text": "Noch einmal, ein...\nund ein langes... langsames... Aus.\nLass deinen Körper schwer werden."
+    },
+    {
+      "time": 36.472,
+      "text": "Du hast den Tag geschafft.\nWas auch immer passiert ist, es ist vorbei.\nEs gibt heute Nacht nichts mehr zu lösen."
+    },
+    {
+      "time": 51.016,
+      "text": "Spüre die Fläche unter dir, die dein ganzes Gewicht trägt.\nLass dich... tragen."
+    },
+    {
+      "time": 63.016,
+      "text": "Beginne am Scheitel deines Kopfes.\nSpüre deine Kopfhaut... deine Stirn. Lass sie weich werden."
+    },
+    {
+      "time": 74.096,
+      "text": "Deine Augen, lass sie sich entspannen, sanft nach hinten sinken.\nDein Kiefer, lass ihn locker werden... Zähne leicht auseinander."
+    },
+    {
+      "time": 87.768,
+      "text": "Dein Nacken und deine Schultern, lass sie nach unten schmelzen.\nDein Brustkorb, lass ihn sich heben und senken, ganz ohne Mühe."
+    },
+    {
+      "time": 101.392,
+      "text": "Deine Arme... deine Hände.\nDein Bauch, lass ihn weich sein.\nDein unterer Rücken... deine Hüften."
+    },
+    {
+      "time": 112.52,
+      "text": "Deine Beine, schwer und still.\nDeine Füße, lass sie los... vollständig."
+    },
+    {
+      "time": 123.776,
+      "text": "Dein ganzer Körper... ruht jetzt."
+    },
+    {
+      "time": 132.2,
+      "text": "Wenn Gedanken kommen, ist das in Ordnung.\nBeobachte sie wie Wolken, die durch einen stillen Himmel ziehen.\nSie brauchen deine Aufmerksamkeit nicht. Lass sie einfach treiben."
+    },
+    {
+      "time": 151.256,
+      "text": "Atme langsam.\nEin... und aus.\nEin... und aus."
+    },
+    {
+      "time": 160.352,
+      "text": "Du bist sicher. Du bist geborgen. Der Tag ist vorbei.\nAlles, was jetzt noch bleibt... ist Ruhe."
+    },
+    {
+      "time": 173.264,
+      "text": "Lass dich treiben.\nTiefer und tiefer in die Stille.\nSanfter... und sanfter."
+    },
+    {
+      "time": 188.832,
+      "text": "Schlaf gut."
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "lang": "fr",
+  "title": "Énergie du Matin",
+  "subtitle": "Éveille-toi en douceur. Accueille la journée.",
+  "duration": 170.112,
+  "colors": {
+    "bg": "#1a0f05",
+    "c1": "rgba(245,158,11,0.8)",
+    "c2": "rgba(251,191,36,0.6)",
+    "c3": "rgba(244,63,94,0.4)"
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Assieds-toi bien droit, dans ton lit ou sur une chaise.\nLes pieds au sol si tu peux.\nPose tes mains sur tes genoux, paumes vers le ciel."
+    },
+    {
+      "time": 14.2,
+      "text": "Ferme les yeux et prends une grande inspiration accueillante —\ncomme si tu respirais le matin lui-même.\nRetiens-la un instant...\net relâche, pleinement."
+    },
+    {
+      "time": 31.696,
+      "text": "Encore, une grande inspiration... et une expiration complète.\nUne dernière fois."
+    },
+    {
+      "time": 43.648,
+      "text": "Sens ta colonne s'allonger.\nLaisse ta poitrine s'ouvrir un peu plus, à chaque souffle."
+    },
+    {
+      "time": 56.2,
+      "text": "C'est un jour nouveau.\nPas le même qu'hier.\nFrais. Neuf. Le tien."
+    },
+    {
+      "time": 66.856,
+      "text": "Pense à une chose, une seule —\nque tu attends avec plaisir aujourd'hui.\nCe n'est pas obligé d'être grand.\nUne tasse de café. Une conversation. Une tâche que tu as vraiment envie de faire."
+    },
+    {
+      "time": 87.088,
+      "text": "Garde cette image un instant.\nLaisse-la allumer quelque chose en toi."
+    },
+    {
+      "time": 98.368,
+      "text": "Maintenant prends une inspiration et remplis-toi d'intention.\nQuel genre de personne veux-tu être aujourd'hui ?\nComment veux-tu te présenter, pour toi-même... pour les autres ?"
+    },
+    {
+      "time": 117.784,
+      "text": "N'y pense pas trop.\nRessens-le, simplement."
+    },
+    {
+      "time": 126.808,
+      "text": "Roule tes épaules en arrière.\nPrends une grande inspiration énergisante, inspire... retiens... et expire."
+    },
+    {
+      "time": 138.704,
+      "text": "Ton corps se réveille.\nTon esprit s'active.\nTu as tout ce qu'il te faut, pour aujourd'hui."
+    },
+    {
+      "time": 155.448,
+      "text": "Prends une dernière grande inspiration.\nOuvre les yeux. Reste avec cette sensation, encore un instant."
+    },
+    {
+      "time": 167.032,
+      "text": "Maintenant, vas-y.\nLa journée est à toi."
+    }
+  ]
+}
