@@ -407,6 +407,8 @@ font-size: 0.85rem;
 color: transparent;
 -webkit-user-select: none;
 user-select: none;
+min-width: 36px;
+min-height: 36px;
 }
 
 [data-theme="dark"] #memory-matrix-game .mm-cell {
@@ -635,6 +637,7 @@ font-size: 1rem;
 #memory-matrix-game .mm-btn {
 padding: 0.625rem 1rem;
 font-size: 0.9rem;
+min-height: 44px;
 }
 }
 @media (max-width: 640px) {
@@ -650,18 +653,29 @@ font-size: 1.1rem;
 gap: 3px;
 }
 #memory-matrix-game .mm-stats-grid {
-grid-template-columns: 1fr 1fr;
+grid-template-columns: repeat(3, 1fr);
+}
+#memory-matrix-game .mm-stat-card {
+padding: 0.5rem 0.25rem;
+}
+#memory-matrix-game .mm-stat-value {
+font-size: 1rem;
+}
+#memory-matrix-game .mm-stat-label {
+font-size: 0.65rem;
 }
 #memory-matrix-game .mm-btn {
 padding: 0.5rem 0.75rem;
 font-size: 0.85rem;
+min-height: 44px;
 }
 #memory-matrix-game .mm-title {
 font-size: 1.25rem;
 }
 #memory-matrix-game .mm-grid-wrap {
 max-width: 100%;
-overflow: hidden;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
 }
 }
 @keyframes mm-confetti-fall {
@@ -999,6 +1013,7 @@ function buildGrid(config) {
     var maxCellSize = Math.floor((viewportWidth - 40 - (config.gridSize - 1) * gapSize) / config.gridSize);
     if (maxCellSize < cellSize) cellSize = maxCellSize;
   }
+  cellSize = Math.max(cellSize, 36);
   var totalSize = config.gridSize * cellSize + (config.gridSize - 1) * gapSize;
 
   grid.style.gridTemplateColumns = 'repeat(' + config.gridSize + ', ' + cellSize + 'px)';

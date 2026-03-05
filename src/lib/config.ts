@@ -253,6 +253,19 @@ export interface SiteConfig {
    */
   sections?: SectionConfig[];
   /**
+   * Internationalization configuration.
+   * When enabled, supports /<lang>/ prefixed pages and a language switcher.
+   * Disabled by default. Can be overridden by project config.
+   */
+  i18n?: {
+    /** Enable i18n features. Defaults to false. */
+    enabled?: boolean;
+    /** Default language code. Defaults to 'en'. */
+    defaultLanguage?: string;
+    /** Available languages. Only used when enabled is true. */
+    languages?: Array<{ code: string; label: string }>;
+  };
+  /**
    * PDF features configuration.
    */
   pdf?: {
@@ -408,6 +421,11 @@ const defaultConfig: SiteConfig = {
     enabled: false,
     placeholder: 'Search articles...',
     show_in_header: true,
+  },
+  i18n: {
+    enabled: false,
+    defaultLanguage: 'en',
+    languages: [],
   },
   pdf: {
     popup: true,

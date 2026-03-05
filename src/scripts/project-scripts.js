@@ -2,6 +2,32 @@
 /* GURUKA Shared Functions */
 (function() {
   var GK = window.GK = {};
+
+  /* ── PWA Meta Tags ── */
+  (function() {
+    var head = document.head;
+    function addMeta(name, content) {
+      var m = document.createElement('meta');
+      m.setAttribute('name', name);
+      m.setAttribute('content', content);
+      head.appendChild(m);
+    }
+    addMeta('apple-mobile-web-app-capable', 'yes');
+    addMeta('apple-mobile-web-app-status-bar-style', 'default');
+    addMeta('theme-color', '#0f9072');
+    if (!document.querySelector('link[rel="manifest"]')) {
+      var link = document.createElement('link');
+      link.rel = 'manifest';
+      link.href = '/site.webmanifest';
+      head.appendChild(link);
+    }
+    if (!document.querySelector('link[rel="apple-touch-icon"]')) {
+      var atl = document.createElement('link');
+      atl.rel = 'apple-touch-icon';
+      atl.href = '/apple-touch-icon.png';
+      head.appendChild(atl);
+    }
+  })();
   var STORAGE_NAME = 'guruka_player_name';
 
   /* ── Player Name ── */
@@ -215,16 +241,22 @@
       var styleEl = document.createElement('style');
       styleEl.id = 'gkm-styles';
       styleEl.textContent =
+        '@keyframes gkm-letter-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}' +
+        '@keyframes gkm-letter-out{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-6px);filter:blur(2px)}}' +
+        '.gkm-letter{display:inline-block;opacity:0;animation:gkm-letter-in 0.5s cubic-bezier(0.25,0.1,0.25,1) forwards}' +
+        '.gkm-letter.gkm-letter-exit{animation:gkm-letter-out 0.6s cubic-bezier(0.25,0.1,0.25,1) forwards}' +
+        '.gkm-word{display:inline-block;white-space:nowrap}' +
         '@keyframes gkm-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}' +
         '@keyframes gkm-glow{0%,100%{box-shadow:0 0 30px rgba(var(--gkm-glow-rgb),0.15),0 0 60px rgba(var(--gkm-glow-rgb),0.08)}50%{box-shadow:0 0 50px rgba(var(--gkm-glow-rgb),0.3),0 0 90px rgba(var(--gkm-glow-rgb),0.15)}}' +
         '@keyframes gkm-fade-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}' +
-        '.gkm-ui{position:relative;z-index:1;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;user-select:none;-webkit-user-select:none}' +
-        '.gkm-close{position:absolute;top:1rem;right:1.25rem;color:rgba(255,255,255,0.4);font-size:1.75rem;text-decoration:none;z-index:2;line-height:1;transition:color 0.2s;display:none}' +
+        '.gkm-ui{position:relative;z-index:1;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;user-select:none;-webkit-user-select:none}' +
+        '@keyframes gkm-idle-pulse{0%,100%{opacity:0.9}50%{opacity:1}}' +
+        '.gkm-close{position:absolute;top:1rem;right:1.25rem;color:rgba(255,255,255,0.4);font-size:1.75rem;text-decoration:none;z-index:2;line-height:1;transition:color 0.2s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}' +
         '.gkm-close:hover{color:rgba(255,255,255,0.8)}' +
-        '.gkm-text{text-align:center;padding:0 2rem;max-width:36rem;min-height:3rem;transition:opacity 0.8s ease;font-size:clamp(1.1rem,4vw,1.5rem);font-weight:300;line-height:1.7;margin-bottom:2rem;white-space:pre-line}' +
-        '.gkm-circle{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation;position:relative;outline:none;-webkit-tap-highlight-color:transparent;transition:transform 0.2s}' +
+        '.gkm-text{text-align:center;padding:0 2rem;max-width:36rem;min-height:7rem;transition:opacity 0.8s ease;font-size:clamp(1.1rem,4vw,1.5rem);font-weight:300;line-height:1.7;margin-bottom:2rem}' +
+        '.gkm-circle{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation;position:relative;outline:none;-webkit-tap-highlight-color:transparent;transition:transform 0.2s;animation:gkm-idle-pulse 3s ease-in-out infinite}' +
         '.gkm-circle:active{transform:scale(0.97)}' +
-        '.gkm-circle svg{position:absolute;top:0;left:0;width:100%;height:100%}' +
+        '.gkm-circle>svg{position:absolute;top:0;left:0;width:100%;height:100%}' +
         '.gkm-breathing{animation:gkm-breathe 6s ease-in-out infinite}' +
         '.gkm-glow{animation:gkm-glow 3s ease-in-out infinite}' +
         '.gkm-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.25rem}' +
@@ -251,7 +283,8 @@
         '.gkm-btn-ghost{background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.15)}' +
         '.gkm-btn-ghost:hover{color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.3)}' +
         '.gkm-pause-icon{display:inline-flex;gap:3px;margin-bottom:2px}' +
-        '.gkm-pause-icon span{display:block;width:3px;height:14px;background:rgba(255,255,255,0.6);border-radius:1px}';
+        '.gkm-pause-icon span{display:block;width:3px;height:14px;background:rgba(255,255,255,0.6);border-radius:1px}' +
+        '.gkm-time-external{font-size:1.5rem;font-weight:400;font-variant-numeric:tabular-nums;color:rgba(255,255,255,0.25);margin-top:1.25rem;min-height:2rem;text-align:center;transition:opacity 0.3s}';
       document.head.appendChild(styleEl);
     }
 
@@ -273,7 +306,7 @@
     var circumference = 2 * Math.PI * 85; // 534.07
 
     // Play triangle SVG
-    var playIcon = '<svg class="gkm-circle-icon" width="30" height="30" viewBox="0 0 24 24" fill="rgba(255,255,255,0.8)"><polygon points="6,3 20,12 6,21"/></svg>';
+    var playIcon = '<svg class="gkm-circle-icon" width="52" height="52" viewBox="0 0 24 24" fill="rgba(255,255,255,0.8)"><polygon points="6,3 20,12 6,21"/></svg>';
     var pauseIcon = '<div class="gkm-pause-icon"><span></span><span></span></div>';
     var checkIcon = '<svg class="gkm-circle-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 
@@ -285,15 +318,15 @@
       '<a href="/meditate/" class="gkm-close" id="gkm-close" aria-label="Close">&times;</a>' +
       '<div class="gkm-text" id="gkm-text"></div>' +
       '<div class="gkm-circle gkm-glow" id="gkm-circle" tabindex="0" role="button" aria-label="Start meditation" style="--gkm-glow-rgb:' + glowRgb + '">' +
-        '<svg viewBox="0 0 200 200">' +
-          '<circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>' +
-          '<circle id="gkm-progress" cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="6" stroke-linecap="round" stroke-dasharray="' + circumference.toFixed(2) + '" stroke-dashoffset="0" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset 0.3s linear"/>' +
+        '<svg viewBox="0 0 200 200" style="transform:scaleX(-1)">' +
+          '<circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="8"/>' +
+          '<circle id="gkm-progress" cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="8" stroke-linecap="round" stroke-dasharray="' + circumference.toFixed(2) + '" stroke-dashoffset="0" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset 0.3s linear"/>' +
         '</svg>' +
         '<div class="gkm-inner" id="gkm-inner">' +
           playIcon +
-          '<div class="gkm-circle-label">Tap to Begin</div>' +
         '</div>' +
       '</div>' +
+      '<div class="gkm-time-external" id="gkm-time-ext"></div>' +
       '<div class="gkm-idle-info" id="gkm-idle">' +
         '<h2>' + GK._esc(data.title) + '</h2>' +
         '<p>' + GK._esc(data.subtitle) + '</p>' +
@@ -322,6 +355,7 @@
     var closeEl = document.getElementById('gkm-close');
     var statsEl = document.getElementById('gkm-stats');
     var hintEl = document.getElementById('gkm-hint');
+    var timeExtEl = document.getElementById('gkm-time-ext');
 
     // 3b. Audio element (optional — when data.audioSrc is set)
     var audio = null;
@@ -346,6 +380,48 @@
       return secs + 's';
     }
 
+    function revealText(el, text) {
+      el.innerHTML = '';
+      el.style.opacity = '1';
+      var delay = 0;
+      var lines = text.split('\n');
+      for (var li = 0; li < lines.length; li++) {
+        if (li > 0) {
+          el.appendChild(document.createElement('br'));
+        }
+        var words = lines[li].split(' ');
+        for (var wi = 0; wi < words.length; wi++) {
+          if (wi > 0) {
+            var space = document.createElement('span');
+            space.className = 'gkm-letter';
+            space.textContent = '\u00A0';
+            space.style.animationDelay = delay + 'ms';
+            el.appendChild(space);
+            delay += 20;
+          }
+          var wordSpan = document.createElement('span');
+          wordSpan.className = 'gkm-word';
+          for (var ci = 0; ci < words[wi].length; ci++) {
+            var letterSpan = document.createElement('span');
+            letterSpan.className = 'gkm-letter';
+            letterSpan.textContent = words[wi][ci];
+            letterSpan.style.animationDelay = delay + 'ms';
+            wordSpan.appendChild(letterSpan);
+            delay += 65;
+          }
+          el.appendChild(wordSpan);
+        }
+      }
+    }
+
+    function dismissText(el) {
+      var letters = el.querySelectorAll('.gkm-letter');
+      for (var i = 0; i < letters.length; i++) {
+        letters[i].style.animationDelay = (i * 45) + 'ms';
+        letters[i].classList.add('gkm-letter-exit');
+      }
+    }
+
     function getSlug() {
       var p = window.location.pathname.replace(/^\/meditate\//, '').replace(/\/$/, '');
       return p || 'unknown';
@@ -367,18 +443,37 @@
       innerEl.innerHTML = html;
     }
 
+    var dismissing = false;
+    var DISMISS_LEAD = 2; // seconds before next cue to start dismiss
+
     function updateText(sec) {
       var newIdx = -1;
       for (var i = data.body.length - 1; i >= 0; i--) {
         if (sec >= data.body[i].time) { newIdx = i; break; }
       }
+
+      // Pre-dismiss: start fading out before the next cue arrives
+      if (!dismissing && currentIdx >= 0 && currentIdx < data.body.length - 1) {
+        var nextTime = data.body[currentIdx + 1].time;
+        if (sec >= nextTime - DISMISS_LEAD) {
+          dismissing = true;
+          dismissText(textEl);
+        }
+      }
+
       if (newIdx !== currentIdx) {
         currentIdx = newIdx;
-        textEl.style.opacity = '0';
+        var newText = currentIdx >= 0 ? data.body[currentIdx].text : '';
+        // If already dismissing, just wait a short beat then reveal
+        var revealDelay = dismissing ? 400 : 0;
+        dismissing = false;
         setTimeout(function() {
-          textEl.textContent = currentIdx >= 0 ? data.body[currentIdx].text : '';
-          textEl.style.opacity = '1';
-        }, 400);
+          if (newText) {
+            revealText(textEl, newText);
+          } else {
+            textEl.innerHTML = '';
+          }
+        }, revealDelay);
       }
     }
 
@@ -398,10 +493,9 @@
       var remaining = data.duration - elapsed;
       var offset = circumference * (elapsed / data.duration);
       progressEl.setAttribute('stroke-dashoffset', String(offset));
-      setCircleContent(
-        pauseIcon +
-        '<div class="gkm-time">' + formatTime(remaining) + '</div>'
-      );
+      setCircleContent(pauseIcon);
+      timeExtEl.textContent = formatTime(remaining);
+      timeExtEl.style.opacity = '1';
       updateText(elapsed);
       rafId = requestAnimationFrame(tick);
     }
@@ -416,13 +510,16 @@
       }
       elapsed = 0;
       currentIdx = -1;
+      dismissing = false;
       idleEl.style.display = 'none';
       endEl.classList.remove('gkm-visible');
-      closeEl.style.display = 'block';
-      textEl.textContent = '';
+      textEl.innerHTML = '';
       textEl.style.opacity = '1';
+      timeExtEl.textContent = '';
+      timeExtEl.style.opacity = '0';
       progressEl.setAttribute('stroke-dashoffset', '0');
       circleEl.classList.remove('gkm-glow');
+      circleEl.style.animation = '';
       circleEl.classList.add('gkm-breathing');
       circleEl.setAttribute('aria-label', 'Pause meditation');
       acquireWakeLock();
@@ -435,12 +532,10 @@
       pausedAt = Date.now();
       if (rafId) cancelAnimationFrame(rafId);
       textEl.style.opacity = '0.4';
+      timeExtEl.style.opacity = '0.4';
       circleEl.classList.remove('gkm-breathing');
       circleEl.style.animationPlayState = '';
-      setCircleContent(
-        playIcon +
-        '<div class="gkm-circle-label">Resume</div>'
-      );
+      setCircleContent(playIcon);
       circleEl.setAttribute('aria-label', 'Resume meditation');
       releaseWakeLock();
     }
@@ -453,6 +548,7 @@
         startTime += Date.now() - pausedAt;
       }
       textEl.style.opacity = '1';
+      timeExtEl.style.opacity = '1';
       circleEl.classList.add('gkm-breathing');
       circleEl.setAttribute('aria-label', 'Pause meditation');
       acquireWakeLock();
@@ -464,7 +560,9 @@
       if (rafId) cancelAnimationFrame(rafId);
       progressEl.setAttribute('stroke-dashoffset', String(circumference));
       textEl.style.opacity = '0';
-      setTimeout(function() { textEl.textContent = ''; }, 400);
+      setTimeout(function() { textEl.innerHTML = ''; }, 400);
+      timeExtEl.textContent = '';
+      timeExtEl.style.opacity = '0';
       circleEl.classList.remove('gkm-breathing');
       circleEl.style.display = 'none';
       closeEl.style.display = 'none';
@@ -547,40 +645,110 @@
   /* ── Add-to-Home-Screen Hint ── */
   GK.HomeScreenHint = {};
 
+  GK.HomeScreenHint._deferredPrompt = null;
+
+  // Capture beforeinstallprompt for Android native install
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    GK.HomeScreenHint._deferredPrompt = e;
+  });
+
   GK.HomeScreenHint.init = function() {
-    // Only show on specific pages
     var path = window.location.pathname;
     if (path !== '/' && path !== '/games/' && path !== '/meditate/') return;
-
-    // Don't show if already dismissed
     if (localStorage.getItem('guruka_hs_dismissed')) return;
-
-    // Don't show if already in standalone mode
     if (window.matchMedia('(display-mode: standalone)').matches) return;
+
+    // Platform detection
+    var ua = navigator.userAgent;
+    var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    var isAndroid = /Android/.test(ua);
+    if (!isIOS && !isAndroid) return; // Desktop: don't show
+
+    var styleEl = document.createElement('style');
+    styleEl.textContent =
+      '@keyframes gkHsSlideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}' +
+      '#gk-hs-hint{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(15,23,42,0.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:rgba(255,255,255,0.9);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:0.875rem;padding:0.75rem 1rem;display:flex;align-items:center;gap:0.75rem;border-top:1px solid rgba(255,255,255,0.1);animation:gkHsSlideUp 0.4s ease-out;transition:transform 0.25s ease-out}' +
+      '#gk-hs-hint .gk-hs-icon{width:40px;height:40px;border-radius:10px;background:#0f9072;display:flex;align-items:center;justify-content:center;flex-shrink:0}' +
+      '#gk-hs-hint .gk-hs-icon svg{width:22px;height:22px}' +
+      '#gk-hs-hint .gk-hs-body{flex:1;min-width:0}' +
+      '#gk-hs-hint .gk-hs-title{font-weight:600;font-size:0.875rem;line-height:1.3}' +
+      '#gk-hs-hint .gk-hs-desc{font-size:0.75rem;color:rgba(255,255,255,0.55);line-height:1.3;display:flex;align-items:center;gap:0.3rem;margin-top:0.125rem}' +
+      '#gk-hs-hint .gk-hs-desc svg{width:14px;height:14px;flex-shrink:0}' +
+      '#gk-hs-hint .gk-hs-close{background:none;border:none;color:rgba(255,255,255,0.5);font-size:1.5rem;cursor:pointer;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;-webkit-tap-highlight-color:transparent}';
+    document.head.appendChild(styleEl);
 
     var banner = document.createElement('div');
     banner.id = 'gk-hs-hint';
-    banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(15,23,42,0.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:rgba(255,255,255,0.9);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:0.875rem;padding:0.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:0.75rem;border-top:1px solid rgba(255,255,255,0.1);animation:gkHsSlideUp 0.4s ease-out';
 
-    var styleEl = document.createElement('style');
-    styleEl.textContent = '@keyframes gkHsSlideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}';
-    document.head.appendChild(styleEl);
+    // App icon (green square with G)
+    var iconSvg = '<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="20" y="27" font-family="-apple-system,sans-serif" font-weight="bold" font-size="24" fill="white" text-anchor="middle">G</text></svg>';
 
-    var text = document.createElement('span');
-    text.textContent = 'Add GURUKA to your home screen for quick access';
+    // Platform-specific instruction
+    var title = 'Add GURUKA to Home Screen';
+    var desc;
+    if (isIOS) {
+      desc = '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>' +
+        'Tap Share then "Add to Home Screen"';
+    } else {
+      desc = '<svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>' +
+        'Tap \u22ee then "Add to Home screen"';
+    }
 
-    var closeBtn = document.createElement('button');
-    closeBtn.textContent = '\u00d7';
-    closeBtn.setAttribute('aria-label', 'Dismiss');
-    closeBtn.style.cssText = 'background:none;border:none;color:rgba(255,255,255,0.6);font-size:1.5rem;cursor:pointer;padding:0 0.25rem;line-height:1;flex-shrink:0';
+    banner.innerHTML =
+      '<div class="gk-hs-icon">' + iconSvg + '</div>' +
+      '<div class="gk-hs-body">' +
+        '<div class="gk-hs-title">' + title + '</div>' +
+        '<div class="gk-hs-desc">' + desc + '</div>' +
+      '</div>' +
+      '<button class="gk-hs-close" aria-label="Dismiss">\u00d7</button>';
 
-    closeBtn.addEventListener('click', function() {
+    function dismiss() {
       localStorage.setItem('guruka_hs_dismissed', '1');
-      banner.remove();
+      banner.style.transform = 'translateY(100%)';
+      setTimeout(function() { banner.remove(); }, 300);
+    }
+
+    banner.querySelector('.gk-hs-close').addEventListener('click', function(e) {
+      e.stopPropagation();
+      dismiss();
     });
 
-    banner.appendChild(text);
-    banner.appendChild(closeBtn);
+    // Android: if native prompt available, tap banner to install
+    if (isAndroid) {
+      banner.style.cursor = 'pointer';
+      banner.addEventListener('click', function() {
+        if (GK.HomeScreenHint._deferredPrompt) {
+          GK.HomeScreenHint._deferredPrompt.prompt();
+          GK.HomeScreenHint._deferredPrompt.userChoice.then(function(result) {
+            GK.HomeScreenHint._deferredPrompt = null;
+            if (result.outcome === 'accepted') dismiss();
+          });
+        }
+      });
+    }
+
+    // Swipe-down-to-dismiss
+    var touchStartY = 0;
+    var touchDeltaY = 0;
+    banner.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
+      touchDeltaY = 0;
+    }, {passive: true});
+    banner.addEventListener('touchmove', function(e) {
+      touchDeltaY = e.touches[0].clientY - touchStartY;
+      if (touchDeltaY > 0) {
+        banner.style.transform = 'translateY(' + touchDeltaY + 'px)';
+      }
+    }, {passive: true});
+    banner.addEventListener('touchend', function() {
+      if (touchDeltaY > 60) {
+        dismiss();
+      } else {
+        banner.style.transform = 'translateY(0)';
+      }
+    }, {passive: true});
+
     document.body.appendChild(banner);
   };
 

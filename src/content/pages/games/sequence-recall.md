@@ -716,9 +716,15 @@ gap: 0.5rem;
 grid-template-columns: repeat(3, 1fr);
 }
 }
+@media (max-width: 400px) {
+#sequence-recall-game .sr-math-input {
+width: 80px;
+font-size: 1.1rem;
+}
+}
 @media (max-width: 360px) {
 #sequence-recall-game .sr-color-btn {
-min-height: 50px;
+min-height: 52px;
 }
 #sequence-recall-game .sr-color-box {
 width: 110px;
@@ -737,6 +743,10 @@ grid-template-columns: 1fr 1fr;
 #sequence-recall-game .sr-selected-dot {
 width: 22px;
 height: 22px;
+}
+#sequence-recall-game .sr-undo-btn,
+#sequence-recall-game .sr-submit-btn {
+min-height: 44px;
 }
 }
 @keyframes sr-confetti-fall {
@@ -1317,7 +1327,7 @@ html += '<div class="' + cls + '" data-pos="' + j + '">' + (isSelected ? order :
 }
 html += '</div>';
 
-html += '<div class="sr-undo-row" style="margin-top:0.75rem;max-width:210px;width:100%;">';
+html += '<div class="sr-undo-row" style="margin-top:0.75rem;max-width:240px;width:100%;">';
 html += '<button class="sr-undo-btn" id="sr-undo-pos-btn">Undo</button>';
 html += '<button class="sr-submit-btn" id="sr-submit-pos-btn"' + (state.selectedPositions.length < needed ? ' disabled' : '') + '>Submit</button>';
 html += '</div>';

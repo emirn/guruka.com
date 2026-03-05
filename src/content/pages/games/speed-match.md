@@ -11,7 +11,7 @@ margin: 0 auto;
 padding: 1rem;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 color: var(--color-text-primary);
-min-height: 80vh;
+min-height: 80dvh;
 display: flex;
 flex-direction: column;
 user-select: none;
@@ -760,6 +760,7 @@ font-size: 4rem;
 .sm-action-btn {
 padding: 0.625rem;
 font-size: 0.9rem;
+min-height: 44px;
 }
 .sm-complete-stats {
 grid-template-columns: 1fr 1fr;
@@ -772,6 +773,26 @@ padding: 0.375rem;
 }
 .sm-stat-value {
 font-size: 0.9rem;
+}
+}
+/* Hide keyboard hints on touch devices */
+@media (hover: none) and (pointer: coarse) {
+.sm-kbd-hints,
+.sm-action-btn .sm-btn-kbd,
+.sm-playing-kbd-hint {
+display: none;
+}
+}
+/* Landscape overflow fix */
+@media (orientation: landscape) and (max-height: 500px) {
+#speed-match-game {
+min-height: auto;
+}
+.sm-symbol {
+font-size: 3.5rem;
+}
+.sm-symbol-area {
+min-height: 120px;
 }
 }
 @keyframes sm-confetti-fall {

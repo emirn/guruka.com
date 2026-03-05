@@ -85,6 +85,7 @@ const articles = defineCollection({
       role: z.enum(['author', 'reviewer', 'contributor']),
       updated_at: z.coerce.date(),
     })).optional(),
+    language: z.string().default('en').optional(),
   }),
 });
 
@@ -98,6 +99,7 @@ const pages = defineCollection({
     blog_grid: z.boolean().default(false),
     blog_grid_title: z.string().optional(),
     blog_grid_limit: z.number().default(9),
+    language: z.string().default('en').optional(),
   }),
 });
 

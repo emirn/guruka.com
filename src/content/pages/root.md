@@ -134,6 +134,36 @@ color: var(--color-text-primary, #1a2332);
 [data-theme="dark"] .gk-med-card span {
 color: var(--color-dark-text-primary, #f9fafb);
 }
+@media (max-width: 640px) {
+.gk-section {
+padding: 2rem 1rem 1.5rem;
+}
+.gk-section-header {
+margin-bottom: 1.5rem;
+}
+.gk-cards {
+grid-template-columns: minmax(200px, 1fr);
+gap: 1rem;
+}
+.gk-med-cards {
+grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+gap: 0.75rem;
+}
+.gk-card {
+padding: 1.25rem;
+}
+.gk-med-card {
+padding: 1rem;
+}
+}
+@media (max-width: 360px) {
+.gk-section {
+padding: 1.5rem 0.75rem 1rem;
+}
+.gk-med-cards {
+grid-template-columns: repeat(2, 1fr);
+}
+}
 </style>
 
 <div class="gk-section">

@@ -70,7 +70,7 @@
       "font_family": "Inter, system-ui, sans-serif",
       "heading_font_family": "Space Grotesk, system-ui, sans-serif",
       "google_fonts": [
-        "Inter:wght@400;500;600;700",
+        "Inter:wght@300;400;500;600;700",
         "Space+Grotesk:wght@400;500;600;700"
       ]
     }
@@ -90,7 +90,7 @@
     "font_family": "Inter, system-ui, sans-serif",
     "heading_font_family": "Space Grotesk, system-ui, sans-serif",
     "google_fonts": [
-      "Inter:wght@400;500;600;700",
+      "Inter:wght@300;400;500;600;700",
       "Space+Grotesk:wght@400;500;600;700"
     ]
   },
