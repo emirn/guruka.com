@@ -1,0 +1,81 @@
+{
+  "title": "Body Scan & Tension Release",
+  "subtitle": "Check in. Let go. Come home to your body.",
+  "duration": 188.808,
+  "cues": [
+    {
+      "time": 0,
+      "text": "Lie down or sit back comfortably.\nClose your eyes.\nTake three deep breaths, to arrive."
+    },
+    {
+      "time": 12.504,
+      "text": "Let your body be still.\nWe're going to travel through it slowly —\nnot to fix anything. Just... to notice."
+    },
+    {
+      "time": 26.256,
+      "text": "Start at the top of your head.\nNotice your scalp.\nIs there tightness there? Just breathe into it. Let it soften."
+    },
+    {
+      "time": 38.68,
+      "text": "Move to your forehead.\nThe space between your eyebrows.\nThe tiny muscles around your eyes. Let them go."
+    },
+    {
+      "time": 50.48,
+      "text": "Your cheeks... your jaw... your mouth.\nLet your teeth part slightly.\nLet your tongue drop from the roof of your mouth."
+    },
+    {
+      "time": 63.24,
+      "text": "Down into your neck.\nThe sides... the back.\nSo much tension lives here.\nBreathe in... and on the exhale, let it release."
+    },
+    {
+      "time": 76.048,
+      "text": "Your shoulders.\nLet them fall, away from your ears, down toward the floor.\nA little more. There."
+    },
+    {
+      "time": 87.176,
+      "text": "Down your arms —\nyour upper arms... elbows... forearms... wrists.\nYour hands. Let your fingers uncurl."
+    },
+    {
+      "time": 98.4,
+      "text": "Your chest, let it be soft. Not held.\nYour ribs... your sides.\nYour belly, let it rise and fall freely."
+    },
+    {
+      "time": 110.08,
+      "text": "Your lower back.\nNotice anything stored there.\nBreathe into it... gently."
+    },
+    {
+      "time": 118.928,
+      "text": "Your hips... your glutes... your pelvis.\nLet them be heavy and still."
+    },
+    {
+      "time": 128.016,
+      "text": "Your thighs... your knees.\nYour calves... your shins.\nAll the way down to your ankles."
+    },
+    {
+      "time": 138.28,
+      "text": "Your feet.\nYour heels against the floor.\nYour toes, let them relax... completely."
+    },
+    {
+      "time": 150.28,
+      "text": "Your whole body, from head to toe.\nHeavy. Warm. Still."
+    },
+    {
+      "time": 164.216,
+      "text": "Take one last full breath in —\nand let it go... completely."
+    },
+    {
+      "time": 174.584,
+      "text": "When you're ready, begin to wake the body gently.\nWiggle your fingers and toes.\nA slow roll of the neck.\nAnd open your eyes."
+    },
+    {
+      "time": 187.728,
+      "text": "Welcome back."
+    }
+  ],
+  "colors": {
+    "bg": "#051a15",
+    "c1": "rgba(45,212,191,0.8)",
+    "c2": "rgba(16,185,129,0.6)",
+    "c3": "rgba(34,211,238,0.4)"
+  }
+}

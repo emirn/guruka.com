@@ -1,0 +1,77 @@
+{
+  "title": "Sleep & Wind Down",
+  "subtitle": "Let the day go. Rest is enough.",
+  "duration": 175.704,
+  "cues": [
+    {
+      "time": 0,
+      "text": "Lie down comfortably.\nLet your arms fall softly at your sides.\nClose your eyes."
+    },
+    {
+      "time": 9.952,
+      "text": "Take a slow, gentle breath in through your nose...\nand let it go, slowly, through your mouth."
+    },
+    {
+      "time": 23.032,
+      "text": "Again, in...\nand a long... slow... out.\nLet your body feel heavy."
+    },
+    {
+      "time": 33.688,
+      "text": "You made it through the day.\nWhatever happened, it's done.\nThere is nothing left to solve tonight."
+    },
+    {
+      "time": 47.104,
+      "text": "Feel the surface beneath you, supporting your weight completely.\nLet yourself... be held."
+    },
+    {
+      "time": 59.824,
+      "text": "Start at the top of your head.\nNotice your scalp... your forehead. Let them soften."
+    },
+    {
+      "time": 69.968,
+      "text": "Your eyes, let them relax, sinking back gently.\nYour jaw, let it loosen... teeth slightly apart."
+    },
+    {
+      "time": 81.144,
+      "text": "Your neck and shoulders, let them melt downward.\nYour chest, let it rise and fall without any effort."
+    },
+    {
+      "time": 92.92,
+      "text": "Your arms... your hands.\nYour belly, let it be soft.\nYour lower back... your hips."
+    },
+    {
+      "time": 102.872,
+      "text": "Your legs, heavy and still.\nYour feet, let them go... completely."
+    },
+    {
+      "time": 113.696,
+      "text": "Your whole body... is resting now."
+    },
+    {
+      "time": 122.216,
+      "text": "If thoughts come, that's okay.\nJust watch them like clouds passing through a quiet sky.\nThey don't need your attention. You can let them drift."
+    },
+    {
+      "time": 139.088,
+      "text": "Breathe slowly.\nIn... and out.\nIn... and out."
+    },
+    {
+      "time": 148.208,
+      "text": "You're safe. You're warm. The day is done.\nAll that's left now... is rest."
+    },
+    {
+      "time": 159.584,
+      "text": "Let yourself drift.\nDeeper and deeper into quiet.\nSofter... and softer."
+    },
+    {
+      "time": 174.792,
+      "text": "Sleep well."
+    }
+  ],
+  "colors": {
+    "bg": "#08061a",
+    "c1": "rgba(99,102,241,0.5)",
+    "c2": "rgba(88,28,135,0.4)",
+    "c3": "rgba(67,56,202,0.3)"
+  }
+}

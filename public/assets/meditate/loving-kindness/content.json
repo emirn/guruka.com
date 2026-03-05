@@ -1,0 +1,73 @@
+{
+  "title": "Loving Kindness",
+  "subtitle": "Offer warmth, to yourself first.",
+  "duration": 171.936,
+  "cues": [
+    {
+      "time": 0,
+      "text": "Find a comfortable seat.\nClose your eyes.\nLet your hands rest gently in your lap."
+    },
+    {
+      "time": 10.12,
+      "text": "Take a few easy breaths.\nNo force, just soft, natural breathing."
+    },
+    {
+      "time": 20.944,
+      "text": "Bring your awareness to the center of your chest, your heart space.\nJust notice that area.\nBreathe into it... gently."
+    },
+    {
+      "time": 35.8,
+      "text": "Now bring to mind an image of yourself, as you are right now.\nNot the polished version.\nJust you... as you actually are today."
+    },
+    {
+      "time": 51.304,
+      "text": "And with warmth, offer yourself these words:"
+    },
+    {
+      "time": 56.736,
+      "text": "May I be well.\nMay I be at ease.\nMay I be kind to myself today."
+    },
+    {
+      "time": 67.44,
+      "text": "Say them again, slowly, meaning each one."
+    },
+    {
+      "time": 72.608,
+      "text": "May I be well.\nMay I be at ease.\nMay I be kind to myself today."
+    },
+    {
+      "time": 83.336,
+      "text": "If that feels difficult, that's okay.\nJust notice the resistance... and breathe through it.\nYou're allowed to offer this to yourself."
+    },
+    {
+      "time": 99.392,
+      "text": "Now bring to mind someone you love easily.\nA friend. A child. A pet.\nHold them gently in your awareness."
+    },
+    {
+      "time": 111.144,
+      "text": "May you be well.\nMay you be at ease.\nMay you be happy."
+    },
+    {
+      "time": 121.128,
+      "text": "Let that warmth expand —\nto people in your life...\npeople you barely know...\npeople who are struggling today...\neven people who've hurt you.\nNot because they deserve it —\nbut because this warmth... is yours to give."
+    },
+    {
+      "time": 141.184,
+      "text": "May all beings be well.\nMay all beings be at ease."
+    },
+    {
+      "time": 154.952,
+      "text": "Come back to yourself.\nBreathe. Notice if anything has shifted."
+    },
+    {
+      "time": 165.68,
+      "text": "You carry this with you.\nIt's always available.\nOpen your eyes, when you're ready."
+    }
+  ],
+  "colors": {
+    "bg": "#1a050f",
+    "c1": "rgba(244,114,182,0.8)",
+    "c2": "rgba(236,72,153,0.6)",
+    "c3": "rgba(251,113,133,0.4)"
+  }
+}
