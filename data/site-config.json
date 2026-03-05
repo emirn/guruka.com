@@ -4,13 +4,13 @@
     "site": {
       "name": "GURUKA",
       "tagline": "Train Your Brain, Sharpen Your Mind",
-      "description": "Science-backed brain training games to improve memory, processing speed, and mental agility. Play daily and track your progress.",
+      "description": "Brain training games and guided meditations to improve memory, focus, and mental clarity. Play daily and track your progress.",
       "url": "https://guruka.com",
       "language": "en",
       "favicon_url": "",
       "author": {
         "name": "GURUKA Team",
-        "bio": "Science-backed brain training experts"
+        "bio": "Brain training and mindfulness experts"
       }
     },
     "logo": {
@@ -99,7 +99,11 @@
     "show_search": true,
     "nav_links": [
       {
-        "label": "Games",
+        "label": "Meditate",
+        "url": "/meditate/"
+      },
+      {
+        "label": "Brain Training Games",
         "url": "/games/"
       },
       {
@@ -107,20 +111,47 @@
         "url": "/blog/"
       }
     ],
-    "cta_button": {
-      "enabled": true,
-      "label": "Play Now",
-      "url": "/games/",
-      "style": "primary",
-      "target": "_self"
-    }
+    "cta_button": null
   },
   "footer": {
     "show_logo": true,
     "show_tagline": true,
     "columns": [
       {
-        "title": "Games",
+        "title": "Meditate",
+        "links": [
+          {
+            "label": "Calm & Stress Relief",
+            "url": "/meditate/calm-and-stress-relief/"
+          },
+          {
+            "label": "Focus & Clarity",
+            "url": "/meditate/focus-and-clarity/"
+          },
+          {
+            "label": "Sleep & Wind Down",
+            "url": "/meditate/sleep-and-wind-down/"
+          },
+          {
+            "label": "Morning Energy",
+            "url": "/meditate/morning-energy/"
+          },
+          {
+            "label": "Loving Kindness",
+            "url": "/meditate/loving-kindness/"
+          },
+          {
+            "label": "Gratitude",
+            "url": "/meditate/gratitude/"
+          },
+          {
+            "label": "Body Scan",
+            "url": "/meditate/body-scan-and-tension-release/"
+          }
+        ]
+      },
+      {
+        "title": "Brain Training Games",
         "links": [
           {
             "label": "Speed Match",

@@ -1,6 +1,6 @@
 ---
 title: "Brain Training Games"
-description: "Play free brain training games to improve memory, processing speed, and mental agility. Three science-backed games with adaptive difficulty."
+description: "Play free brain training games to improve memory, processing speed, and mental agility. Three games with adaptive difficulty."
 full_width: true
 ---
 

@@ -1,0 +1,69 @@
+{
+  "title": "Calm & Stress Relief",
+  "subtitle": "Release tension. Come back to yourself.",
+  "duration": 171.936,
+  "cues": [
+    {
+      "time": 0,
+      "text": "Find a comfortable position, sitting or lying down.\nLet your hands rest gently wherever they fall.\nClose your eyes... or soften your gaze downward."
+    },
+    {
+      "time": 15.184,
+      "text": "Take a slow breath in through your nose...\nand let it go, through your mouth."
+    },
+    {
+      "time": 25.04,
+      "text": "Again, breathe in...\nand release."
+    },
+    {
+      "time": 31.44,
+      "text": "One more time, in...\nand out. Good."
+    },
+    {
+      "time": 37.96,
+      "text": "Now let your breathing find its own natural rhythm.\nYou don't need to control it.\nJust... let it happen."
+    },
+    {
+      "time": 51.664,
+      "text": "Notice where you're holding tension right now.\nMaybe it's in your shoulders. Your jaw. Your hands.\nWherever it is, just notice it.\nYou don't have to fix it."
+    },
+    {
+      "time": 69.256,
+      "text": "With your next exhale, imagine that tension softening, just a little.\nNot gone... just... lighter."
+    },
+    {
+      "time": 82.456,
+      "text": "Let your shoulders drop.\nLet your jaw unclench.\nLet your hands open slightly."
+    },
+    {
+      "time": 94.312,
+      "text": "You are safe right now.\nIn this moment, there is nothing you need to do, nothing to fix, nothing to figure out.\nThis moment asks nothing of you."
+    },
+    {
+      "time": 110.608,
+      "text": "If your mind brings up a worry or a to-do, just notice it.\nGently say to yourself: not right now.\nAnd return to your breath."
+    },
+    {
+      "time": 123.824,
+      "text": "Breathe in calm... breathe out tension.\nBreathe in ease... breathe out the weight of the day."
+    },
+    {
+      "time": 134.688,
+      "text": "Stay here for a few more breaths.\nNowhere to be. Nothing to do. Just this."
+    },
+    {
+      "time": 150.088,
+      "text": "When you're ready, take a slightly deeper breath.\nBegin to bring gentle movement back, wiggle your fingers, roll your shoulders.\nAnd when it feels right... slowly open your eyes."
+    },
+    {
+      "time": 167.384,
+      "text": "Carry this softness with you.\nYou can return here, anytime."
+    }
+  ],
+  "colors": {
+    "bg": "#0c0a1a",
+    "c1": "rgba(99,102,241,0.8)",
+    "c2": "rgba(139,92,246,0.6)",
+    "c3": "rgba(59,130,246,0.5)"
+  }
+}
