@@ -221,3 +221,25 @@ el.innerHTML = 'Personal Best: <strong>' + Number(best).toLocaleString() + '</st
 });
 })();
 </script>
+
+<style>
+@media (max-width: 640px) {
+.gh-grid {
+gap: 1rem;
+}
+.gh-game-card {
+padding: 1.5rem;
+}
+.gh-game-card .gh-desc {
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
+}
+}
+@media (max-width: 360px) {
+.gh-game-card {
+padding: 1.25rem;
+}
+}
+</style>
