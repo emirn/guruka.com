@@ -8,7 +8,7 @@ full_width: true
 #memory-matrix-game {
 max-width: 540px;
 margin: 0 auto;
-padding: 1rem;
+padding: 1.5rem 1rem;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 color: var(--color-text-primary);
 -webkit-tap-highlight-color: transparent;
@@ -407,8 +407,6 @@ font-size: 0.85rem;
 color: transparent;
 -webkit-user-select: none;
 user-select: none;
-min-width: 36px;
-min-height: 36px;
 }
 
 [data-theme="dark"] #memory-matrix-game .mm-cell {
@@ -637,8 +635,11 @@ font-size: 1rem;
 #memory-matrix-game .mm-btn {
 padding: 0.625rem 1rem;
 font-size: 0.9rem;
-min-height: 44px;
 }
+#memory-matrix-game .mm-icon-wrap { width: 48px; height: 48px; margin-bottom: 0.5rem; }
+#memory-matrix-game .mm-icon-wrap svg { width: 24px; height: 24px; }
+#memory-matrix-game .mm-instructions h2 { font-size: 1.3rem; }
+#memory-matrix-game .mm-instructions .mm-subtitle { font-size: 0.85rem; margin-bottom: 0.75rem; }
 }
 @media (max-width: 640px) {
 #memory-matrix-game .mm-stats-grid {
@@ -653,29 +654,18 @@ font-size: 1.1rem;
 gap: 3px;
 }
 #memory-matrix-game .mm-stats-grid {
-grid-template-columns: repeat(3, 1fr);
-}
-#memory-matrix-game .mm-stat-card {
-padding: 0.5rem 0.25rem;
-}
-#memory-matrix-game .mm-stat-value {
-font-size: 1rem;
-}
-#memory-matrix-game .mm-stat-label {
-font-size: 0.65rem;
+grid-template-columns: 1fr 1fr;
 }
 #memory-matrix-game .mm-btn {
 padding: 0.5rem 0.75rem;
 font-size: 0.85rem;
-min-height: 44px;
 }
 #memory-matrix-game .mm-title {
 font-size: 1.25rem;
 }
 #memory-matrix-game .mm-grid-wrap {
 max-width: 100%;
-overflow-x: auto;
--webkit-overflow-scrolling: touch;
+overflow: hidden;
 }
 }
 @keyframes mm-confetti-fall {
@@ -741,9 +731,9 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 </ol>
 </div>
 <div id="mm-instr-best" class="mm-best-banner" style="display:none;"></div>
-<input type="text" id="mm-player-name" class="gk-name-input" placeholder="Your name (for sharing)" maxlength="20">
-<div id="mm-challenge-banner-wrap"></div>
 <button class="mm-btn mm-btn-primary" onclick="mmShowWizard()">Start Game</button>
+<div id="mm-challenge-banner-wrap"></div>
+<input type="text" id="mm-player-name" class="gk-name-input" placeholder="Your name (for sharing)" maxlength="20">
 </div>
 </div>
 
@@ -810,8 +800,8 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 <a href="/games/" class="mm-back-link">Back to All Games</a>
 </div>
 <div class="gk-share-section">
-<div class="gk-share-title">Share your score</div>
-<div class="gk-share-buttons" id="mm-share-buttons"></div>
+<div class="gk-share-title">Challenge a Friend</div>
+<button class="gk-share-btn" id="mm-share-btn">&#128279; Share Your Score</button>
 <div class="gk-share-copied" id="mm-share-copied" style="display:none;">Link copied!</div>
 </div>
 </div>
@@ -954,6 +944,11 @@ mmRenderWizardStep();
 
 /* ---- Start Game ---- */
 function mmStartGame() {
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  var stickyNav = document.querySelector('.sticky.top-0');
+  if (stickyNav && window.innerWidth <= 768) { stickyNav.style.display = 'none'; document.body.style.paddingTop = '0'; }
+  var footer = document.querySelector('footer');
+  if (footer && window.innerWidth <= 768) footer.style.display = 'none';
   state.score = 0;
   state.level = 1;
   state.streak = 0;
@@ -1013,7 +1008,6 @@ function buildGrid(config) {
     var maxCellSize = Math.floor((viewportWidth - 40 - (config.gridSize - 1) * gapSize) / config.gridSize);
     if (maxCellSize < cellSize) cellSize = maxCellSize;
   }
-  cellSize = Math.max(cellSize, 36);
   var totalSize = config.gridSize * cellSize + (config.gridSize - 1) * gapSize;
 
   grid.style.gridTemplateColumns = 'repeat(' + config.gridSize + ', ' + cellSize + 'px)';
@@ -1316,6 +1310,10 @@ requestAnimationFrame(step);
 
 /* ---- End Game ---- */
 function endGame() {
+  var stickyNav = document.querySelector('.sticky.top-0');
+  if (stickyNav) stickyNav.style.display = '';
+  var footer = document.querySelector('footer');
+  if (footer) footer.style.display = '';
   var totalAnswers = state.correctAnswers + state.wrongAnswers;
   var accuracy = totalAnswers > 0 ? Math.round((state.correctAnswers / totalAnswers) * 100) : 0;
   var isNewBest = saveResult(state.score, state.level, accuracy);
@@ -1339,7 +1337,6 @@ function endGame() {
   }
 
   GK.renderChallengeResult('mm-challenge-result', state.score, challenge);
-  GK.renderShareButtons('mm-share-buttons', state.score, 'Memory Matrix', '/games/memory-matrix/');
 
   showScreen('complete');
 
@@ -1369,5 +1366,8 @@ document.getElementById('mm-finish-btn').addEventListener('click', function() {
   endGame();
 });
 
+document.getElementById('mm-share-btn').addEventListener('click', function() {
+  GK.shareResult(state.score, 'Memory Matrix', '/games/memory-matrix/', 'mm-share-copied');
+});
 })();
 </script>

@@ -1,0 +1,70 @@
+{
+  "lang": "de",
+  "title": "Ruhe & Stressabbau",
+  "subtitle": "Lass die Anspannung los. Komm zu dir zurück.",
+  "duration": 184.56,
+  "colors": {
+    "bg": "#0c0a1a",
+    "c1": "rgba(99,102,241,0.8)",
+    "c2": "rgba(139,92,246,0.6)",
+    "c3": "rgba(59,130,246,0.5)"
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Finde eine bequeme Position, sitzend oder liegend.\nLass deine Hände sanft dort ruhen, wo sie hinfallen.\nSchließe deine Augen... oder lass deinen Blick weich nach unten sinken."
+    },
+    {
+      "time": 17.272,
+      "text": "Atme langsam durch die Nase ein...\nund lass die Luft durch den Mund wieder los."
+    },
+    {
+      "time": 27.152,
+      "text": "Noch einmal, einatmen...\nund loslassen."
+    },
+    {
+      "time": 34.032,
+      "text": "Ein letztes Mal, ein...\nund aus. Gut."
+    },
+    {
+      "time": 40.576,
+      "text": "Lass deinen Atem jetzt seinen eigenen Rhythmus finden.\nDu musst ihn nicht steuern.\nLass es einfach... geschehen."
+    },
+    {
+      "time": 55,
+      "text": "Spüre, wo du gerade Anspannung hältst.\nVielleicht in den Schultern. Im Kiefer. In den Händen.\nWo auch immer es ist, nimm es einfach wahr.\nDu musst es nicht ändern."
+    },
+    {
+      "time": 73.216,
+      "text": "Mit deinem nächsten Ausatmen... stell dir vor, wie sich die Anspannung ein wenig löst.\nNicht weg... nur... leichter."
+    },
+    {
+      "time": 87.808,
+      "text": "Lass deine Schultern sinken.\nLass deinen Kiefer locker werden.\nLass deine Hände sich leicht öffnen."
+    },
+    {
+      "time": 101.416,
+      "text": "Du bist jetzt sicher.\nIn diesem Moment gibt es nichts zu tun, nichts zu lösen, nichts herauszufinden.\nDieser Moment verlangt nichts von dir."
+    },
+    {
+      "time": 117.952,
+      "text": "Wenn dein Verstand eine Sorge oder eine Aufgabe bringt, nimm sie einfach wahr.\nSag dir sanft: nicht jetzt.\nUnd kehre zu deinem Atem zurück."
+    },
+    {
+      "time": 132.488,
+      "text": "Atme Ruhe ein... atme Anspannung aus.\nAtme Leichtigkeit ein... atme die Last des Tages aus."
+    },
+    {
+      "time": 143.256,
+      "text": "Bleib hier für noch ein paar Atemzüge.\nNirgends hin müssen. Nichts tun müssen. Nur das hier."
+    },
+    {
+      "time": 160.288,
+      "text": "Wenn du bereit bist, nimm einen etwas tieferen Atemzug.\nBring sanft Bewegung zurück, wackle mit den Fingern, rolle deine Schultern.\nUnd wenn es sich richtig anfühlt... öffne langsam deine Augen."
+    },
+    {
+      "time": 179,
+      "text": "Nimm diese Sanftheit mit dir.\nDu kannst jederzeit hierher zurückkehren."
+    }
+  ]
+}

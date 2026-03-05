@@ -1,0 +1,49 @@
+---
+import { getConfig } from '../lib/config';
+const config = getConfig();
+const i18n = config.i18n;
+const langs = i18n?.languages || [];
+const defaultLang = i18n?.defaultLanguage || 'en';
+const currentLang = Astro.props.lang || defaultLang;
+---
+
+{i18n?.enabled && langs.length > 1 && (
+  <div class="fixed bottom-4 left-4 z-50 flex gap-1 bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-full px-2 py-1 shadow-lg text-xs font-medium" id="lang-switcher">
+    {langs.map(({ code, label }) => (
+      <a
+        href="#"
+        data-lang={code}
+        class:list={[
+          'px-2 py-1 rounded-full transition-colors',
+          currentLang === code ? 'bg-[var(--color-primary)] text-white' : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+        ]}
+        title={label}
+      >
+        {code.toUpperCase()}
+      </a>
+    ))}
+  </div>
+)}
+
+<script is:inline define:vars={{ defaultLang }}>
+(function() {
+  var switcher = document.getElementById('lang-switcher');
+  if (!switcher) return;
+  switcher.addEventListener('click', function(e) {
+    var a = e.target.closest('[data-lang]');
+    if (!a) return;
+    e.preventDefault();
+    var lang = a.dataset.lang;
+    var path = location.pathname;
+    // Strip existing lang prefix
+    var segments = path.split('/').filter(Boolean);
+    var knownLangs = Array.from(switcher.querySelectorAll('[data-lang]')).map(function(el) { return el.dataset.lang; });
+    if (knownLangs.indexOf(segments[0]) !== -1) segments.shift();
+    // Add new prefix (or none for default)
+    var newPath = lang === defaultLang ? '/' + segments.join('/') : '/' + lang + '/' + segments.join('/');
+    if (!newPath.endsWith('/')) newPath += '/';
+    localStorage.setItem(location.hostname + '_lang', lang);
+    location.href = newPath;
+  });
+})();
+</script>

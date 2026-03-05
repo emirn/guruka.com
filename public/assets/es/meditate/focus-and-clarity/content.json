@@ -1,0 +1,70 @@
+{
+  "lang": "es",
+  "title": "Enfoque y Claridad",
+  "subtitle": "Despeja el ruido. Afila tu mente.",
+  "duration": 162.528,
+  "colors": {
+    "bg": "#060d1a",
+    "c1": "rgba(59,130,246,0.8)",
+    "c2": "rgba(71,85,105,0.6)",
+    "c3": "rgba(30,64,175,0.5)"
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Siéntate erguido, pies apoyados en el suelo, espalda recta, manos sobre los muslos.\nCierra los ojos."
+    },
+    {
+      "time": 11.416,
+      "text": "Toma tres respiraciones de anclaje.\nInhala por la nariz... exhala por la boca."
+    },
+    {
+      "time": 21.128,
+      "text": "Inhala... exhala."
+    },
+    {
+      "time": 26.28,
+      "text": "Una más, inhala... y exhala."
+    },
+    {
+      "time": 34.248,
+      "text": "Lleva tu atención al centro de tu frente.\nSolo observa ese espacio.\nSin esfuerzo, solo una conciencia suave."
+    },
+    {
+      "time": 48.384,
+      "text": "Ahora piensa en lo que estás a punto de hacer.\nEl trabajo. La tarea. La conversación que viene.\nNo pienses en cómo, ni cuándo.\nSolo sostén una imagen clara de lo que es."
+    },
+    {
+      "time": 67.152,
+      "text": "Con cada inhalación, imagina que respiras claridad.\nAire limpio y transparente, llenando tu mente."
+    },
+    {
+      "time": 78.472,
+      "text": "Con cada exhalación, suelta todo lo que no es relevante ahora.\nLas pestañas abiertas. Las otras tareas. El ruido de fondo."
+    },
+    {
+      "time": 93.664,
+      "text": "Inhala claridad... exhala distracción.\nInhala enfoque... exhala ruido."
+    },
+    {
+      "time": 104.704,
+      "text": "Tu mente sabe cómo hacer esto.\nEstá preparada para esto.\nAhora mismo, solo la estás apuntando en la dirección correcta."
+    },
+    {
+      "time": 119.752,
+      "text": "Si un pensamiento te jala hacia un lado, reconócelo brevemente, y déjalo ir.\nVuelve a esa imagen clara de tu tarea."
+    },
+    {
+      "time": 132.416,
+      "text": "Siente cómo te vuelves más presente.\nMás despierto. Listo."
+    },
+    {
+      "time": 146.856,
+      "text": "Toma una respiración más profunda.\nAl exhalar, siente cómo llegas completamente a este momento.\nAlerta. Claro. Preparado."
+    },
+    {
+      "time": 159.904,
+      "text": "Abre los ojos.\nEstás listo. Comienza."
+    }
+  ]
+}

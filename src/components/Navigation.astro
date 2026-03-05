@@ -296,3 +296,59 @@ const logoStyle = getLogoTextStyle(config);
     });
   });
 </script>
+
+<script is:inline define:vars={{
+  i18nEnabled: config.i18n?.enabled || false,
+  i18nLangs: config.i18n?.languages?.map(l => l.code) || [],
+  i18nDefault: config.i18n?.defaultLanguage || 'en'
+}}>
+(function() {
+  if (!i18nEnabled || i18nLangs.length < 2) return;
+  var segments = location.pathname.split('/').filter(Boolean);
+  var currentLang = i18nLangs.indexOf(segments[0]) !== -1 ? segments[0] : i18nDefault;
+  if (currentLang === i18nDefault) return;
+  var prefix = '/' + currentLang;
+  // Prefix nav + footer links
+  document.querySelectorAll('header a[href^="/"], footer a[href^="/"]').forEach(function(a) {
+    var href = a.getAttribute('href');
+    if (href === '#' || href.startsWith('#')) return;
+    // Skip language dropdown links — handled separately below
+    if (a.closest('.nav-dropdown-menu') || a.closest('.mobile-dropdown-content')) return;
+    var firstSeg = href.split('/').filter(Boolean)[0];
+    if (i18nLangs.indexOf(firstSeg) !== -1) return;
+    a.setAttribute('href', prefix + href);
+  });
+  // Update language dropdown button text
+  document.querySelectorAll('.nav-dropdown button, .mobile-nav-dropdown button').forEach(function(btn) {
+    var text = btn.textContent || '';
+    if (text.match(/🌐/)) {
+      btn.childNodes.forEach(function(node) {
+        if (node.nodeType === 3 && node.textContent.trim().match(/🌐/)) {
+          node.textContent = node.textContent.replace(/[A-Z]{2}/, currentLang.toUpperCase());
+        }
+      });
+    }
+  });
+  // Language child links: maintain current page path
+  var pathWithoutLang = '/' + segments.slice(1).join('/');
+  if (pathWithoutLang.length > 1 && !pathWithoutLang.endsWith('/')) pathWithoutLang += '/';
+  document.querySelectorAll('.nav-dropdown-menu a, .mobile-dropdown-content a').forEach(function(a) {
+    var href = a.getAttribute('href');
+    var m = href.match(/^\/([a-z]{2})\/$/);
+    if (m && i18nLangs.indexOf(m[1]) !== -1) {
+      a.setAttribute('href', '/' + m[1] + pathWithoutLang);
+    } else if (href === '/') {
+      a.setAttribute('href', pathWithoutLang);
+    }
+  });
+  // Save lang preference on language link click
+  document.querySelectorAll('.nav-dropdown-menu a, .mobile-dropdown-content a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      var href = a.getAttribute('href');
+      var seg = href.split('/').filter(Boolean)[0];
+      var lang = i18nLangs.indexOf(seg) !== -1 ? seg : i18nDefault;
+      localStorage.setItem(location.hostname + '_lang', lang);
+    });
+  });
+})();
+</script>

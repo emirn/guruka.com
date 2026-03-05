@@ -11,7 +11,7 @@ margin: 0 auto;
 padding: 1rem;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 color: var(--color-text-primary);
-min-height: 80dvh;
+min-height: 80vh;
 display: flex;
 flex-direction: column;
 user-select: none;
@@ -25,12 +25,12 @@ color: var(--color-dark-text-primary);
 /* ── Instructions Screen ── */
 #sm-instructions {
 text-align: center;
-padding: 1rem 1rem;
+padding: 2rem 1rem;
 flex: 1;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: flex-start;
+justify-content: center;
 }
 
 #sm-instructions .sm-icon {
@@ -741,6 +741,13 @@ gap: 0.25rem;
 .sm-stat-value {
 font-size: 1rem;
 }
+#sm-instructions { padding: 1rem 0.5rem; }
+#sm-instructions .sm-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+#sm-instructions h2 { font-size: 1.3rem; }
+#sm-instructions .sm-subtitle { margin-bottom: 1rem; font-size: 0.85rem; }
+#sm-instructions .sm-how-to { padding: 0.75rem 1rem; margin-bottom: 1rem; }
+#sm-instructions .sm-how-to li { margin-bottom: 0.25rem; font-size: 0.82rem; }
+.sm-personal-best { padding: 0.4rem 0.75rem; margin-bottom: 1rem; font-size: 0.82rem; }
 }
 @media (max-width: 640px) {
 #speed-match-game {
@@ -760,7 +767,6 @@ font-size: 4rem;
 .sm-action-btn {
 padding: 0.625rem;
 font-size: 0.9rem;
-min-height: 44px;
 }
 .sm-complete-stats {
 grid-template-columns: 1fr 1fr;
@@ -773,26 +779,6 @@ padding: 0.375rem;
 }
 .sm-stat-value {
 font-size: 0.9rem;
-}
-}
-/* Hide keyboard hints on touch devices */
-@media (hover: none) and (pointer: coarse) {
-.sm-kbd-hints,
-.sm-action-btn .sm-btn-kbd,
-.sm-playing-kbd-hint {
-display: none;
-}
-}
-/* Landscape overflow fix */
-@media (orientation: landscape) and (max-height: 500px) {
-#speed-match-game {
-min-height: auto;
-}
-.sm-symbol {
-font-size: 3.5rem;
-}
-.sm-symbol-area {
-min-height: 120px;
 }
 }
 @keyframes sm-confetti-fall {
@@ -871,9 +857,9 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 <div id="sm-best-display" class="sm-personal-best" style="display:none;">
 Personal Best: <strong id="sm-best-score">0</strong> points
 </div>
-<input type="text" id="sm-player-name" class="gk-name-input" placeholder="Your name (for sharing)" maxlength="20">
-<div id="sm-challenge-banner-wrap"></div>
 <button class="sm-btn-primary" id="sm-start-btn">Start Game</button>
+<div id="sm-challenge-banner-wrap"></div>
+<input type="text" id="sm-player-name" class="gk-name-input" placeholder="Your name (for sharing)" maxlength="20">
 </div>
 
 <div id="sm-wizard">
@@ -961,8 +947,8 @@ Personal Best: <strong id="sm-best-score">0</strong> points
 <a href="/games/" class="sm-back-link">&larr; Back to Games</a>
 </div>
 <div class="gk-share-section">
-<div class="gk-share-title">Share your score</div>
-<div class="gk-share-buttons" id="sm-share-buttons"></div>
+<div class="gk-share-title">Challenge a Friend</div>
+<button class="gk-share-btn" id="sm-share-btn">&#128279; Share Your Score</button>
 <div class="gk-share-copied" id="sm-share-copied" style="display:none;">Link copied!</div>
 </div>
 </div>
@@ -1342,6 +1328,10 @@ requestAnimationFrame(step);
 
 /* ── End game ── */
 function endGame() {
+var stickyNav = document.querySelector('.sticky.top-0');
+if (stickyNav) stickyNav.style.display = '';
+var footer = document.querySelector('footer');
+if (footer) footer.style.display = '';
 state.gameOver = true;
 if (state.timerInterval) clearInterval(state.timerInterval);
 if (state.autoAdvanceTimeout) clearTimeout(state.autoAdvanceTimeout);
@@ -1387,7 +1377,6 @@ elFinalStreak.textContent = state.bestStreak;
 elFinalBest.textContent = best.toLocaleString();
 
 GK.renderChallengeResult('sm-challenge-result', state.score, challenge);
-GK.renderShareButtons('sm-share-buttons', state.score, 'Speed Match', '/games/speed-match/');
 
 showScreen('complete');
 animateScoreCountUp(elFinalScore, state.score);
@@ -1484,6 +1473,11 @@ state.autoAdvanceTimeout = null;
 }
 
 function startPlaying() {
+window.scrollTo({ top: 0, behavior: 'instant' });
+var stickyNav = document.querySelector('.sticky.top-0');
+if (stickyNav && window.innerWidth <= 768) { stickyNav.style.display = 'none'; document.body.style.paddingTop = '0'; }
+var footer = document.querySelector('footer');
+if (footer && window.innerWidth <= 768) footer.style.display = 'none';
 showScreen('playing');
 GK.renderChallengeBar('sm-playing', challenge);
 updateHUD();
@@ -1516,6 +1510,10 @@ resumeGame();
 
 document.getElementById('sm-finish-btn').addEventListener('click', function() {
 endGame();
+});
+
+document.getElementById('sm-share-btn').addEventListener('click', function() {
+GK.shareResult(state.score, 'Speed Match', '/games/speed-match/', 'sm-share-copied');
 });
 
 document.addEventListener('keydown', function(e) {

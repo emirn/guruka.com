@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getConfig } from '../../lib/config';
 import { getAllLocalSections, getArticlesBySection } from '../../lib/sections';
+import { getArticleLang } from '../../lib/articles';
 import ArticleCard from '../../components/ArticleCard.astro';
 import ArticleListItem from '../../components/ArticleListItem.astro';
 import Pagination from '../../components/Pagination.astro';
@@ -24,8 +25,14 @@ export const getStaticPaths = (async () => {
 const config = getConfig();
 const { sectionConfig } = Astro.props;
 
-const articles = (await getArticlesBySection(sectionConfig.id))
+const allSectionArticles = (await getArticlesBySection(sectionConfig.id, config))
   .sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf());
+
+// When i18n enabled, only show default-language articles in section index
+const defaultLang = config.i18n?.defaultLanguage || 'en';
+const articles = config.i18n?.enabled
+  ? allSectionArticles.filter(a => getArticleLang(a.slug, config) === defaultLang)
+  : allSectionArticles;
 
 const posts_per_page = sectionConfig.posts_per_page || config.blog.posts_per_page || 9;
 const totalPages = Math.ceil(articles.length / posts_per_page);

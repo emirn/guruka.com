@@ -109,6 +109,28 @@
       {
         "label": "Blog",
         "url": "/blog/"
+      },
+      {
+        "label": "🌐 EN",
+        "url": "#",
+        "children": [
+          {
+            "label": "🇬🇧 English",
+            "url": "/"
+          },
+          {
+            "label": "🇪🇸 Español",
+            "url": "/es/"
+          },
+          {
+            "label": "🇩🇪 Deutsch",
+            "url": "/de/"
+          },
+          {
+            "label": "🇫🇷 Français",
+            "url": "/fr/"
+          }
+        ]
       }
     ],
     "cta_button": null
@@ -283,5 +305,27 @@
       "name": "GURUKA Team",
       "url": ""
     }
-  ]
+  ],
+  "i18n": {
+    "enabled": true,
+    "defaultLanguage": "en",
+    "languages": [
+      {
+        "code": "en",
+        "label": "English"
+      },
+      {
+        "code": "es",
+        "label": "Español"
+      },
+      {
+        "code": "de",
+        "label": "Deutsch"
+      },
+      {
+        "code": "fr",
+        "label": "Français"
+      }
+    ]
+  }
 }

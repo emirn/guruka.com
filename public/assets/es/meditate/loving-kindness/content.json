@@ -1,0 +1,74 @@
+{
+  "lang": "es",
+  "title": "Bondad Amorosa",
+  "subtitle": "Ofrece calidez, primero a ti mismo.",
+  "duration": 180.264,
+  "colors": {
+    "bg": "#1a050f",
+    "c1": "rgba(244,114,182,0.8)",
+    "c2": "rgba(236,72,153,0.6)",
+    "c3": "rgba(251,113,133,0.4)"
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Encuentra un asiento cómodo.\nCierra los ojos.\nDeja que tus manos descansen suavemente en tu regazo."
+    },
+    {
+      "time": 11.584,
+      "text": "Toma unas respiraciones tranquilas.\nSin fuerza, solo una respiración suave y natural."
+    },
+    {
+      "time": 24.064,
+      "text": "Lleva tu atención al centro de tu pecho, el espacio del corazón.\nSolo observa esa zona.\nRespira hacia ella... con suavidad."
+    },
+    {
+      "time": 39.352,
+      "text": "Ahora trae a tu mente una imagen de ti mismo, tal como eres ahora.\nNo la versión pulida.\nSolo tú... como realmente eres hoy."
+    },
+    {
+      "time": 54.688,
+      "text": "Y con calidez, ofrécete estas palabras:"
+    },
+    {
+      "time": 59.64,
+      "text": "Que yo esté bien.\nQue yo esté en paz.\nQue yo sea amable conmigo hoy."
+    },
+    {
+      "time": 70.848,
+      "text": "Dílas de nuevo, despacio, sintiendo cada una."
+    },
+    {
+      "time": 76.184,
+      "text": "Que yo esté bien.\nQue yo esté en paz.\nQue yo sea amable conmigo hoy."
+    },
+    {
+      "time": 87.296,
+      "text": "Si eso se siente difícil, está bien.\nSolo nota la resistencia... y respira a través de ella.\nTienes permiso para ofrecerte esto."
+    },
+    {
+      "time": 103.016,
+      "text": "Ahora trae a tu mente a alguien a quien quieres con facilidad.\nUn amigo. Un niño. Una mascota.\nSostenlo suavemente en tu conciencia."
+    },
+    {
+      "time": 116.976,
+      "text": "Que estés bien.\nQue estés en paz.\nQue seas feliz."
+    },
+    {
+      "time": 126.672,
+      "text": "Deja que esa calidez se expanda —\nhacia las personas de tu vida...\npersonas que apenas conoces...\npersonas que están pasándola mal hoy...\nincluso personas que te han herido.\nNo porque lo merezcan —\nsino porque esta calidez... es tuya para dar."
+    },
+    {
+      "time": 148.984,
+      "text": "Que todos los seres estén bien.\nQue todos los seres estén en paz."
+    },
+    {
+      "time": 164.048,
+      "text": "Vuelve a ti mismo.\nRespira. Nota si algo ha cambiado."
+    },
+    {
+      "time": 173.984,
+      "text": "Esto lo llevas contigo.\nSiempre está disponible.\nAbre los ojos, cuando estés listo."
+    }
+  ]
+}

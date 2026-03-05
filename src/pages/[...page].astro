@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import { getConfig } from '../lib/config';
 import { getHomeArticles } from '../lib/sections';
+import { getPageLang, getPageBaseSlug } from '../lib/articles';
 import PdfLightbox from '../components/PdfLightbox.astro';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -19,21 +20,55 @@ try {
 } catch { /* no project scripts */ }
 
 export async function getStaticPaths() {
+  const config = getConfig();
   let pages: Awaited<ReturnType<typeof getCollection<'pages'>>>;
   try {
     pages = await getCollection('pages');
   } catch {
     return [];
   }
+
+  if (!config.i18n?.enabled) {
+    return pages
+      .filter((p) => p.slug !== 'root')
+      .map((page) => ({
+        params: { page: page.slug },
+        props: { page },
+      }));
+  }
+
+  const defaultLang = config.i18n.defaultLanguage || 'en';
+  const langs = config.i18n.languages?.map(l => l.code) || [defaultLang];
+
   return pages
-    .filter((p) => p.slug !== 'root')
-    .map((page) => ({
-      params: { page: page.slug },
-      props: { page },
-    }));
+    .filter(p => {
+      // Filter out bare 'root' (handled by index.astro)
+      if (p.slug === 'root') return false;
+      // Filter out bare lang codes (e.g., slug === 'es') — these are NOT valid
+      // {lang}/root pages are valid and get routed to /{lang}/
+      return true;
+    })
+    .map(page => {
+      const lang = getPageLang(page.slug, config);
+      const baseSlug = getPageBaseSlug(page.slug, config);
+
+      // {lang}/root → route to /{lang}/ (language homepage)
+      if (baseSlug === 'root') {
+        return {
+          params: { page: lang },
+          props: { page, lang },
+        };
+      }
+
+      const urlSlug = lang === defaultLang ? baseSlug : `${lang}/${baseSlug}`;
+      return {
+        params: { page: urlSlug },
+        props: { page, lang },
+      };
+    });
 }
 
-const { page } = Astro.props;
+const { page, lang } = Astro.props;
 const { Content } = await page.render();
 const config = getConfig();
 
@@ -46,7 +81,7 @@ if (page.data.blog_grid) {
 }
 ---
 
-<BaseLayout title={page.data.title} description={page.data.description}>
+<BaseLayout title={page.data.title} description={page.data.description} lang={lang}>
   {projectScripts && <script is:inline set:html={projectScripts} />}
   {page.data.image_hero && !page.data.full_width && (
     <section class="relative">

@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { getConfig } from '../lib/config';
 import { getHomeArticles } from '../lib/sections';
+import { getArticleLang } from '../lib/articles';
 import Hero from '../components/Hero.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import Pagination from '../components/Pagination.astro';
@@ -37,8 +38,14 @@ if (customRoot) {
 }
 
 // Get home-page articles (filtered by sections config, or all if no sections)
-const articles = (await getHomeArticles(config))
+const allHomeArticles = (await getHomeArticles(config))
   .sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf());
+
+// When i18n enabled, only show default-language articles on homepage
+const defaultLang = config.i18n?.defaultLanguage || 'en';
+const articles = config.i18n?.enabled
+  ? allHomeArticles.filter(a => getArticleLang(a.slug, config) === defaultLang)
+  : allHomeArticles;
 
 // Pagination
 const postsPerPage = customRoot?.data.blog_grid_limit || config.blog.posts_per_page || 9;

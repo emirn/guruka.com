@@ -1,0 +1,66 @@
+{
+  "lang": "es",
+  "title": "Gratitud",
+  "subtitle": "Encuentra lo que ya es bueno.",
+  "duration": 176.088,
+  "colors": {
+    "bg": "#1a1005",
+    "c1": "rgba(251,191,36,0.8)",
+    "c2": "rgba(245,158,11,0.6)",
+    "c3": "rgba(34,197,94,0.4)"
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Siéntate cómodamente. Cierra los ojos.\nToma tres respiraciones lentas y pausadas, inhala por la nariz, exhala por la boca."
+    },
+    {
+      "time": 14.928,
+      "text": "Suelta cualquier agenda para estos próximos minutos.\nNo hay respuesta correcta. No hay nada que demostrar aquí."
+    },
+    {
+      "time": 29.496,
+      "text": "Empieza simple.\nPiensa en tu cuerpo, algo que hizo por ti hoy sin que se lo pidieras.\nTus pulmones respiraron. Tu corazón latió. Tus piernas te llevaron."
+    },
+    {
+      "time": 47.064,
+      "text": "Solo nota eso.\nDéjate sentir un pequeño destello de aprecio."
+    },
+    {
+      "time": 57.792,
+      "text": "Ahora piensa en una persona en tu vida que hace las cosas un poco más fáciles, un poco más cálidas.\nAlguien cercano... o alguien que apenas conoces.\nUn desconocido amable. Un buen amigo."
+    },
+    {
+      "time": 77.88,
+      "text": "Sostenlo en tu mente un momento.\nSiente esa calidez hacia esa persona."
+    },
+    {
+      "time": 89.232,
+      "text": "Ahora piensa en algo pequeño que realmente disfrutes.\nEl primer sorbo de algo caliente.\nLa luz del sol entrando por una ventana.\nUn sonido que te encanta.\nAlgo fácil... y verdadero."
+    },
+    {
+      "time": 108.504,
+      "text": "Déjate disfrutarlo, ahora mismo, solo al recordarlo."
+    },
+    {
+      "time": 118.2,
+      "text": "Nota dónde sientes la gratitud en tu cuerpo.\nAlgunas personas la sienten en el pecho, una apertura... una calidez.\nDéjala asentarse ahí."
+    },
+    {
+      "time": 134.352,
+      "text": "No tienes que agradecer todo.\nNo tienes que fingir que la vida es perfecta.\nPero ahora mismo, en esta respiración —\nhay algo bueno."
+    },
+    {
+      "time": 147.928,
+      "text": "Inhálalo.\nDeja que sea real."
+    },
+    {
+      "time": 159.968,
+      "text": "Toma una respiración profunda.\nCuando abras los ojos, lleva uno de estos momentos contigo, hacia la próxima hora."
+    },
+    {
+      "time": 172.464,
+      "text": "Lo bueno ya está aquí.\nSolo le prestaste atención."
+    }
+  ]
+}
