@@ -7,8 +7,19 @@ import Hero from '../components/Hero.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import Pagination from '../components/Pagination.astro';
 import PdfLightbox from '../components/PdfLightbox.astro';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 const config = getConfig();
+
+// Read project-specific scripts (populated during build from config/styles/)
+let projectScripts = '';
+try {
+  const raw = readFileSync(resolve(process.cwd(), 'src/scripts/project-scripts.js'), 'utf-8');
+  if (raw.replace(/\/\*[\s\S]*?\*\//g, '').trim().length > 0) {
+    projectScripts = raw;
+  }
+} catch { /* no project scripts */ }
 
 // Check for custom root page
 let customRoot: Awaited<ReturnType<typeof getCollection<'pages'>>>[number] | undefined;
@@ -40,6 +51,7 @@ const blogGridTitle = customRoot?.data.blog_grid_title || config.blog.section_ti
 ---
 
 <BaseLayout title={customRoot?.data.title} description={customRoot?.data.description}>
+  {projectScripts && <script is:inline set:html={projectScripts} />}
   {customRoot ? (
     <>
       {customRoot.data.image_hero && !customRoot.data.full_width && (
