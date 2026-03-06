@@ -129,6 +129,14 @@
           {
             "label": "🇫🇷 Français",
             "url": "/fr/"
+          },
+          {
+            "label": "🇧🇷 Português",
+            "url": "/pt/"
+          },
+          {
+            "label": "🇯🇵 日本語",
+            "url": "/ja/"
           }
         ]
       }
@@ -325,6 +333,14 @@
       {
         "code": "fr",
         "label": "Français"
+      },
+      {
+        "code": "pt",
+        "label": "Português"
+      },
+      {
+        "code": "ja",
+        "label": "日本語"
       }
     ]
   }

@@ -8,8 +8,9 @@ blog_grid_limit: 3
 ---
 
 <style>
+/* ── Base (mobile, <480px) ── */
 .gk-section {
-padding: 3rem 1rem 2rem;
+padding: 1.75rem 1rem 1.25rem;
 max-width: 72rem;
 margin: 0 auto;
 }
@@ -21,7 +22,7 @@ background: var(--color-dark-bg-secondary, #1e293b);
 }
 .gk-section-header {
 text-align: center;
-margin-bottom: 2.5rem;
+margin-bottom: 1.5rem;
 }
 .gk-section-header h2 {
 font-size: clamp(1.5rem, 3vw, 2.25rem);
@@ -42,8 +43,8 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 }
 .gk-cards {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-gap: 1.5rem;
+grid-template-columns: 1fr;
+gap: 1rem;
 max-width: 60rem;
 margin: 0 auto;
 }
@@ -51,7 +52,7 @@ margin: 0 auto;
 background: var(--color-bg-primary, #fff);
 border: 1px solid var(--color-border, #dfe4ea);
 border-radius: 0.75rem;
-padding: 1.5rem;
+padding: 1.25rem;
 transition: transform 0.3s, box-shadow 0.3s;
 text-decoration: none;
 color: inherit;
@@ -61,13 +62,9 @@ display: block;
 background: var(--color-dark-bg-primary, #0f1729);
 border-color: var(--color-dark-border, #334155);
 }
-.gk-card:hover {
-transform: translateY(-4px);
-box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-}
 .gk-card-icon {
-width: 3rem;
-height: 3rem;
+width: 2.75rem;
+height: 2.75rem;
 border-radius: 0.75rem;
 display: flex;
 align-items: center;
@@ -76,7 +73,7 @@ font-size: 1.5rem;
 margin-bottom: 1rem;
 }
 .gk-card h3 {
-font-size: 1.25rem;
+font-size: clamp(1.1rem, 2.5vw, 1.25rem);
 font-weight: 700;
 margin-bottom: 0.5rem;
 color: var(--color-text-primary, #1a2332);
@@ -89,14 +86,18 @@ color: var(--color-text-secondary, #4b5b6d);
 font-size: 0.9375rem;
 line-height: 1.5;
 margin: 0;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
 }
 [data-theme="dark"] .gk-card p {
 color: var(--color-dark-text-secondary, #cbd5e1);
 }
 .gk-med-cards {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-gap: 1.25rem;
+grid-template-columns: repeat(2, 1fr);
+gap: 0.75rem;
 max-width: 60rem;
 margin: 0 auto;
 }
@@ -104,7 +105,8 @@ margin: 0 auto;
 background: var(--color-bg-primary, #fff);
 border: 1px solid var(--color-border, #dfe4ea);
 border-radius: 0.75rem;
-padding: 1.25rem;
+padding: 0.875rem;
+min-height: 44px;
 transition: transform 0.3s, box-shadow 0.3s;
 text-decoration: none;
 color: inherit;
@@ -116,52 +118,96 @@ gap: 0.75rem;
 background: var(--color-dark-bg-primary, #0f1729);
 border-color: var(--color-dark-border, #334155);
 }
-.gk-med-card:hover {
-transform: translateY(-3px);
-box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
 .gk-med-dot {
-width: 2.5rem;
-height: 2.5rem;
+width: 2rem;
+height: 2rem;
 border-radius: 50%;
 flex-shrink: 0;
 }
 .gk-med-card span {
-font-size: 1rem;
+font-size: 0.9rem;
 font-weight: 600;
 color: var(--color-text-primary, #1a2332);
 }
 [data-theme="dark"] .gk-med-card span {
 color: var(--color-dark-text-primary, #f9fafb);
 }
-@media (max-width: 640px) {
+/* ── 480px+ (large phones) ── */
+@media (min-width: 480px) {
 .gk-section {
 padding: 2rem 1rem 1.5rem;
 }
-.gk-section-header {
-margin-bottom: 1.5rem;
-}
-.gk-cards {
-grid-template-columns: minmax(200px, 1fr);
-gap: 1rem;
-}
 .gk-med-cards {
-grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-gap: 0.75rem;
+grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
 }
-.gk-card {
-padding: 1.25rem;
+.gk-med-dot {
+width: 2.25rem;
+height: 2.25rem;
 }
 .gk-med-card {
 padding: 1rem;
 }
+.gk-med-card span {
+font-size: 1rem;
 }
-@media (max-width: 360px) {
+.gk-card {
+padding: 1.5rem;
+}
+.gk-card-icon {
+width: 3rem;
+height: 3rem;
+}
+}
+/* ── 768px+ (tablets) ── */
+@media (min-width: 768px) {
 .gk-section {
-padding: 1.5rem 0.75rem 1rem;
+padding: 2.5rem 1.5rem 2rem;
+}
+.gk-section-header {
+margin-bottom: 2.5rem;
 }
 .gk-med-cards {
-grid-template-columns: repeat(2, 1fr);
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 1.25rem;
+}
+.gk-med-dot {
+width: 2.5rem;
+height: 2.5rem;
+}
+.gk-med-card {
+padding: 1.25rem;
+}
+.gk-cards {
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1.5rem;
+}
+.gk-card p {
+-webkit-line-clamp: unset;
+overflow: visible;
+}
+}
+/* ── 1024px+ (desktop) ── */
+@media (min-width: 1024px) {
+.gk-section {
+padding: 3rem 1rem 2rem;
+}
+}
+/* ── Hover effects (pointer devices only) ── */
+@media (hover: hover) and (pointer: fine) {
+.gk-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+.gk-med-card:hover {
+transform: translateY(-3px);
+box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+}
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+.gk-card,
+.gk-med-card {
+transition: none;
 }
 }
 </style>
@@ -207,7 +253,7 @@ grid-template-columns: repeat(2, 1fr);
 <div class="gk-section">
 <div class="gk-section-header">
 <h2>Brain Training Games</h2>
-<p>Train your brain with three games targeting different cognitive skills</p>
+<p>Train your brain with seven games targeting different cognitive skills</p>
 </div>
 <div class="gk-cards">
 <a href="/games/speed-match/" class="gk-card">
@@ -224,6 +270,26 @@ grid-template-columns: repeat(2, 1fr);
 <div class="gk-card-icon" style="background: rgba(16,185,129,0.1); color: #10b981;">&#9776;</div>
 <h3>Sequence Recall</h3>
 <p>Train working memory with dual-track sequences</p>
+</a>
+<a href="/games/number-crunch/" class="gk-card">
+<div class="gk-card-icon" style="background: rgba(99,102,241,0.1); color: #6366f1;">&#129518;</div>
+<h3>Number Crunch</h3>
+<p>Sharpen mental arithmetic with timed equations and rule modifiers</p>
+</a>
+<a href="/games/color-clash/" class="gk-card">
+<div class="gk-card-icon" style="background: rgba(236,72,153,0.1); color: #ec4899;">&#127912;</div>
+<h3>Color Clash</h3>
+<p>Build inhibitory control with Stroop-based color challenges</p>
+</a>
+<a href="/games/quick-sort/" class="gk-card">
+<div class="gk-card-icon" style="background: rgba(249,115,22,0.1); color: #f97316;">&#128451;</div>
+<h3>Quick Sort</h3>
+<p>Improve task switching by sorting items under changing rules</p>
+</a>
+<a href="/games/pattern-path/" class="gk-card">
+<div class="gk-card-icon" style="background: rgba(20,184,166,0.1); color: #14b8a6;">&#129513;</div>
+<h3>Pattern Path</h3>
+<p>Develop pattern recognition with visual sequence puzzles</p>
 </a>
 </div>
 </div>

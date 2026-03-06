@@ -277,16 +277,16 @@
         '.gkm-letter{display:inline-block;opacity:0;animation:gkm-letter-in 0.5s cubic-bezier(0.25,0.1,0.25,1) forwards}' +
         '.gkm-letter.gkm-letter-exit{animation:gkm-letter-out 0.6s cubic-bezier(0.25,0.1,0.25,1) forwards}' +
         '.gkm-word{display:inline-block;white-space:nowrap}' +
-        '@keyframes gkm-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}' +
+        '@keyframes gkm-breathe{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.04)}}' +
         '@keyframes gkm-glow{0%,100%{box-shadow:0 0 30px rgba(var(--gkm-glow-rgb),0.15),0 0 60px rgba(var(--gkm-glow-rgb),0.08)}50%{box-shadow:0 0 50px rgba(var(--gkm-glow-rgb),0.3),0 0 90px rgba(var(--gkm-glow-rgb),0.15)}}' +
         '@keyframes gkm-fade-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}' +
         '.gkm-ui{position:relative;z-index:1;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;user-select:none;-webkit-user-select:none}' +
         '@keyframes gkm-idle-pulse{0%,100%{opacity:0.9}50%{opacity:1}}' +
-        '.gkm-close{position:absolute;top:1rem;right:1.25rem;color:rgba(255,255,255,0.4);font-size:1.75rem;text-decoration:none;z-index:2;line-height:1;transition:color 0.2s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}' +
+        '.gkm-close{position:absolute;top:1rem;right:1.25rem;color:rgba(255,255,255,0.4);font-size:1.75rem;text-decoration:none;z-index:20;line-height:1;transition:color 0.2s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}' +
         '.gkm-close:hover{color:rgba(255,255,255,0.8)}' +
-        '.gkm-text{text-align:center;padding:0 2rem;max-width:36rem;min-height:7rem;transition:opacity 0.8s ease;font-size:clamp(1.1rem,4vw,1.5rem);font-weight:300;line-height:1.7;margin-bottom:2rem}' +
-        '.gkm-circle{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent;transition:transform 0.2s;animation:gkm-idle-pulse 3s ease-in-out infinite}' +
-        '.gkm-circle:active{transform:scale(0.97)}' +
+        '.gkm-text{position:fixed;top:8vh;left:50%;transform:translateX(-50%);width:100%;z-index:5;text-align:center;padding:0 2rem;max-width:36rem;min-height:7rem;transition:opacity 0.8s ease;font-size:clamp(1.1rem,4vw,1.5rem);font-weight:300;line-height:1.7;box-sizing:border-box}' +
+        '.gkm-circle{position:fixed;left:50%;transform:translateX(-50%);top:55%;z-index:10;width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent;transition:transform 0.2s;animation:gkm-idle-pulse 3s ease-in-out infinite}' +
+        '.gkm-circle:active{transform:translateX(-50%) scale(0.97)}' +
         '.gkm-circle>svg{position:absolute;top:0;left:0;width:100%;height:100%}' +
         '.gkm-breathing{animation:gkm-breathe 6s ease-in-out infinite}' +
         '.gkm-glow{animation:gkm-glow 3s ease-in-out infinite}' +
@@ -294,7 +294,7 @@
         '.gkm-time{font-size:2rem;font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:0.02em;color:rgba(255,255,255,0.9)}' +
         '.gkm-circle-label{font-size:0.75rem;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0.05em;text-transform:uppercase}' +
         '.gkm-circle-icon{color:rgba(255,255,255,0.8)}' +
-        '.gkm-idle-info{text-align:center;width:100%}' +
+        '.gkm-idle-info{position:fixed;left:50%;transform:translateX(-50%);top:calc(55% + 190px);z-index:10;text-align:center;width:100%}' +
         '.gkm-idle-info h2{font-size:1.5rem;font-weight:600;margin:0 0 0.25rem}' +
         '.gkm-idle-info p{font-size:0.95rem;color:rgba(255,255,255,0.5);margin:0}' +
         '.gkm-end{position:absolute;inset:0;z-index:15;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity 0.6s ease}' +
@@ -315,8 +315,8 @@
         '.gkm-btn-ghost:hover{color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.3)}' +
         '.gkm-pause-icon{display:inline-flex;gap:3px;margin-bottom:2px}' +
         '.gkm-pause-icon span{display:block;width:3px;height:14px;background:rgba(255,255,255,0.6);border-radius:1px}' +
-        '.gkm-time-external{font-size:1.5rem;font-weight:400;font-variant-numeric:tabular-nums;color:rgba(255,255,255,0.25);width:100%;min-height:2rem;text-align:center;transition:opacity 0.3s}' +
-        '@media(max-width:768px){.gkm-circle{position:fixed;bottom:20vh;left:0;right:0;margin:0 auto;z-index:10}.gkm-time-external{position:fixed;bottom:12vh;left:0;right:0;margin:0 auto;z-index:10}.gkm-idle-info{position:fixed;bottom:4vh;left:0;right:0;margin:0 auto;z-index:10}.gkm-ui{justify-content:flex-start;padding-top:10vh}}';
+        '.gkm-time-external{position:fixed;left:50%;transform:translateX(-50%);top:calc(55% + 190px);z-index:10;font-size:1.5rem;font-weight:400;font-variant-numeric:tabular-nums;color:rgba(255,255,255,0.25);min-height:2rem;text-align:center;transition:opacity 0.3s}' +
+        '@media(max-width:768px){.gkm-circle{top:auto;bottom:20vh}.gkm-text{top:10vh}.gkm-time-external{top:auto;bottom:12vh}.gkm-idle-info{top:auto;bottom:4vh}}';
       document.head.appendChild(styleEl);
     }
 
@@ -330,7 +330,7 @@
     var state = 'idle';
     var meditateBase = '/meditate/';
     var pathParts = window.location.pathname.split('/').filter(Boolean);
-    var knownLangs = ['en','es','de','fr'];
+    var knownLangs = ['en','es','de','fr','pt','ja'];
     if (knownLangs.indexOf(pathParts[0]) !== -1 && pathParts[0] !== 'en') {
       meditateBase = '/' + pathParts[0] + '/meditate/';
     }
@@ -601,7 +601,6 @@
       circleEl.classList.remove('gkm-breathing');
       circleEl.style.visibility = 'hidden';
       timeExtEl.style.visibility = 'hidden';
-      closeEl.style.display = 'none';
       setCircleContent(checkIcon);
 
       // Save stats
@@ -615,7 +614,9 @@
 
       hintEl.textContent = getHintText();
 
-      endEl.classList.add('gkm-visible');
+      setTimeout(function() {
+        endEl.classList.add('gkm-visible');
+      }, 3000);
       releaseWakeLock();
     }
 

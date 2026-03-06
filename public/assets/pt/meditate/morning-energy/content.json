@@ -1,0 +1,66 @@
+{
+  "lang": "pt",
+  "title": "Energia Matinal",
+  "subtitle": "Desperte com suavidade. Cumprimente o dia.",
+  "duration": 158.328,
+  "colors": {
+    "bg": "#1a0f05",
+    "c1": "rgba(245,158,11,0.8)",
+    "c2": "rgba(251,191,36,0.6)",
+    "c3": "rgba(244,63,94,0.4)"
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Sente-se ereto, na cama ou em uma cadeira.\nPés no chão, se puder.\nDescanse as mãos sobre os joelhos, palmas voltadas para cima."
+    },
+    {
+      "time": 13.504,
+      "text": "Feche os olhos e inspire fundo, com boas-vindas —\ncomo se estivesse respirando a própria manhã.\nSegure por um instante...\ne solte, por completo."
+    },
+    {
+      "time": 30.304,
+      "text": "De novo, uma grande inspiração... e uma expiração completa.\nMais uma vez."
+    },
+    {
+      "time": 41.776,
+      "text": "Sinta sua coluna se alongar.\nDeixe o peito se abrir um pouco mais, a cada respiração."
+    },
+    {
+      "time": 54.112,
+      "text": "Este é um novo dia.\nNão é igual a ontem.\nFresco. Limpo. Seu."
+    },
+    {
+      "time": 64.48,
+      "text": "Pense em uma coisa, apenas uma —\nque você espera com prazer hoje.\nNão precisa ser grande.\nUma xícara de café. Uma conversa. Uma tarefa que você realmente quer fazer."
+    },
+    {
+      "time": 83.032,
+      "text": "Segure essa imagem por um momento.\nDeixe ela acender algo dentro de você."
+    },
+    {
+      "time": 94.672,
+      "text": "Agora inspire e se preencha de intenção.\nQue tipo de pessoa você quer ser hoje?\nComo você quer se apresentar, para si mesmo... para os outros?"
+    },
+    {
+      "time": 111.376,
+      "text": "Não pense demais.\nApenas sinta."
+    },
+    {
+      "time": 119.704,
+      "text": "Role os ombros para trás.\nInspire fundo, com energia, inspire... segure... e solte."
+    },
+    {
+      "time": 129.704,
+      "text": "Seu corpo está despertando.\nSua mente está se ligando.\nVocê tem tudo o que precisa, para hoje."
+    },
+    {
+      "time": 146.832,
+      "text": "Inspire mais uma vez, fundo.\nAbra os olhos. Fique com isso, só mais um segundo."
+    },
+    {
+      "time": 156.592,
+      "text": "Agora, vá.\nO dia é seu."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 title: "Brain Training Games"
-description: "Play free brain training games to improve memory, processing speed, and mental agility. Three games with adaptive difficulty."
+description: "Play free brain training games to improve memory, processing speed, and mental agility. Seven games with adaptive difficulty."
 full_width: true
 ---
 
@@ -55,8 +55,7 @@ background: var(--color-dark-bg-primary, #0f1729);
 border-color: var(--color-dark-border, #334155);
 }
 .gh-game-card:hover {
-transform: translateY(-6px);
-box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+transform: none;
 }
 .gh-game-card::before {
 content: '';
@@ -69,6 +68,10 @@ height: 4px;
 .gh-game-card.speed-match::before { background: #0f9072; }
 .gh-game-card.memory-matrix::before { background: #f59e0b; }
 .gh-game-card.sequence-recall::before { background: #10b981; }
+.gh-game-card.number-crunch::before { background: #6366f1; }
+.gh-game-card.color-clash::before { background: #ec4899; }
+.gh-game-card.quick-sort::before { background: #f97316; }
+.gh-game-card.pattern-path::before { background: #14b8a6; }
 .gh-game-icon {
 width: 4rem;
 height: 4rem;
@@ -101,6 +104,10 @@ margin-bottom: 0.75rem;
 .speed-match .gh-skill { background: rgba(15,144,114,0.1); color: #0f9072; }
 .memory-matrix .gh-skill { background: rgba(245,158,11,0.1); color: #f59e0b; }
 .sequence-recall .gh-skill { background: rgba(16,185,129,0.1); color: #10b981; }
+.number-crunch .gh-skill { background: rgba(99,102,241,0.1); color: #6366f1; }
+.color-clash .gh-skill { background: rgba(236,72,153,0.1); color: #ec4899; }
+.quick-sort .gh-skill { background: rgba(249,115,22,0.1); color: #f97316; }
+.pattern-path .gh-skill { background: rgba(20,184,166,0.1); color: #14b8a6; }
 .gh-game-card .gh-desc {
 color: var(--color-text-secondary, #4b5b6d);
 font-size: 0.9375rem;
@@ -122,8 +129,8 @@ color: var(--color-primary, #0f9072);
 content: '\2192';
 transition: transform 0.2s;
 }
-.gh-game-card:hover .gh-play-btn::after {
-transform: translateX(4px);
+.gh-play-btn {
+min-height: 44px;
 }
 .gh-best {
 margin-top: 0.75rem;
@@ -201,17 +208,53 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 <span class="gh-play-btn">Play Now</span>
 <div class="gh-best" id="best-sequence-recall"></div>
 </a>
+
+<a href="/games/number-crunch/" class="gh-game-card number-crunch">
+<div class="gh-game-icon" style="background: rgba(99,102,241,0.1); color: #6366f1;">&#129518;</div>
+<h2>Number Crunch</h2>
+<span class="gh-skill">Mental Arithmetic</span>
+<p class="gh-desc">Solve equations with missing elements under time pressure. Higher levels add rule modifiers that require mental transformation of your answers.</p>
+<span class="gh-play-btn">Play Now</span>
+<div class="gh-best" id="best-number-crunch"></div>
+</a>
+
+<a href="/games/color-clash/" class="gh-game-card color-clash">
+<div class="gh-game-icon" style="background: rgba(236,72,153,0.1); color: #ec4899;">&#127912;</div>
+<h2>Color Clash</h2>
+<span class="gh-skill">Inhibitory Control</span>
+<p class="gh-desc">A color word appears in a different ink color. Tap the correct answer based on the current rule - ink color or word meaning. Rules switch to keep you sharp!</p>
+<span class="gh-play-btn">Play Now</span>
+<div class="gh-best" id="best-color-clash"></div>
+</a>
+
+<a href="/games/quick-sort/" class="gh-game-card quick-sort">
+<div class="gh-game-icon" style="background: rgba(249,115,22,0.1); color: #f97316;">&#128451;</div>
+<h2>Quick Sort</h2>
+<span class="gh-skill">Task Switching</span>
+<p class="gh-desc">Sort items into categories by swiping left or right. The sorting rule changes every few rounds, challenging your mental flexibility and reaction speed.</p>
+<span class="gh-play-btn">Play Now</span>
+<div class="gh-best" id="best-quick-sort"></div>
+</a>
+
+<a href="/games/pattern-path/" class="gh-game-card pattern-path">
+<div class="gh-game-icon" style="background: rgba(20,184,166,0.1); color: #14b8a6;">&#129513;</div>
+<h2>Pattern Path</h2>
+<span class="gh-skill">Pattern Recognition</span>
+<p class="gh-desc">Find the missing piece in a sequence of visual patterns. Shapes change in color, size, and rotation - spot the rule and pick the correct completion.</p>
+<span class="gh-play-btn">Play Now</span>
+<div class="gh-best" id="best-pattern-path"></div>
+</a>
 </div>
 
 <div class="gh-info">
 <h3>How It Works</h3>
-<p>Each game adapts to your skill level with 20 levels of increasing difficulty. Train for 15-20 minutes daily across all three games for the best results. Your personal best scores are saved in your browser.</p>
+<p>Each game adapts to your skill level with 20 levels of increasing difficulty. Train for 15-20 minutes daily across all seven games for the best results. Your personal best scores are saved in your browser.</p>
 </div>
 </div>
 
 <script>
 (function() {
-var games = ['speed-match', 'memory-matrix', 'sequence-recall'];
+var games = ['speed-match', 'memory-matrix', 'sequence-recall', 'number-crunch', 'color-clash', 'quick-sort', 'pattern-path'];
 games.forEach(function(game) {
 var best = localStorage.getItem('guruka_' + game + '_best');
 var el = document.getElementById('best-' + game);
@@ -223,12 +266,13 @@ el.innerHTML = 'Personal Best: <strong>' + Number(best).toLocaleString() + '</st
 </script>
 
 <style>
-@media (max-width: 640px) {
-.gh-grid {
-gap: 1rem;
-}
+/* ── Mobile-first responsive ── */
 .gh-game-card {
 padding: 1.5rem;
+}
+.gh-game-icon {
+width: 3.25rem;
+height: 3.25rem;
 }
 .gh-game-card .gh-desc {
 display: -webkit-box;
@@ -236,10 +280,31 @@ display: -webkit-box;
 -webkit-box-orient: vertical;
 overflow: hidden;
 }
-}
-@media (max-width: 360px) {
+@media (min-width: 768px) {
 .gh-game-card {
-padding: 1.25rem;
+padding: 2rem;
+}
+.gh-game-icon {
+width: 4rem;
+height: 4rem;
+}
+.gh-game-card .gh-desc {
+-webkit-line-clamp: unset;
+overflow: visible;
+}
+}
+@media (hover: hover) and (pointer: fine) {
+.gh-game-card:hover {
+transform: translateY(-6px);
+box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+}
+.gh-game-card:hover .gh-play-btn::after {
+transform: translateX(4px);
+}
+}
+@media (prefers-reduced-motion: reduce) {
+.gh-game-card {
+transition: none;
 }
 }
 </style>
