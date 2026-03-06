@@ -26,7 +26,7 @@ color: var(--color-dark-text-primary);
 /* ── Instructions Screen ── */
 #nc-instructions {
 text-align: center;
-padding: 2rem 1rem;
+padding: 1rem 1rem;
 flex: 1;
 display: flex;
 flex-direction: column;
@@ -34,9 +34,10 @@ align-items: center;
 justify-content: center;
 }
 
+.nc-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
 #nc-instructions .nc-icon {
-font-size: 4rem;
-margin-bottom: 1rem;
+font-size: 2.5rem;
+margin-bottom: 0;
 filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
 }
 
@@ -706,8 +707,8 @@ gap: 0.25rem;
 .nc-stat-value {
 font-size: 1rem;
 }
-#nc-instructions { padding: 1rem 0.5rem; }
-#nc-instructions .nc-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+#nc-instructions { padding: 0.75rem 0.5rem; }
+#nc-instructions .nc-icon { font-size: 2rem; margin-bottom: 0; }
 #nc-instructions h2 { font-size: 1.3rem; }
 #nc-instructions .nc-subtitle { margin-bottom: 1rem; font-size: 0.85rem; }
 #nc-instructions .nc-how-to { padding: 0.75rem 1rem; margin-bottom: 1rem; }
@@ -801,8 +802,7 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 <div id="number-crunch-game">
 
 <div id="nc-instructions">
-<div class="nc-icon">&#129518;</div>
-<h2>Number Crunch</h2>
+<div class="nc-title-row"><span class="nc-icon">&#129518;</span><h2>Number Crunch</h2></div>
 <p class="nc-subtitle">Aritm&eacute;tica mental y flexibilidad cognitiva</p>
 <div class="nc-how-to">
 <h3>C&oacute;mo Jugar</h3>
@@ -819,7 +819,6 @@ R&eacute;cord Personal: <strong id="nc-best-score">0</strong> puntos
 </div>
 <button class="nc-btn-primary" id="nc-start-btn">Iniciar Juego</button>
 <div id="nc-challenge-banner-wrap"></div>
-<input type="text" id="nc-player-name" class="gk-name-input" placeholder="Tu nombre (para compartir)" maxlength="20">
 </div>
 
 <div id="nc-wizard">
@@ -902,7 +901,7 @@ R&eacute;cord Personal: <strong id="nc-best-score">0</strong> puntos
 <a href="/es/games/" class="nc-back-link">&larr; Todos los juegos</a>
 </div>
 <div class="gk-share-section">
-<div class="gk-share-title">Reta a un amigo</div>
+
 <button class="gk-share-btn" id="nc-share-btn">&#128279; Comparte tu puntuaci&oacute;n</button>
 <div class="gk-share-copied" id="nc-share-copied" style="display:none;">&iexcl;Enlace copiado!</div>
 </div>
@@ -1680,7 +1679,6 @@ showWizard();
 
 /* ── Init ── */
 showPersonalBest();
-GK.initNameInput('nc-player-name');
 GK.renderChallengeBanner('nc-challenge-banner-wrap', challenge);
 showScreen('instructions');
 

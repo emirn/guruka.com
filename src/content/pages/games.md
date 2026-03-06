@@ -39,7 +39,9 @@ gap: 1.5rem;
 margin-bottom: 3rem;
 }
 .gh-game-card {
-display: block;
+display: grid;
+grid-template-columns: 4rem 1fr;
+column-gap: 1rem;
 text-decoration: none;
 color: inherit;
 background: var(--color-bg-primary, #fff);
@@ -80,13 +82,25 @@ display: flex;
 align-items: center;
 justify-content: center;
 font-size: 1.75rem;
-margin-bottom: 1.25rem;
+margin-bottom: 0;
+grid-column: 1;
+grid-row: 1;
+align-self: center;
 }
 .gh-game-card h2 {
 font-size: 1.5rem;
 font-weight: 700;
 margin-bottom: 0.5rem;
 color: var(--color-text-primary, #1a2332);
+grid-column: 2;
+grid-row: 1;
+align-self: center;
+}
+.gh-game-card .gh-skill,
+.gh-game-card .gh-desc,
+.gh-game-card .gh-play-btn,
+.gh-game-card .gh-best {
+grid-column: 1 / -1;
 }
 [data-theme="dark"] .gh-game-card h2 {
 color: var(--color-dark-text-primary, #f9fafb);
@@ -99,7 +113,7 @@ text-transform: uppercase;
 letter-spacing: 0.05em;
 padding: 0.25rem 0.75rem;
 border-radius: 9999px;
-margin-bottom: 0.75rem;
+margin-bottom: 0.5rem;
 }
 .speed-match .gh-skill { background: rgba(15,144,114,0.1); color: #0f9072; }
 .memory-matrix .gh-skill { background: rgba(245,158,11,0.1); color: #f59e0b; }
@@ -112,7 +126,7 @@ margin-bottom: 0.75rem;
 color: var(--color-text-secondary, #4b5b6d);
 font-size: 0.9375rem;
 line-height: 1.6;
-margin-bottom: 1.25rem;
+margin-bottom: 0.75rem;
 }
 [data-theme="dark"] .gh-game-card .gh-desc {
 color: var(--color-dark-text-secondary, #cbd5e1);
@@ -124,13 +138,14 @@ gap: 0.5rem;
 font-weight: 600;
 font-size: 0.9375rem;
 color: var(--color-primary, #0f9072);
+min-height: 44px;
 }
 .gh-play-btn::after {
 content: '\2192';
 transition: transform 0.2s;
 }
-.gh-play-btn {
-min-height: 44px;
+.gh-best:empty {
+display: none;
 }
 .gh-best {
 margin-top: 0.75rem;
@@ -178,7 +193,7 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 <div id="games-hub">
 <div class="gh-header">
 <h1>&#129504; Brain Training Games</h1>
-<p>Choose a game and start training. Your scores are saved locally - no account needed.</p>
+<p>Free and without annoying ads. Your scores are saved locally - no account needed.</p>
 </div>
 
 <div class="gh-grid">
@@ -269,6 +284,7 @@ el.innerHTML = 'Personal Best: <strong>' + Number(best).toLocaleString() + '</st
 /* ── Mobile-first responsive ── */
 .gh-game-card {
 padding: 1.5rem;
+grid-template-columns: 3.25rem 1fr;
 }
 .gh-game-icon {
 width: 3.25rem;
@@ -283,6 +299,7 @@ overflow: hidden;
 @media (min-width: 768px) {
 .gh-game-card {
 padding: 2rem;
+grid-template-columns: 4rem 1fr;
 }
 .gh-game-icon {
 width: 4rem;

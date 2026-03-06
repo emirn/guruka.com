@@ -95,7 +95,6 @@ const pages = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     image_hero: z.string().optional(),
-    image_og: z.string().optional(),
     full_width: z.boolean().default(false),
     blog_grid: z.boolean().default(false),
     blog_grid_title: z.string().optional(),

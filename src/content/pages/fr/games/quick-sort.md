@@ -26,7 +26,7 @@ color: var(--color-dark-text-primary);
 /* ── Instructions Screen ── */
 #qs-instructions {
 text-align: center;
-padding: 2rem 1rem;
+padding: 1rem 1rem;
 flex: 1;
 display: flex;
 flex-direction: column;
@@ -34,9 +34,10 @@ align-items: center;
 justify-content: center;
 }
 
+.qs-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
 #qs-instructions .qs-icon {
-font-size: 4rem;
-margin-bottom: 1rem;
+font-size: 2.5rem;
+margin-bottom: 0;
 filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
 }
 
@@ -759,8 +760,8 @@ font-size: 1rem;
 font-size: 0.85rem;
 padding: 0.4rem 0.75rem;
 }
-#qs-instructions { padding: 1rem 0.5rem; }
-#qs-instructions .qs-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+#qs-instructions { padding: 0.75rem 0.5rem; }
+#qs-instructions .qs-icon { font-size: 2rem; margin-bottom: 0; }
 #qs-instructions h2 { font-size: 1.3rem; }
 #qs-instructions .qs-subtitle { margin-bottom: 1rem; font-size: 0.85rem; }
 #qs-instructions .qs-how-to { padding: 0.75rem 1rem; margin-bottom: 1rem; }
@@ -861,8 +862,7 @@ box-shadow: 0 0 20px rgba(249,115,22,0.4);
 <div id="quick-sort-game">
 
 <div id="qs-instructions">
-<div class="qs-icon">&#128450;</div>
-<h2>Quick Sort</h2>
+<div class="qs-title-row"><span class="qs-icon">&#128450;</span><h2>Quick Sort</h2></div>
 <p class="qs-subtitle">Vitesse de cat&eacute;gorisation et changement de t&acirc;che</p>
 <div class="qs-how-to">
 <h3>Comment Jouer</h3>
@@ -879,7 +879,6 @@ Record Personnel : <strong id="qs-best-score">0</strong> points
 </div>
 <button class="qs-btn-primary" id="qs-start-btn">Commencer</button>
 <div id="qs-challenge-banner-wrap"></div>
-<input type="text" id="qs-player-name" class="gk-name-input" placeholder="Votre nom (pour partager)" maxlength="20">
 </div>
 
 <div id="qs-wizard">
@@ -966,7 +965,7 @@ Record Personnel : <strong id="qs-best-score">0</strong> points
 <a href="/fr/games/" class="qs-back-link">&larr; Tous les jeux</a>
 </div>
 <div class="gk-share-section">
-<div class="gk-share-title">D&eacute;fie un ami</div>
+
 <button class="gk-share-btn" id="qs-share-btn">&#128279; Partage ton score</button>
 <div class="gk-share-copied" id="qs-share-copied" style="display:none;">Lien copi&eacute; !</div>
 </div>
@@ -1820,7 +1819,6 @@ showWizard();
 
 /* ── Init ── */
 showPersonalBest();
-GK.initNameInput('qs-player-name');
 GK.renderChallengeBanner('qs-challenge-banner-wrap', challenge);
 showScreen('instructions');
 

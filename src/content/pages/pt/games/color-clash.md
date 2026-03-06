@@ -26,7 +26,7 @@ color: var(--color-dark-text-primary);
 /* ── Instructions Screen ── */
 #cc-instructions {
 text-align: center;
-padding: 2rem 1rem;
+padding: 1rem 1rem;
 flex: 1;
 display: flex;
 flex-direction: column;
@@ -34,9 +34,10 @@ align-items: center;
 justify-content: center;
 }
 
+.cc-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
 #cc-instructions .cc-icon {
-font-size: 4rem;
-margin-bottom: 1rem;
+font-size: 2.5rem;
+margin-bottom: 0;
 filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
 }
 
@@ -761,8 +762,8 @@ gap: 0.25rem;
 .cc-stat-value {
 font-size: 1rem;
 }
-#cc-instructions { padding: 1rem 0.5rem; }
-#cc-instructions .cc-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+#cc-instructions { padding: 0.75rem 0.5rem; }
+#cc-instructions .cc-icon { font-size: 2rem; margin-bottom: 0; }
 #cc-instructions h2 { font-size: 1.3rem; }
 #cc-instructions .cc-subtitle { margin-bottom: 1rem; font-size: 0.85rem; }
 #cc-instructions .cc-how-to { padding: 0.75rem 1rem; margin-bottom: 1rem; }
@@ -866,8 +867,7 @@ box-shadow: 0 0 20px rgba(236,72,153,0.4);
 <div id="color-clash-game">
 
 <div id="cc-instructions">
-<div class="cc-icon">&#127912;</div>
-<h2>Color Clash</h2>
+<div class="cc-title-row"><span class="cc-icon">&#127912;</span><h2>Color Clash</h2></div>
 <p class="cc-subtitle">Controle inibitorio baseado em Stroop e atencao seletiva</p>
 <div class="cc-how-to">
 <h3>Como Jogar</h3>
@@ -884,7 +884,6 @@ Recorde Pessoal: <strong id="cc-best-score">0</strong> Pontos
 </div>
 <button class="cc-btn-primary" id="cc-start-btn">Iniciar Jogo</button>
 <div id="cc-challenge-banner-wrap"></div>
-<input type="text" id="cc-player-name" class="gk-name-input" placeholder="Seu nome (para compartilhar)" maxlength="20">
 </div>
 
 <div id="cc-wizard">
@@ -970,7 +969,7 @@ Recorde Pessoal: <strong id="cc-best-score">0</strong> Pontos
 <a href="/pt/games/" class="cc-back-link">&larr; Todos os Jogos</a>
 </div>
 <div class="gk-share-section">
-<div class="gk-share-title">Desafie um amigo</div>
+
 <button class="gk-share-btn" id="cc-share-btn">&#128279; Compartilhar resultado</button>
 <div class="gk-share-copied" id="cc-share-copied" style="display:none;">Link copiado!</div>
 </div>
@@ -1814,7 +1813,6 @@ showWizard();
 
 /* ── Init ── */
 showPersonalBest();
-GK.initNameInput('cc-player-name');
 GK.renderChallengeBanner('cc-challenge-banner-wrap', challenge);
 showScreen('instructions');
 

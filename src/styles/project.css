@@ -222,3 +222,50 @@ color: #d97706;
 [data-theme="dark"] .gk-challenge-lost { color: #f87171; }
 [data-theme="dark"] .gk-challenge-tied { color: #fbbf24; }
 
+/* ── Premium Card Shadows & Interactions ── */
+.gk-card,
+.gk-med-card {
+box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-theme="dark"] .gk-card,
+[data-theme="dark"] .gk-med-card {
+box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.08);
+}
+@media (hover: hover) and (pointer: fine) {
+.gk-card:hover,
+.gk-med-card:hover {
+border-color: rgba(15, 144, 114, 0.3);
+}
+.gk-card:hover {
+box-shadow: 0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+}
+.gk-med-card:hover {
+box-shadow: 0 6px 24px rgba(0,0,0,0.07), 0 2px 6px rgba(0,0,0,0.03);
+}
+[data-theme="dark"] .gk-card:hover {
+border-color: rgba(15, 144, 114, 0.4);
+box-shadow: 0 8px 30px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.12);
+}
+[data-theme="dark"] .gk-med-card:hover {
+border-color: rgba(15, 144, 114, 0.4);
+box-shadow: 0 6px 24px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1);
+}
+.gk-card:hover .gk-card-icon {
+background-color: rgba(15, 144, 114, 0.15) !important;
+transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+}
+.gk-card-icon {
+transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+.gk-card,
+.gk-med-card {
+transition: none;
+}
+.gk-card-icon {
+transition: none;
+}
+}
+
