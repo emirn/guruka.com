@@ -1,0 +1,70 @@
+{
+  "lang": "pt",
+  "title": "Foco e Clareza",
+  "subtitle": "Silencie o ruído. Afine sua mente.",
+  "duration": 158.88,
+  "colors": {
+    "bg": "#060d1a",
+    "c1": "rgba(59,130,246,0.8)",
+    "c2": "rgba(71,85,105,0.6)",
+    "c3": "rgba(30,64,175,0.5)"
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Sente-se ereto, pés apoiados no chão, costas apoiadas, mãos sobre as coxas.\nFeche os olhos."
+    },
+    {
+      "time": 10.84,
+      "text": "Faça três respirações de ancoragem.\nInspire pelo nariz... expire pela boca."
+    },
+    {
+      "time": 20.552,
+      "text": "Inspire... expire."
+    },
+    {
+      "time": 25.68,
+      "text": "Mais uma, inspire... e expire."
+    },
+    {
+      "time": 33.84,
+      "text": "Traga sua atenção para o centro da testa.\nApenas perceba esse espaço.\nSem esforço, apenas uma consciência suave."
+    },
+    {
+      "time": 48.456,
+      "text": "Agora pense no que você está prestes a fazer.\nO trabalho. A tarefa. A conversa que vem pela frente.\nNão pense em como, ou quando.\nApenas segure uma imagem clara do que é."
+    },
+    {
+      "time": 67.104,
+      "text": "A cada inspiração, imagine respirando clareza.\nAr limpo e puro, preenchendo sua mente."
+    },
+    {
+      "time": 77.56,
+      "text": "A cada expiração, solte tudo que não é relevante agora.\nAs abas abertas. As outras tarefas. O ruído de fundo."
+    },
+    {
+      "time": 91.552,
+      "text": "Inspire clareza... expire distração.\nInspire foco... expire ruído."
+    },
+    {
+      "time": 102.496,
+      "text": "Sua mente sabe como fazer isso.\nEla foi treinada para isso.\nAgora, você está apenas apontando na direção certa."
+    },
+    {
+      "time": 117.016,
+      "text": "Se um pensamento te puxar para o lado, reconheça brevemente, e deixe ir.\nVolte àquela imagem clara da sua tarefa."
+    },
+    {
+      "time": 129.632,
+      "text": "Sinta-se ficando mais presente.\nMais desperto. Pronto."
+    },
+    {
+      "time": 143.664,
+      "text": "Inspire mais profundamente.\nAo expirar, sinta-se chegando por completo neste momento.\nAlerta. Claro. Preparado."
+    },
+    {
+      "time": 155.824,
+      "text": "Abra os olhos.\nVocê está pronto. Comece."
+    }
+  ]
+}

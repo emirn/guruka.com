@@ -35,8 +35,8 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 }
 .mh-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 1.5rem;
+grid-template-columns: 1fr;
+gap: 1rem;
 }
 .mh-card {
 display: block;
@@ -45,7 +45,7 @@ color: inherit;
 background: var(--color-bg-primary, #fff);
 border: 1px solid var(--color-border, #dfe4ea);
 border-radius: 1rem;
-padding: 1.75rem;
+padding: 1.25rem;
 transition: transform 0.3s, box-shadow 0.3s;
 position: relative;
 overflow: hidden;
@@ -55,8 +55,7 @@ background: var(--color-dark-bg-primary, #0f1729);
 border-color: var(--color-dark-border, #334155);
 }
 .mh-card:hover {
-transform: translateY(-4px);
-box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+transform: none;
 }
 .mh-card::before {
 content: '';
@@ -67,8 +66,8 @@ right: 0;
 height: 4px;
 }
 .mh-dot {
-width: 3rem;
-height: 3rem;
+width: 2.5rem;
+height: 2.5rem;
 border-radius: 50%;
 margin-bottom: 1rem;
 }
@@ -107,12 +106,51 @@ font-size: 0.9375rem;
 color: var(--color-primary, #0f9072);
 margin-top: 0.5rem;
 }
+.mh-play {
+min-height: 44px;
+}
 .mh-play::after {
 content: '\2192';
 transition: transform 0.2s;
 }
+/* ── 480px+ ── */
+@media (min-width: 480px) {
+.mh-grid {
+grid-template-columns: repeat(2, 1fr);
+gap: 1.25rem;
+}
+.mh-card {
+padding: 1.5rem;
+}
+}
+/* ── 768px+ ── */
+@media (min-width: 768px) {
+.mh-grid {
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1.5rem;
+}
+.mh-card {
+padding: 1.75rem;
+}
+.mh-dot {
+width: 3rem;
+height: 3rem;
+}
+}
+/* ── Hover (pointer devices only) ── */
+@media (hover: hover) and (pointer: fine) {
+.mh-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
 .mh-card:hover .mh-play::after {
 transform: translateX(4px);
+}
+}
+@media (prefers-reduced-motion: reduce) {
+.mh-card {
+transition: none;
+}
 }
 </style>
 
