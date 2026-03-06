@@ -16,6 +16,7 @@
 import type { AstroIntegration } from 'astro';
 import { promises as fs } from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import yaml from 'js-yaml';
 import satori from 'satori';
@@ -56,6 +57,20 @@ async function fileExists(filePath: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+function computeOgHash(inputs: {
+  title: string;
+  description?: string;
+  badge?: string;
+  brandName?: string;
+  gradient?: string[];
+  heroImagePath?: string;
+}): string {
+  return crypto.createHash('sha256')
+    .update(JSON.stringify(inputs))
+    .digest('hex')
+    .slice(0, 16);
 }
 
 function extractFirstImage(markdownContent: string): string | null {
@@ -258,9 +273,14 @@ function buildOgTemplate(options: {
 }
 
 export function ogImages(): AstroIntegration {
+  let ogCacheDir: string;
+
   return {
     name: 'og-images',
     hooks: {
+      'astro:config:done': ({ config }) => {
+        ogCacheDir = path.join(fileURLToPath(config.cacheDir), 'og-images');
+      },
       'astro:build:done': async ({ dir, logger }) => {
         const distDir = fileURLToPath(dir);
         const projectRoot = path.resolve(distDir, '..');
@@ -291,122 +311,133 @@ export function ogImages(): AstroIntegration {
         const brandName = config.branding?.site?.name;
         const gradient = config.branding?.gradient || config.gradient;
 
+        await fs.mkdir(ogCacheDir, { recursive: true });
+
+        // Scan articles
+        const articlesDir = path.join(projectRoot, 'src/content/articles');
+        let entries: any[];
+        try {
+          entries = await fs.readdir(articlesDir, { withFileTypes: true, recursive: true });
+        } catch {
+          log.info(`No articles directory found, skipping OG image generation`);
+          return;
+        }
+
         let generated = 0;
         let skipped = 0;
         let failed = 0;
 
-        async function processContentDir(contentDir: string, assetPrefix: string) {
-          let entries: any[];
-          try {
-            entries = await fs.readdir(contentDir, { withFileTypes: true, recursive: true });
-          } catch {
-            return;
+        for (const entry of entries) {
+          if (!entry.isFile()) continue;
+          if (!entry.name.endsWith('.md') && !entry.name.endsWith('.mdx')) continue;
+
+          const parentPath = entry.parentPath || entry.path || articlesDir;
+          const fullPath = path.join(parentPath, entry.name);
+          const relativePath = path.relative(articlesDir, fullPath);
+          const slug = relativePath.replace(/\.(md|mdx)$/, '');
+
+          const content = await fs.readFile(fullPath, 'utf-8');
+          const { frontmatter, body } = parseFrontmatter(content);
+
+          // Compute content hash for caching
+          const heroPath = frontmatter.image_hero || extractFirstImage(body) || '';
+          const hash = computeOgHash({
+            title: frontmatter.title || 'Untitled',
+            description: frontmatter.description,
+            badge, brandName,
+            gradient: gradient ? [...gradient] : undefined,
+            heroImagePath: heroPath,
+          });
+          const cachePath = path.join(ogCacheDir, `${hash}.webp`);
+
+          // Cache hit: copy from cache to dist
+          if (await fileExists(cachePath)) {
+            const ogOutputDir = path.join(distDir, 'assets', slug);
+            await fs.mkdir(ogOutputDir, { recursive: true });
+            await fs.copyFile(cachePath, path.join(ogOutputDir, 'og.webp'));
+            skipped++;
+            continue;
           }
 
-          for (const entry of entries) {
-            if (!entry.isFile()) continue;
-            if (!entry.name.endsWith('.md') && !entry.name.endsWith('.mdx')) continue;
-
-            const parentPath = entry.parentPath || entry.path || contentDir;
-            const fullPath = path.join(parentPath, entry.name);
-            const relativePath = path.relative(contentDir, fullPath);
-            const slug = relativePath.replace(/\.(md|mdx)$/, '');
-
-            const content = await fs.readFile(fullPath, 'utf-8');
-            const { frontmatter, body } = parseFrontmatter(content);
-
-            // Skip if image_og is already set and file exists
-            if (frontmatter.image_og) {
-              const ogPath = frontmatter.image_og.startsWith('/')
-                ? frontmatter.image_og
-                : `/${frontmatter.image_og}`;
-              const existsInDist = await fileExists(path.join(distDir, ogPath));
-              const existsInPublic = await fileExists(path.join(publicDir, ogPath));
-              if (existsInDist || existsInPublic) {
-                skipped++;
-                continue;
-              }
+          // Skip if image_og is already set and file exists
+          if (frontmatter.image_og) {
+            const ogPath = frontmatter.image_og.startsWith('/')
+              ? frontmatter.image_og
+              : `/${frontmatter.image_og}`;
+            const existsInDist = await fileExists(path.join(distDir, ogPath));
+            const existsInPublic = await fileExists(path.join(publicDir, ogPath));
+            if (existsInDist || existsInPublic) {
+              skipped++;
+              continue;
             }
+          }
 
-            const ogOutputDir = path.join(distDir, 'assets', assetPrefix, slug);
-            const ogOutputPath = path.join(ogOutputDir, 'og.webp');
+          const ogOutputDir = path.join(distDir, 'assets', slug);
+          const ogOutputPath = path.join(ogOutputDir, 'og.webp');
 
-            // Build hero image background if available
-            let heroImageBase64: string | undefined;
+          // Build hero image background if available
+          let heroImageBase64: string | undefined;
 
-            if (frontmatter.image_hero && !frontmatter.image_hero.startsWith('http')) {
-              const heroFile = path.join(publicDir, frontmatter.image_hero);
-              try {
-                const heroBuffer = await fs.readFile(heroFile);
-                heroImageBase64 = await toPngBase64(heroBuffer);
-              } catch {
-                // Hero image not found, fall through
-              }
-            }
-
-            if (!heroImageBase64) {
-              const contentImage = extractFirstImage(body);
-              if (contentImage && !contentImage.startsWith('http')) {
-                const imgFile = path.join(publicDir, contentImage);
-                try {
-                  const imgBuffer = await fs.readFile(imgFile);
-                  heroImageBase64 = await toPngBase64(imgBuffer);
-                } catch {
-                  // Content image not found
-                }
-              }
-            }
-
+          if (frontmatter.image_hero && !frontmatter.image_hero.startsWith('http')) {
+            const heroFile = path.join(publicDir, frontmatter.image_hero);
             try {
-              const template = buildOgTemplate({
-                title: frontmatter.title || 'Untitled',
-                description: frontmatter.description,
-                badge,
-                brandName,
-                gradient,
-                heroImageBase64,
-              });
-
-              const svg = await satori(template, {
-                width: 1200,
-                height: 630,
-                fonts: [{ name: 'Inter', data: fontBuffer, weight: 700, style: 'normal' as const }],
-              });
-
-              const resvg = new Resvg(svg, {
-                background: 'rgba(0, 0, 0, 0)',
-                fitTo: { mode: 'width' as const, value: 1200 },
-              });
-              const pngBuffer = Buffer.from(resvg.render().asPng());
-              const webpBuffer = await sharp(pngBuffer).webp({ quality: 80 }).toBuffer();
-
-              await fs.mkdir(ogOutputDir, { recursive: true });
-              await fs.writeFile(ogOutputPath, webpBuffer);
-              generated++;
-              log.info(`  → ${assetPrefix}/${slug} → assets/${assetPrefix}/${slug}/og.webp`);
-            } catch (err) {
-              log.warn(`Generator failed for ${assetPrefix}/${slug}: ${err instanceof Error ? err.message : err}`);
-              failed++;
+              const heroBuffer = await fs.readFile(heroFile);
+              heroImageBase64 = await toPngBase64(heroBuffer);
+            } catch {
+              // Hero image not found, fall through
             }
           }
-        }
 
-        // Scan articles
-        const articlesDir = path.join(projectRoot, 'src/content/articles');
-        await processContentDir(articlesDir, '');
+          if (!heroImageBase64) {
+            const contentImage = extractFirstImage(body);
+            if (contentImage && !contentImage.startsWith('http')) {
+              const imgFile = path.join(publicDir, contentImage);
+              try {
+                const imgBuffer = await fs.readFile(imgFile);
+                heroImageBase64 = await toPngBase64(imgBuffer);
+              } catch {
+                // Content image not found
+              }
+            }
+          }
 
-        // Scan pages
-        const pagesDir = path.join(projectRoot, 'src/content/pages');
-        await processContentDir(pagesDir, 'pages');
+          try {
+            const template = buildOgTemplate({
+              title: frontmatter.title || 'Untitled',
+              description: frontmatter.description,
+              badge,
+              brandName,
+              gradient,
+              heroImageBase64,
+            });
 
-        if (generated === 0 && skipped === 0 && failed === 0) {
-          log.info('No articles or pages found, skipping OG image generation');
-          return;
+            const svg = await satori(template, {
+              width: 1200,
+              height: 630,
+              fonts: [{ name: 'Inter', data: fontBuffer, weight: 700, style: 'normal' as const }],
+            });
+
+            const resvg = new Resvg(svg, {
+              background: 'rgba(0, 0, 0, 0)',
+              fitTo: { mode: 'width' as const, value: 1200 },
+            });
+            const pngBuffer = Buffer.from(resvg.render().asPng());
+            const webpBuffer = await sharp(pngBuffer).webp({ quality: 80 }).toBuffer();
+
+            await fs.mkdir(ogOutputDir, { recursive: true });
+            await fs.writeFile(ogOutputPath, webpBuffer);
+            await fs.copyFile(ogOutputPath, cachePath);
+            generated++;
+            log.info(`  → ${slug} → assets/${slug}/og.webp`);
+          } catch (err) {
+            log.warn(`Generator failed for ${slug}: ${err instanceof Error ? err.message : err}`);
+            failed++;
+          }
         }
 
         const parts = [];
         if (generated > 0) parts.push(`${generated} generated`);
-        if (skipped > 0) parts.push(`${skipped} skipped (already exist)`);
+        if (skipped > 0) parts.push(`${skipped} cached`);
         if (failed > 0) parts.push(`${failed} failed`);
         log.info(`OG images: ${parts.join(', ')}`);
       },

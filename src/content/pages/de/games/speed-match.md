@@ -26,7 +26,7 @@ color: var(--color-dark-text-primary);
 /* ── Instructions Screen ── */
 #sm-instructions {
 text-align: center;
-padding: 2rem 1rem;
+padding: 1rem 1rem;
 flex: 1;
 display: flex;
 flex-direction: column;
@@ -34,9 +34,10 @@ align-items: center;
 justify-content: center;
 }
 
+.sm-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
 #sm-instructions .sm-icon {
-font-size: 4rem;
-margin-bottom: 1rem;
+font-size: 2.5rem;
+margin-bottom: 0;
 filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
 }
 
@@ -742,8 +743,8 @@ gap: 0.25rem;
 .sm-stat-value {
 font-size: 1rem;
 }
-#sm-instructions { padding: 1rem 0.5rem; }
-#sm-instructions .sm-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+#sm-instructions { padding: 0.75rem 0.5rem; }
+#sm-instructions .sm-icon { font-size: 2rem; margin-bottom: 0; }
 #sm-instructions h2 { font-size: 1.3rem; }
 #sm-instructions .sm-subtitle { margin-bottom: 1rem; font-size: 0.85rem; }
 #sm-instructions .sm-how-to { padding: 0.75rem 1rem; margin-bottom: 1rem; }
@@ -837,8 +838,7 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 <div id="speed-match-game">
 
 <div id="sm-instructions">
-<div class="sm-icon">&#9889;</div>
-<h2>Speed Match</h2>
+<div class="sm-title-row"><span class="sm-icon">&#9889;</span><h2>Speed Match</h2></div>
 <p class="sm-subtitle">Wie schnell kannst du verarbeiten?</p>
 <div class="sm-how-to">
 <h3>Wie man spielt</h3>
@@ -860,7 +860,6 @@ Persönlicher Rekord: <strong id="sm-best-score">0</strong> Punkte
 </div>
 <button class="sm-btn-primary" id="sm-start-btn">Spiel starten</button>
 <div id="sm-challenge-banner-wrap"></div>
-<input type="text" id="sm-player-name" class="gk-name-input" placeholder="Dein Name (zum Teilen)" maxlength="20">
 </div>
 
 <div id="sm-wizard">
@@ -948,7 +947,7 @@ Persönlicher Rekord: <strong id="sm-best-score">0</strong> Punkte
 <a href="/de/games/" class="sm-back-link">&larr; Alle Spiele</a>
 </div>
 <div class="gk-share-section">
-<div class="gk-share-title">Fordere einen Freund heraus</div>
+
 <button class="gk-share-btn" id="sm-share-btn">&#128279; Teile dein Ergebnis</button>
 <div class="gk-share-copied" id="sm-share-copied" style="display:none;">Link kopiert!</div>
 </div>
@@ -1557,7 +1556,6 @@ showWizard();
 
 /* ── Init ── */
 showPersonalBest();
-GK.initNameInput('sm-player-name');
 GK.renderChallengeBanner('sm-challenge-banner-wrap', challenge);
 showScreen('instructions');
 

@@ -26,7 +26,7 @@ color: var(--color-dark-text-primary);
 /* ── Instructions Screen ── */
 #pp-instructions {
 text-align: center;
-padding: 2rem 1rem;
+padding: 1rem 1rem;
 flex: 1;
 display: flex;
 flex-direction: column;
@@ -34,9 +34,10 @@ align-items: center;
 justify-content: center;
 }
 
+.pp-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
 #pp-instructions .pp-icon {
-font-size: 4rem;
-margin-bottom: 1rem;
+font-size: 2.5rem;
+margin-bottom: 0;
 filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
 }
 
@@ -739,8 +740,8 @@ gap: 0.25rem;
 .pp-stat-value {
 font-size: 1rem;
 }
-#pp-instructions { padding: 1rem 0.5rem; }
-#pp-instructions .pp-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+#pp-instructions { padding: 0.75rem 0.5rem; }
+#pp-instructions .pp-icon { font-size: 2rem; margin-bottom: 0; }
 #pp-instructions h2 { font-size: 1.3rem; }
 #pp-instructions .pp-subtitle { margin-bottom: 1rem; font-size: 0.85rem; }
 #pp-instructions .pp-how-to { padding: 0.75rem 1rem; margin-bottom: 1rem; }
@@ -843,8 +844,7 @@ box-shadow: 0 0 20px rgba(20,184,166,0.4);
 <div id="pattern-path-game">
 
 <div id="pp-instructions">
-<div class="pp-icon">&#129513;</div>
-<h2>Pattern Path</h2>
+<div class="pp-title-row"><span class="pp-icon">&#129513;</span><h2>Pattern Path</h2></div>
 <p class="pp-subtitle">Visuelle Mustererkennung &amp; fluide Intelligenz</p>
 <div class="pp-how-to">
 <h3>Wie man spielt</h3>
@@ -861,7 +861,6 @@ Pers&ouml;nlicher Rekord: <strong id="pp-best-score">0</strong> Punkte
 </div>
 <button class="pp-btn-primary" id="pp-start-btn">Spiel starten</button>
 <div id="pp-challenge-banner-wrap"></div>
-<input type="text" id="pp-player-name" class="gk-name-input" placeholder="Dein Name (zum Teilen)" maxlength="20">
 </div>
 
 <div id="pp-wizard">
@@ -943,7 +942,7 @@ Pers&ouml;nlicher Rekord: <strong id="pp-best-score">0</strong> Punkte
 <a href="/de/games/" class="pp-back-link">&larr; Alle Spiele</a>
 </div>
 <div class="gk-share-section">
-<div class="gk-share-title">Fordere einen Freund heraus</div>
+
 <button class="gk-share-btn" id="pp-share-btn">&#128279; Teile dein Ergebnis</button>
 <div class="gk-share-copied" id="pp-share-copied" style="display:none;">Link kopiert!</div>
 </div>
@@ -1779,7 +1778,6 @@ showWizard();
 
 /* ── Init ── */
 showPersonalBest();
-GK.initNameInput('pp-player-name');
 GK.renderChallengeBanner('pp-challenge-banner-wrap', challenge);
 showScreen('instructions');
 

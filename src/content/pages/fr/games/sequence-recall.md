@@ -47,11 +47,12 @@ font-size: 0.95rem;
 margin: 0 0 1.5rem;
 }
 
+#sequence-recall-game .sr-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
 #sequence-recall-game .sr-icon {
 display: flex;
 justify-content: center;
-margin-bottom: 1rem;
-font-size: 2.5rem;
+margin-bottom: 0;
+font-size: 2rem;
 }
 
 #sequence-recall-game .sr-instructions-list {
@@ -229,7 +230,7 @@ background: var(--color-primary-hover, #0d7a62);
 #sequence-recall-game .sr-wizard-icon { font-size: 2rem; }
 #sequence-recall-game .sr-wizard-title { font-size: 1.1rem; }
 #sequence-recall-game .sr-wizard-desc { font-size: 0.85rem; }
-#sequence-recall-game .sr-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+#sequence-recall-game .sr-icon { font-size: 1.5rem; margin-bottom: 0; }
 #sequence-recall-game .sr-title { font-size: 1.3rem; }
 #sequence-recall-game .sr-subtitle { font-size: 0.85rem; margin-bottom: 1rem; }
 #sequence-recall-game .sr-instructions-list li { font-size: 0.85rem; padding: 0.3rem 0; }
@@ -797,8 +798,7 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 
 <div id="sr-instructions" class="sr-screen sr-active">
 <div class="sr-card">
-<div class="sr-icon">&#x1F9E0;</div>
-<h1 class="sr-title">Sequence Recall</h1>
+<div class="sr-title-row"><span class="sr-icon">&#x1F9E0;</span><h1 class="sr-title">Sequence Recall</h1></div>
 <p class="sr-subtitle">Entraînez votre mémoire de travail</p>
 <ul class="sr-instructions-list">
 <li data-num="1">Regardez la séquence de couleurs affichées une par une</li>
@@ -811,7 +811,6 @@ Meilleur Score : <strong id="sr-best-value">0</strong> points
 </div>
 <button class="sr-btn-primary" id="sr-start-btn">Commencer</button>
 <div id="sr-challenge-banner-wrap"></div>
-<input type="text" id="sr-player-name" class="gk-name-input" placeholder="Votre nom (pour partager)" maxlength="20">
 </div>
 </div>
 
@@ -872,7 +871,7 @@ Meilleur Score : <strong id="sr-best-value">0</strong> points
 <a href="/fr/games/" class="sr-btn-secondary">Tous les Jeux</a>
 </div>
 <div class="gk-share-section">
-<div class="gk-share-title">Défier un Ami</div>
+
 <button class="gk-share-btn" id="sr-share-btn">&#128279; Partager votre Score</button>
 <div class="gk-share-copied" id="sr-share-copied" style="display:none;">Lien copié !</div>
 </div>
@@ -1542,7 +1541,6 @@ state.positionSequence = [];
 function initInstructions() {
 var best = getBestScore();
 $('sr-best-value').textContent = best;
-GK.initNameInput('sr-player-name');
 GK.renderChallengeBanner('sr-challenge-banner-wrap', challenge);
 showScreen('instructions');
 }

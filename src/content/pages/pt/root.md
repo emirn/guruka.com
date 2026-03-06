@@ -42,6 +42,12 @@ margin: 0 auto;
 [data-theme="dark"] .gk-section-header p {
 color: var(--color-dark-text-secondary, #cbd5e1);
 }
+.gk-free-tag {
+font-size: 0.85rem;
+color: var(--color-primary, #0f9072);
+font-weight: 500;
+margin: 0.25rem auto 0;
+}
 .gk-cards {
 display: grid;
 grid-template-columns: 1fr;
@@ -54,14 +60,18 @@ background: var(--color-bg-primary, #fff);
 border: 1px solid var(--color-border, #dfe4ea);
 border-radius: 0.75rem;
 padding: 1.25rem;
-transition: transform 0.3s, box-shadow 0.3s;
+transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
 text-decoration: none;
 color: inherit;
-display: block;
+display: grid;
+grid-template-columns: 2.75rem 1fr;
+column-gap: 0.875rem;
 }
 [data-theme="dark"] .gk-card {
 background: var(--color-dark-bg-primary, #0f1729);
 border-color: var(--color-dark-border, #334155);
+box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.08);
 }
 .gk-card-icon {
 width: 2.75rem;
@@ -71,13 +81,22 @@ display: flex;
 align-items: center;
 justify-content: center;
 font-size: 1.5rem;
-margin-bottom: 1rem;
+margin-bottom: 0;
+grid-column: 1;
+grid-row: 1;
+align-self: center;
 }
 .gk-card h3 {
 font-size: clamp(1.1rem, 2.5vw, 1.25rem);
 font-weight: 700;
 margin-bottom: 0.5rem;
 color: var(--color-text-primary, #1a2332);
+grid-column: 2;
+grid-row: 1;
+align-self: center;
+}
+.gk-card p {
+grid-column: 1 / -1;
 }
 [data-theme="dark"] .gk-card h3 {
 color: var(--color-dark-text-primary, #f9fafb);
@@ -108,7 +127,8 @@ border: 1px solid var(--color-border, #dfe4ea);
 border-radius: 0.75rem;
 padding: 0.875rem;
 min-height: 44px;
-transition: transform 0.3s, box-shadow 0.3s;
+transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
 text-decoration: none;
 color: inherit;
 display: flex;
@@ -118,6 +138,7 @@ gap: 0.75rem;
 [data-theme="dark"] .gk-med-card {
 background: var(--color-dark-bg-primary, #0f1729);
 border-color: var(--color-dark-border, #334155);
+box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.08);
 }
 .gk-med-dot {
 width: 2rem;
@@ -153,6 +174,7 @@ font-size: 1rem;
 }
 .gk-card {
 padding: 1.5rem;
+grid-template-columns: 3rem 1fr;
 }
 .gk-card-icon {
 width: 3rem;
@@ -197,11 +219,21 @@ padding: 3rem 1rem 2rem;
 @media (hover: hover) and (pointer: fine) {
 .gk-card:hover {
 transform: translateY(-4px);
-box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+box-shadow: 0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+border-color: rgba(15, 144, 114, 0.3);
 }
 .gk-med-card:hover {
 transform: translateY(-3px);
-box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+box-shadow: 0 6px 24px rgba(0,0,0,0.07), 0 2px 6px rgba(0,0,0,0.03);
+border-color: rgba(15, 144, 114, 0.3);
+}
+[data-theme="dark"] .gk-card:hover {
+box-shadow: 0 8px 30px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.12);
+border-color: rgba(15, 144, 114, 0.4);
+}
+[data-theme="dark"] .gk-med-card:hover {
+box-shadow: 0 6px 24px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1);
+border-color: rgba(15, 144, 114, 0.4);
 }
 }
 /* ── Reduced motion ── */
@@ -217,6 +249,7 @@ transition: none;
 <div class="gk-section-header">
 <h2>Meditar</h2>
 <p>Meditacoes guiadas para calma, foco e bem-estar</p>
+<p class="gk-free-tag">Grátis e sem anúncios irritantes</p>
 </div>
 <div class="gk-med-cards">
 <a href="/pt/meditate/calm-and-stress-relief/" class="gk-med-card">
@@ -255,6 +288,7 @@ transition: none;
 <div class="gk-section-header">
 <h2>Jogos de Treinamento Cerebral</h2>
 <p>Treine seu cerebro com sete jogos que trabalham diferentes habilidades cognitivas</p>
+<p class="gk-free-tag">Grátis e sem anúncios irritantes</p>
 </div>
 <div class="gk-cards">
 <a href="/pt/games/speed-match/" class="gk-card">

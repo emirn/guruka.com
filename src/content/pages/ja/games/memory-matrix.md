@@ -65,15 +65,16 @@ to { opacity: 1; transform: translateY(0); }
 text-align: center;
 }
 
+#memory-matrix-game .mm-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
 #memory-matrix-game .mm-icon-wrap {
 display: inline-flex;
 align-items: center;
 justify-content: center;
-width: 72px;
-height: 72px;
-border-radius: 1rem;
+width: 48px;
+height: 48px;
+border-radius: 0.75rem;
 background: color-mix(in srgb, var(--color-primary) 12%, transparent);
-margin-bottom: 1rem;
+margin-bottom: 0;
 }
 
 #memory-matrix-game .mm-icon-wrap svg {
@@ -637,8 +638,8 @@ font-size: 1rem;
 padding: 0.625rem 1rem;
 font-size: 0.9rem;
 }
-#memory-matrix-game .mm-icon-wrap { width: 48px; height: 48px; margin-bottom: 0.5rem; }
-#memory-matrix-game .mm-icon-wrap svg { width: 24px; height: 24px; }
+#memory-matrix-game .mm-icon-wrap { width: 40px; height: 40px; margin-bottom: 0; }
+#memory-matrix-game .mm-icon-wrap svg { width: 20px; height: 20px; }
 #memory-matrix-game .mm-instructions h2 { font-size: 1.3rem; }
 #memory-matrix-game .mm-instructions .mm-subtitle { font-size: 0.85rem; margin-bottom: 0.75rem; }
 }
@@ -717,10 +718,7 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 
 <div id="mm-instructions" class="mm-screen active">
 <div class="mm-instructions">
-<div class="mm-icon-wrap">
-<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-</div>
-<h1 class="mm-title">Memory Matrix</h1>
+<div class="mm-title-row"><div class="mm-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h1 class="mm-title">Memory Matrix</h1></div>
 <p class="mm-subtitle">空間記憶力をテストしよう</p>
 <div class="mm-how-to">
 <h3>遊び方:</h3>
@@ -734,7 +732,6 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 <div id="mm-instr-best" class="mm-best-banner" style="display:none;"></div>
 <button class="mm-btn mm-btn-primary" onclick="mmShowWizard()">ゲームスタート</button>
 <div id="mm-challenge-banner-wrap"></div>
-<input type="text" id="mm-player-name" class="gk-name-input" placeholder="あなたの名前（共有用）" maxlength="20">
 </div>
 </div>
 
@@ -801,7 +798,7 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 <a href="/ja/games/" class="mm-back-link">すべてのゲームに戻る</a>
 </div>
 <div class="gk-share-section">
-<div class="gk-share-title">友達にチャレンジ</div>
+
 <button class="gk-share-btn" id="mm-share-btn">&#128279; 結果をシェア</button>
 <div class="gk-share-copied" id="mm-share-copied" style="display:none;">リンクをコピーしました！</div>
 </div>
@@ -1360,7 +1357,6 @@ window.mmPlayAgain = function() {
 
 /* ---- Init ---- */
 updateInstructionsBest();
-GK.initNameInput('mm-player-name');
 GK.renderChallengeBanner('mm-challenge-banner-wrap', challenge);
 
 document.getElementById('mm-finish-btn').addEventListener('click', function() {
