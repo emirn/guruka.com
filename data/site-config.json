@@ -3,14 +3,14 @@
     "badge": "",
     "site": {
       "name": "GURUKA",
-      "tagline": "Train Your Brain, Sharpen Your Mind",
-      "description": "Brain training games and guided meditations to improve memory, focus, and mental clarity. Play daily and track your progress.",
+      "tagline": "Train Your Brain and Memory, Sharpen Your Mind",
+      "description": "Brain and memory training games and guided meditations to improve memory, focus, and mental clarity. Play daily and track your progress.",
       "url": "https://guruka.com",
       "language": "en",
       "favicon_url": "",
       "author": {
         "name": "GURUKA Team",
-        "bio": "Brain training and mindfulness experts"
+        "bio": "Brain, memory training, meditations"
       }
     },
     "logo": {
@@ -103,7 +103,7 @@
         "url": "/meditate/"
       },
       {
-        "label": "Brain Training Games",
+        "label": "Train Brain and Memory",
         "url": "/games/"
       },
       {
@@ -181,7 +181,7 @@
         ]
       },
       {
-        "title": "Brain Training Games",
+        "title": "Train Brain and Memory",
         "links": [
           {
             "label": "Speed Match",
