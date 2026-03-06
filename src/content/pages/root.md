@@ -285,7 +285,7 @@ transition: none;
 <div class="gk-section-muted">
 <div class="gk-section">
 <div class="gk-section-header">
-<h2>Brain Training Games</h2>
+<h2>Train Brain and Memory</h2>
 <p>Train your brain with seven games targeting different cognitive skills</p>
 <p class="gk-free-tag">Free and without annoying ads</p>
 </div>
