@@ -1,0 +1,92 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getConfig } from '../../../lib/config';
+import { getAllLocalSections, getArticlesBySection } from '../../../lib/sections';
+import { getArticleLang } from '../../../lib/articles';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import ArticleListItem from '../../../components/ArticleListItem.astro';
+import Pagination from '../../../components/Pagination.astro';
+
+export const getStaticPaths = (async () => {
+  const config = getConfig();
+  if (!config.i18n?.enabled) return [];
+
+  const allSections = await getAllLocalSections(config);
+  const sections = allSections.filter(s => s.section_type !== 'page');
+  if (sections.length === 0) return [];
+
+  const defaultLang = config.i18n.defaultLanguage || 'en';
+  const nonDefaultLangs = (config.i18n.languages || [])
+    .map(l => l.code)
+    .filter(code => code !== defaultLang);
+
+  if (nonDefaultLangs.length === 0) return [];
+
+  const paths = [];
+  for (const lang of nonDefaultLangs) {
+    for (const section of sections) {
+      paths.push({
+        params: { lang, section: section.path },
+        props: { sectionConfig: section, lang },
+      });
+    }
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+const config = getConfig();
+const { sectionConfig, lang } = Astro.props;
+const defaultLang = config.i18n?.defaultLanguage || 'en';
+
+const allSectionArticles = (await getArticlesBySection(sectionConfig.id, config))
+  .sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf());
+
+// Show articles matching this lang; fall back to default-lang articles if none exist
+const langArticles = allSectionArticles.filter(a => getArticleLang(a.slug, config) === lang);
+const articles = langArticles.length > 0
+  ? langArticles
+  : allSectionArticles.filter(a => getArticleLang(a.slug, config) === defaultLang);
+
+const posts_per_page = sectionConfig.posts_per_page || config.blog.posts_per_page || 9;
+const totalPages = Math.ceil(articles.length / posts_per_page);
+const paginatedArticles = articles.slice(0, posts_per_page);
+const layout = sectionConfig.layout || 'grid';
+---
+
+<BaseLayout
+  title={sectionConfig.label}
+  description={sectionConfig.description}
+  canonical={`${config.branding.site.url}/${lang}/${sectionConfig.path}/`}
+  lang={lang}
+>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    {sectionConfig.section_title && (
+      <h2 class="text-sm font-semibold text-[var(--color-primary)] uppercase tracking-wider mb-8">
+        {sectionConfig.section_title}
+      </h2>
+    )}
+
+    {paginatedArticles.length > 0 ? (
+      layout === 'list' ? (
+        <div class="flex flex-col gap-4">
+          {paginatedArticles.map((article) => (
+            <ArticleListItem article={article} config={config} />
+          ))}
+        </div>
+      ) : (
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {paginatedArticles.map((article) => (
+            <ArticleCard article={article} config={config} />
+          ))}
+        </div>
+      )
+    ) : (
+      <p class="text-center text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] py-12">
+        No articles in this section yet.
+      </p>
+    )}
+
+    <Pagination currentPage={1} totalPages={totalPages} basePath={`/${lang}/${sectionConfig.path}`} />
+  </section>
+</BaseLayout>
