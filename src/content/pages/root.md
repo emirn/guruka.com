@@ -344,9 +344,21 @@ transition: none;
 <div class="gk-med-dot" style="background: linear-gradient(135deg, #22d3ee, #06b6d4);"></div>
 <span>Aurora</span>
 </a>
-<a href="/visuals/ripples/" class="gk-med-card">
-<div class="gk-med-dot" style="background: linear-gradient(135deg, #94a3b8, #64748b);"></div>
-<span>Ripples</span>
+<a href="/visuals/starfield/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #1e293b, #475569);"></div>
+<span>Starfield</span>
+</a>
+<a href="/visuals/lava-flow/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #f97316, #ef4444);"></div>
+<span>Lava Flow</span>
+</a>
+<a href="/visuals/mandala/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #eab308, #a855f7);"></div>
+<span>Mandala</span>
+</a>
+<a href="/visuals/dividing-cells/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #10b981, #22d3ee);"></div>
+<span>Dividing Cells</span>
 </a>
 </div>
 </div>

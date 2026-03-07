@@ -1,6 +1,6 @@
 ---
 title: "Meditative Visuals"
-description: "Calming full-screen visual experiences for relaxation and focus. Choose a visualization, pick a color scheme, and let the motion guide your mind."
+description: "Calming full-screen visuals for relaxation and focus."
 full_width: true
 language: "de"
 ---
@@ -142,7 +142,7 @@ color: var(--color-primary-hover, #0d7d63);
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#6366f1,#a78bfa)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#6366f1,#a78bfa)"></div>
 <h2>Breathing Orb</h2>
-<p class="vh-sub">A luminous orb pulsing with breathing rhythm, surrounded by drifting particles</p>
+<p class="vh-sub">Pulsing orb guiding your breath</p>
 <div class="vh-launch"><span>Launch &rarr;</span></div>
 </a>
 
@@ -150,15 +150,7 @@ color: var(--color-primary-hover, #0d7d63);
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#22d3ee,#06b6d4)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#22d3ee,#06b6d4)"></div>
 <h2>Aurora</h2>
-<p class="vh-sub">Northern lights — flowing undulating color bands across the screen</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
-</a>
-
-<a href="/visuals/ripples/" class="vh-card">
-<div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#94a3b8,#64748b)"></div>
-<div class="vh-dot" style="background:linear-gradient(135deg,#94a3b8,#64748b)"></div>
-<h2>Ripples</h2>
-<p class="vh-sub">Water ripple circles emanating from random points, overlapping peacefully</p>
+<p class="vh-sub">Flowing northern lights</p>
 <div class="vh-launch"><span>Launch &rarr;</span></div>
 </a>
 
@@ -166,7 +158,7 @@ color: var(--color-primary-hover, #0d7d63);
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#1e293b,#475569)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#1e293b,#475569)"></div>
 <h2>Starfield</h2>
-<p class="vh-sub">Gentle parallax star drift through space with occasional shooting stars</p>
+<p class="vh-sub">Twinkling stars in deep space</p>
 <div class="vh-launch"><span>Launch &rarr;</span></div>
 </a>
 
@@ -174,7 +166,7 @@ color: var(--color-primary-hover, #0d7d63);
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#f97316,#ef4444)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#f97316,#ef4444)"></div>
 <h2>Lava Flow</h2>
-<p class="vh-sub">Organic metaball shapes merging and separating, lava lamp style</p>
+<p class="vh-sub">Blobs merging and separating</p>
 <div class="vh-launch"><span>Launch &rarr;</span></div>
 </a>
 
@@ -182,15 +174,15 @@ color: var(--color-primary-hover, #0d7d63);
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#eab308,#a855f7)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#eab308,#a855f7)"></div>
 <h2>Mandala</h2>
-<p class="vh-sub">Slowly rotating sacred geometry patterns that evolve over time</p>
+<p class="vh-sub">Rotating sacred geometry</p>
 <div class="vh-launch"><span>Launch &rarr;</span></div>
 </a>
 
-<a href="/visuals/cells/" class="vh-card">
+<a href="/visuals/dividing-cells/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#10b981,#22d3ee)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#10b981,#22d3ee)"></div>
-<h2>Living Cells</h2>
-<p class="vh-sub">Organic cells growing, dividing, and drifting — life under a microscope</p>
+<h2>Dividing Cells</h2>
+<p class="vh-sub">Cells dividing endlessly</p>
 <div class="vh-launch"><span>Launch &rarr;</span></div>
 </a>
 </div>

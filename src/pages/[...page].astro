@@ -81,7 +81,7 @@ if (page.data.blog_grid) {
 }
 ---
 
-<BaseLayout title={page.data.title} description={page.data.description} lang={lang}>
+<BaseLayout title={page.data.title} description={page.data.description} lang={lang} image={page.data.image_og || `/assets/pages/${page.slug}/og.webp`}>
   {projectScripts && <script is:inline set:html={projectScripts} />}
   {page.data.image_hero && !page.data.full_width && (
     <section class="relative">
