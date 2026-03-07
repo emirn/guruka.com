@@ -14,7 +14,6 @@ keywords: "daily brain training, cognitive habits, memory exercises, mental fitn
 
 
 
-<h1>5 Benefits of Daily Brain Training (And How to Build the Habit)</h1>
 <p>Just like physical exercise, your brain benefits most from regular, consistent practice. Here's why daily brain training matters and how to make it a lasting habit.</p>
 
 <h2>Why Daily Practice Matters</h2>

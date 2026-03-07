@@ -14,7 +14,6 @@ keywords: "brain training, cognitive science, neuroscience, memory improvement, 
 
 
 
-<h1>The Science Behind Brain Training: What Research Really Says</h1>
 <p>Our <a href="/games/">games</a> at GURUKA are based on decades of cognitive psychology research. Here's what the science actually says about brain training and how to get the most out of your practice.</p>
 
 <h2>Evidence-Based Approach</h2>

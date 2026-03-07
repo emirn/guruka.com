@@ -14,7 +14,6 @@ keywords: "brain training research, cognitive training science, neuroscience, n-
 
 
 
-<h1>The Science Behind GURUKA</h1>
 <p>Our games are based on decades of cognitive psychology research. Here's what the science says about brain training.</p>
 
 <h2>Evidence-Based Approach</h2>
