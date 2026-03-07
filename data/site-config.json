@@ -107,6 +107,10 @@
         "url": "/games/"
       },
       {
+        "label": "Visuals",
+        "url": "/visuals/"
+      },
+      {
         "label": "Blog",
         "url": "/blog/"
       },
@@ -194,6 +198,39 @@
           {
             "label": "Sequence Recall",
             "url": "/games/sequence-recall/"
+          }
+        ]
+      },
+      {
+        "title": "Visuals",
+        "links": [
+          {
+            "label": "Breathing Orb",
+            "url": "/visuals/breathing-orb/"
+          },
+          {
+            "label": "Aurora",
+            "url": "/visuals/aurora/"
+          },
+          {
+            "label": "Ripples",
+            "url": "/visuals/ripples/"
+          },
+          {
+            "label": "Starfield",
+            "url": "/visuals/starfield/"
+          },
+          {
+            "label": "Lava Flow",
+            "url": "/visuals/lava-flow/"
+          },
+          {
+            "label": "Mandala",
+            "url": "/visuals/mandala/"
+          },
+          {
+            "label": "Ocean Waves",
+            "url": "/visuals/ocean-waves/"
           }
         ]
       },

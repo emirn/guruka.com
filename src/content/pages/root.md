@@ -328,3 +328,25 @@ transition: none;
 </div>
 </div>
 </div>
+
+<div class="gk-section">
+<div class="gk-section-header">
+<h2>Meditative Visuals</h2>
+<p>Calming full-screen animations for relaxation and focus</p>
+<p class="gk-free-tag">Free and without annoying ads</p>
+</div>
+<div class="gk-med-cards">
+<a href="/visuals/breathing-orb/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #6366f1, #a78bfa);"></div>
+<span>Breathing Orb</span>
+</a>
+<a href="/visuals/aurora/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #22d3ee, #06b6d4);"></div>
+<span>Aurora</span>
+</a>
+<a href="/visuals/ripples/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #94a3b8, #64748b);"></div>
+<span>Ripples</span>
+</a>
+</div>
+</div>
