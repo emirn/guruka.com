@@ -1,6 +1,6 @@
 ---
 title: "Starfield - Meditative Visual"
-description: "A gentle parallax star field drifting through deep space, with twinkling stars and occasional shooting stars. Choose a color scheme and lose yourself in the cosmos."
+description: "Twinkling stars drifting through deep space."
 full_width: true
 ---
 
@@ -125,7 +125,7 @@ transition: opacity 1s;
 <div id="vp-intro">
 <a href="/visuals/" class="vp-back">&larr; All Visuals</a>
 <h1 class="vp-title">Starfield</h1>
-<p class="vp-desc">A gentle parallax star field drifting through deep space, with twinkling stars and occasional shooting stars. Choose a color scheme and lose yourself in the cosmos.</p>
+<p class="vp-desc">Twinkling stars in deep space. Choose a color scheme.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#1e293b,#475569)"></div>
@@ -205,11 +205,6 @@ if (running) initStars();
 function drawStarLayer(stars, speed, t, s, W, H) {
 for (var i = 0; i < stars.length; i++) {
 var st = stars[i];
-if (!reducedMotion) {
-st.x += speed;
-if (st.x > W) st.x -= W;
-if (st.x < 0) st.x += W;
-}
 var twinkle = st.baseAlpha * (0.5 + 0.5 * Math.sin(t * 0.001 + st.phase));
 // Glow for larger stars
 if (st.size > 2) {
@@ -244,45 +239,6 @@ ctx.fillRect(0, 0, W, H);
 drawStarLayer(starsBack, 0.025, t, s, W, H);
 drawStarLayer(starsMid, 0.06, t, s, W, H);
 drawStarLayer(starsFront, 0.12, t, s, W, H);
-
-// Shooting stars
-if (!reducedMotion) {
-if (t - lastShootTime > 6000 && Math.random() < 0.02) {
-lastShootTime = t;
-var startX = Math.random() * W * 0.8;
-var startY = Math.random() * H * 0.5;
-shootingStars.push({
-x: startX, y: startY,
-vx: 1.5 + Math.random() * 1.5,
-vy: 0.8 + Math.random() * 0.7,
-life: 0, maxLife: 1500,
-len: 60 + Math.random() * 40
-});
-}
-
-for (var i = shootingStars.length - 1; i >= 0; i--) {
-var ss = shootingStars[i];
-ss.life += 16;
-ss.x += ss.vx;
-ss.y += ss.vy;
-var fade = 1 - ss.life / ss.maxLife;
-if (fade <= 0) { shootingStars.splice(i, 1); continue; }
-var grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.vx * (ss.len / ss.vx), ss.y - ss.vy * (ss.len / ss.vx));
-grad.addColorStop(0, s.shootColor + (fade * 0.8).toFixed(3) + ')');
-grad.addColorStop(1, s.shootColor + '0)');
-ctx.beginPath();
-ctx.moveTo(ss.x, ss.y);
-ctx.lineTo(ss.x - ss.vx * (ss.len / Math.sqrt(ss.vx * ss.vx + ss.vy * ss.vy)), ss.y - ss.vy * (ss.len / Math.sqrt(ss.vx * ss.vx + ss.vy * ss.vy)));
-ctx.strokeStyle = grad;
-ctx.lineWidth = 1.5;
-ctx.stroke();
-// Head glow
-ctx.beginPath();
-ctx.arc(ss.x, ss.y, 2, 0, Math.PI * 2);
-ctx.fillStyle = s.shootColor + (fade * 0.9).toFixed(3) + ')';
-ctx.fill();
-}
-}
 
 animId = requestAnimationFrame(draw);
 }

@@ -1,6 +1,6 @@
 ---
 title: "Aurora - Meditative Visual"
-description: "Northern lights — flowing undulating color bands across the screen. Choose a color scheme and immerse yourself in the aurora."
+description: "Flowing northern lights color bands across the screen."
 full_width: true
 language: "ja"
 ---
@@ -126,7 +126,7 @@ transition: opacity 1s;
 <div id="vp-intro">
 <a href="/visuals/" class="vp-back">&larr; All Visuals</a>
 <h1 class="vp-title">Aurora</h1>
-<p class="vp-desc">Northern lights — flowing undulating color bands dancing across the screen. Choose a color scheme and let the aurora wash over you.</p>
+<p class="vp-desc">Flowing northern lights. Choose a color scheme.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#22d3ee,#10b981)"></div>
@@ -154,27 +154,27 @@ transition: opacity 1s;
 var schemes = [
 { name:'Arctic', bg:'#020810',
 bands:[
-{colors:['#22d3ee','#06b6d4'], alpha:0.25, baseY:0.25, amp:0.08, freq:0.003, speed:0.12},
-{colors:['#10b981','#059669'], alpha:0.20, baseY:0.30, amp:0.06, freq:0.004, speed:0.09},
-{colors:['#22d3ee','#14b8a6'], alpha:0.15, baseY:0.35, amp:0.10, freq:0.002, speed:0.15},
-{colors:['#34d399','#06b6d4'], alpha:0.18, baseY:0.28, amp:0.07, freq:0.0035, speed:0.10},
-{colors:['#67e8f9','#a7f3d0'], alpha:0.10, baseY:0.22, amp:0.05, freq:0.005, speed:0.06}
+{colors:['#22d3ee','#06b6d4'], alpha:0.15, baseY:0.25, amp:0.08, freq:0.003, speed:0.12},
+{colors:['#10b981','#059669'], alpha:0.12, baseY:0.30, amp:0.06, freq:0.004, speed:0.09},
+{colors:['#22d3ee','#14b8a6'], alpha:0.09, baseY:0.35, amp:0.10, freq:0.002, speed:0.15},
+{colors:['#34d399','#06b6d4'], alpha:0.11, baseY:0.28, amp:0.07, freq:0.0035, speed:0.10},
+{colors:['#67e8f9','#a7f3d0'], alpha:0.06, baseY:0.22, amp:0.05, freq:0.005, speed:0.06}
 ]},
 { name:'Cosmic', bg:'#0a0510',
 bands:[
-{colors:['#a855f7','#7c3aed'], alpha:0.25, baseY:0.25, amp:0.08, freq:0.003, speed:0.12},
-{colors:['#ec4899','#be185d'], alpha:0.20, baseY:0.30, amp:0.06, freq:0.004, speed:0.09},
-{colors:['#c084fc','#e879f9'], alpha:0.15, baseY:0.35, amp:0.10, freq:0.002, speed:0.15},
-{colors:['#8b5cf6','#d946ef'], alpha:0.18, baseY:0.28, amp:0.07, freq:0.0035, speed:0.10},
-{colors:['#f0abfc','#c4b5fd'], alpha:0.10, baseY:0.22, amp:0.05, freq:0.005, speed:0.06}
+{colors:['#a855f7','#7c3aed'], alpha:0.15, baseY:0.25, amp:0.08, freq:0.003, speed:0.12},
+{colors:['#ec4899','#be185d'], alpha:0.12, baseY:0.30, amp:0.06, freq:0.004, speed:0.09},
+{colors:['#c084fc','#e879f9'], alpha:0.09, baseY:0.35, amp:0.10, freq:0.002, speed:0.15},
+{colors:['#8b5cf6','#d946ef'], alpha:0.11, baseY:0.28, amp:0.07, freq:0.0035, speed:0.10},
+{colors:['#f0abfc','#c4b5fd'], alpha:0.06, baseY:0.22, amp:0.05, freq:0.005, speed:0.06}
 ]},
 { name:'Dawn', bg:'#100805',
 bands:[
-{colors:['#f472b6','#fb923c'], alpha:0.25, baseY:0.25, amp:0.08, freq:0.003, speed:0.12},
-{colors:['#eab308','#f59e0b'], alpha:0.20, baseY:0.30, amp:0.06, freq:0.004, speed:0.09},
-{colors:['#fb7185','#fbbf24'], alpha:0.15, baseY:0.35, amp:0.10, freq:0.002, speed:0.15},
-{colors:['#f9a8d4','#fcd34d'], alpha:0.18, baseY:0.28, amp:0.07, freq:0.0035, speed:0.10},
-{colors:['#fda4af','#fde68a'], alpha:0.10, baseY:0.22, amp:0.05, freq:0.005, speed:0.06}
+{colors:['#f472b6','#fb923c'], alpha:0.15, baseY:0.25, amp:0.08, freq:0.003, speed:0.12},
+{colors:['#eab308','#f59e0b'], alpha:0.12, baseY:0.30, amp:0.06, freq:0.004, speed:0.09},
+{colors:['#fb7185','#fbbf24'], alpha:0.09, baseY:0.35, amp:0.10, freq:0.002, speed:0.15},
+{colors:['#f9a8d4','#fcd34d'], alpha:0.11, baseY:0.28, amp:0.07, freq:0.0035, speed:0.10},
+{colors:['#fda4af','#fde68a'], alpha:0.06, baseY:0.22, amp:0.05, freq:0.005, speed:0.06}
 ]}
 ];
 var currentScheme = 0;
@@ -190,6 +190,8 @@ var ctx = canvas.getContext('2d');
 var hint = document.getElementById('vp-hint');
 var startBtn = document.getElementById('vp-start-btn');
 
+var offCanvas, offCtx, halfW, halfH;
+
 var btns = document.querySelectorAll('.vp-scheme');
 btns.forEach(function(b) {
 b.addEventListener('click', function() {
@@ -202,6 +204,13 @@ currentScheme = parseInt(b.getAttribute('data-scheme'));
 function resize() {
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+var W = canvas.width, H = canvas.height;
+halfW = Math.floor(W * 0.75);
+halfH = Math.floor(H * 0.75);
+offCanvas = document.createElement('canvas');
+offCanvas.width = halfW;
+offCanvas.height = halfH;
+offCtx = offCanvas.getContext('2d');
 }
 
 function draw(t) {
@@ -210,18 +219,15 @@ var s = schemes[currentScheme];
 var W = canvas.width, H = canvas.height;
 var time = t / 1000;
 
-// Background — semi-transparent clear for dreamy ghosting/trail effect
-ctx.globalAlpha = 0.08;
-ctx.fillStyle = s.bg;
-ctx.fillRect(0, 0, W, H);
-ctx.globalAlpha = 1;
+// Parse background color for smoothstep
+var bgR = parseInt(s.bg.slice(1, 3), 16);
+var bgG = parseInt(s.bg.slice(3, 5), 16);
+var bgB = parseInt(s.bg.slice(5, 7), 16);
 
 if (reducedMotion) {
-// Full opaque clear for static view
 ctx.globalAlpha = 1;
 ctx.fillStyle = s.bg;
 ctx.fillRect(0, 0, W, H);
-// Static aurora bands
 for (var b = 0; b < s.bands.length; b++) {
 var band = s.bands[b];
 var y = H * band.baseY;
@@ -236,52 +242,77 @@ ctx.fillStyle = grad;
 ctx.fillRect(0, y - H * 0.1, W, H * 0.25);
 }
 ctx.shadowBlur = 0;
-animId = requestAnimationFrame(draw);
 return;
 }
 
-ctx.save();
-ctx.globalCompositeOperation = 'screen';
+var scaleX = halfW / W, scaleY = halfH / H;
+
+// 1. Clear offscreen with background
+offCtx.fillStyle = s.bg;
+offCtx.fillRect(0, 0, halfW, halfH);
+
+// 2. Draw bands on offscreen with 'screen' compositing
+offCtx.save();
+offCtx.globalCompositeOperation = 'screen';
 
 for (var b = 0; b < s.bands.length; b++) {
 var band = s.bands[b];
 var pulse = 0.75 + 0.25 * Math.sin(time * 0.08 + b * 0.7);
-var vertOsc = Math.sin(time * 0.15 + b * 1.1) * 0.04;
-ctx.beginPath();
+var vertOsc = Math.sin(time * 0.04 + b * 1.1) * 0.04;
+offCtx.beginPath();
 
-// Build wavy top edge with vertical oscillation
-var baseY = H * (band.baseY + vertOsc);
-var amp = H * band.amp;
-var firstY = 0;
-for (var x = 0; x <= W; x += 3) {
-var noise1 = Math.sin(x * band.freq + time * band.speed);
-var noise2 = Math.sin(x * band.freq * 1.7 + time * band.speed * 0.6 + 2.1);
-var noise3 = Math.sin(x * band.freq * 0.5 + time * band.speed * 1.3 + 4.3);
+var baseY = halfH * (band.baseY + vertOsc);
+var amp = halfH * band.amp;
+for (var x = 0; x <= halfW; x += 3) {
+var realX = x / scaleX;
+var noise1 = Math.sin(realX * band.freq + time * band.speed);
+var noise2 = Math.sin(realX * band.freq * 1.7 + time * band.speed * 0.6 + 2.1);
+var noise3 = Math.sin(realX * band.freq * 0.5 + time * band.speed * 1.3 + 4.3);
 var y = baseY + amp * (noise1 * 0.5 + noise2 * 0.3 + noise3 * 0.2);
-if (x === 0) { ctx.moveTo(x, y); firstY = y; }
-else ctx.lineTo(x, y);
+if (x === 0) offCtx.moveTo(x, y);
+else offCtx.lineTo(x, y);
 }
 
-// Fill downward with gradient — extended bottom edge
-ctx.lineTo(W, H * (band.baseY + vertOsc + 0.25));
-ctx.lineTo(0, H * (band.baseY + vertOsc + 0.25));
-ctx.closePath();
+offCtx.lineTo(halfW, halfH * (band.baseY + vertOsc + 0.25));
+offCtx.lineTo(0, halfH * (band.baseY + vertOsc + 0.25));
+offCtx.closePath();
 
-var grad = ctx.createLinearGradient(0, baseY - amp, 0, baseY + H * 0.25);
+var grad = offCtx.createLinearGradient(0, baseY - amp, 0, baseY + halfH * 0.25);
 grad.addColorStop(0, band.colors[0] + hexAlpha(band.alpha * 0.3 * pulse));
 grad.addColorStop(0.3, band.colors[0] + hexAlpha(band.alpha * pulse));
 grad.addColorStop(0.7, band.colors[1] + hexAlpha(band.alpha * 0.6 * pulse));
 grad.addColorStop(1, band.colors[1] + '00');
-ctx.shadowColor = band.colors[0];
-ctx.shadowBlur = 15;
-ctx.fillStyle = grad;
-ctx.fill();
-ctx.shadowBlur = 0;
+offCtx.fillStyle = grad;
+offCtx.fill();
 }
 
-ctx.restore();
+offCtx.restore();
 
-// Subtle stars in background
+// 3. Smoothstep threshold on offscreen pixel data
+var imgData = offCtx.getImageData(0, 0, halfW, halfH);
+var d = imgData.data;
+for (var j = 0; j < d.length; j += 4) {
+var brightness = d[j] + d[j + 1] + d[j + 2];
+if (brightness > 220) {
+d[j + 3] = 255;
+} else if (brightness > 120) {
+var tt = (brightness - 120) / 100;
+tt = tt * tt * (3 - 2 * tt);
+d[j] = Math.round(bgR + (d[j] - bgR) * tt);
+d[j + 1] = Math.round(bgG + (d[j + 1] - bgG) * tt);
+d[j + 2] = Math.round(bgB + (d[j + 2] - bgB) * tt);
+d[j + 3] = 255;
+} else {
+d[j] = bgR; d[j + 1] = bgG; d[j + 2] = bgB; d[j + 3] = 255;
+}
+}
+offCtx.putImageData(imgData, 0, 0);
+
+// 4. Upscale to main canvas with smoothing
+ctx.imageSmoothingEnabled = true;
+ctx.drawImage(offCanvas, 0, 0, halfW, halfH, 0, 0, W, H);
+
+// 5. Draw stars on main canvas at full resolution (stays crisp)
 for (var i = 0; i < 60; i++) {
 var sx = (Math.sin(i * 127.1 + 311.7) * 0.5 + 0.5) * W;
 var sy = (Math.sin(i * 269.5 + 183.3) * 0.5 + 0.5) * H * 0.6;
@@ -336,10 +367,6 @@ running = true;
 intro.style.display = 'none';
 fs.style.display = 'block';
 resize();
-// Full clear on start so trails begin fresh
-ctx.globalAlpha = 1;
-ctx.fillStyle = schemes[currentScheme].bg;
-ctx.fillRect(0, 0, canvas.width, canvas.height);
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {

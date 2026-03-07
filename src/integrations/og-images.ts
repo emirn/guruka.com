@@ -313,127 +313,144 @@ export function ogImages(): AstroIntegration {
 
         await fs.mkdir(ogCacheDir, { recursive: true });
 
-        // Scan articles
-        const articlesDir = path.join(projectRoot, 'src/content/articles');
-        let entries: any[];
-        try {
-          entries = await fs.readdir(articlesDir, { withFileTypes: true, recursive: true });
-        } catch {
-          log.info(`No articles directory found, skipping OG image generation`);
-          return;
-        }
-
         let generated = 0;
         let skipped = 0;
         let failed = 0;
 
-        for (const entry of entries) {
-          if (!entry.isFile()) continue;
-          if (!entry.name.endsWith('.md') && !entry.name.endsWith('.mdx')) continue;
-
-          const parentPath = entry.parentPath || entry.path || articlesDir;
-          const fullPath = path.join(parentPath, entry.name);
-          const relativePath = path.relative(articlesDir, fullPath);
-          const slug = relativePath.replace(/\.(md|mdx)$/, '');
-
-          const content = await fs.readFile(fullPath, 'utf-8');
-          const { frontmatter, body } = parseFrontmatter(content);
-
-          // Compute content hash for caching
-          const heroPath = frontmatter.image_hero || extractFirstImage(body) || '';
-          const hash = computeOgHash({
-            title: frontmatter.title || 'Untitled',
-            description: frontmatter.description,
-            badge, brandName,
-            gradient: gradient ? [...gradient] : undefined,
-            heroImagePath: heroPath,
-          });
-          const cachePath = path.join(ogCacheDir, `${hash}.webp`);
-
-          // Cache hit: copy from cache to dist
-          if (await fileExists(cachePath)) {
-            const ogOutputDir = path.join(distDir, 'assets', slug);
-            await fs.mkdir(ogOutputDir, { recursive: true });
-            await fs.copyFile(cachePath, path.join(ogOutputDir, 'og.webp'));
-            skipped++;
-            continue;
+        // Process a content directory (articles or pages) for OG image generation
+        async function processContentDir(contentDir: string, assetPrefix: string, label: string) {
+          let entries: any[];
+          try {
+            entries = await fs.readdir(contentDir, { withFileTypes: true, recursive: true });
+          } catch {
+            log.info(`No ${label} directory found, skipping`);
+            return;
           }
 
-          // Skip if image_og is already set and file exists
-          if (frontmatter.image_og) {
-            const ogPath = frontmatter.image_og.startsWith('/')
-              ? frontmatter.image_og
-              : `/${frontmatter.image_og}`;
-            const existsInDist = await fileExists(path.join(distDir, ogPath));
-            const existsInPublic = await fileExists(path.join(publicDir, ogPath));
-            if (existsInDist || existsInPublic) {
+          for (const entry of entries) {
+            if (!entry.isFile()) continue;
+            if (!entry.name.endsWith('.md') && !entry.name.endsWith('.mdx')) continue;
+
+            const parentPath = entry.parentPath || entry.path || contentDir;
+            const fullPath = path.join(parentPath, entry.name);
+            const relativePath = path.relative(contentDir, fullPath);
+            const slug = relativePath.replace(/\.(md|mdx)$/, '');
+
+            const content = await fs.readFile(fullPath, 'utf-8');
+            const { frontmatter, body } = parseFrontmatter(content);
+
+            // Compute content hash for caching
+            const heroPath = frontmatter.image_hero || extractFirstImage(body) || '';
+            const hash = computeOgHash({
+              title: frontmatter.title || 'Untitled',
+              description: frontmatter.description,
+              badge, brandName,
+              gradient: gradient ? [...gradient] : undefined,
+              heroImagePath: heroPath,
+            });
+            const cachePath = path.join(ogCacheDir, `${hash}.webp`);
+
+            const assetSlug = assetPrefix ? `${assetPrefix}/${slug}` : slug;
+
+            // Cache hit: copy from cache to dist
+            if (await fileExists(cachePath)) {
+              const ogOutputDir = path.join(distDir, 'assets', assetSlug);
+              await fs.mkdir(ogOutputDir, { recursive: true });
+              await fs.copyFile(cachePath, path.join(ogOutputDir, 'og.webp'));
               skipped++;
               continue;
             }
-          }
 
-          const ogOutputDir = path.join(distDir, 'assets', slug);
-          const ogOutputPath = path.join(ogOutputDir, 'og.webp');
-
-          // Build hero image background if available
-          let heroImageBase64: string | undefined;
-
-          if (frontmatter.image_hero && !frontmatter.image_hero.startsWith('http')) {
-            const heroFile = path.join(publicDir, frontmatter.image_hero);
-            try {
-              const heroBuffer = await fs.readFile(heroFile);
-              heroImageBase64 = await toPngBase64(heroBuffer);
-            } catch {
-              // Hero image not found, fall through
-            }
-          }
-
-          if (!heroImageBase64) {
-            const contentImage = extractFirstImage(body);
-            if (contentImage && !contentImage.startsWith('http')) {
-              const imgFile = path.join(publicDir, contentImage);
-              try {
-                const imgBuffer = await fs.readFile(imgFile);
-                heroImageBase64 = await toPngBase64(imgBuffer);
-              } catch {
-                // Content image not found
+            // Skip if image_og is already set and file exists
+            if (frontmatter.image_og) {
+              const ogPath = frontmatter.image_og.startsWith('/')
+                ? frontmatter.image_og
+                : `/${frontmatter.image_og}`;
+              const existsInDist = await fileExists(path.join(distDir, ogPath));
+              const existsInPublic = await fileExists(path.join(publicDir, ogPath));
+              if (existsInDist || existsInPublic) {
+                skipped++;
+                continue;
               }
             }
-          }
 
-          try {
-            const template = buildOgTemplate({
-              title: frontmatter.title || 'Untitled',
-              description: frontmatter.description,
-              badge,
-              brandName,
-              gradient,
-              heroImageBase64,
-            });
+            const ogOutputDir = path.join(distDir, 'assets', assetSlug);
+            const ogOutputPath = path.join(ogOutputDir, 'og.webp');
 
-            const svg = await satori(template, {
-              width: 1200,
-              height: 630,
-              fonts: [{ name: 'Inter', data: fontBuffer, weight: 700, style: 'normal' as const }],
-            });
+            // Build hero image background if available
+            let heroImageBase64: string | undefined;
 
-            const resvg = new Resvg(svg, {
-              background: 'rgba(0, 0, 0, 0)',
-              fitTo: { mode: 'width' as const, value: 1200 },
-            });
-            const pngBuffer = Buffer.from(resvg.render().asPng());
-            const webpBuffer = await sharp(pngBuffer).webp({ quality: 80 }).toBuffer();
+            if (frontmatter.image_hero && !frontmatter.image_hero.startsWith('http')) {
+              const heroFile = path.join(publicDir, frontmatter.image_hero);
+              try {
+                const heroBuffer = await fs.readFile(heroFile);
+                heroImageBase64 = await toPngBase64(heroBuffer);
+              } catch {
+                // Hero image not found, fall through
+              }
+            }
 
-            await fs.mkdir(ogOutputDir, { recursive: true });
-            await fs.writeFile(ogOutputPath, webpBuffer);
-            await fs.copyFile(ogOutputPath, cachePath);
-            generated++;
-            log.info(`  → ${slug} → assets/${slug}/og.webp`);
-          } catch (err) {
-            log.warn(`Generator failed for ${slug}: ${err instanceof Error ? err.message : err}`);
-            failed++;
+            if (!heroImageBase64) {
+              const contentImage = extractFirstImage(body);
+              if (contentImage && !contentImage.startsWith('http')) {
+                const imgFile = path.join(publicDir, contentImage);
+                try {
+                  const imgBuffer = await fs.readFile(imgFile);
+                  heroImageBase64 = await toPngBase64(imgBuffer);
+                } catch {
+                  // Content image not found
+                }
+              }
+            }
+
+            try {
+              const template = buildOgTemplate({
+                title: frontmatter.title || 'Untitled',
+                description: frontmatter.description,
+                badge,
+                brandName,
+                gradient,
+                heroImageBase64,
+              });
+
+              const svg = await satori(template, {
+                width: 1200,
+                height: 630,
+                fonts: [{ name: 'Inter', data: fontBuffer, weight: 700, style: 'normal' as const }],
+              });
+
+              const resvg = new Resvg(svg, {
+                background: 'rgba(0, 0, 0, 0)',
+                fitTo: { mode: 'width' as const, value: 1200 },
+              });
+              const pngBuffer = Buffer.from(resvg.render().asPng());
+              const webpBuffer = await sharp(pngBuffer).webp({ quality: 80 }).toBuffer();
+
+              await fs.mkdir(ogOutputDir, { recursive: true });
+              await fs.writeFile(ogOutputPath, webpBuffer);
+              await fs.copyFile(ogOutputPath, cachePath);
+              generated++;
+              log.info(`  → ${assetSlug} → assets/${assetSlug}/og.webp`);
+            } catch (err) {
+              log.warn(`Generator failed for ${assetSlug}: ${err instanceof Error ? err.message : err}`);
+              failed++;
+            }
           }
         }
+
+        // Scan articles
+        await processContentDir(
+          path.join(projectRoot, 'src/content/articles'),
+          '',
+          'articles',
+        );
+
+        // Scan pages
+        await processContentDir(
+          path.join(projectRoot, 'src/content/pages'),
+          'pages',
+          'pages',
+        );
 
         const parts = [];
         if (generated > 0) parts.push(`${generated} generated`);

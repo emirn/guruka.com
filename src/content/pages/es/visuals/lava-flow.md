@@ -1,6 +1,6 @@
 ---
 title: "Lava Flow - Meditative Visual"
-description: "Organic metaball blobs floating, merging, and separating in a mesmerizing lava lamp style. Choose a color scheme and watch the shapes dance."
+description: "Lava lamp blobs floating, merging, and separating."
 full_width: true
 language: "es"
 ---
@@ -126,7 +126,7 @@ transition: opacity 1s;
 <div id="vp-intro">
 <a href="/visuals/" class="vp-back">&larr; All Visuals</a>
 <h1 class="vp-title">Lava Flow</h1>
-<p class="vp-desc">Organic metaball blobs floating, merging, and separating in a mesmerizing lava lamp style. Choose a color scheme and watch the shapes dance.</p>
+<p class="vp-desc">Blobs merging and separating. Choose a color scheme.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#f97316,#ef4444)"></div>
@@ -194,10 +194,10 @@ var minDim = Math.min(W, H);
 var blobCount = Math.max(9, Math.min(Math.floor(minDim / 100), 15));
 for (var i = 0; i < blobCount; i++) {
 blobs.push({
-x: 0.2 * W + Math.random() * 0.6 * W,
-y: 0.2 * H + Math.random() * 0.6 * H,
-vx: (Math.random() - 0.5) * 0.6,
-vy: (Math.random() - 0.5) * 0.6,
+x: 0.15 * W + Math.random() * 0.7 * W,
+y: Math.random() * H,
+vx: (Math.random() - 0.5) * 0.1,
+vy: -(0.075 + Math.random() * 0.075),
 baseR: minDim * (0.04 + Math.random() * 0.04),
 phase: Math.random() * Math.PI * 2
 });
@@ -222,17 +222,20 @@ offCtx.fillRect(0, 0, halfW, halfH);
 // Update and draw blobs on offscreen canvas at half res
 for (var i = 0; i < blobs.length; i++) {
 var b = blobs[i];
-var r = b.baseR + Math.sin(t * 0.0008 + b.phase) * 12;
+var r = b.baseR + Math.sin(t * 0.0004 + b.phase) * 12;
 
 if (!reducedMotion) {
-b.x += b.vx + Math.sin(t * 0.0003 + b.phase) * 0.3;
-b.y += b.vy + Math.cos(t * 0.0004 + b.phase) * 0.3;
+b.x += b.vx + Math.sin(t * 0.000075 + b.phase) * 0.15;
+b.y += b.vy + Math.cos(t * 0.0001 + b.phase) * 0.15;
 
-// Bounce off edges with padding
-if (b.x - r < 0) { b.x = r; b.vx = Math.abs(b.vx) * 0.8; }
-if (b.x + r > W) { b.x = W - r; b.vx = -Math.abs(b.vx) * 0.8; }
-if (b.y - r < 0) { b.y = r; b.vy = Math.abs(b.vy) * 0.8; }
-if (b.y + r > H) { b.y = H - r; b.vy = -Math.abs(b.vy) * 0.8; }
+// Wrap vertically: when blob fully exits top, respawn at bottom
+if (b.y + r * 2 < 0) {
+b.y = H + r * 2;
+b.x = 0.15 * W + Math.random() * 0.7 * W;
+}
+// Soft horizontal wrap
+if (b.x < -r) b.x = W + r;
+if (b.x > W + r) b.x = -r;
 }
 
 // Draw radial gradient blob on offscreen at 3/4 resolution

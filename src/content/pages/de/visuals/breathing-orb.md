@@ -1,6 +1,6 @@
 ---
 title: "Breathing Orb - Meditative Visual"
-description: "A luminous orb pulsing with breathing rhythm, surrounded by drifting particles. Choose a color scheme and let the motion guide your breath."
+description: "A pulsing orb that guides your breathing rhythm."
 full_width: true
 language: "de"
 ---
@@ -126,7 +126,7 @@ transition: opacity 1s;
 <div id="vp-intro">
 <a href="/visuals/" class="vp-back">&larr; All Visuals</a>
 <h1 class="vp-title">Breathing Orb</h1>
-<p class="vp-desc">A luminous orb pulsing with a gentle breathing rhythm, surrounded by drifting particles. Choose a color scheme and let the motion guide your breath.</p>
+<p class="vp-desc">Pulsing orb guiding your breath. Choose a color scheme.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#4338ca,#7c3aed)"></div>
@@ -188,8 +188,8 @@ particles.push({
 x: Math.random() * canvas.width,
 y: Math.random() * canvas.height,
 r: 1 + Math.random() * 2.5,
-vx: (Math.random() - 0.5) * 0.4,
-vy: (Math.random() - 0.5) * 0.4,
+vx: (Math.random() - 0.5) * 0.2,
+vy: (Math.random() - 0.5) * 0.2,
 phase: Math.random() * Math.PI * 2
 });
 }
@@ -213,7 +213,7 @@ ctx.fillRect(0, 0, W, H);
 
 // Breathing cycle: 6 seconds
 var breathT = t / 1000;
-var breathPhase = Math.sin(breathT * Math.PI / 3); // -1 to 1
+var breathPhase = Math.sin(breathT * Math.PI / 6); // -1 to 1, 12s cycle
 var scale = 0.85 + 0.15 * breathPhase;
 
 var baseR = Math.min(W, H) * 0.12;
@@ -253,7 +253,7 @@ var p = particles[i];
 // Drift toward/away from orb matching breath
 var dx = p.x - cx, dy = p.y - cy;
 var dist = Math.sqrt(dx * dx + dy * dy) || 1;
-var breathPull = breathPhase * 0.3;
+var breathPull = breathPhase * 0.15;
 p.x += p.vx + (dx / dist) * breathPull;
 p.y += p.vy + (dy / dist) * breathPull;
 
@@ -264,7 +264,7 @@ if (p.y < 0) p.y = H;
 if (p.y > H) p.y = 0;
 
 // Twinkle
-var twinkle = 0.3 + 0.7 * Math.abs(Math.sin(breathT * 0.8 + p.phase));
+var twinkle = 0.3 + 0.7 * Math.abs(Math.sin(breathT * 0.4 + p.phase));
 ctx.beginPath();
 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
 ctx.fillStyle = s.particle;

@@ -1,6 +1,6 @@
 ---
 title: "Mandala - Meditative Visual"
-description: "Slowly rotating sacred geometry with evolving patterns — concentric rings of shapes with beautiful symmetry. Choose a color scheme and meditate on the geometry."
+description: "Slowly rotating sacred geometry with evolving symmetry."
 full_width: true
 language: "fr"
 ---
@@ -126,7 +126,7 @@ transition: opacity 1s;
 <div id="vp-intro">
 <a href="/visuals/" class="vp-back">&larr; All Visuals</a>
 <h1 class="vp-title">Mandala</h1>
-<p class="vp-desc">Slowly rotating sacred geometry with evolving patterns — concentric rings of shapes with beautiful symmetry. Choose a color scheme and meditate on the geometry.</p>
+<p class="vp-desc">Rotating sacred geometry. Choose a color scheme.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#eab308,#f59e0b)"></div>
