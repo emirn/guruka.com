@@ -1,5 +1,5 @@
 ---
-title: "Train Brain and Memory"
+title: "Games"
 description: "Play free brain and memory training games to improve memory, processing speed, and mental agility. Seven games with adaptive difficulty."
 full_width: true
 ---
@@ -192,7 +192,7 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 
 <div id="games-hub">
 <div class="gh-header">
-<h1>&#129504; Train Brain and Memory</h1>
+<h1>&#129504; Games</h1>
 <p>Free and without annoying ads. Your scores are saved locally - no account needed.</p>
 </div>
 

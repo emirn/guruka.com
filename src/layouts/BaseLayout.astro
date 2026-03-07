@@ -100,16 +100,9 @@ const cssVars = {
       hreflangs={hreflangs}
     />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (self-hosted via local-google-fonts integration) -->
     {config.typography.google_fonts && config.typography.google_fonts.length > 0 && (
-      <>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href={`https://fonts.googleapis.com/css2?family=${config.typography.google_fonts.join('&family=')}&display=swap`}
-          rel="stylesheet"
-        />
-      </>
+      <link rel="stylesheet" href="/fonts/google-fonts.css" />
     )}
 
     <!-- Custom Head Code -->

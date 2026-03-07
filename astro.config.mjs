@@ -16,6 +16,7 @@ import { validateImages } from './src/integrations/validate-images.js';
 import { ogImages } from './src/integrations/og-images.js';
 import { pdfThumbnails } from './src/integrations/pdf-thumbnails.js';
 import { sitemapCopy } from './src/integrations/sitemap-copy.js';
+import { localGoogleFonts } from './src/integrations/local-google-fonts.js';
 
 // Load site config if available
 function getSiteConfig() {
@@ -42,7 +43,7 @@ if (!siteName) {
 
 // Always include pagefind integration for dev server middleware
 // ogImages BEFORE validateImages so OG images exist during validation
-const integrations = [sitemap(), mdx(), pagefind(), ogImages(), pdfThumbnails(), validateImages(), sitemapCopy()];
+const integrations = [localGoogleFonts(), sitemap(), mdx(), pagefind(), ogImages(), pdfThumbnails(), validateImages(), sitemapCopy()];
 
 // Conditionally add React integration
 if (siteConfig?.integrations?.react) {

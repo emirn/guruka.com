@@ -494,16 +494,13 @@
       if (newIdx !== currentIdx) {
         currentIdx = newIdx;
         var newText = currentIdx >= 0 ? data.body[currentIdx].text : '';
-        var revealDelay = dismissing ? 800 : 0;
         dismissing = false;
-        setTimeout(function() {
-          if (newText) {
-            revealText(textEl, newText);
-          } else {
-            textEl.innerHTML = '';
-            textEl.style.opacity = '1';
-          }
-        }, revealDelay);
+        if (newText) {
+          revealText(textEl, newText);
+        } else {
+          textEl.innerHTML = '';
+          textEl.style.opacity = '1';
+        }
       }
     }
 
