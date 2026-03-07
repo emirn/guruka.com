@@ -307,6 +307,14 @@ export function ogImages(): AstroIntegration {
           return;
         }
 
+        // Load CJK fallback font (optional — skip gracefully if not present)
+        let cjkFontBuffer: Buffer | null = null;
+        try {
+          cjkFontBuffer = await fs.readFile(path.join(fontDir, 'NotoSansJP-Bold.ttf'));
+        } catch {
+          // CJK font not available — Japanese/Chinese/Korean text won't render
+        }
+
         const badge = config.branding?.badge;
         const brandName = config.branding?.site?.name;
         const gradient = config.branding?.gradient || config.gradient;
@@ -413,10 +421,17 @@ export function ogImages(): AstroIntegration {
                 heroImageBase64,
               });
 
+              const fonts: { name: string; data: Buffer; weight: number; style: 'normal' }[] = [
+                { name: 'Inter', data: fontBuffer, weight: 700, style: 'normal' as const },
+              ];
+              if (cjkFontBuffer) {
+                fonts.push({ name: 'Noto Sans JP', data: cjkFontBuffer, weight: 700, style: 'normal' as const });
+              }
+
               const svg = await satori(template, {
                 width: 1200,
                 height: 630,
-                fonts: [{ name: 'Inter', data: fontBuffer, weight: 700, style: 'normal' as const }],
+                fonts,
               });
 
               const resvg = new Resvg(svg, {
