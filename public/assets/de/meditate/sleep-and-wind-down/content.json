@@ -2,7 +2,7 @@
   "lang": "de",
   "title": "Schlaf & Abendruhe",
   "subtitle": "Lass den Tag los. Ruhe ist genug.",
-  "duration": 189.768,
+  "duration": 215.688,
   "colors": {
     "bg": "#08061a",
     "c1": "rgba(99,102,241,0.5)",
@@ -12,66 +12,110 @@
   "cues": [
     {
       "time": 0,
-      "text": "Leg dich bequem hin.\nLass deine Arme sanft neben dir liegen.\nSchließe deine Augen."
+      "text": "Leg dich bequem hin.\nLass deine Arme sanft neben dir liegen."
     },
     {
-      "time": 10.264,
-      "text": "Nimm einen langsamen, sanften Atemzug durch die Nase ein...\nund lass ihn langsam durch den Mund gehen."
+      "time": 6.584,
+      "text": "Schließe deine Augen."
     },
     {
-      "time": 24.016,
-      "text": "Noch einmal, ein...\nund ein langes... langsames... Aus.\nLass deinen Körper schwer werden."
+      "time": 12.216,
+      "text": "Nimm einen langsamen, sanften Atemzug durch die Nase ein."
     },
     {
-      "time": 36.472,
-      "text": "Du hast den Tag geschafft.\nWas auch immer passiert ist, es ist vorbei.\nEs gibt heute Nacht nichts mehr zu lösen."
+      "time": 19.536,
+      "text": "Und lass ihn langsam durch den Mund gehen."
     },
     {
-      "time": 51.016,
+      "time": 28.776,
+      "text": "Noch einmal, ein."
+    },
+    {
+      "time": 33.024,
+      "text": "Und ein langes, langsames, Aus."
+    },
+    {
+      "time": 38.256,
+      "text": "Lass deinen Körper schwer werden."
+    },
+    {
+      "time": 46.8,
+      "text": "Du hast den Tag geschafft."
+    },
+    {
+      "time": 50.864,
+      "text": "Was auch immer passiert ist, es ist vorbei.\nEs gibt heute Nacht nichts mehr zu lösen."
+    },
+    {
+      "time": 63.368,
       "text": "Spüre die Fläche unter dir, die dein ganzes Gewicht trägt.\nLass dich... tragen."
     },
     {
-      "time": 63.016,
+      "time": 75.368,
       "text": "Beginne am Scheitel deines Kopfes.\nSpüre deine Kopfhaut... deine Stirn. Lass sie weich werden."
     },
     {
-      "time": 74.096,
+      "time": 86.424,
       "text": "Deine Augen, lass sie sich entspannen, sanft nach hinten sinken.\nDein Kiefer, lass ihn locker werden... Zähne leicht auseinander."
     },
     {
-      "time": 87.768,
+      "time": 100,
       "text": "Dein Nacken und deine Schultern, lass sie nach unten schmelzen.\nDein Brustkorb, lass ihn sich heben und senken, ganz ohne Mühe."
     },
     {
-      "time": 101.392,
+      "time": 113.624,
       "text": "Deine Arme... deine Hände.\nDein Bauch, lass ihn weich sein.\nDein unterer Rücken... deine Hüften."
     },
     {
-      "time": 112.52,
+      "time": 124.752,
       "text": "Deine Beine, schwer und still.\nDeine Füße, lass sie los... vollständig."
     },
     {
-      "time": 123.776,
+      "time": 135.96,
       "text": "Dein ganzer Körper... ruht jetzt."
     },
     {
-      "time": 132.2,
+      "time": 144.432,
       "text": "Wenn Gedanken kommen, ist das in Ordnung.\nBeobachte sie wie Wolken, die durch einen stillen Himmel ziehen.\nSie brauchen deine Aufmerksamkeit nicht. Lass sie einfach treiben."
     },
     {
-      "time": 151.256,
-      "text": "Atme langsam.\nEin... und aus.\nEin... und aus."
+      "time": 163.44,
+      "text": "Atme langsam."
     },
     {
-      "time": 160.352,
-      "text": "Du bist sicher. Du bist geborgen. Der Tag ist vorbei.\nAlles, was jetzt noch bleibt... ist Ruhe."
+      "time": 166.4,
+      "text": "Atme ein."
     },
     {
-      "time": 173.264,
+      "time": 169.096,
+      "text": "Und aus..."
+    },
+    {
+      "time": 171.864,
+      "text": "Atme ein."
+    },
+    {
+      "time": 174.56,
+      "text": "Und aus..."
+    },
+    {
+      "time": 181.304,
+      "text": "Du bist sicher."
+    },
+    {
+      "time": 183.408,
+      "text": "Du bist geborgen."
+    },
+    {
+      "time": 185.752,
+      "text": "Der Tag ist vorbei.\nAlles, was jetzt noch bleibt... ist Ruhe."
+    },
+    {
+      "time": 196.192,
       "text": "Lass dich treiben.\nTiefer und tiefer in die Stille.\nSanfter... und sanfter."
     },
     {
-      "time": 188.832,
+      "time": 211.736,
       "text": "Schlaf gut."
     }
   ]

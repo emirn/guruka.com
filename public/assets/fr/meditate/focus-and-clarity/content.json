@@ -2,7 +2,7 @@
   "lang": "fr",
   "title": "Concentration & Clarté",
   "subtitle": "Apaise le bruit. Aiguise ton esprit.",
-  "duration": 168.864,
+  "duration": 194.496,
   "colors": {
     "bg": "#060d1a",
     "c1": "rgba(59,130,246,0.8)",
@@ -15,56 +15,100 @@
       "text": "Assieds-toi bien droit, pieds à plat, dos soutenu, mains sur tes cuisses.\nFerme les yeux."
     },
     {
-      "time": 10.408,
-      "text": "Prends trois respirations d'ancrage.\nInspire par le nez... expire par la bouche."
+      "time": 10.552,
+      "text": "Prends trois respirations d'ancrage.\nInspire par le nez."
     },
     {
-      "time": 20.408,
-      "text": "Inspire... expire."
+      "time": 17.8,
+      "text": "Expire par la bouche."
     },
     {
-      "time": 25.68,
-      "text": "Une dernière fois, inspire... et expire."
+      "time": 23.408,
+      "text": "Inspire."
     },
     {
-      "time": 34.632,
+      "time": 25.912,
+      "text": "Expire."
+    },
+    {
+      "time": 30.56,
+      "text": "Une dernière fois, inspire."
+    },
+    {
+      "time": 34.576,
+      "text": "Et expire."
+    },
+    {
+      "time": 41.224,
       "text": "Porte ton attention au centre de ton front.\nObserve simplement cet espace.\nAucun effort nécessaire, juste une conscience douce."
     },
     {
-      "time": 50.304,
+      "time": 56.728,
       "text": "Pense maintenant à ce que tu t'apprêtes à faire.\nLe travail. La tâche. La conversation à venir.\nNe pense pas au comment, ni au quand.\nGarde simplement une image claire de ce que c'est."
     },
     {
-      "time": 70.152,
+      "time": 76.696,
       "text": "À chaque inspiration, imagine que tu respires de la clarté.\nUn air pur, limpide, qui remplit ton esprit."
     },
     {
-      "time": 81.928,
+      "time": 88.496,
       "text": "À chaque expiration, laisse partir tout ce qui n'est pas pertinent maintenant.\nLes onglets ouverts. Les autres tâches. Le bruit de fond."
     },
     {
-      "time": 98.104,
-      "text": "Inspire la clarté... expire la distraction.\nInspire la concentration... expire le bruit."
+      "time": 104.792,
+      "text": "Inspire la clarté."
     },
     {
-      "time": 110.68,
+      "time": 108.232,
+      "text": "Expire la distraction."
+    },
+    {
+      "time": 111.96,
+      "text": "Inspire la concentration."
+    },
+    {
+      "time": 115.64,
+      "text": "Expire le bruit."
+    },
+    {
+      "time": 122.792,
       "text": "Ton esprit sait comment faire.\nIl a été entraîné pour ça.\nEn ce moment, tu le guides simplement dans la bonne direction."
     },
     {
-      "time": 125.848,
+      "time": 137.72,
       "text": "Si une pensée t'entraîne de côté, reconnais-la brièvement, puis laisse-la partir.\nReviens à cette image claire de ta tâche."
     },
     {
-      "time": 139.352,
-      "text": "Sens-toi devenir plus présent.\nPlus éveillé. Prêt."
+      "time": 151.176,
+      "text": "Sens-toi devenir plus présent.\nPlus éveillé."
     },
     {
-      "time": 153.192,
-      "text": "Prends une inspiration plus ample.\nEn expirant, sens que tu arrives pleinement dans cet instant.\nAlerte. Clair. Préparé."
+      "time": 155.584,
+      "text": "Tout à fait prêt."
     },
     {
-      "time": 166.168,
-      "text": "Ouvre les yeux.\nTu es prêt. Commence."
+      "time": 166.904,
+      "text": "Prends une inspiration plus ample."
+    },
+    {
+      "time": 172.4,
+      "text": "En expirant, sens que tu arrives pleinement dans cet instant.\nBien alerte."
+    },
+    {
+      "time": 178.92,
+      "text": "Parfaitement clair."
+    },
+    {
+      "time": 181.408,
+      "text": "Entièrement préparé."
+    },
+    {
+      "time": 187.064,
+      "text": "Ouvre les yeux.\nTu es prêt."
+    },
+    {
+      "time": 190.056,
+      "text": "Doucement, commence."
     }
   ]
 }

@@ -2,7 +2,7 @@
   "lang": "fr",
   "title": "Énergie du Matin",
   "subtitle": "Éveille-toi en douceur. Accueille la journée.",
-  "duration": 170.112,
+  "duration": 201.96,
   "colors": {
     "bg": "#1a0f05",
     "c1": "rgba(245,158,11,0.8)",
@@ -12,55 +12,107 @@
   "cues": [
     {
       "time": 0,
-      "text": "Assieds-toi bien droit, dans ton lit ou sur une chaise.\nLes pieds au sol si tu peux.\nPose tes mains sur tes genoux, paumes vers le ciel."
+      "text": "Assieds-toi bien droit, dans ton lit ou sur une chaise.\nLes pieds au sol si tu peux."
     },
     {
-      "time": 14.2,
-      "text": "Ferme les yeux et prends une grande inspiration accueillante —\ncomme si tu respirais le matin lui-même.\nRetiens-la un instant...\net relâche, pleinement."
+      "time": 8.336,
+      "text": "Pose tes mains sur tes genoux, paumes vers le ciel."
     },
     {
-      "time": 31.696,
-      "text": "Encore, une grande inspiration... et une expiration complète.\nUne dernière fois."
+      "time": 16.224,
+      "text": "Ferme les yeux et prends une grande inspiration accueillante —\ncomme si tu respirais le matin lui-même.\nRetiens-la un instant."
     },
     {
-      "time": 43.648,
+      "time": 28.944,
+      "text": "Et relâche, pleinement."
+    },
+    {
+      "time": 36.672,
+      "text": "Encore, une grande inspiration."
+    },
+    {
+      "time": 42,
+      "text": "Et une expiration complète."
+    },
+    {
+      "time": 47.136,
+      "text": "Une dernière fois."
+    },
+    {
+      "time": 54.576,
       "text": "Sens ta colonne s'allonger.\nLaisse ta poitrine s'ouvrir un peu plus, à chaque souffle."
     },
     {
-      "time": 56.2,
-      "text": "C'est un jour nouveau.\nPas le même qu'hier.\nFrais. Neuf. Le tien."
+      "time": 67.08,
+      "text": "C'est un jour nouveau.\nPas le même qu'hier."
     },
     {
-      "time": 66.856,
+      "time": 72.32,
+      "text": "Frais."
+    },
+    {
+      "time": 73.92,
+      "text": "Neuf."
+    },
+    {
+      "time": 75.568,
+      "text": "Le tien."
+    },
+    {
+      "time": 82.168,
       "text": "Pense à une chose, une seule —\nque tu attends avec plaisir aujourd'hui.\nCe n'est pas obligé d'être grand.\nUne tasse de café. Une conversation. Une tâche que tu as vraiment envie de faire."
     },
     {
-      "time": 87.088,
+      "time": 102.256,
       "text": "Garde cette image un instant.\nLaisse-la allumer quelque chose en toi."
     },
     {
-      "time": 98.368,
-      "text": "Maintenant prends une inspiration et remplis-toi d'intention.\nQuel genre de personne veux-tu être aujourd'hui ?\nComment veux-tu te présenter, pour toi-même... pour les autres ?"
+      "time": 113.536,
+      "text": "Maintenant prends une inspiration et remplis-toi d'intention."
     },
     {
-      "time": 117.784,
+      "time": 121.264,
+      "text": "Quel genre de personne veux-tu être aujourd'hui ?\nComment veux-tu te présenter, pour toi-même... pour les autres ?"
+    },
+    {
+      "time": 135.928,
       "text": "N'y pense pas trop.\nRessens-le, simplement."
     },
     {
-      "time": 126.808,
-      "text": "Roule tes épaules en arrière.\nPrends une grande inspiration énergisante, inspire... retiens... et expire."
+      "time": 145.048,
+      "text": "Roule tes épaules en arrière.\nPrends une grande inspiration énergisante, inspire."
     },
     {
-      "time": 138.704,
-      "text": "Ton corps se réveille.\nTon esprit s'active.\nTu as tout ce qu'il te faut, pour aujourd'hui."
+      "time": 153.336,
+      "text": "Retiens."
     },
     {
-      "time": 155.448,
-      "text": "Prends une dernière grande inspiration.\nOuvre les yeux. Reste avec cette sensation, encore un instant."
+      "time": 155.936,
+      "text": "Et expire."
     },
     {
-      "time": 167.032,
-      "text": "Maintenant, vas-y.\nLa journée est à toi."
+      "time": 160.728,
+      "text": "Ton corps se réveille."
+    },
+    {
+      "time": 164.264,
+      "text": "Ton esprit s'active.\nTu as tout ce qu'il te faut, pour aujourd'hui."
+    },
+    {
+      "time": 179.256,
+      "text": "Prends une dernière grande inspiration."
+    },
+    {
+      "time": 185.352,
+      "text": "Ouvre les yeux. Reste avec cette sensation, encore un instant."
+    },
+    {
+      "time": 194.008,
+      "text": "Et maintenant."
+    },
+    {
+      "time": 195.944,
+      "text": "Doucement, vas-y.\nLa journée est à toi."
     }
   ]
 }

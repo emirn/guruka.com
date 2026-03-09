@@ -1,7 +1,14 @@
 {
+  "lang": "en",
   "title": "Focus & Clarity",
   "subtitle": "Clear the noise. Sharpen your mind.",
-  "duration": 158.424,
+  "duration": 183.648,
+  "colors": {
+    "bg": "#060d1a",
+    "c1": "rgba(59,130,246,0.8)",
+    "c2": "rgba(71,85,105,0.6)",
+    "c3": "rgba(30,64,175,0.5)"
+  },
   "cues": [
     {
       "time": 0,
@@ -9,61 +16,99 @@
     },
     {
       "time": 9.712,
-      "text": "Take three grounding breaths.\nIn through the nose... out through the mouth."
+      "text": "Take three grounding breaths.\nIn through the nose."
     },
     {
-      "time": 19.328,
-      "text": "In... out."
+      "time": 16.552,
+      "text": "Out through the mouth."
     },
     {
-      "time": 23.976,
-      "text": "One more, in... and out."
+      "time": 22.136,
+      "text": "Breathe in."
     },
     {
-      "time": 31.704,
+      "time": 24.976,
+      "text": "Breathe out."
+    },
+    {
+      "time": 29.84,
+      "text": "One more, in."
+    },
+    {
+      "time": 32.752,
+      "text": "And out..."
+    },
+    {
+      "time": 39.52,
       "text": "Bring your attention to the center of your forehead.\nJust notice that space.\nNo effort needed, just a gentle awareness."
     },
     {
-      "time": 46.704,
+      "time": 54.304,
       "text": "Now think about what you're about to do.\nThe work. The task. The conversation ahead.\nDon't think about how, or when.\nJust hold a clear picture of what it is."
     },
     {
-      "time": 64.512,
+      "time": 71.896,
       "text": "With each inhale, imagine breathing in clarity.\nClean, clear air, filling your mind."
     },
     {
-      "time": 74.56,
+      "time": 82.016,
       "text": "With each exhale, let go of anything that isn't relevant right now.\nThe open tabs. The other tasks. The background noise."
     },
     {
-      "time": 89.56,
-      "text": "Breathe in clarity... breathe out distraction.\nBreathe in focus... breathe out noise."
+      "time": 96.968,
+      "text": "Breathe in clarity."
     },
     {
-      "time": 101.848,
+      "time": 100.312,
+      "text": "Breathe out distraction."
+    },
+    {
+      "time": 103.992,
+      "text": "Breathe in focus."
+    },
+    {
+      "time": 107.312,
+      "text": "Breathe out noise."
+    },
+    {
+      "time": 114.704,
       "text": "Your mind knows how to do this.\nIt's been trained for this.\nRight now, you're just pointing it in the right direction."
     },
     {
-      "time": 116.632,
+      "time": 129.536,
       "text": "If a thought pulls you sideways, acknowledge it briefly, then let it go.\nReturn to that clear picture of your task."
     },
     {
-      "time": 129.416,
-      "text": "Feel yourself becoming more present.\nMore awake. Ready."
+      "time": 142.176,
+      "text": "Feel yourself becoming more present.\nMore awake."
     },
     {
-      "time": 143.52,
-      "text": "Take a fuller breath in.\nAs you exhale, feel yourself arrive completely in this moment.\nAlert. Clear. Prepared."
+      "time": 146.8,
+      "text": "You feel ready."
     },
     {
-      "time": 155.776,
-      "text": "Open your eyes.\nYou're ready. Begin."
+      "time": 157.928,
+      "text": "Take a fuller breath in."
+    },
+    {
+      "time": 162.632,
+      "text": "As you exhale, feel yourself arrive completely in this moment.\nFully alert."
+    },
+    {
+      "time": 169.08,
+      "text": "Completely clear."
+    },
+    {
+      "time": 171.352,
+      "text": "Fully prepared."
+    },
+    {
+      "time": 176.504,
+      "text": "Open your eyes.\nYou're ready."
+    },
+    {
+      "time": 179.664,
+      "text": "Gently, begin."
     }
-  ],
-  "colors": {
-    "bg": "#060d1a",
-    "c1": "rgba(59,130,246,0.8)",
-    "c2": "rgba(71,85,105,0.6)",
-    "c3": "rgba(30,64,175,0.5)"
-  }
+  ]
 }

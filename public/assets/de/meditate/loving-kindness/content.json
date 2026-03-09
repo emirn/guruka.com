@@ -2,7 +2,7 @@
   "lang": "de",
   "title": "Liebende Güte",
   "subtitle": "Schenke Wärme, zuerst dir selbst.",
-  "duration": 187.608,
+  "duration": 214.44,
   "colors": {
     "bg": "#1a050f",
     "c1": "rgba(244,114,182,0.8)",
@@ -12,63 +12,107 @@
   "cues": [
     {
       "time": 0,
-      "text": "Finde einen bequemen Sitz.\nSchließe deine Augen.\nLass deine Hände sanft in deinem Schoß ruhen."
+      "text": "Finde einen bequemen Sitz.\nSchließe deine Augen."
     },
     {
-      "time": 11.248,
+      "time": 5.648,
+      "text": "Lass deine Hände sanft in deinem Schoß ruhen."
+    },
+    {
+      "time": 13.248,
       "text": "Nimm ein paar leichte Atemzüge.\nKein Druck, nur weiches, natürliches Atmen."
     },
     {
-      "time": 22.912,
-      "text": "Richte deine Aufmerksamkeit auf die Mitte deiner Brust, deinen Herzraum.\nNimm diesen Bereich einfach wahr.\nAtme sanft... hinein."
+      "time": 24.888,
+      "text": "Richte deine Aufmerksamkeit auf die Mitte deiner Brust, deinen Herzraum.\nNimm diesen Bereich einfach wahr."
     },
     {
-      "time": 38.488,
+      "time": 35,
+      "text": "Atme sanft... hinein."
+    },
+    {
+      "time": 42.464,
       "text": "Stell dir jetzt ein Bild von dir selbst vor, so wie du gerade bist.\nNicht die polierte Version.\nEinfach du... so wie du heute wirklich bist."
     },
     {
-      "time": 55.072,
+      "time": 59.024,
       "text": "Und mit Wärme, schenke dir selbst diese Worte:"
     },
     {
-      "time": 60.552,
-      "text": "Möge es mir gut gehen.\nMöge ich in Frieden sein.\nMöge ich heute gut zu mir selbst sein."
+      "time": 64.504,
+      "text": "Möge es mir gut gehen."
     },
     {
-      "time": 73.248,
+      "time": 68.256,
+      "text": "Möge ich in Frieden sein."
+    },
+    {
+      "time": 72.2,
+      "text": "Möge ich heute gut zu mir selbst sein."
+    },
+    {
+      "time": 81.176,
       "text": "Sag sie noch einmal, langsam, und meine jedes Wort."
     },
     {
-      "time": 79.064,
-      "text": "Möge es mir gut gehen.\nMöge ich in Frieden sein.\nMöge ich heute gut zu mir selbst sein."
+      "time": 86.968,
+      "text": "Möge es mir gut gehen."
     },
     {
-      "time": 91.76,
+      "time": 90.672,
+      "text": "Möge ich in Frieden sein."
+    },
+    {
+      "time": 94.664,
+      "text": "Möge ich heute gut zu mir selbst sein."
+    },
+    {
+      "time": 103.64,
       "text": "Wenn sich das schwer anfühlt, ist das in Ordnung.\nNimm den Widerstand einfach wahr... und atme hindurch.\nDu darfst dir das schenken."
     },
     {
-      "time": 107.696,
+      "time": 119.552,
       "text": "Denke jetzt an jemanden, den du leicht lieben kannst.\nEine Freundin. Ein Kind. Ein Tier.\nHalte sie sanft in deinem Bewusstsein."
     },
     {
-      "time": 121.2,
-      "text": "Möge es dir gut gehen.\nMögest du in Frieden sein.\nMögest du glücklich sein."
+      "time": 133.008,
+      "text": "Möge es dir gut gehen."
     },
     {
-      "time": 132.984,
+      "time": 136.736,
+      "text": "Mögest du in Frieden sein."
+    },
+    {
+      "time": 140.752,
+      "text": "Mögest du glücklich sein."
+    },
+    {
+      "time": 148.768,
       "text": "Lass diese Wärme sich ausdehnen —\nzu Menschen in deinem Leben...\nMenschen, die du kaum kennst...\nMenschen, die heute kämpfen...\nsogar Menschen, die dir wehgetan haben.\nNicht weil sie es verdienen —\nsondern weil diese Wärme... dir gehört, um sie zu schenken."
     },
     {
-      "time": 156.136,
-      "text": "Möge es allen Wesen gut gehen.\nMögen alle Wesen in Frieden sein."
+      "time": 171.92,
+      "text": "Möge es allen Wesen gut gehen."
     },
     {
-      "time": 171.08,
-      "text": "Komm zu dir zurück.\nAtme. Spüre, ob sich etwas verändert hat."
+      "time": 177.272,
+      "text": "Mögen alle Wesen in Frieden sein."
     },
     {
-      "time": 181.64,
-      "text": "Du trägst das in dir.\nEs ist immer da.\nÖffne deine Augen, wenn du bereit bist."
+      "time": 189.864,
+      "text": "Komm zu dir zurück.\nAtme."
+    },
+    {
+      "time": 194.712,
+      "text": "Spüre, ob sich etwas verändert hat."
+    },
+    {
+      "time": 203.448,
+      "text": "Du trägst das in dir.\nEs ist immer da."
+    },
+    {
+      "time": 208.352,
+      "text": "Öffne deine Augen, wenn du bereit bist."
     }
   ]
 }

@@ -2,7 +2,7 @@
   "lang": "pt",
   "title": "Escaneamento Corporal e Alívio de Tensão",
   "subtitle": "Observe. Solte. Volte para o seu corpo.",
-  "duration": 192.576,
+  "duration": 217.248,
   "colors": {
     "bg": "#051a15",
     "c1": "rgba(45,212,191,0.8)",
@@ -12,70 +12,102 @@
   "cues": [
     {
       "time": 0,
-      "text": "Deite-se ou recline-se confortavelmente.\nFeche os olhos.\nFaça três respirações profundas, para chegar."
+      "text": "Deite-se ou recline-se confortavelmente.\nFeche os olhos."
     },
     {
-      "time": 13.824,
+      "time": 6.248,
+      "text": "Faça três respirações profundas, para chegar."
+    },
+    {
+      "time": 21.824,
       "text": "Deixe o corpo ficar quieto.\nVamos percorrê-lo lentamente —\nnão para consertar nada. Apenas... para perceber."
     },
     {
-      "time": 27.888,
+      "time": 35.864,
       "text": "Comece pelo topo da cabeça.\nPerceba o couro cabeludo.\nExiste tensão ali? Apenas respire nela. Deixe suavizar."
     },
     {
-      "time": 40.024,
+      "time": 47.928,
       "text": "Desça para a testa.\nO espaço entre as sobrancelhas.\nOs pequenos músculos ao redor dos olhos. Deixe-os ir."
     },
     {
-      "time": 52.088,
+      "time": 59.584,
       "text": "As bochechas... o maxilar... a boca.\nSepare os dentes levemente.\nSolte a língua do céu da boca."
     },
     {
-      "time": 63.096,
-      "text": "Desça para o pescoço.\nAs laterais... a nuca.\nTanta tensão vive aqui.\nInspire... e na expiração, solte."
+      "time": 70.616,
+      "text": "Desça para o pescoço.\nAs laterais... a nuca.\nTanta tensão vive aqui.\nInspire."
     },
     {
-      "time": 74.68,
-      "text": "Os ombros.\nDeixe-os cair, para longe das orelhas, em direção ao chão.\nUm pouco mais. Isso."
+      "time": 78.68,
+      "text": "E na expiração, solte."
     },
     {
-      "time": 85.328,
+      "time": 84.36,
+      "text": "Os ombros.\nDeixe-os cair, para longe das orelhas, em direção ao chão.\nUm pouco mais."
+    },
+    {
+      "time": 91.6,
+      "text": "Sim, isso mesmo."
+    },
+    {
+      "time": 96.752,
       "text": "Descendo pelos braços —\na parte de cima... os cotovelos... os antebraços... os pulsos.\nAs mãos. Deixe os dedos se abrirem."
     },
     {
-      "time": 98.376,
+      "time": 109.8,
       "text": "O peito, deixe ficar suave. Sem segurar.\nAs costelas... as laterais.\nA barriga, deixe subir e descer livremente."
     },
     {
-      "time": 110.56,
+      "time": 121.96,
       "text": "A lombar.\nPerceba se há algo guardado ali.\nRespire nela... gentilmente."
     },
     {
-      "time": 119.84,
+      "time": 131.216,
       "text": "Os quadris... os glúteos... a pelve.\nDeixe ficarem pesados e quietos."
     },
     {
-      "time": 128.952,
+      "time": 140.088,
       "text": "As coxas... os joelhos.\nAs panturrilhas... as canelas.\nDescendo até os tornozelos."
     },
     {
-      "time": 138.856,
+      "time": 150.112,
       "text": "Os pés.\nOs calcanhares contra o chão.\nOs dedos dos pés, deixe relaxar... completamente."
     },
     {
-      "time": 151.312,
-      "text": "Todo o seu corpo, da cabeça aos pés.\nPesado. Aquecido. Quieto."
+      "time": 162.64,
+      "text": "Todo o seu corpo, da cabeça aos pés."
     },
     {
-      "time": 165.848,
-      "text": "Inspire uma última vez, bem fundo —\ne solte... completamente."
+      "time": 167.4,
+      "text": "Tão pesado."
     },
     {
-      "time": 176.168,
-      "text": "Quando estiver pronto, comece a despertar o corpo gentilmente.\nMexa os dedos das mãos e dos pés.\nUma rotação suave do pescoço.\nE abra os olhos."
+      "time": 169.264,
+      "text": "Tão aquecido."
     },
     {
-      "time": 191.136,
+      "time": 171.296,
+      "text": "Completamente quieto."
+    },
+    {
+      "time": 182.904,
+      "text": "Inspire uma última vez, bem fundo."
+    },
+    {
+      "time": 188.496,
+      "text": "E solte, completamente."
+    },
+    {
+      "time": 196.104,
+      "text": "Quando estiver pronto, comece a despertar o corpo gentilmente."
+    },
+    {
+      "time": 202.424,
+      "text": "Mexa os dedos das mãos e dos pés.\nUma rotação suave do pescoço.\nE abra os olhos."
+    },
+    {
+      "time": 212.712,
       "text": "Bem-vindo de volta."
     }
   ]

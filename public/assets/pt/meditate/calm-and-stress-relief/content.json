@@ -2,7 +2,7 @@
   "lang": "pt",
   "title": "Calma e Alívio do Estresse",
   "subtitle": "Solte a tensão. Volte para si.",
-  "duration": 175.128,
+  "duration": 211.056,
   "colors": {
     "bg": "#0c0a1a",
     "c1": "rgba(99,102,241,0.8)",
@@ -12,58 +12,122 @@
   "cues": [
     {
       "time": 0,
-      "text": "Encontre uma posição confortável, sentado ou deitado.\nDeixe suas mãos descansarem suavemente onde caírem.\nFeche os olhos... ou suavize o olhar para baixo."
+      "text": "Encontre uma posição confortável, sentado ou deitado.\nDeixe suas mãos descansarem suavemente onde caírem."
     },
     {
-      "time": 15.832,
-      "text": "Inspire lentamente pelo nariz...\ne solte, pela boca."
+      "time": 10.208,
+      "text": "Feche os olhos... ou suavize o olhar para baixo."
     },
     {
-      "time": 23.696,
-      "text": "De novo, inspire...\ne solte."
+      "time": 17.808,
+      "text": "Inspire lentamente pelo nariz."
     },
     {
-      "time": 29.664,
-      "text": "Mais uma vez, inspire...\ne solte. Isso."
+      "time": 23.16,
+      "text": "E solte, pela boca."
     },
     {
-      "time": 36.448,
-      "text": "Agora deixe sua respiração encontrar o próprio ritmo.\nVocê não precisa controlar nada.\nApenas... deixe acontecer."
+      "time": 28.552,
+      "text": "De novo, inspire."
     },
     {
-      "time": 51.184,
+      "time": 31.752,
+      "text": "E solte."
+    },
+    {
+      "time": 36.4,
+      "text": "Mais uma vez, inspire."
+    },
+    {
+      "time": 40.032,
+      "text": "E devagar, solte."
+    },
+    {
+      "time": 42.256,
+      "text": "Muito bem."
+    },
+    {
+      "time": 47.072,
+      "text": "Agora deixe sua respiração encontrar o próprio ritmo."
+    },
+    {
+      "time": 53.128,
+      "text": "Você não precisa controlar nada.\nApenas... deixe acontecer."
+    },
+    {
+      "time": 63.568,
       "text": "Perceba onde você está segurando tensão agora.\nTalvez nos ombros. No maxilar. Nas mãos.\nOnde quer que seja, apenas perceba.\nVocê não precisa resolver nada."
     },
     {
-      "time": 68.992,
+      "time": 81.352,
       "text": "Na próxima expiração, imagine essa tensão se dissolvendo, só um pouquinho.\nNão foi embora... apenas... ficou mais leve."
     },
     {
-      "time": 83.968,
-      "text": "Solte os ombros.\nRelaxe o maxilar.\nAbra levemente as mãos."
+      "time": 96.376,
+      "text": "Solte os ombros."
     },
     {
-      "time": 94.336,
-      "text": "Você está seguro agora.\nNeste momento, não há nada que você precise fazer, nada para resolver, nada para descobrir.\nEste momento não pede nada de você."
+      "time": 99.624,
+      "text": "Relaxe o maxilar."
     },
     {
-      "time": 111.808,
+      "time": 102.944,
+      "text": "Abra levemente as mãos."
+    },
+    {
+      "time": 110.672,
+      "text": "Você está seguro agora."
+    },
+    {
+      "time": 115.52,
+      "text": "Neste momento, não há nada que você precise fazer, nada para resolver, nada para descobrir.\nEste momento não pede nada de você."
+    },
+    {
+      "time": 131.264,
       "text": "Se a sua mente trouxer uma preocupação ou uma tarefa, apenas perceba.\nDiga gentilmente para si mesmo: agora não.\nE volte para a sua respiração."
     },
     {
-      "time": 126.728,
-      "text": "Inspire calma... expire tensão.\nInspire leveza... expire o peso do dia."
+      "time": 146.088,
+      "text": "Inspire calma."
     },
     {
-      "time": 136.008,
-      "text": "Fique aqui por mais algumas respirações.\nNenhum lugar para ir. Nada para fazer. Apenas isso."
+      "time": 149.216,
+      "text": "Expire tensão."
     },
     {
-      "time": 152.752,
-      "text": "Quando estiver pronto, inspire um pouco mais fundo.\nComece a trazer um movimento suave de volta, mexa os dedos, role os ombros.\nE quando parecer certo... abra os olhos devagar."
+      "time": 152.32,
+      "text": "Inspire leveza."
     },
     {
-      "time": 169.544,
+      "time": 155.424,
+      "text": "Expire o peso do dia."
+    },
+    {
+      "time": 161.032,
+      "text": "Descanse aqui por mais algumas respirações."
+    },
+    {
+      "time": 165.888,
+      "text": "Nenhum lugar para ir."
+    },
+    {
+      "time": 168.496,
+      "text": "Nada para fazer."
+    },
+    {
+      "time": 170.72,
+      "text": "Apenas este momento."
+    },
+    {
+      "time": 182.28,
+      "text": "Quando estiver pronto, inspire um pouco mais fundo."
+    },
+    {
+      "time": 189.192,
+      "text": "Comece a trazer um movimento suave de volta, mexa os dedos, role os ombros.\nE quando parecer certo... abra os olhos devagar."
+    },
+    {
+      "time": 202.48,
       "text": "Leve essa suavidade com você.\nVocê pode voltar aqui, a qualquer momento."
     }
   ]

@@ -1,65 +1,118 @@
 {
+  "lang": "en",
   "title": "Morning Energy",
   "subtitle": "Wake up gently. Greet the day.",
-  "duration": 154.776,
-  "cues": [
-    {
-      "time": 0,
-      "text": "Sit tall, either in bed or in a chair.\nFeet on the floor if you can.\nRest your hands on your knees, palms facing up."
-    },
-    {
-      "time": 12.76,
-      "text": "Close your eyes and take a big, welcoming breath in —\nas if you're breathing in the morning itself.\nHold it for just a moment...\nand release, fully."
-    },
-    {
-      "time": 29.824,
-      "text": "Again, a big inhale... and a full exhale.\nOne more."
-    },
-    {
-      "time": 39.568,
-      "text": "Feel your spine lengthen.\nLet your chest open a little more, with each breath."
-    },
-    {
-      "time": 51.52,
-      "text": "This is a new day.\nNot the same as yesterday.\nFresh. Clean. Yours."
-    },
-    {
-      "time": 62.296,
-      "text": "Think of one thing, just one —\nthat you're looking forward to today.\nIt doesn't have to be big.\nA cup of coffee. A conversation. A task you actually want to do."
-    },
-    {
-      "time": 80.296,
-      "text": "Hold that image for a moment.\nLet it light something up in you."
-    },
-    {
-      "time": 90.904,
-      "text": "Now take a breath and fill yourself with intention.\nWhat kind of person do you want to be today?\nHow do you want to show up, for yourself... for others?"
-    },
-    {
-      "time": 108.352,
-      "text": "Don't overthink it.\nJust feel it."
-    },
-    {
-      "time": 116.8,
-      "text": "Roll your shoulders back.\nTake a full, energizing breath, in... hold... and out."
-    },
-    {
-      "time": 126.248,
-      "text": "Your body is waking up.\nYour mind is coming online.\nYou have everything you need, for today."
-    },
-    {
-      "time": 143.232,
-      "text": "Take one more deep breath.\nOpen your eyes. Sit with it, just another second."
-    },
-    {
-      "time": 152.8,
-      "text": "Now, go.\nThe day is yours."
-    }
-  ],
+  "duration": 186.24,
   "colors": {
     "bg": "#1a0f05",
     "c1": "rgba(245,158,11,0.8)",
     "c2": "rgba(251,191,36,0.6)",
     "c3": "rgba(244,63,94,0.4)"
-  }
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Sit tall, either in bed or in a chair.\nFeet on the floor if you can."
+    },
+    {
+      "time": 7.16,
+      "text": "Rest your hands on your knees, palms facing up."
+    },
+    {
+      "time": 14.688,
+      "text": "Close your eyes and take a big, welcoming breath in —\nas if you're breathing in the morning itself.\nHold it for just a moment."
+    },
+    {
+      "time": 27.024,
+      "text": "And release, fully."
+    },
+    {
+      "time": 34.416,
+      "text": "Again, a big inhale."
+    },
+    {
+      "time": 38.928,
+      "text": "And a full exhale."
+    },
+    {
+      "time": 43.272,
+      "text": "One more."
+    },
+    {
+      "time": 49.992,
+      "text": "Feel your spine lengthen.\nLet your chest open a little more, with each breath."
+    },
+    {
+      "time": 61.728,
+      "text": "This is a new day.\nNot the same as yesterday."
+    },
+    {
+      "time": 67.088,
+      "text": "Fresh."
+    },
+    {
+      "time": 68.76,
+      "text": "Clean."
+    },
+    {
+      "time": 70.384,
+      "text": "Yours."
+    },
+    {
+      "time": 77.032,
+      "text": "Think of one thing, just one —\nthat you're looking forward to today.\nIt doesn't have to be big.\nA cup of coffee. A conversation. A task you actually want to do."
+    },
+    {
+      "time": 94.816,
+      "text": "Hold that image for a moment.\nLet it light something up in you."
+    },
+    {
+      "time": 105.28,
+      "text": "Now take a breath and fill yourself with intention."
+    },
+    {
+      "time": 112.312,
+      "text": "What kind of person do you want to be today?\nHow do you want to show up, for yourself... for others?"
+    },
+    {
+      "time": 125.728,
+      "text": "Don't overthink it.\nJust feel it."
+    },
+    {
+      "time": 134.128,
+      "text": "Roll your shoulders back.\nTake a full, energizing breath, in."
+    },
+    {
+      "time": 140.64,
+      "text": "And hold."
+    },
+    {
+      "time": 143.36,
+      "text": "And out..."
+    },
+    {
+      "time": 148.152,
+      "text": "Your body is waking up."
+    },
+    {
+      "time": 151.856,
+      "text": "Your mind is coming online.\nYou have everything you need, for today."
+    },
+    {
+      "time": 166.944,
+      "text": "Take one more deep breath."
+    },
+    {
+      "time": 171.936,
+      "text": "Open your eyes. Sit with it, just another second."
+    },
+    {
+      "time": 179.536,
+      "text": "And now."
+    },
+    {
+      "time": 181.184,
+      "text": "Gently, go.\nThe day is yours."
+    }
+  ]
 }
