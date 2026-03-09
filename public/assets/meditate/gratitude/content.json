@@ -1,65 +1,90 @@
 {
+  "lang": "en",
   "title": "Gratitude",
   "subtitle": "Find what's already good.",
-  "duration": 167.04,
-  "cues": [
-    {
-      "time": 0,
-      "text": "Sit comfortably. Close your eyes.\nTake three slow, settling breaths, in through the nose, out through the mouth."
-    },
-    {
-      "time": 14.376,
-      "text": "Let go of any agenda for these next few minutes.\nThere's no right answer. There's no performance here."
-    },
-    {
-      "time": 27.984,
-      "text": "Start simple.\nThink of your body, something it did for you today without being asked.\nYour lungs breathed. Your heart beat. Your legs carried you."
-    },
-    {
-      "time": 44.256,
-      "text": "Just notice that.\nLet yourself feel a small flicker of appreciation."
-    },
-    {
-      "time": 55.152,
-      "text": "Now think of one person in your life who makes things a little easier, a little warmer.\nSomeone close... or someone you barely know.\nA kind stranger. A good friend."
-    },
-    {
-      "time": 72.96,
-      "text": "Hold them in your mind for a moment.\nFeel that warmth toward them."
-    },
-    {
-      "time": 83.496,
-      "text": "Now think of something small that you actually enjoy.\nThe first sip of something hot.\nSunlight through a window.\nA sound you love.\nSomething easy... and true."
-    },
-    {
-      "time": 100.296,
-      "text": "Let yourself enjoy it, right now, just in remembering."
-    },
-    {
-      "time": 109.872,
-      "text": "Notice where you feel gratitude in your body.\nSome people feel it in their chest, an opening... a warmth.\nLet it settle there."
-    },
-    {
-      "time": 125.256,
-      "text": "You don't have to be grateful for everything.\nYou don't have to pretend life is perfect.\nBut right now, in this breath —\nthere is something good."
-    },
-    {
-      "time": 139.72,
-      "text": "Breathe it in.\nLet it be real."
-    },
-    {
-      "time": 151.784,
-      "text": "Take a full breath.\nWhen you open your eyes, carry one of these moments with you, into the next hour."
-    },
-    {
-      "time": 163.464,
-      "text": "The good is already here.\nYou just looked at it."
-    }
-  ],
+  "duration": 187.056,
   "colors": {
     "bg": "#1a1005",
     "c1": "rgba(251,191,36,0.8)",
     "c2": "rgba(245,158,11,0.6)",
     "c3": "rgba(34,197,94,0.4)"
-  }
+  },
+  "cues": [
+    {
+      "time": 0,
+      "text": "Sit comfortably. Close your eyes."
+    },
+    {
+      "time": 4.184,
+      "text": "Take three slow, settling breaths, in through the nose, out through the mouth."
+    },
+    {
+      "time": 21.104,
+      "text": "Let go of any agenda for these next few minutes.\nThere's no right answer. There's no performance here."
+    },
+    {
+      "time": 34.856,
+      "text": "Start simple."
+    },
+    {
+      "time": 37.888,
+      "text": "Think of your body, something it did for you today without being asked.\nYour lungs breathed."
+    },
+    {
+      "time": 45.824,
+      "text": "Your heart beat."
+    },
+    {
+      "time": 47.928,
+      "text": "Your legs carried you."
+    },
+    {
+      "time": 55.608,
+      "text": "Just notice that.\nLet yourself feel a small flicker of appreciation."
+    },
+    {
+      "time": 66.864,
+      "text": "Now think of one person in your life who makes things a little easier, a little warmer.\nSomeone close... or someone you barely know.\nA kind stranger. A good friend."
+    },
+    {
+      "time": 84.192,
+      "text": "Hold them in your mind for a moment.\nFeel that warmth toward them."
+    },
+    {
+      "time": 94.968,
+      "text": "Now think of something small that you actually enjoy.\nThe first sip of something hot.\nSunlight through a window.\nA sound you love.\nSomething easy... and true."
+    },
+    {
+      "time": 112.704,
+      "text": "Let yourself enjoy it, right now, just in remembering."
+    },
+    {
+      "time": 122.352,
+      "text": "Notice where you feel gratitude in your body.\nSome people feel it in their chest, an opening... a warmth.\nLet it settle there."
+    },
+    {
+      "time": 137.808,
+      "text": "You don't have to be grateful for everything.\nYou don't have to pretend life is perfect.\nBut right now, in this breath —\nthere is something good."
+    },
+    {
+      "time": 152.392,
+      "text": "Breathe it in."
+    },
+    {
+      "time": 155.448,
+      "text": "Let it be real."
+    },
+    {
+      "time": 166.552,
+      "text": "Take a full breath."
+    },
+    {
+      "time": 170.872,
+      "text": "When you open your eyes, carry one of these moments with you, into the next hour."
+    },
+    {
+      "time": 180.392,
+      "text": "The good is already here.\nYou just looked at it."
+    }
+  ]
 }

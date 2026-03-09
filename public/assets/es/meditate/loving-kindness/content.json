@@ -2,7 +2,7 @@
   "lang": "es",
   "title": "Bondad Amorosa",
   "subtitle": "Ofrece calidez, primero a ti mismo.",
-  "duration": 180.264,
+  "duration": 207.408,
   "colors": {
     "bg": "#1a050f",
     "c1": "rgba(244,114,182,0.8)",
@@ -12,63 +12,107 @@
   "cues": [
     {
       "time": 0,
-      "text": "Encuentra un asiento cómodo.\nCierra los ojos.\nDeja que tus manos descansen suavemente en tu regazo."
+      "text": "Encuentra un asiento cómodo.\nCierra los ojos."
     },
     {
-      "time": 11.584,
+      "time": 5.456,
+      "text": "Deja que tus manos descansen suavemente en tu regazo."
+    },
+    {
+      "time": 13.608,
       "text": "Toma unas respiraciones tranquilas.\nSin fuerza, solo una respiración suave y natural."
     },
     {
-      "time": 24.064,
-      "text": "Lleva tu atención al centro de tu pecho, el espacio del corazón.\nSolo observa esa zona.\nRespira hacia ella... con suavidad."
+      "time": 26.136,
+      "text": "Lleva tu atención al centro de tu pecho, el espacio del corazón.\nSolo observa esa zona."
     },
     {
-      "time": 39.352,
+      "time": 34.784,
+      "text": "Respira hacia ella... con suavidad."
+    },
+    {
+      "time": 43.4,
       "text": "Ahora trae a tu mente una imagen de ti mismo, tal como eres ahora.\nNo la versión pulida.\nSolo tú... como realmente eres hoy."
     },
     {
-      "time": 54.688,
+      "time": 58.784,
       "text": "Y con calidez, ofrécete estas palabras:"
     },
     {
-      "time": 59.64,
-      "text": "Que yo esté bien.\nQue yo esté en paz.\nQue yo sea amable conmigo hoy."
+      "time": 63.76,
+      "text": "Que yo esté bien."
     },
     {
-      "time": 70.848,
+      "time": 67.128,
+      "text": "Que yo esté en paz."
+    },
+    {
+      "time": 70.64,
+      "text": "Que yo sea amable conmigo hoy."
+    },
+    {
+      "time": 78.992,
       "text": "Dílas de nuevo, despacio, sintiendo cada una."
     },
     {
-      "time": 76.184,
-      "text": "Que yo esté bien.\nQue yo esté en paz.\nQue yo sea amable conmigo hoy."
+      "time": 84.304,
+      "text": "Que yo esté bien."
     },
     {
-      "time": 87.296,
+      "time": 87.672,
+      "text": "Que yo esté en paz."
+    },
+    {
+      "time": 91.184,
+      "text": "Que yo sea amable conmigo hoy."
+    },
+    {
+      "time": 99.536,
       "text": "Si eso se siente difícil, está bien.\nSolo nota la resistencia... y respira a través de ella.\nTienes permiso para ofrecerte esto."
     },
     {
-      "time": 103.016,
+      "time": 115.256,
       "text": "Ahora trae a tu mente a alguien a quien quieres con facilidad.\nUn amigo. Un niño. Una mascota.\nSostenlo suavemente en tu conciencia."
     },
     {
-      "time": 116.976,
-      "text": "Que estés bien.\nQue estés en paz.\nQue seas feliz."
+      "time": 129.192,
+      "text": "Que estés bien."
     },
     {
-      "time": 126.672,
+      "time": 132.392,
+      "text": "Que estés en paz."
+    },
+    {
+      "time": 135.736,
+      "text": "Que seas feliz."
+    },
+    {
+      "time": 142.912,
       "text": "Deja que esa calidez se expanda —\nhacia las personas de tu vida...\npersonas que apenas conoces...\npersonas que están pasándola mal hoy...\nincluso personas que te han herido.\nNo porque lo merezcan —\nsino porque esta calidez... es tuya para dar."
     },
     {
-      "time": 148.984,
-      "text": "Que todos los seres estén bien.\nQue todos los seres estén en paz."
+      "time": 165.272,
+      "text": "Que todos los seres estén bien."
     },
     {
-      "time": 164.048,
-      "text": "Vuelve a ti mismo.\nRespira. Nota si algo ha cambiado."
+      "time": 170.696,
+      "text": "Que todos los seres estén en paz."
     },
     {
-      "time": 173.984,
-      "text": "Esto lo llevas contigo.\nSiempre está disponible.\nAbre los ojos, cuando estés listo."
+      "time": 183.264,
+      "text": "Vuelve a ti mismo.\nRespira."
+    },
+    {
+      "time": 188.256,
+      "text": "Nota si algo ha cambiado."
+    },
+    {
+      "time": 196.176,
+      "text": "Esto lo llevas contigo.\nSiempre está disponible."
+    },
+    {
+      "time": 201.872,
+      "text": "Abre los ojos, cuando estés listo."
     }
   ]
 }

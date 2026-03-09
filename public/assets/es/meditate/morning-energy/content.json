@@ -2,7 +2,7 @@
   "lang": "es",
   "title": "Energía Matutina",
   "subtitle": "Despierta con suavidad. Saluda al día.",
-  "duration": 165.024,
+  "duration": 196.92,
   "colors": {
     "bg": "#1a0f05",
     "c1": "rgba(245,158,11,0.8)",
@@ -12,55 +12,107 @@
   "cues": [
     {
       "time": 0,
-      "text": "Siéntate erguido, ya sea en la cama o en una silla.\nLos pies en el suelo si puedes.\nApoya las manos en las rodillas, con las palmas hacia arriba."
+      "text": "Siéntate erguido, ya sea en la cama o en una silla.\nLos pies en el suelo si puedes."
     },
     {
-      "time": 15.016,
-      "text": "Cierra los ojos y toma una respiración grande y acogedora —\ncomo si respiraras la mañana misma.\nSostenla un instante...\ny suéltala, completamente."
+      "time": 8.288,
+      "text": "Apoya las manos en las rodillas, con las palmas hacia arriba."
     },
     {
-      "time": 32.104,
-      "text": "De nuevo, una gran inhalación... y una exhalación completa.\nUna más."
+      "time": 16.824,
+      "text": "Cierra los ojos y toma una respiración grande y acogedora —\ncomo si respiraras la mañana misma.\nSostenla un instante."
     },
     {
-      "time": 43.216,
+      "time": 28.848,
+      "text": "Y suéltala, completamente."
+    },
+    {
+      "time": 36.768,
+      "text": "De nuevo, una gran inhalación."
+    },
+    {
+      "time": 42.096,
+      "text": "Y una exhalación completa."
+    },
+    {
+      "time": 47.04,
+      "text": "Una más."
+    },
+    {
+      "time": 53.712,
       "text": "Siente cómo tu columna se alarga.\nDeja que tu pecho se abra un poco más, con cada respiración."
     },
     {
-      "time": 56.296,
-      "text": "Este es un nuevo día.\nNo es igual que ayer.\nFresco. Limpio. Tuyo."
+      "time": 67.008,
+      "text": "Este es un nuevo día.\nNo es igual que ayer."
     },
     {
-      "time": 66.88,
+      "time": 72.296,
+      "text": "Fresco."
+    },
+    {
+      "time": 73.944,
+      "text": "Limpio."
+    },
+    {
+      "time": 75.568,
+      "text": "Tuyo."
+    },
+    {
+      "time": 82.216,
       "text": "Piensa en una cosa, solo una —\nque te ilusione de hoy.\nNo tiene que ser algo grande.\nUna taza de café. Una conversación. Una tarea que realmente quieres hacer."
     },
     {
-      "time": 84.88,
+      "time": 100.192,
       "text": "Sostén esa imagen un momento.\nDeja que encienda algo dentro de ti."
     },
     {
-      "time": 96.016,
-      "text": "Ahora toma una respiración y llénate de intención.\n¿Qué tipo de persona quieres ser hoy?\n¿Cómo quieres presentarte, ante ti mismo... ante los demás?"
+      "time": 111.256,
+      "text": "Ahora toma una respiración y llénate de intención."
     },
     {
-      "time": 113.392,
+      "time": 118.168,
+      "text": "¿Qué tipo de persona quieres ser hoy?\n¿Cómo quieres presentarte, ante ti mismo... ante los demás?"
+    },
+    {
+      "time": 131.632,
       "text": "No lo pienses demasiado.\nSolo siéntelo."
     },
     {
-      "time": 122.44,
-      "text": "Gira los hombros hacia atrás.\nToma una respiración profunda y energizante, inhala... sostén... y exhala."
+      "time": 140.608,
+      "text": "Gira los hombros hacia atrás.\nToma una respiración profunda y energizante, inhala."
     },
     {
-      "time": 134.24,
-      "text": "Tu cuerpo está despertando.\nTu mente se está activando.\nTienes todo lo que necesitas, para hoy."
+      "time": 148.872,
+      "text": "Sostén."
     },
     {
-      "time": 151.392,
-      "text": "Toma una última respiración profunda.\nAbre los ojos. Quédate con esa sensación, solo un segundo más."
+      "time": 151.52,
+      "text": "Y exhala."
     },
     {
-      "time": 163.096,
-      "text": "Ahora, ve.\nEl día es tuyo."
+      "time": 156.12,
+      "text": "Tu cuerpo está despertando."
+    },
+    {
+      "time": 160.28,
+      "text": "Tu mente se está activando.\nTienes todo lo que necesitas, para hoy."
+    },
+    {
+      "time": 175.272,
+      "text": "Toma una última respiración profunda."
+    },
+    {
+      "time": 181.176,
+      "text": "Abre los ojos. Quédate con esa sensación, solo un segundo más."
+    },
+    {
+      "time": 189.904,
+      "text": "Y ahora."
+    },
+    {
+      "time": 191.552,
+      "text": "Suavemente, ve.\nEl día es tuyo."
     }
   ]
 }

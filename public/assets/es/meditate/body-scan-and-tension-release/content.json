@@ -2,7 +2,7 @@
   "lang": "es",
   "title": "Escaneo Corporal y Liberación de Tensión",
   "subtitle": "Observa. Suelta. Vuelve a casa en tu cuerpo.",
-  "duration": 200.712,
+  "duration": 227.112,
   "colors": {
     "bg": "#051a15",
     "c1": "rgba(45,212,191,0.8)",
@@ -12,70 +12,102 @@
   "cues": [
     {
       "time": 0,
-      "text": "Acuéstate o recuéstate cómodamente.\nCierra los ojos.\nToma tres respiraciones profundas, para llegar."
+      "text": "Acuéstate o recuéstate cómodamente.\nCierra los ojos."
     },
     {
-      "time": 13.32,
+      "time": 6.032,
+      "text": "Toma tres respiraciones profundas, para llegar."
+    },
+    {
+      "time": 21.584,
       "text": "Deja que tu cuerpo esté quieto.\nVamos a recorrerlo lentamente —\nno para arreglar nada. Solo... para observar."
     },
     {
-      "time": 27.456,
+      "time": 35.432,
       "text": "Comienza por la parte alta de tu cabeza.\nNota tu cuero cabelludo.\n¿Hay tensión ahí? Solo respira hacia ella. Déjala suavizarse."
     },
     {
-      "time": 41.176,
+      "time": 49.08,
       "text": "Baja a tu frente.\nEl espacio entre tus cejas.\nLos pequeños músculos alrededor de tus ojos. Déjalos ir."
     },
     {
-      "time": 53,
+      "time": 60.784,
       "text": "Tus mejillas... tu mandíbula... tu boca.\nDeja que tus dientes se separen ligeramente.\nDeja que tu lengua se despegue del paladar."
     },
     {
-      "time": 66.288,
-      "text": "Baja hacia tu cuello.\nLos lados... la parte de atrás.\nTanta tensión vive aquí.\nInhala... y al exhalar, déjala salir."
+      "time": 74.456,
+      "text": "Baja hacia tu cuello.\nLos lados... la parte de atrás.\nTanta tensión vive aquí.\nInhala."
     },
     {
-      "time": 78.928,
-      "text": "Tus hombros.\nDéjalos caer, lejos de las orejas, hacia el suelo.\nUn poco más. Ahí."
+      "time": 83.912,
+      "text": "Y al exhalar, déjala salir."
     },
     {
-      "time": 88.928,
+      "time": 89.928,
+      "text": "Tus hombros.\nDéjalos caer, lejos de las orejas, hacia el suelo.\nUn poco más."
+    },
+    {
+      "time": 96.496,
+      "text": "Sí, justo ahí."
+    },
+    {
+      "time": 101.528,
       "text": "Baja por tus brazos —\nla parte alta... los codos... los antebrazos... las muñecas.\nTus manos. Deja que tus dedos se abran."
     },
     {
-      "time": 101.88,
+      "time": 114.504,
       "text": "Tu pecho, déjalo estar suave. Sin tensión.\nTus costillas... tus costados.\nTu vientre, déjalo subir y bajar libremente."
     },
     {
-      "time": 114.664,
+      "time": 127.288,
       "text": "Tu espalda baja.\nNota si hay algo almacenado ahí.\nRespira hacia ello... con suavidad."
     },
     {
-      "time": 125.024,
+      "time": 137.504,
       "text": "Tus caderas... tus glúteos... tu pelvis.\nDéjalos estar pesados e inmóviles."
     },
     {
-      "time": 134.64,
+      "time": 147.144,
       "text": "Tus muslos... tus rodillas.\nTus pantorrillas... tus espinillas.\nHasta llegar a tus tobillos."
     },
     {
-      "time": 145.384,
+      "time": 157.912,
       "text": "Tus pies.\nTus talones contra el suelo.\nLos dedos de tus pies, déjalos relajarse... completamente."
     },
     {
-      "time": 158.56,
-      "text": "Todo tu cuerpo, de la cabeza a los pies.\nPesado. Cálido. Quieto."
+      "time": 171.16,
+      "text": "Todo tu cuerpo, de la cabeza a los pies."
     },
     {
-      "time": 173.216,
-      "text": "Toma una última respiración profunda —\ny déjala ir... completamente."
+      "time": 176.232,
+      "text": "Tan pesado."
     },
     {
-      "time": 184.376,
-      "text": "Cuando estés listo, comienza a despertar el cuerpo suavemente.\nMueve los dedos de las manos y los pies.\nUn giro lento del cuello.\nY abre los ojos."
+      "time": 178.096,
+      "text": "Tan cálido."
     },
     {
-      "time": 199.464,
+      "time": 180.008,
+      "text": "Completamente quieto."
+    },
+    {
+      "time": 191.568,
+      "text": "Toma una última respiración profunda."
+    },
+    {
+      "time": 197.472,
+      "text": "Y déjala ir, completamente."
+    },
+    {
+      "time": 205.464,
+      "text": "Cuando estés listo, comienza a despertar el cuerpo suavemente."
+    },
+    {
+      "time": 212.168,
+      "text": "Mueve los dedos de las manos y los pies.\nUn giro lento del cuello.\nY abre los ojos."
+    },
+    {
+      "time": 222.456,
       "text": "Bienvenido de vuelta."
     }
   ]

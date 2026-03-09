@@ -2,7 +2,7 @@
   "lang": "fr",
   "title": "Scan Corporel & Libération des Tensions",
   "subtitle": "Fais le point. Relâche. Reviens dans ton corps.",
-  "duration": 203.664,
+  "duration": 227.424,
   "colors": {
     "bg": "#051a15",
     "c1": "rgba(45,212,191,0.8)",
@@ -12,70 +12,102 @@
   "cues": [
     {
       "time": 0,
-      "text": "Allonge-toi ou installe-toi confortablement.\nFerme les yeux.\nPrends trois grandes respirations, pour arriver ici."
+      "text": "Allonge-toi ou installe-toi confortablement.\nFerme les yeux."
     },
     {
-      "time": 14.352,
+      "time": 6.584,
+      "text": "Prends trois grandes respirations, pour arriver ici."
+    },
+    {
+      "time": 21.704,
       "text": "Laisse ton corps être immobile.\nNous allons le parcourir lentement —\npas pour corriger quoi que ce soit. Juste... pour observer."
     },
     {
-      "time": 30,
+      "time": 37.328,
       "text": "Commence par le sommet de ta tête.\nObserve ton cuir chevelu.\nY a-t-il de la tension là ? Respire simplement dedans. Laisse-la s'adoucir."
     },
     {
-      "time": 44.056,
+      "time": 51.36,
       "text": "Descends vers ton front.\nL'espace entre tes sourcils.\nLes petits muscles autour de tes yeux. Relâche-les."
     },
     {
-      "time": 56.048,
+      "time": 62.944,
       "text": "Tes joues... ta mâchoire... ta bouche.\nLaisse tes dents s'écarter légèrement.\nLaisse ta langue descendre du palais."
     },
     {
-      "time": 68.664,
-      "text": "Descends dans ton cou.\nLes côtés... l'arrière.\nTant de tension vit ici.\nInspire... et à l'expiration, laisse-la se libérer."
+      "time": 75.68,
+      "text": "Descends dans ton cou.\nLes côtés... l'arrière.\nTant de tension vit ici.\nInspire."
     },
     {
-      "time": 81.88,
-      "text": "Tes épaules.\nLaisse-les tomber, loin de tes oreilles, vers le sol.\nUn peu plus. Voilà."
+      "time": 84.56,
+      "text": "Et à l'expiration, laisse-la se libérer."
     },
     {
-      "time": 92.216,
+      "time": 91.464,
+      "text": "Tes épaules.\nLaisse-les tomber, loin de tes oreilles, vers le sol.\nUn peu plus."
+    },
+    {
+      "time": 98.296,
+      "text": "Oui, voilà."
+    },
+    {
+      "time": 103.112,
       "text": "Le long de tes bras —\nle haut de tes bras... les coudes... les avant-bras... les poignets.\nTes mains. Laisse tes doigts se déplier."
     },
     {
-      "time": 105.84,
+      "time": 116.688,
       "text": "Ta poitrine, laisse-la être douce. Sans retenue.\nTes côtes... tes flancs.\nTon ventre, laisse-le monter et descendre librement."
     },
     {
-      "time": 119.128,
+      "time": 129.976,
       "text": "Le bas de ton dos.\nObserve ce qui est stocké là.\nRespire dedans... doucement."
     },
     {
-      "time": 128.912,
+      "time": 139.76,
       "text": "Tes hanches... tes fessiers... ton bassin.\nLaisse-les être lourds et immobiles."
     },
     {
-      "time": 138.816,
+      "time": 149.352,
       "text": "Tes cuisses... tes genoux.\nTes mollets... tes tibias.\nJusqu'en bas, jusqu'à tes chevilles."
     },
     {
-      "time": 149.392,
+      "time": 159.928,
       "text": "Tes pieds.\nTes talons contre le sol.\nTes orteils, relâche-les... complètement."
     },
     {
-      "time": 161.104,
-      "text": "Tout ton corps, de la tête aux pieds.\nLourd. Chaud. Immobile."
+      "time": 171.736,
+      "text": "Tout ton corps, de la tête aux pieds."
     },
     {
-      "time": 175.544,
-      "text": "Prends une dernière grande inspiration —\net laisse-la partir... complètement."
+      "time": 176.544,
+      "text": "Si lourd."
     },
     {
-      "time": 187.184,
-      "text": "Quand tu es prêt, commence à réveiller doucement ton corps.\nRemue tes doigts et tes orteils.\nUn lent roulement de la nuque.\nEt ouvre les yeux."
+      "time": 178.24,
+      "text": "Si chaud."
     },
     {
-      "time": 202.032,
+      "time": 179.912,
+      "text": "Parfaitement immobile."
+    },
+    {
+      "time": 191.616,
+      "text": "Prends une dernière grande inspiration."
+    },
+    {
+      "time": 197.688,
+      "text": "Et laisse-la partir, complètement."
+    },
+    {
+      "time": 206.208,
+      "text": "Quand tu es prêt, commence à réveiller doucement ton corps."
+    },
+    {
+      "time": 212.696,
+      "text": "Remue tes doigts et tes orteils.\nUn lent roulement de la nuque.\nEt ouvre les yeux."
+    },
+    {
+      "time": 222.888,
       "text": "Bienvenue de retour."
     }
   ]

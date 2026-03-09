@@ -2,7 +2,7 @@
   "lang": "fr",
   "title": "Gratitude",
   "subtitle": "Trouve ce qui est déjà bon.",
-  "duration": 189.432,
+  "duration": 209.16,
   "colors": {
     "bg": "#1a1005",
     "c1": "rgba(251,191,36,0.8)",
@@ -12,54 +12,78 @@
   "cues": [
     {
       "time": 0,
-      "text": "Assieds-toi confortablement. Ferme les yeux.\nPrends trois lentes respirations d'ancrage, inspire par le nez, expire par la bouche."
+      "text": "Assieds-toi confortablement. Ferme les yeux."
     },
     {
-      "time": 15.744,
+      "time": 5.192,
+      "text": "Prends trois lentes respirations d'ancrage, inspire par le nez, expire par la bouche."
+    },
+    {
+      "time": 23.6,
       "text": "Laisse tomber tout objectif pour les prochaines minutes.\nIl n'y a pas de bonne réponse. Pas de performance ici."
     },
     {
-      "time": 29.784,
-      "text": "Commence simplement.\nPense à ton corps, quelque chose qu'il a fait pour toi aujourd'hui sans qu'on le lui demande.\nTes poumons ont respiré. Ton cœur a battu. Tes jambes t'ont porté."
+      "time": 38.144,
+      "text": "Commence simplement."
     },
     {
-      "time": 49.392,
+      "time": 41.632,
+      "text": "Pense à ton corps, quelque chose qu'il a fait pour toi aujourd'hui sans qu'on le lui demande.\nTes poumons ont respiré."
+    },
+    {
+      "time": 51.008,
+      "text": "Ton cœur a battu."
+    },
+    {
+      "time": 53.472,
+      "text": "Tes jambes t'ont porté."
+    },
+    {
+      "time": 60.744,
       "text": "Observe simplement cela.\nLaisse-toi ressentir une petite étincelle de reconnaissance."
     },
     {
-      "time": 61.848,
+      "time": 73.104,
       "text": "Maintenant, pense à une personne dans ta vie qui rend les choses un peu plus faciles, un peu plus chaleureuses.\nQuelqu'un de proche... ou quelqu'un que tu connais à peine.\nUn inconnu bienveillant. Un bon ami."
     },
     {
-      "time": 83.544,
+      "time": 94.728,
       "text": "Garde cette personne dans ton esprit un instant.\nRessens cette chaleur envers elle."
     },
     {
-      "time": 95.832,
+      "time": 106.968,
       "text": "Maintenant, pense à quelque chose de simple que tu apprécies vraiment.\nLa première gorgée de quelque chose de chaud.\nUn rayon de soleil à travers une fenêtre.\nUn son que tu aimes.\nQuelque chose de simple... et de vrai."
     },
     {
-      "time": 117.912,
+      "time": 129.408,
       "text": "Laisse-toi en profiter, là, maintenant, juste en t'en souvenant."
     },
     {
-      "time": 128.184,
+      "time": 139.872,
       "text": "Observe où tu ressens la gratitude dans ton corps.\nCertaines personnes la sentent dans la poitrine, une ouverture... une chaleur.\nLaisse-la s'installer là."
     },
     {
-      "time": 145.704,
+      "time": 157.272,
       "text": "Tu n'as pas à être reconnaissant pour tout.\nTu n'as pas à prétendre que la vie est parfaite.\nMais en ce moment, dans ce souffle —\nil y a quelque chose de bon."
     },
     {
-      "time": 161.776,
-      "text": "Inspire-le.\nLaisse-le être réel."
+      "time": 172.648,
+      "text": "Inspire-le."
     },
     {
-      "time": 174.008,
-      "text": "Prends une grande inspiration.\nQuand tu ouvriras les yeux, emporte un de ces moments avec toi, dans l'heure qui vient."
+      "time": 175.512,
+      "text": "Laisse-le être réel."
     },
     {
-      "time": 185.976,
+      "time": 187.12,
+      "text": "Prends une grande inspiration."
+    },
+    {
+      "time": 192.4,
+      "text": "Quand tu ouvriras les yeux, emporte un de ces moments avec toi, dans l'heure qui vient."
+    },
+    {
+      "time": 202.64,
       "text": "Le bon est déjà là.\nTu viens de le regarder."
     }
   ]

@@ -2,7 +2,7 @@
   "lang": "de",
   "title": "Fokus & Klarheit",
   "subtitle": "Lass den Lärm hinter dir. Schärfe deinen Geist.",
-  "duration": 165.048,
+  "duration": 190.368,
   "colors": {
     "bg": "#060d1a",
     "c1": "rgba(59,130,246,0.8)",
@@ -15,56 +15,100 @@
       "text": "Sitz aufrecht, Füße flach auf dem Boden, Rücken gestützt, Hände auf den Oberschenkeln.\nSchließe deine Augen."
     },
     {
-      "time": 12.232,
-      "text": "Nimm drei erdende Atemzüge.\nEin durch die Nase... aus durch den Mund."
+      "time": 12.28,
+      "text": "Nimm drei erdende Atemzüge.\nEin durch die Nase."
     },
     {
-      "time": 21.464,
-      "text": "Ein... aus."
+      "time": 18.904,
+      "text": "Aus durch den Mund."
     },
     {
-      "time": 26.136,
-      "text": "Noch einmal, ein... und aus."
+      "time": 24.224,
+      "text": "Atme ein."
     },
     {
-      "time": 34.056,
+      "time": 26.824,
+      "text": "Atme aus."
+    },
+    {
+      "time": 31.472,
+      "text": "Noch einmal, ein."
+    },
+    {
+      "time": 34.552,
+      "text": "Und aus..."
+    },
+    {
+      "time": 41.296,
       "text": "Richte deine Aufmerksamkeit auf die Mitte deiner Stirn.\nNimm diesen Raum einfach wahr.\nKeine Anstrengung nötig, nur ein sanftes Gewahrsein."
     },
     {
-      "time": 50.4,
+      "time": 57.88,
       "text": "Denke jetzt an das, was vor dir liegt.\nDie Arbeit. Die Aufgabe. Das Gespräch, das kommt.\nDenk nicht daran, wie oder wann.\nHalte einfach ein klares Bild von dem, was es ist."
     },
     {
-      "time": 69,
+      "time": 76.528,
       "text": "Mit jedem Einatmen... stell dir vor, du atmest Klarheit ein.\nSaubere, klare Luft, die deinen Geist füllt."
     },
     {
-      "time": 80.776,
+      "time": 88.28,
       "text": "Mit jedem Ausatmen... lass alles los, was gerade nicht wichtig ist.\nDie offenen Tabs. Die anderen Aufgaben. Das Rauschen im Hintergrund."
     },
     {
-      "time": 96.88,
-      "text": "Atme Klarheit ein... atme Ablenkung aus.\nAtme Fokus ein... atme Unruhe aus."
+      "time": 104.408,
+      "text": "Atme Klarheit ein."
     },
     {
-      "time": 108.376,
+      "time": 107.728,
+      "text": "Atme Ablenkung aus."
+    },
+    {
+      "time": 111.216,
+      "text": "Atme Fokus ein."
+    },
+    {
+      "time": 114.368,
+      "text": "Atme Unruhe aus."
+    },
+    {
+      "time": 121.52,
       "text": "Dein Geist weiß, wie das geht.\nEr ist dafür gemacht.\nDu richtest ihn jetzt nur... in die richtige Richtung."
     },
     {
-      "time": 122.368,
+      "time": 135.512,
       "text": "Wenn ein Gedanke dich zur Seite zieht, nimm ihn kurz wahr, dann lass ihn gehen.\nKehre zurück zu dem klaren Bild deiner Aufgabe."
     },
     {
-      "time": 136.04,
-      "text": "Spüre, wie du präsenter wirst.\nWacher. Bereit."
+      "time": 149.184,
+      "text": "Spüre, wie du präsenter wirst.\nWacher."
     },
     {
-      "time": 149.328,
-      "text": "Nimm einen vollen Atemzug.\nWährend du ausatmest, spüre, wie du ganz in diesem Moment ankommst.\nWach. Klar. Bereit."
+      "time": 152.992,
+      "text": "Ganz bereit."
     },
     {
-      "time": 161.776,
-      "text": "Öffne deine Augen.\nDu bist bereit. Fang an."
+      "time": 163.952,
+      "text": "Nimm einen vollen Atemzug."
+    },
+    {
+      "time": 168.968,
+      "text": "Während du ausatmest, spüre, wie du ganz in diesem Moment ankommst.\nGanz wach."
+    },
+    {
+      "time": 175.8,
+      "text": "Ganz klar."
+    },
+    {
+      "time": 177.592,
+      "text": "Völlig bereit."
+    },
+    {
+      "time": 182.696,
+      "text": "Öffne deine Augen.\nDu bist bereit."
+    },
+    {
+      "time": 186.264,
+      "text": "Sanft, fang an."
     }
   ]
 }

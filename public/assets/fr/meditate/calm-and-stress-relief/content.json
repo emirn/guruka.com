@@ -2,7 +2,7 @@
   "lang": "fr",
   "title": "Calme & Apaisement",
   "subtitle": "Relâche les tensions. Reviens à toi.",
-  "duration": 183.312,
+  "duration": 219.36,
   "colors": {
     "bg": "#0c0a1a",
     "c1": "rgba(99,102,241,0.8)",
@@ -12,58 +12,122 @@
   "cues": [
     {
       "time": 0,
-      "text": "Trouve une position confortable, assis ou allongé.\nLaisse tes mains se poser doucement, là où elles tombent.\nFerme les yeux... ou adoucis ton regard vers le bas."
+      "text": "Trouve une position confortable, assis ou allongé.\nLaisse tes mains se poser doucement, là où elles tombent."
     },
     {
-      "time": 16.072,
-      "text": "Prends une lente inspiration par le nez...\net laisse l'air s'échapper, par la bouche."
+      "time": 10.136,
+      "text": "Ferme les yeux... ou adoucis ton regard vers le bas."
     },
     {
-      "time": 26.48,
-      "text": "Encore une fois, inspire...\net relâche."
+      "time": 18.072,
+      "text": "Prends une lente inspiration par le nez."
     },
     {
-      "time": 33.288,
-      "text": "Une dernière fois, inspire...\net expire. Bien."
+      "time": 24.216,
+      "text": "Et laisse l'air s'échapper, par la bouche."
     },
     {
-      "time": 40.6,
-      "text": "Maintenant, laisse ta respiration trouver son propre rythme.\nTu n'as pas besoin de la contrôler.\nLaisse-la... simplement se faire."
+      "time": 31.408,
+      "text": "Encore une fois, inspire."
     },
     {
-      "time": 56.392,
+      "time": 35.184,
+      "text": "Et relâche."
+    },
+    {
+      "time": 40.072,
+      "text": "Une dernière fois, inspire."
+    },
+    {
+      "time": 44.136,
+      "text": "Et doucement, expire."
+    },
+    {
+      "time": 46.648,
+      "text": "Très bien."
+    },
+    {
+      "time": 51.32,
+      "text": "Maintenant, laisse ta respiration trouver son propre rythme."
+    },
+    {
+      "time": 57.928,
+      "text": "Tu n'as pas besoin de la contrôler.\nLaisse-la... simplement se faire."
+    },
+    {
+      "time": 69.04,
       "text": "Remarque où tu retiens de la tension en ce moment.\nPeut-être dans tes épaules. Ta mâchoire. Tes mains.\nOù que ce soit, observe simplement.\nTu n'as rien à corriger."
     },
     {
-      "time": 74.728,
+      "time": 87.352,
       "text": "À ta prochaine expiration, imagine que cette tension s'adoucit, juste un peu.\nPas disparue... juste... plus légère."
     },
     {
-      "time": 89.32,
-      "text": "Laisse tes épaules descendre.\nLaisse ta mâchoire se desserrer.\nLaisse tes mains s'ouvrir légèrement."
+      "time": 101.944,
+      "text": "Laisse tes épaules descendre."
     },
     {
-      "time": 103.12,
-      "text": "Tu es en sécurité, maintenant.\nEn cet instant, il n'y a rien à faire, rien à résoudre, rien à comprendre.\nCe moment ne te demande rien."
+      "time": 106.248,
+      "text": "Laisse ta mâchoire se desserrer."
     },
     {
-      "time": 118.864,
+      "time": 110.768,
+      "text": "Laisse tes mains s'ouvrir légèrement."
+    },
+    {
+      "time": 119.72,
+      "text": "Tu es en sécurité, maintenant."
+    },
+    {
+      "time": 124.904,
+      "text": "En cet instant, il n'y a rien à faire, rien à résoudre, rien à comprendre.\nCe moment ne te demande rien."
+    },
+    {
+      "time": 138.392,
       "text": "Si ton esprit ramène une inquiétude ou une tâche, observe-la simplement.\nDis-toi doucement : pas maintenant.\nEt reviens à ton souffle."
     },
     {
-      "time": 133.088,
-      "text": "Inspire le calme... expire la tension.\nInspire la douceur... expire le poids de la journée."
+      "time": 152.616,
+      "text": "Inspire le calme."
     },
     {
-      "time": 143.712,
-      "text": "Reste ici encore quelques respirations.\nNulle part où aller. Rien à faire. Juste ceci."
+      "time": 155.936,
+      "text": "Expire la tension."
     },
     {
-      "time": 160.12,
-      "text": "Quand tu es prêt, prends une inspiration un peu plus profonde.\nRamène doucement le mouvement, remue tes doigts, roule tes épaules.\nEt quand ça te semble juste... ouvre lentement les yeux."
+      "time": 159.376,
+      "text": "Inspire la douceur."
     },
     {
-      "time": 178.184,
+      "time": 162.816,
+      "text": "Expire le poids de la journée."
+    },
+    {
+      "time": 169,
+      "text": "Repose-toi ici encore quelques respirations."
+    },
+    {
+      "time": 174.432,
+      "text": "Nulle part où aller."
+    },
+    {
+      "time": 177.04,
+      "text": "Rien à faire."
+    },
+    {
+      "time": 179.096,
+      "text": "Juste cet instant."
+    },
+    {
+      "time": 190.44,
+      "text": "Quand tu es prêt, prends une inspiration un peu plus profonde."
+    },
+    {
+      "time": 197.904,
+      "text": "Ramène doucement le mouvement, remue tes doigts, roule tes épaules.\nEt quand ça te semble juste... ouvre lentement les yeux."
+    },
+    {
+      "time": 211.36,
       "text": "Emporte cette douceur avec toi.\nTu peux revenir ici, à tout moment."
     }
   ]

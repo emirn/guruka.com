@@ -2,7 +2,7 @@
   "lang": "pt",
   "title": "Gratidão",
   "subtitle": "Encontre o que já é bom.",
-  "duration": 173.376,
+  "duration": 191.736,
   "colors": {
     "bg": "#1a1005",
     "c1": "rgba(251,191,36,0.8)",
@@ -12,54 +12,78 @@
   "cues": [
     {
       "time": 0,
-      "text": "Sente-se confortavelmente. Feche os olhos.\nFaça três respirações lentas e acolhedoras, inspire pelo nariz, expire pela boca."
+      "text": "Sente-se confortavelmente. Feche os olhos."
     },
     {
-      "time": 15.36,
+      "time": 4.976,
+      "text": "Faça três respirações lentas e acolhedoras, inspire pelo nariz, expire pela boca."
+    },
+    {
+      "time": 23.048,
       "text": "Solte qualquer expectativa para os próximos minutos.\nNão existe resposta certa. Não há performance aqui."
     },
     {
-      "time": 29.328,
-      "text": "Comece simples.\nPense no seu corpo, algo que ele fez por você hoje sem ser pedido.\nSeus pulmões respiraram. Seu coração bateu. Suas pernas te carregaram."
+      "time": 36.872,
+      "text": "Comece simples."
     },
     {
-      "time": 46.944,
+      "time": 39.928,
+      "text": "Pense no seu corpo, algo que ele fez por você hoje sem ser pedido.\nSeus pulmões respiraram."
+    },
+    {
+      "time": 47.36,
+      "text": "Seu coração bateu."
+    },
+    {
+      "time": 49.8,
+      "text": "Suas pernas te carregaram."
+    },
+    {
+      "time": 57.816,
       "text": "Apenas perceba isso.\nDeixe-se sentir um pequeno lampejo de gratidão."
     },
     {
-      "time": 57.984,
+      "time": 69.048,
       "text": "Agora pense em uma pessoa na sua vida que torna as coisas um pouco mais fáceis, um pouco mais acolhedoras.\nAlguém próximo... ou alguém que você mal conhece.\nUm estranho gentil. Um bom amigo."
     },
     {
-      "time": 78.36,
+      "time": 89.304,
       "text": "Segure essa pessoa na mente por um momento.\nSinta esse carinho por ela."
     },
     {
-      "time": 89.448,
+      "time": 100.608,
       "text": "Agora pense em algo pequeno que você genuinamente aprecia.\nO primeiro gole de algo quente.\nA luz do sol entrando pela janela.\nUm som que você ama.\nAlgo simples... e verdadeiro."
     },
     {
-      "time": 108.84,
+      "time": 119.616,
       "text": "Permita-se apreciar, agora mesmo, só em lembrar."
     },
     {
-      "time": 118.392,
+      "time": 129.24,
       "text": "Perceba onde você sente gratidão no corpo.\nAlgumas pessoas sentem no peito, uma abertura... um calor.\nDeixe se acomodar ali."
     },
     {
-      "time": 133.776,
+      "time": 144.288,
       "text": "Você não precisa ser grato por tudo.\nNão precisa fingir que a vida é perfeita.\nMas agora, nesta respiração —\nexiste algo bom."
     },
     {
-      "time": 147.256,
-      "text": "Inspire isso.\nDeixe ser real."
+      "time": 157.6,
+      "text": "Inspire isso."
     },
     {
-      "time": 159.368,
-      "text": "Respire fundo.\nQuando abrir os olhos, leve um desses momentos com você, pela próxima hora."
+      "time": 160.656,
+      "text": "Deixe ser real."
     },
     {
-      "time": 169.536,
+      "time": 171.76,
+      "text": "Respire fundo."
+    },
+    {
+      "time": 175.768,
+      "text": "Quando abrir os olhos, leve um desses momentos com você, pela próxima hora."
+    },
+    {
+      "time": 185.048,
       "text": "O bom já está aqui.\nVocê acabou de olhar para ele."
     }
   ]

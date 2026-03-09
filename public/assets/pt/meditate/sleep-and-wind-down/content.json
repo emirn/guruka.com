@@ -2,7 +2,7 @@
   "lang": "pt",
   "title": "Sono e Relaxamento",
   "subtitle": "Deixe o dia ir. Descansar é suficiente.",
-  "duration": 179.616,
+  "duration": 204.792,
   "colors": {
     "bg": "#08061a",
     "c1": "rgba(99,102,241,0.5)",
@@ -12,66 +12,110 @@
   "cues": [
     {
       "time": 0,
-      "text": "Deite-se confortavelmente.\nDeixe os braços caírem suavemente ao lado do corpo.\nFeche os olhos."
+      "text": "Deite-se confortavelmente.\nDeixe os braços caírem suavemente ao lado do corpo."
     },
     {
-      "time": 11.176,
-      "text": "Inspire lenta e suavemente pelo nariz...\ne solte, devagar, pela boca."
+      "time": 8.048,
+      "text": "Feche os olhos."
     },
     {
-      "time": 22.264,
-      "text": "De novo, inspire...\ne uma longa... lenta... expiração.\nDeixe o corpo ficar pesado."
+      "time": 13.104,
+      "text": "Inspire lenta e suavemente pelo nariz."
     },
     {
-      "time": 34.216,
-      "text": "Você passou por mais um dia.\nO que aconteceu, já passou.\nNão há mais nada para resolver esta noite."
+      "time": 19.08,
+      "text": "E solte, devagar, pela boca."
     },
     {
-      "time": 47.8,
+      "time": 27.096,
+      "text": "De novo, inspire."
+    },
+    {
+      "time": 31.368,
+      "text": "E uma longa, lenta, expiração."
+    },
+    {
+      "time": 36.6,
+      "text": "Deixe o corpo ficar pesado."
+    },
+    {
+      "time": 44.712,
+      "text": "Você passou por mais um dia."
+    },
+    {
+      "time": 48.92,
+      "text": "O que aconteceu, já passou.\nNão há mais nada para resolver esta noite."
+    },
+    {
+      "time": 60.248,
       "text": "Sinta a superfície debaixo de você, sustentando todo o seu peso.\nDeixe-se... ser acolhido."
     },
     {
-      "time": 60.616,
+      "time": 73.04,
       "text": "Comece pelo topo da cabeça.\nPerceba o couro cabeludo... a testa. Deixe relaxar."
     },
     {
-      "time": 70.496,
+      "time": 82.92,
       "text": "Os olhos, deixe-os descansar, afundando suavemente.\nO maxilar, deixe soltar... dentes levemente separados."
     },
     {
-      "time": 82.296,
+      "time": 94.672,
       "text": "O pescoço e os ombros, deixe-os derreter para baixo.\nO peito, subindo e descendo sem nenhum esforço."
     },
     {
-      "time": 93.88,
+      "time": 106.304,
       "text": "Os braços... as mãos.\nA barriga, deixe ficar macia.\nA lombar... os quadris."
     },
     {
-      "time": 103.304,
+      "time": 115.752,
       "text": "As pernas, pesadas e quietas.\nOs pés, solte-os... completamente."
     },
     {
-      "time": 113.936,
+      "time": 126.384,
       "text": "Todo o seu corpo... está descansando agora."
     },
     {
-      "time": 123.248,
+      "time": 135.696,
       "text": "Se pensamentos vierem, tudo bem.\nApenas observe como nuvens passando por um céu tranquilo.\nEles não precisam da sua atenção. Deixe-os flutuar."
     },
     {
-      "time": 140.12,
-      "text": "Respire devagar.\nInspire... e expire.\nInspire... e expire."
+      "time": 152.568,
+      "text": "Respire devagar."
     },
     {
-      "time": 150.248,
-      "text": "Você está seguro. Está aquecido. O dia acabou.\nTudo o que resta agora... é descanso."
+      "time": 155.768,
+      "text": "Inspire."
     },
     {
-      "time": 162.584,
+      "time": 158.44,
+      "text": "E expire."
+    },
+    {
+      "time": 161.16,
+      "text": "Inspire."
+    },
+    {
+      "time": 163.76,
+      "text": "E expire."
+    },
+    {
+      "time": 170.456,
+      "text": "Você está seguro."
+    },
+    {
+      "time": 172.848,
+      "text": "Está aquecido."
+    },
+    {
+      "time": 174.952,
+      "text": "O dia acabou.\nTudo o que resta agora... é descanso."
+    },
+    {
+      "time": 184.768,
       "text": "Deixe-se flutuar.\nMais fundo e mais fundo no silêncio.\nMais suave... e mais suave."
     },
     {
-      "time": 178.752,
+      "time": 200.912,
       "text": "Durma bem."
     }
   ]

@@ -2,7 +2,7 @@
   "lang": "es",
   "title": "Sueño y Descanso",
   "subtitle": "Deja ir el día. Descansar es suficiente.",
-  "duration": 186.24,
+  "duration": 211.344,
   "colors": {
     "bg": "#08061a",
     "c1": "rgba(99,102,241,0.5)",
@@ -12,66 +12,110 @@
   "cues": [
     {
       "time": 0,
-      "text": "Acuéstate cómodamente.\nDeja que tus brazos caigan suavemente a los lados.\nCierra los ojos."
+      "text": "Acuéstate cómodamente.\nDeja que tus brazos caigan suavemente a los lados."
     },
     {
-      "time": 10.912,
-      "text": "Toma una respiración lenta y suave por la nariz...\ny déjala ir, despacio, por la boca."
+      "time": 7.664,
+      "text": "Cierra los ojos."
     },
     {
-      "time": 23.368,
-      "text": "Otra vez, inhala...\ny una larga... lenta... exhalación.\nDeja que tu cuerpo se sienta pesado."
+      "time": 12.936,
+      "text": "Toma una respiración lenta y suave por la nariz."
     },
     {
-      "time": 36.112,
-      "text": "Lograste pasar el día.\nLo que sea que haya pasado, ya terminó.\nNo hay nada más que resolver esta noche."
+      "time": 19.68,
+      "text": "Y déjala ir, despacio, por la boca."
     },
     {
-      "time": 49.984,
+      "time": 28.248,
+      "text": "Otra vez, inhala."
+    },
+    {
+      "time": 32.52,
+      "text": "Y una larga, lenta, exhalación."
+    },
+    {
+      "time": 37.8,
+      "text": "Deja que tu cuerpo se sienta pesado."
+    },
+    {
+      "time": 46.488,
+      "text": "Lograste pasar el día."
+    },
+    {
+      "time": 50.216,
+      "text": "Lo que sea que haya pasado, ya terminó.\nNo hay nada más que resolver esta noche."
+    },
+    {
+      "time": 62.336,
       "text": "Siente la superficie debajo de ti, sosteniendo todo tu peso.\nDéjate... sostener."
     },
     {
-      "time": 62.008,
+      "time": 74.36,
       "text": "Comienza por la parte alta de tu cabeza.\nNota tu cuero cabelludo... tu frente. Déjalos suavizarse."
     },
     {
-      "time": 73.4,
+      "time": 85.752,
       "text": "Tus ojos, déjalos relajarse, hundiéndose suavemente hacia atrás.\nTu mandíbula, déjala aflojarse... dientes ligeramente separados."
     },
     {
-      "time": 87.192,
+      "time": 99.496,
       "text": "Tu cuello y tus hombros, déjalos derretirse hacia abajo.\nTu pecho, déjalo subir y bajar sin ningún esfuerzo."
     },
     {
-      "time": 99.472,
+      "time": 111.776,
       "text": "Tus brazos... tus manos.\nTu vientre, déjalo estar blando.\nTu espalda baja... tus caderas."
     },
     {
-      "time": 109.976,
+      "time": 122.28,
       "text": "Tus piernas, pesadas e inmóviles.\nTus pies, déjalos ir... por completo."
     },
     {
-      "time": 121.232,
+      "time": 133.512,
       "text": "Todo tu cuerpo... está descansando ahora."
     },
     {
-      "time": 130.304,
+      "time": 142.584,
       "text": "Si llegan pensamientos, está bien.\nSolo míralos como nubes pasando por un cielo tranquilo.\nNo necesitan tu atención. Puedes dejarlos pasar."
     },
     {
-      "time": 146.936,
-      "text": "Respira despacio.\nInhala... y exhala.\nInhala... y exhala."
+      "time": 159.192,
+      "text": "Respira despacio."
     },
     {
-      "time": 156.968,
-      "text": "Estás a salvo. Estás cálido. El día terminó.\nTodo lo que queda ahora... es descanso."
+      "time": 162.488,
+      "text": "Inhala."
     },
     {
-      "time": 169.328,
+      "time": 165.088,
+      "text": "Y exhala."
+    },
+    {
+      "time": 167.784,
+      "text": "Inhala."
+    },
+    {
+      "time": 170.36,
+      "text": "Y exhala."
+    },
+    {
+      "time": 177.056,
+      "text": "Estás a salvo."
+    },
+    {
+      "time": 179.16,
+      "text": "Estás cálido."
+    },
+    {
+      "time": 181.216,
+      "text": "El día terminó.\nTodo lo que queda ahora... es descanso."
+    },
+    {
+      "time": 191.344,
       "text": "Déjate llevar.\nMás y más profundo, hacia el silencio.\nMás suave... y más suave."
     },
     {
-      "time": 185.28,
+      "time": 207.296,
       "text": "Duerme bien."
     }
   ]

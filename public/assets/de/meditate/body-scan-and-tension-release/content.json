@@ -2,7 +2,7 @@
   "lang": "de",
   "title": "Körperreise & Anspannung lösen",
   "subtitle": "Spüre hinein. Lass los. Komm in deinem Körper an.",
-  "duration": 206.352,
+  "duration": 231.432,
   "colors": {
     "bg": "#051a15",
     "c1": "rgba(45,212,191,0.8)",
@@ -12,70 +12,102 @@
   "cues": [
     {
       "time": 0,
-      "text": "Leg dich hin oder lehn dich bequem zurück.\nSchließe deine Augen.\nNimm drei tiefe Atemzüge, um anzukommen."
+      "text": "Leg dich hin oder lehn dich bequem zurück.\nSchließe deine Augen."
     },
     {
-      "time": 13.992,
+      "time": 6.992,
+      "text": "Nimm drei tiefe Atemzüge, um anzukommen."
+    },
+    {
+      "time": 22.064,
       "text": "Lass deinen Körper still werden.\nWir werden langsam durch ihn hindurch reisen —\nnicht um etwas zu reparieren. Nur... um wahrzunehmen."
     },
     {
-      "time": 29.904,
+      "time": 38.144,
       "text": "Beginne am Scheitel deines Kopfes.\nSpüre deine Kopfhaut.\nIst dort Anspannung? Atme einfach hinein. Lass sie weich werden."
     },
     {
-      "time": 42.952,
+      "time": 51.288,
       "text": "Wandere zu deiner Stirn.\nDer Raum zwischen deinen Augenbrauen.\nDie kleinen Muskeln um deine Augen. Lass sie los."
     },
     {
-      "time": 55.448,
+      "time": 63.784,
       "text": "Deine Wangen... dein Kiefer... dein Mund.\nLass deine Zähne sich leicht öffnen.\nLass deine Zunge vom Gaumen lösen."
     },
     {
-      "time": 67.896,
-      "text": "Hinunter in deinen Nacken.\nDie Seiten... der hintere Teil.\nSo viel Anspannung lebt hier.\nAtme ein... und beim Ausatmen, lass sie los."
+      "time": 76.28,
+      "text": "Hinunter in deinen Nacken.\nDie Seiten... der hintere Teil.\nSo viel Anspannung lebt hier.\nAtme ein."
     },
     {
-      "time": 81.664,
-      "text": "Deine Schultern.\nLass sie fallen, weg von den Ohren, hinunter Richtung Boden.\nNoch ein wenig weiter. So ist es gut."
+      "time": 86.528,
+      "text": "Und beim Ausatmen, lass sie los."
     },
     {
-      "time": 94.208,
+      "time": 92.928,
+      "text": "Deine Schultern.\nLass sie fallen, weg von den Ohren, hinunter Richtung Boden.\nNoch ein wenig weiter."
+    },
+    {
+      "time": 101.368,
+      "text": "So ist es gut."
+    },
+    {
+      "time": 106.472,
       "text": "Hinunter durch deine Arme —\ndeine Oberarme... Ellbogen... Unterarme... Handgelenke.\nDeine Hände. Lass deine Finger sich öffnen."
     },
     {
-      "time": 107.616,
+      "time": 119.808,
       "text": "Dein Brustkorb, lass ihn weich sein. Nicht festhalten.\nDeine Rippen... deine Seiten.\nDein Bauch, lass ihn frei atmen."
     },
     {
-      "time": 120.04,
+      "time": 132.376,
       "text": "Dein unterer Rücken.\nSpüre, was dort gespeichert ist.\nAtme hinein... sanft."
     },
     {
-      "time": 129.584,
+      "time": 141.824,
       "text": "Deine Hüften... dein Gesäß... dein Becken.\nLass sie schwer und still sein."
     },
     {
-      "time": 139.176,
+      "time": 151.416,
       "text": "Deine Oberschenkel... deine Knie.\nDeine Waden... deine Schienbeine.\nGanz hinunter bis zu deinen Knöcheln."
     },
     {
-      "time": 150.976,
+      "time": 163.24,
       "text": "Deine Füße.\nDeine Fersen auf dem Boden.\nDeine Zehen, lass sie sich entspannen... vollständig."
     },
     {
-      "time": 163.984,
-      "text": "Dein ganzer Körper, vom Scheitel bis zu den Zehen.\nSchwer. Warm. Still."
+      "time": 176.224,
+      "text": "Dein ganzer Körper, vom Scheitel bis zu den Zehen."
     },
     {
-      "time": 179.216,
-      "text": "Nimm einen letzten, vollen Atemzug —\nund lass ihn gehen... vollständig."
+      "time": 182.016,
+      "text": "So schwer."
     },
     {
-      "time": 190.472,
-      "text": "Wenn du bereit bist, wecke deinen Körper sanft auf.\nWackle mit Fingern und Zehen.\nEin langsames Rollen des Nackens.\nUnd öffne deine Augen."
+      "time": 183.832,
+      "text": "So warm."
     },
     {
-      "time": 204.912,
+      "time": 185.48,
+      "text": "Ganz still."
+    },
+    {
+      "time": 196.368,
+      "text": "Nimm einen letzten, vollen Atemzug."
+    },
+    {
+      "time": 202.008,
+      "text": "Und lass ihn gehen, vollständig."
+    },
+    {
+      "time": 210.456,
+      "text": "Wenn du bereit bist, wecke deinen Körper sanft auf."
+    },
+    {
+      "time": 216.392,
+      "text": "Wackle mit Fingern und Zehen.\nEin langsames Rollen des Nackens.\nUnd öffne deine Augen."
+    },
+    {
+      "time": 226.968,
       "text": "Willkommen zurück."
     }
   ]
