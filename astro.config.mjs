@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import { existsSync, readFileSync } from 'fs';
-import { resolve } from 'path';
+import { existsSync, readFileSync, readdirSync } from 'fs';
+import { resolve, join } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
@@ -29,6 +29,25 @@ function getSiteConfig() {
   return null;
 }
 
+// Scan public/ directory for index.html files to include in sitemap
+function getPublicSitemapUrls(siteUrl) {
+  const publicDir = './public';
+  if (!existsSync(publicDir)) return [];
+  const urls = [];
+  function walk(dir, relPath) {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        walk(join(dir, entry.name), relPath + entry.name + '/');
+      } else if (entry.name === 'index.html' && relPath !== '') {
+        const urlPath = '/' + relPath.split('/').map(s => encodeURIComponent(s)).join('/');
+        urls.push(siteUrl + urlPath);
+      }
+    }
+  }
+  walk(publicDir, '');
+  return urls.sort();
+}
+
 // https://astro.build/config
 // Note: Using object form (not function form) for defineConfig to ensure integration hooks run properly
 const siteConfig = getSiteConfig();
@@ -43,7 +62,9 @@ if (!siteName) {
 
 // Always include pagefind integration for dev server middleware
 // ogImages BEFORE validateImages so OG images exist during validation
-const integrations = [localGoogleFonts(), sitemap(), mdx(), pagefind(), ogImages(), pdfThumbnails(), validateImages(), sitemapCopy()];
+const publicSitemapUrls = getPublicSitemapUrls(siteUrl);
+const sitemapConfig = publicSitemapUrls.length > 0 ? { customPages: publicSitemapUrls } : {};
+const integrations = [...(siteConfig?.branding?.typography?.local_fonts ? [localGoogleFonts()] : []), sitemap(sitemapConfig), mdx(), pagefind(), ogImages(), pdfThumbnails(), validateImages(), sitemapCopy()];
 
 // Conditionally add React integration
 if (siteConfig?.integrations?.react) {

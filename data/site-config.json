@@ -92,7 +92,8 @@
     "google_fonts": [
       "Inter:wght@300;400;500;600;700",
       "Space+Grotesk:wght@400;500;600;700"
-    ]
+    ],
+    "local_fonts": false
   },
   "header": {
     "style": "pill",
@@ -253,6 +254,10 @@
           {
             "label": "Privacy Policy",
             "url": "/privacy/"
+          },
+          {
+            "label": "Contact Us",
+            "url": "https://docs.google.com/forms/d/e/1FAIpQLSe1ECOGIxdixwDDVyQqCgPRctD83_jqwEp-6bhysm8gu8uZKA/viewform"
           }
         ]
       }

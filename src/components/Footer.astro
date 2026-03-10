@@ -33,6 +33,11 @@ const footerLogoStyle: LogoTextStyle = (rawLogoStyle === 'bordered' || rawLogoSt
             ]}>
               {config.branding.logo.type === 'image' && config.branding.logo.image_url ? (
                 <img src={config.branding.logo.image_url} alt={config.branding.site.name} class="h-8 w-auto" />
+              ) : config.branding.logo.type === 'image+text' && config.branding.logo.image_url ? (
+                <span class="inline-flex items-center gap-2">
+                  <img src={config.branding.logo.image_url} alt="" class="h-8 w-auto" />
+                  <span>{config.branding.logo.text || config.branding.site.name}</span>
+                </span>
               ) : (
                 <span
                   class:list={[

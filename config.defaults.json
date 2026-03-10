@@ -50,7 +50,8 @@
   "typography": {
     "font_family": "Inter, system-ui, sans-serif",
     "heading_font_family": "Inter, system-ui, sans-serif",
-    "google_fonts": ["Inter:wght@400;500;600;700"]
+    "google_fonts": ["Inter:wght@400;500;600;700"],
+    "local_fonts": false
   },
   "header": {
     "style": "pill",

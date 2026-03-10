@@ -14,7 +14,7 @@ export interface SiteConfig {
       favicon_url?: string;
     };
     logo: {
-      type: 'text' | 'image';
+      type: 'text' | 'image' | 'image+text';
       text?: string;
       image_url?: string;
       /** @deprecated Use `style` instead */
@@ -57,6 +57,7 @@ export interface SiteConfig {
     font_family?: string;
     heading_font_family?: string;
     google_fonts?: string[];
+    local_fonts?: boolean;
   };
   header: {
     style?: string;
