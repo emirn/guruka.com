@@ -418,31 +418,43 @@
       el.style.opacity = '1';
       var delay = 0;
       var lines = text.split('\n');
+      var isCJK = ['ja','zh','ko'].indexOf(pathParts[0]) !== -1;
       for (var li = 0; li < lines.length; li++) {
         if (li > 0) {
           el.appendChild(document.createElement('br'));
         }
-        var words = lines[li].split(' ');
-        for (var wi = 0; wi < words.length; wi++) {
-          if (wi > 0) {
-            var space = document.createElement('span');
-            space.className = 'gkm-letter';
-            space.textContent = '\u00A0';
-            space.style.animationDelay = delay + 'ms';
-            el.appendChild(space);
-            delay += 20;
-          }
-          var wordSpan = document.createElement('span');
-          wordSpan.className = 'gkm-word';
-          for (var ci = 0; ci < words[wi].length; ci++) {
+        if (isCJK) {
+          for (var ci = 0; ci < lines[li].length; ci++) {
             var letterSpan = document.createElement('span');
             letterSpan.className = 'gkm-letter';
-            letterSpan.textContent = words[wi][ci];
+            letterSpan.textContent = lines[li][ci];
             letterSpan.style.animationDelay = delay + 'ms';
-            wordSpan.appendChild(letterSpan);
+            el.appendChild(letterSpan);
             delay += 65;
           }
-          el.appendChild(wordSpan);
+        } else {
+          var words = lines[li].split(' ');
+          for (var wi = 0; wi < words.length; wi++) {
+            if (wi > 0) {
+              var space = document.createElement('span');
+              space.className = 'gkm-letter';
+              space.textContent = '\u00A0';
+              space.style.animationDelay = delay + 'ms';
+              el.appendChild(space);
+              delay += 20;
+            }
+            var wordSpan = document.createElement('span');
+            wordSpan.className = 'gkm-word';
+            for (var ci = 0; ci < words[wi].length; ci++) {
+              var letterSpan = document.createElement('span');
+              letterSpan.className = 'gkm-letter';
+              letterSpan.textContent = words[wi][ci];
+              letterSpan.style.animationDelay = delay + 'ms';
+              wordSpan.appendChild(letterSpan);
+              delay += 65;
+            }
+            el.appendChild(wordSpan);
+          }
         }
       }
     }

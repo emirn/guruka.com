@@ -141,7 +141,11 @@ export function getEffectiveNavLinks(config: SiteConfig, sections?: SectionConfi
     .filter((s) => s.show_in_nav)
     .map((s) => ({ label: s.label, url: getSectionUrl(s) }));
 
-  if (sectionNavLinks.length === 0) return manualLinks;
+  const catalogNavLinks = (config.catalogs || [])
+    .filter((c) => c.show_in_nav)
+    .map((c) => ({ label: c.label, url: `/${c.path}/` }));
+
+  if (sectionNavLinks.length === 0 && catalogNavLinks.length === 0) return manualLinks;
 
   // Find "Home" link index to insert after it
   const homeIndex = manualLinks.findIndex(
@@ -152,7 +156,7 @@ export function getEffectiveNavLinks(config: SiteConfig, sections?: SectionConfi
   const before = homeIndex >= 0 ? manualLinks.slice(0, homeIndex + 1) : [];
   const after = homeIndex >= 0 ? manualLinks.slice(homeIndex + 1) : manualLinks;
 
-  const merged = [...before, ...sectionNavLinks, ...after];
+  const merged = [...before, ...sectionNavLinks, ...catalogNavLinks, ...after];
 
   // Deduplicate by URL (keep first occurrence)
   const seen = new Set<string>();

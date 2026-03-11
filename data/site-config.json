@@ -350,6 +350,7 @@
     "generate_thumbnail": false,
     "generate_thumbnail_max_size": 200
   },
+  "catalogs": [],
   "sections": [
     {
       "id": "blog",

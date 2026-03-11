@@ -1,0 +1,57 @@
+---
+import { getConfig } from '../lib/config';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CatalogGrid from '../components/CatalogGrid.astro';
+import CatalogItemDetail from '../components/CatalogItemDetail.astro';
+import { getCatalogs, getCatalogItems, getItemSlug } from '../lib/catalogs';
+
+export async function getStaticPaths() {
+  const config = getConfig();
+  const catalogs = getCatalogs(config);
+  if (catalogs.length === 0) return [];
+
+  const paths = [];
+
+  for (const catalog of catalogs) {
+    const items = await getCatalogItems(catalog.id);
+
+    // Listing page
+    paths.push({
+      params: { catalogPath: catalog.path },
+      props: { type: 'listing', catalog, items, config },
+    });
+
+    // Detail pages
+    for (const item of items) {
+      const itemSlug = getItemSlug(item.slug);
+      paths.push({
+        params: { catalogPath: `${catalog.path}/${itemSlug}` },
+        props: { type: 'detail', catalog, item, config },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { type, catalog, items, item, config: propConfig } = Astro.props;
+const config = propConfig || getConfig();
+---
+
+{type === 'listing' ? (
+  <BaseLayout
+    title={catalog.label}
+    description={catalog.description}
+    canonical={`${config.branding.site.url}/${catalog.path}/`}
+  >
+    <CatalogGrid catalog={catalog} items={items} config={config} />
+  </BaseLayout>
+) : (
+  <BaseLayout
+    title={`${item.data.title} | ${catalog.label}`}
+    description={item.data.description}
+    canonical={`${config.branding.site.url}/${catalog.path}/${getItemSlug(item.slug)}/`}
+  >
+    <CatalogItemDetail item={item} catalog={catalog} config={config} />
+  </BaseLayout>
+)}
