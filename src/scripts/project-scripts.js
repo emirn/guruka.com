@@ -325,7 +325,7 @@
     var state = 'idle';
     var meditateBase = '/meditate/';
     var pathParts = window.location.pathname.split('/').filter(Boolean);
-    var knownLangs = ['en','es','de','fr','pt','ja'];
+    var knownLangs = ['en','es','de','fr','pt','ja','ko'];
     if (knownLangs.indexOf(pathParts[0]) !== -1 && pathParts[0] !== 'en') {
       meditateBase = '/' + pathParts[0] + '/meditate/';
     }
