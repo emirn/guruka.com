@@ -2,7 +2,7 @@
   "lang": "es",
   "title": "Energía Matutina",
   "subtitle": "Despierta con suavidad. Saluda al día.",
-  "duration": 196.92,
+  "duration": 258.768,
   "colors": {
     "bg": "#1a0f05",
     "c1": "rgba(245,158,11,0.8)",
@@ -11,107 +11,107 @@
   },
   "cues": [
     {
-      "time": 0,
+      "time": 2,
       "text": "Siéntate erguido, ya sea en la cama o en una silla.\nLos pies en el suelo si puedes."
     },
     {
-      "time": 8.288,
+      "time": 13.384,
       "text": "Apoya las manos en las rodillas, con las palmas hacia arriba."
     },
     {
-      "time": 16.824,
-      "text": "Cierra los ojos y toma una respiración grande y acogedora —\ncomo si respiraras la mañana misma.\nSostenla un instante."
+      "time": 23.168,
+      "text": "Cierra los ojos y toma una respiración grande y acogedora,\ncomo si respiraras la mañana misma.\nSostenla un instante."
     },
     {
-      "time": 28.848,
+      "time": 39.752,
       "text": "Y suéltala, completamente."
     },
     {
-      "time": 36.768,
+      "time": 50.192,
       "text": "De nuevo, una gran inhalación."
     },
     {
-      "time": 42.096,
+      "time": 57.08,
       "text": "Y una exhalación completa."
     },
     {
-      "time": 47.04,
+      "time": 65.144,
       "text": "Una más."
     },
     {
-      "time": 53.712,
+      "time": 74.432,
       "text": "Siente cómo tu columna se alarga.\nDeja que tu pecho se abra un poco más, con cada respiración."
     },
     {
-      "time": 67.008,
+      "time": 91.328,
       "text": "Este es un nuevo día.\nNo es igual que ayer."
     },
     {
-      "time": 72.296,
+      "time": 98.08,
       "text": "Fresco."
     },
     {
-      "time": 73.944,
+      "time": 100.352,
       "text": "Limpio."
     },
     {
-      "time": 75.568,
+      "time": 103.656,
       "text": "Tuyo."
     },
     {
-      "time": 82.216,
-      "text": "Piensa en una cosa, solo una —\nque te ilusione de hoy.\nNo tiene que ser algo grande.\nUna taza de café. Una conversación. Una tarea que realmente quieres hacer."
+      "time": 111.048,
+      "text": "Piensa en una cosa, solo una,\nque te ilusione de hoy.\nNo tiene que ser algo grande.\nUna taza de café. Una conversación. Una tarea que realmente quieres hacer."
     },
     {
-      "time": 100.192,
+      "time": 132.888,
       "text": "Sostén esa imagen un momento.\nDeja que encienda algo dentro de ti."
     },
     {
-      "time": 111.256,
+      "time": 145.704,
       "text": "Ahora toma una respiración y llénate de intención."
     },
     {
-      "time": 118.168,
+      "time": 155.328,
       "text": "¿Qué tipo de persona quieres ser hoy?\n¿Cómo quieres presentarte, ante ti mismo... ante los demás?"
     },
     {
-      "time": 131.632,
+      "time": 170.04,
       "text": "No lo pienses demasiado.\nSolo siéntelo."
     },
     {
-      "time": 140.608,
+      "time": 183.528,
       "text": "Gira los hombros hacia atrás.\nToma una respiración profunda y energizante, inhala."
     },
     {
-      "time": 148.872,
+      "time": 195.152,
       "text": "Sostén."
     },
     {
-      "time": 151.52,
+      "time": 198.664,
       "text": "Y exhala."
     },
     {
-      "time": 156.12,
+      "time": 204.68,
       "text": "Tu cuerpo está despertando."
     },
     {
-      "time": 160.28,
+      "time": 210.448,
       "text": "Tu mente se está activando.\nTienes todo lo que necesitas, para hoy."
     },
     {
-      "time": 175.272,
+      "time": 228.368,
       "text": "Toma una última respiración profunda."
     },
     {
-      "time": 181.176,
+      "time": 235.256,
       "text": "Abre los ojos. Quédate con esa sensación, solo un segundo más."
     },
     {
-      "time": 189.904,
+      "time": 247.536,
       "text": "Y ahora."
     },
     {
-      "time": 191.552,
+      "time": 249.928,
       "text": "Suavemente, ve.\nEl día es tuyo."
     }
   ]

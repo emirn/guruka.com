@@ -2,7 +2,7 @@
   "lang": "es",
   "title": "Bondad Amorosa",
   "subtitle": "Ofrece calidez, primero a ti mismo.",
-  "duration": 207.408,
+  "duration": 275.688,
   "colors": {
     "bg": "#1a050f",
     "c1": "rgba(244,114,182,0.8)",
@@ -11,107 +11,107 @@
   },
   "cues": [
     {
-      "time": 0,
+      "time": 2,
       "text": "Encuentra un asiento cómodo.\nCierra los ojos."
     },
     {
-      "time": 5.456,
+      "time": 9.544,
       "text": "Deja que tus manos descansen suavemente en tu regazo."
     },
     {
-      "time": 13.608,
+      "time": 19.808,
       "text": "Toma unas respiraciones tranquilas.\nSin fuerza, solo una respiración suave y natural."
     },
     {
-      "time": 26.136,
+      "time": 35.432,
       "text": "Lleva tu atención al centro de tu pecho, el espacio del corazón.\nSolo observa esa zona."
     },
     {
-      "time": 34.784,
+      "time": 46.312,
       "text": "Respira hacia ella... con suavidad."
     },
     {
-      "time": 43.4,
+      "time": 57.856,
       "text": "Ahora trae a tu mente una imagen de ti mismo, tal como eres ahora.\nNo la versión pulida.\nSolo tú... como realmente eres hoy."
     },
     {
-      "time": 58.784,
+      "time": 79.336,
       "text": "Y con calidez, ofrécete estas palabras:"
     },
     {
-      "time": 63.76,
+      "time": 87.864,
       "text": "Que yo esté bien."
     },
     {
-      "time": 67.128,
+      "time": 92.96,
       "text": "Que yo esté en paz."
     },
     {
-      "time": 70.64,
+      "time": 97.936,
       "text": "Que yo sea amable conmigo hoy."
     },
     {
-      "time": 78.992,
+      "time": 109.288,
       "text": "Dílas de nuevo, despacio, sintiendo cada una."
     },
     {
-      "time": 84.304,
+      "time": 117.552,
       "text": "Que yo esté bien."
     },
     {
-      "time": 87.672,
+      "time": 122.576,
       "text": "Que yo esté en paz."
     },
     {
-      "time": 91.184,
+      "time": 128.968,
       "text": "Que yo sea amable conmigo hoy."
     },
     {
-      "time": 99.536,
+      "time": 139.288,
       "text": "Si eso se siente difícil, está bien.\nSolo nota la resistencia... y respira a través de ella.\nTienes permiso para ofrecerte esto."
     },
     {
-      "time": 115.256,
+      "time": 157.288,
       "text": "Ahora trae a tu mente a alguien a quien quieres con facilidad.\nUn amigo. Un niño. Una mascota.\nSostenlo suavemente en tu conciencia."
     },
     {
-      "time": 129.192,
+      "time": 174.68,
       "text": "Que estés bien."
     },
     {
-      "time": 132.392,
+      "time": 178.792,
       "text": "Que estés en paz."
     },
     {
-      "time": 135.736,
+      "time": 184.632,
       "text": "Que seas feliz."
     },
     {
-      "time": 142.912,
-      "text": "Deja que esa calidez se expanda —\nhacia las personas de tu vida...\npersonas que apenas conoces...\npersonas que están pasándola mal hoy...\nincluso personas que te han herido.\nNo porque lo merezcan —\nsino porque esta calidez... es tuya para dar."
+      "time": 194.832,
+      "text": "Deja que esa calidez se expanda,\nhacia las personas de tu vida...\npersonas que apenas conoces...\npersonas que están pasándola mal hoy...\nincluso personas que te han herido.\nNo porque lo merezcan,\nsino porque esta calidez... es tuya para dar."
     },
     {
-      "time": 165.272,
+      "time": 222.184,
       "text": "Que todos los seres estén bien."
     },
     {
-      "time": 170.696,
+      "time": 228.52,
       "text": "Que todos los seres estén en paz."
     },
     {
-      "time": 183.264,
+      "time": 243.2,
       "text": "Vuelve a ti mismo.\nRespira."
     },
     {
-      "time": 188.256,
+      "time": 250.52,
       "text": "Nota si algo ha cambiado."
     },
     {
-      "time": 196.176,
+      "time": 260.6,
       "text": "Esto lo llevas contigo.\nSiempre está disponible."
     },
     {
-      "time": 201.872,
+      "time": 268.384,
       "text": "Abre los ojos, cuando estés listo."
     }
   ]

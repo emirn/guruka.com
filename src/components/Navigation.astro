@@ -324,15 +324,21 @@ const logoStyle = getLogoTextStyle(config);
     a.setAttribute('href', prefix + href);
   });
   // Update language dropdown button text
-  document.querySelectorAll('.nav-dropdown button, .mobile-nav-dropdown button').forEach(function(btn) {
-    var text = btn.textContent || '';
-    if (text.match(/🌐/)) {
-      btn.childNodes.forEach(function(node) {
-        if (node.nodeType === 3 && node.textContent.trim().match(/🌐/)) {
-          node.textContent = node.textContent.replace(/[A-Z]{2}/, currentLang.toUpperCase());
-        }
-      });
-    }
+  document.querySelectorAll('.nav-dropdown, .mobile-nav-dropdown').forEach(function(dd) {
+    var isLangDropdown = false;
+    dd.querySelectorAll('a').forEach(function(a) {
+      var href = a.getAttribute('href') || '';
+      var m = href.match(/^\/([a-z]{2})\/$/);
+      if (m && i18nLangs.indexOf(m[1]) !== -1) isLangDropdown = true;
+    });
+    if (!isLangDropdown) return;
+    var btn = dd.querySelector('button');
+    if (!btn) return;
+    btn.childNodes.forEach(function(node) {
+      if (node.nodeType === 3 && node.textContent.trim().match(/^[A-Z]{2}$/)) {
+        node.textContent = node.textContent.replace(/[A-Z]{2}/, currentLang.toUpperCase());
+      }
+    });
   });
   // Language child links: maintain current page path
   var pathWithoutLang = '/' + segments.slice(1).join('/');

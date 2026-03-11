@@ -2,7 +2,7 @@
   "lang": "es",
   "title": "Sueño y Descanso",
   "subtitle": "Deja ir el día. Descansar es suficiente.",
-  "duration": 211.344,
+  "duration": 287.616,
   "colors": {
     "bg": "#08061a",
     "c1": "rgba(99,102,241,0.5)",
@@ -11,111 +11,111 @@
   },
   "cues": [
     {
-      "time": 0,
+      "time": 2,
       "text": "Acuéstate cómodamente.\nDeja que tus brazos caigan suavemente a los lados."
     },
     {
-      "time": 7.664,
+      "time": 12.952,
       "text": "Cierra los ojos."
     },
     {
-      "time": 12.936,
+      "time": 20.168,
       "text": "Toma una respiración lenta y suave por la nariz."
     },
     {
-      "time": 19.68,
+      "time": 29.144,
       "text": "Y déjala ir, despacio, por la boca."
     },
     {
-      "time": 28.248,
+      "time": 40.928,
       "text": "Otra vez, inhala."
     },
     {
-      "time": 32.52,
+      "time": 46.352,
       "text": "Y una larga, lenta, exhalación."
     },
     {
-      "time": 37.8,
+      "time": 54.272,
       "text": "Deja que tu cuerpo se sienta pesado."
     },
     {
-      "time": 46.488,
+      "time": 64.904,
       "text": "Lograste pasar el día."
     },
     {
-      "time": 50.216,
+      "time": 69.88,
       "text": "Lo que sea que haya pasado, ya terminó.\nNo hay nada más que resolver esta noche."
     },
     {
-      "time": 62.336,
+      "time": 83.992,
       "text": "Siente la superficie debajo de ti, sosteniendo todo tu peso.\nDéjate... sostener."
     },
     {
-      "time": 74.36,
+      "time": 99.856,
       "text": "Comienza por la parte alta de tu cabeza.\nNota tu cuero cabelludo... tu frente. Déjalos suavizarse."
     },
     {
-      "time": 85.752,
+      "time": 114.824,
       "text": "Tus ojos, déjalos relajarse, hundiéndose suavemente hacia atrás.\nTu mandíbula, déjala aflojarse... dientes ligeramente separados."
     },
     {
-      "time": 99.496,
+      "time": 133.512,
       "text": "Tu cuello y tus hombros, déjalos derretirse hacia abajo.\nTu pecho, déjalo subir y bajar sin ningún esfuerzo."
     },
     {
-      "time": 111.776,
+      "time": 149.392,
       "text": "Tus brazos... tus manos.\nTu vientre, déjalo estar blando.\nTu espalda baja... tus caderas."
     },
     {
-      "time": 122.28,
+      "time": 165.2,
       "text": "Tus piernas, pesadas e inmóviles.\nTus pies, déjalos ir... por completo."
     },
     {
-      "time": 133.512,
+      "time": 180.704,
       "text": "Todo tu cuerpo... está descansando ahora."
     },
     {
-      "time": 142.584,
+      "time": 191.864,
       "text": "Si llegan pensamientos, está bien.\nSolo míralos como nubes pasando por un cielo tranquilo.\nNo necesitan tu atención. Puedes dejarlos pasar."
     },
     {
-      "time": 159.192,
+      "time": 212.312,
       "text": "Respira despacio."
     },
     {
-      "time": 162.488,
+      "time": 217.408,
       "text": "Inhala."
     },
     {
-      "time": 165.088,
+      "time": 221.472,
       "text": "Y exhala."
     },
     {
-      "time": 167.784,
+      "time": 225.344,
       "text": "Inhala."
     },
     {
-      "time": 170.36,
+      "time": 229.72,
       "text": "Y exhala."
     },
     {
-      "time": 177.056,
+      "time": 239.92,
       "text": "Estás a salvo."
     },
     {
-      "time": 179.16,
+      "time": 243.656,
       "text": "Estás cálido."
     },
     {
-      "time": 181.216,
+      "time": 248.304,
       "text": "El día terminó.\nTodo lo que queda ahora... es descanso."
     },
     {
-      "time": 191.344,
+      "time": 261.048,
       "text": "Déjate llevar.\nMás y más profundo, hacia el silencio.\nMás suave... y más suave."
     },
     {
-      "time": 207.296,
+      "time": 280.984,
       "text": "Duerme bien."
     }
   ]

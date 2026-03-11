@@ -2,7 +2,7 @@
   "lang": "en",
   "title": "Morning Energy",
   "subtitle": "Wake up gently. Greet the day.",
-  "duration": 186.24,
+  "duration": 243.984,
   "colors": {
     "bg": "#1a0f05",
     "c1": "rgba(245,158,11,0.8)",
@@ -11,107 +11,107 @@
   },
   "cues": [
     {
-      "time": 0,
+      "time": 2,
       "text": "Sit tall, either in bed or in a chair.\nFeet on the floor if you can."
     },
     {
-      "time": 7.16,
+      "time": 10.696,
       "text": "Rest your hands on your knees, palms facing up."
     },
     {
-      "time": 14.688,
-      "text": "Close your eyes and take a big, welcoming breath in —\nas if you're breathing in the morning itself.\nHold it for just a moment."
+      "time": 19.808,
+      "text": "Close your eyes and take a big, welcoming breath in,\nas if you're breathing in the morning itself.\nHold it for just a moment."
     },
     {
-      "time": 27.024,
+      "time": 34.616,
       "text": "And release, fully."
     },
     {
-      "time": 34.416,
+      "time": 43.64,
       "text": "Again, a big inhale."
     },
     {
-      "time": 38.928,
+      "time": 51.44,
       "text": "And a full exhale."
     },
     {
-      "time": 43.272,
+      "time": 56.984,
       "text": "One more."
     },
     {
-      "time": 49.992,
+      "time": 66.272,
       "text": "Feel your spine lengthen.\nLet your chest open a little more, with each breath."
     },
     {
-      "time": 61.728,
+      "time": 81.344,
       "text": "This is a new day.\nNot the same as yesterday."
     },
     {
-      "time": 67.088,
+      "time": 88.336,
       "text": "Fresh."
     },
     {
-      "time": 68.76,
+      "time": 91.04,
       "text": "Clean."
     },
     {
-      "time": 70.384,
+      "time": 94.536,
       "text": "Yours."
     },
     {
-      "time": 77.032,
-      "text": "Think of one thing, just one —\nthat you're looking forward to today.\nIt doesn't have to be big.\nA cup of coffee. A conversation. A task you actually want to do."
+      "time": 101.928,
+      "text": "Think of one thing, just one,\nthat you're looking forward to today.\nIt doesn't have to be big.\nA cup of coffee. A conversation. A task you actually want to do."
     },
     {
-      "time": 94.816,
+      "time": 122.856,
       "text": "Hold that image for a moment.\nLet it light something up in you."
     },
     {
-      "time": 105.28,
+      "time": 135.744,
       "text": "Now take a breath and fill yourself with intention."
     },
     {
-      "time": 112.312,
+      "time": 144.168,
       "text": "What kind of person do you want to be today?\nHow do you want to show up, for yourself... for others?"
     },
     {
-      "time": 125.728,
+      "time": 159.12,
       "text": "Don't overthink it.\nJust feel it."
     },
     {
-      "time": 134.128,
+      "time": 170.28,
       "text": "Roll your shoulders back.\nTake a full, energizing breath, in."
     },
     {
-      "time": 140.64,
+      "time": 178.064,
       "text": "And hold."
     },
     {
-      "time": 143.36,
+      "time": 183.952,
       "text": "And out..."
     },
     {
-      "time": 148.152,
+      "time": 190.016,
       "text": "Your body is waking up."
     },
     {
-      "time": 151.856,
+      "time": 197.248,
       "text": "Your mind is coming online.\nYou have everything you need, for today."
     },
     {
-      "time": 166.944,
+      "time": 214.496,
       "text": "Take one more deep breath."
     },
     {
-      "time": 171.936,
+      "time": 221.144,
       "text": "Open your eyes. Sit with it, just another second."
     },
     {
-      "time": 179.536,
+      "time": 232.2,
       "text": "And now."
     },
     {
-      "time": 181.184,
+      "time": 235.864,
       "text": "Gently, go.\nThe day is yours."
     }
   ]

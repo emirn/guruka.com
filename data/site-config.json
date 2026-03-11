@@ -116,32 +116,36 @@
         "url": "/blog/"
       },
       {
-        "label": "🌐 EN",
+        "label": "EN",
         "url": "#",
         "children": [
           {
-            "label": "🇬🇧 English",
+            "label": "English",
             "url": "/"
           },
           {
-            "label": "🇪🇸 Español",
+            "label": "Español",
             "url": "/es/"
           },
           {
-            "label": "🇩🇪 Deutsch",
+            "label": "Deutsch",
             "url": "/de/"
           },
           {
-            "label": "🇫🇷 Français",
+            "label": "Français",
             "url": "/fr/"
           },
           {
-            "label": "🇧🇷 Português",
+            "label": "Português",
             "url": "/pt/"
           },
           {
-            "label": "🇯🇵 日本語",
+            "label": "日本語",
             "url": "/ja/"
+          },
+          {
+            "label": "Русский",
+            "url": "/ru/"
           }
         ]
       }
@@ -397,6 +401,10 @@
       {
         "code": "ja",
         "label": "日本語"
+      },
+      {
+        "code": "ru",
+        "label": "Русский"
       }
     ]
   }
