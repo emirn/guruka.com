@@ -2,7 +2,7 @@
   "lang": "es",
   "title": "Calma y Alivio del Estrés",
   "subtitle": "Libera la tensión. Vuelve a ti.",
-  "duration": 211.848,
+  "duration": 297.624,
   "colors": {
     "bg": "#0c0a1a",
     "c1": "rgba(99,102,241,0.8)",
@@ -11,123 +11,123 @@
   },
   "cues": [
     {
-      "time": 0,
+      "time": 2,
       "text": "Encuentra una posición cómoda, sentado o acostado.\nDeja que tus manos descansen suavemente donde caigan."
     },
     {
-      "time": 9.872,
+      "time": 14.488,
       "text": "Cierra los ojos... o suaviza la mirada hacia abajo."
     },
     {
-      "time": 17.736,
+      "time": 24.704,
       "text": "Toma una respiración lenta por la nariz."
     },
     {
-      "time": 23.784,
+      "time": 32.456,
       "text": "Y déjala ir, por la boca."
     },
     {
-      "time": 29.464,
+      "time": 40.656,
       "text": "Otra vez, inhala."
     },
     {
-      "time": 32.736,
+      "time": 46.304,
       "text": "Y suelta."
     },
     {
-      "time": 37.432,
+      "time": 53.76,
       "text": "Una vez más, inhala."
     },
     {
-      "time": 40.92,
+      "time": 59.168,
       "text": "Y suavemente, exhala."
     },
     {
-      "time": 43.48,
+      "time": 64.968,
       "text": "Muy bien."
     },
     {
-      "time": 48.176,
+      "time": 70.72,
       "text": "Ahora deja que tu respiración encuentre su propio ritmo natural."
     },
     {
-      "time": 55.168,
+      "time": 80.448,
       "text": "No necesitas controlarla.\nSolo... déjala fluir."
     },
     {
-      "time": 64.648,
+      "time": 93.504,
       "text": "Nota dónde estás guardando tensión en este momento.\nTal vez en los hombros. En la mandíbula. En las manos.\nDonde sea que esté, solo obsérvala.\nNo tienes que arreglar nada."
     },
     {
-      "time": 83.464,
+      "time": 118.464,
       "text": "Con tu próxima exhalación, imagina que esa tensión se ablanda, solo un poco.\nNo desaparece... solo... se aligera."
     },
     {
-      "time": 97.888,
+      "time": 138.48,
       "text": "Deja caer los hombros."
     },
     {
-      "time": 101.64,
+      "time": 144.728,
       "text": "Suelta la mandíbula."
     },
     {
-      "time": 105.176,
+      "time": 149.152,
       "text": "Abre ligeramente las manos."
     },
     {
-      "time": 113.24,
+      "time": 159.472,
       "text": "Estás a salvo ahora mismo."
     },
     {
-      "time": 118.304,
+      "time": 165.688,
       "text": "En este momento, no hay nada que hacer, nada que resolver, nada que descifrar.\nEste momento no te pide nada."
     },
     {
-      "time": 132.344,
+      "time": 185.224,
       "text": "Si tu mente trae una preocupación o una tarea pendiente, solo obsérvala.\nDite suavemente: ahora no.\nY vuelve a tu respiración."
     },
     {
-      "time": 145.92,
+      "time": 205.496,
       "text": "Inhala calma."
     },
     {
-      "time": 148.928,
+      "time": 210.232,
       "text": "Exhala tensión."
     },
     {
-      "time": 152.152,
+      "time": 218.256,
       "text": "Inhala ligereza."
     },
     {
-      "time": 155.376,
+      "time": 223.952,
       "text": "Exhala el peso del día."
     },
     {
-      "time": 160.888,
+      "time": 232.032,
       "text": "Descansa aquí unas respiraciones más."
     },
     {
-      "time": 165.792,
+      "time": 238.352,
       "text": "Sin lugar adonde ir."
     },
     {
-      "time": 168.28,
+      "time": 242.928,
       "text": "Sin nada que hacer."
     },
     {
-      "time": 170.792,
+      "time": 247.264,
       "text": "Solo este momento."
     },
     {
-      "time": 182.208,
+      "time": 260.792,
       "text": "Cuando estés listo, toma una respiración un poco más profunda."
     },
     {
-      "time": 190.032,
+      "time": 269.864,
       "text": "Comienza a traer movimiento suave de vuelta... mueve los dedos, gira los hombros.\nY cuando se sienta bien... abre los ojos lentamente."
     },
     {
-      "time": 203.92,
+      "time": 287.568,
       "text": "Lleva esta suavidad contigo.\nPuedes volver aquí, cuando quieras."
     }
   ]

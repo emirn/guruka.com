@@ -17,8 +17,8 @@ keywords: "brain training, cognitive science, neuroscience, memory improvement, 
 <p>Our <a href="/games/">games</a> at GURUKA are based on decades of cognitive psychology research. Here's what the science actually says about brain training and how to get the most out of your practice.</p>
 
 <h2>Evidence-Based Approach</h2>
-<p>GURUKA's games are designed based on well-established cognitive training paradigms from neuroscience research. Each game targets specific cognitive functions that have been shown to be trainable under controlled conditions.</p>
-<p>While the field of cognitive training continues to evolve, we've selected tasks with the strongest evidence for producing measurable improvements in trained abilities.</p>
+<p>GURUKA's games are designed based on well-established cognitive training paradigms from neuroscience research. Each game targets specific cognitive functions that researchers have explored under controlled conditions.</p>
+<p>While the field of cognitive training continues to evolve, we've selected tasks with encouraging evidence suggesting potential improvements in trained abilities.</p>
 
 <h2>Research Behind Each Game</h2>
 
@@ -26,16 +26,16 @@ keywords: "brain training, cognitive science, neuroscience, memory improvement, 
 <p>Based on the n-back paradigm, one of the most researched cognitive training tasks.</p>
 <p><strong>Key Research:</strong></p>
 <ul>
-<li><strong>Jaeggi et al. (2008)</strong> found that n-back training can improve fluid intelligence, with benefits transferring to novel tasks. <a href="https://doi.org/10.1073/pnas.0801268105">DOI: 10.1073/pnas.0801268105</a></li>
-<li><strong>Au et al. (2015)</strong> meta-analysis showed consistent improvements in working memory from n-back training. <a href="https://doi.org/10.1037/xge0000009">DOI: 10.1037/xge0000009</a></li>
+<li><strong>Jaeggi et al. (2008)</strong> reported that n-back training may improve fluid intelligence, with benefits transferring to novel tasks. <a href="https://doi.org/10.1073/pnas.0801268105">DOI: 10.1073/pnas.0801268105</a></li>
+<li><strong>Au et al. (2015)</strong> meta-analysis reported improvements in working memory from n-back training. <a href="https://doi.org/10.1037/xge0000009">DOI: 10.1037/xge0000009</a></li>
 </ul>
 
 <h3>Memory Matrix: Spatial Working Memory</h3>
 <p>Targets the visuospatial sketchpad component of working memory.</p>
 <p><strong>Key Research:</strong></p>
 <ul>
-<li><strong>Klingberg et al. (2002)</strong> demonstrated that spatial working memory training leads to improvements in non-trained tasks. <a href="https://doi.org/10.1016/S0022-0965(02)00093-7">DOI: 10.1016/S0022-0965(02)00093-7</a></li>
-<li><strong>Holmes et al. (2009)</strong> showed lasting improvements in working memory following adaptive spatial training. <a href="https://doi.org/10.1111/j.1469-7610.2009.02093.x">DOI: 10.1111/j.1469-7610.2009.02093.x</a></li>
+<li><strong>Klingberg et al. (2002)</strong> demonstrated that spatial working memory training may lead to improvements in non-trained tasks. <a href="https://doi.org/10.1016/S0022-0965(02)00093-7">DOI: 10.1016/S0022-0965(02)00093-7</a></li>
+<li><strong>Holmes et al. (2009)</strong> reported lasting improvements in working memory following adaptive spatial training. <a href="https://doi.org/10.1111/j.1469-7610.2009.02093.x">DOI: 10.1111/j.1469-7610.2009.02093.x</a></li>
 </ul>
 
 <h3>Sequence Recall: Dual-Task Training</h3>
@@ -43,7 +43,7 @@ keywords: "brain training, cognitive science, neuroscience, memory improvement, 
 <p><strong>Key Research:</strong></p>
 <ul>
 <li><strong>Dahlin et al. (2008)</strong> updating training showed transfer effects to working memory tasks. <a href="https://doi.org/10.1111/j.1467-9280.2008.02204.x">DOI: 10.1111/j.1467-9280.2008.02204.x</a></li>
-<li><strong>Karbach &amp; Kray (2009)</strong> task-switching training showed broad cognitive benefits across age groups. <a href="https://doi.org/10.1037/a0015012">DOI: 10.1037/a0015012</a></li>
+<li><strong>Karbach &amp; Kray (2009)</strong> task-switching training reported broad cognitive benefits across age groups. <a href="https://doi.org/10.1037/a0015012">DOI: 10.1037/a0015012</a></li>
 </ul>
 
 <h2>Important Caveats</h2>

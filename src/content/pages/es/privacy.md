@@ -6,48 +6,50 @@ language: "es"
 
 # Privacy Policy
 
-*Last updated: March 6, 2026*
+*Last updated: March 11, 2026*
 
-**No sign-up is required to use this website. Your personal data is not stored on our servers and is not shared with third parties. We may use anonymized visit statistics to improve the website.**
+**No sign-up is required to use GURUKA. All user data — including game scores, meditation stats, activity tracking, and preferences — is stored locally on your device only. We do not collect, store, or share your personal data. No data is transmitted to our servers or any third party.**
 
 ## 1. Information We Collect
 
-When you visit GURUKA, we may collect certain information automatically, including:
+GURUKA is designed with a local-first approach. All user-generated data stays on your device:
 
-- Browser type and version
-- Operating system
-- Pages visited and time spent
-- Referring website addresses
+- **Game scores and progress** — stored in your browser's localStorage
+- **Meditation history and stats** — stored in your browser's localStorage
+- **Activity tracking data** — stored in your browser's localStorage
+- **Preferences and settings** — stored in your browser's localStorage
 
-All game scores, meditation history, and preferences are stored locally on your device using your browser's localStorage. This data never leaves your device.
+None of this data is transmitted to any server. It exists only on your device and can be cleared at any time through your browser settings.
+
+We do not collect personal information such as names, email addresses, or account credentials, because GURUKA requires no sign-up or login.
 
 ## 2. How We Use Information
 
-We use the information we collect to:
+Since we do not collect personal data, our use of information is limited to:
 
-- Improve and optimize our website
-- Analyze usage patterns and trends
-- Maintain the security of our service
+- Improving and optimizing the website
+- Analyzing general usage patterns and trends
+- Maintaining the security of our service
 
 ## 3. Cookies and Tracking
 
-GURUKA may use cookies and similar tracking technologies to enhance your experience. You can control cookie preferences through your browser settings.
+GURUKA does not use tracking cookies, third-party trackers, or advertising pixels. The only browser storage used is localStorage to save your game and activity data locally on your device. You can clear this data at any time through your browser settings.
 
 ## 4. Third-Party Services
 
-We may use third-party services for analytics and functionality. These services have their own privacy policies governing the use of your information.
+GURUKA does not use third-party analytics services or embed third-party tracking scripts. Your browsing activity on GURUKA is not shared with any external service.
 
 ## 5. Data Security
 
-We implement appropriate technical and organizational measures to protect your information. However, no method of transmission over the Internet is 100% secure.
+Because your data is stored locally on your device and not transmitted to our servers, you maintain full control over it. We implement appropriate technical measures to ensure the website itself is served securely.
 
 ## 6. Your Rights
 
-Depending on your location, you may have rights regarding your personal information, including the right to access, correct, or delete your data. Since we store no personal data on our servers, most user data can be cleared by clearing your browser's localStorage.
+Since GURUKA stores no personal data on any server, there is no personal data for us to access, correct, or delete on your behalf. All user data is stored locally in your browser's localStorage and is fully under your control. You can view or clear this data at any time through your browser settings.
 
 ## 7. Children's Privacy
 
-GURUKA is suitable for users of all ages. We do not knowingly collect personal information from anyone, including children.
+GURUKA is suitable for users of all ages. We do not collect personal information from anyone, including children.
 
 ## 8. Changes to Privacy Policy
 

@@ -562,6 +562,7 @@
       circleEl.classList.add('gkm-breathing');
       circleEl.setAttribute('aria-label', 'Pause meditation');
       acquireWakeLock();
+      GK.Stats.startTracking('meditate');
       tick();
     }
 
@@ -577,6 +578,7 @@
       setCircleContent(playIcon);
       circleEl.setAttribute('aria-label', 'Resume meditation');
       releaseWakeLock();
+      GK.Stats.stopTracking();
     }
 
     function resume() {
@@ -591,6 +593,7 @@
       circleEl.classList.add('gkm-breathing');
       circleEl.setAttribute('aria-label', 'Pause meditation');
       acquireWakeLock();
+      GK.Stats.startTracking('meditate');
       tick();
     }
 
@@ -606,6 +609,8 @@
       circleEl.style.visibility = 'hidden';
       timeExtEl.style.visibility = 'hidden';
       setCircleContent(checkIcon);
+      GK.Stats.stopTracking();
+      GK.Stats.incrementSession('meditate');
 
       // Save stats
       var slug = getSlug();
@@ -684,6 +689,317 @@
       });
     }
   };
+
+  /* ── Activity Stats ── */
+  GK.Stats = {};
+  GK.Stats.STORAGE_KEY = 'guruka_activity_stats';
+  GK.Stats.INTERVAL = 15000;
+
+  // Internal tracking state
+  GK.Stats._timer = null;
+  GK.Stats._section = null;
+  GK.Stats._startMark = 0;
+  GK.Stats._lastSaved = 0;
+
+  // i18n strings: [meditate_verb, games_verb, visuals_verb, times_word, total_word]
+  GK.Stats._i18n = {
+    en: { meditate: 'meditated', games: 'played', visuals: 'watched', times: 'times', time: 'time', total: 'Total' },
+    es: { meditate: 'meditado', games: 'jugado', visuals: 'visto', times: 'veces', time: 'vez', total: 'Total' },
+    de: { meditate: 'meditiert', games: 'gespielt', visuals: 'angesehen', times: 'Mal', time: 'Mal', total: 'Gesamt' },
+    fr: { meditate: 'médité', games: 'joué', visuals: 'regardé', times: 'fois', time: 'fois', total: 'Total' },
+    pt: { meditate: 'meditou', games: 'jogou', visuals: 'assistiu', times: 'vezes', time: 'vez', total: 'Total' },
+    ja: { meditate: '瞑想', games: 'プレイ', visuals: '視聴', times: '回', time: '回', total: '合計' }
+  };
+
+  GK.Stats._getLang = function() {
+    var parts = window.location.pathname.split('/').filter(Boolean);
+    var lang = parts[0];
+    if (GK.Stats._i18n[lang]) return lang;
+    return 'en';
+  };
+
+  GK.Stats._load = function() {
+    try {
+      var raw = localStorage.getItem(GK.Stats.STORAGE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch(e) {}
+    return { meditate: { sessions: 0, totalSeconds: 0 }, games: { sessions: 0, totalSeconds: 0 }, visuals: { sessions: 0, totalSeconds: 0 } };
+  };
+
+  GK.Stats._save = function(data) {
+    try {
+      localStorage.setItem(GK.Stats.STORAGE_KEY, JSON.stringify(data));
+    } catch(e) {}
+  };
+
+  GK.Stats._formatDuration = function(secs) {
+    var h = Math.floor(secs / 3600);
+    var m = Math.floor((secs % 3600) / 60);
+    if (h > 0 && m > 0) return h + 'h ' + m + 'min';
+    if (h > 0) return h + 'h';
+    if (m > 0) return m + ' min';
+    return secs + 's';
+  };
+
+  GK.Stats._formatSummary = function(section) {
+    var data = GK.Stats._load();
+    var s = data[section];
+    if (!s || s.sessions === 0) return null;
+    var lang = GK.Stats._getLang();
+    var t = GK.Stats._i18n[lang] || GK.Stats._i18n.en;
+    var verb = t[section] || t.games;
+    var timesStr = s.sessions === 1 ? t.time : t.times;
+    var durStr = GK.Stats._formatDuration(s.totalSeconds);
+    if (lang === 'ja') {
+      return verb + ' ' + s.sessions + timesStr + ' · ' + t.total + ': ' + durStr;
+    }
+    return s.sessions + 'x ' + verb + ' · ' + t.total + ': ' + durStr;
+  };
+
+  // Time tracking
+  GK.Stats.startTracking = function(section) {
+    if (GK.Stats._timer) GK.Stats.stopTracking();
+    GK.Stats._section = section;
+    GK.Stats._startMark = performance.now();
+    GK.Stats._lastSaved = GK.Stats._startMark;
+    GK.Stats._timer = setInterval(function() {
+      GK.Stats._flushTime();
+    }, GK.Stats.INTERVAL);
+  };
+
+  GK.Stats.stopTracking = function() {
+    if (!GK.Stats._section) return;
+    GK.Stats._flushTime();
+    if (GK.Stats._timer) {
+      clearInterval(GK.Stats._timer);
+      GK.Stats._timer = null;
+    }
+    GK.Stats._section = null;
+  };
+
+  GK.Stats._flushTime = function() {
+    if (!GK.Stats._section) return;
+    var now = performance.now();
+    var delta = Math.round((now - GK.Stats._lastSaved) / 1000);
+    if (delta < 1) return;
+    GK.Stats._lastSaved = now;
+    var data = GK.Stats._load();
+    if (!data[GK.Stats._section]) data[GK.Stats._section] = { sessions: 0, totalSeconds: 0 };
+    data[GK.Stats._section].totalSeconds += delta;
+    GK.Stats._save(data);
+  };
+
+  GK.Stats.incrementSession = function(section) {
+    var data = GK.Stats._load();
+    if (!data[section]) data[section] = { sessions: 0, totalSeconds: 0 };
+    data[section].sessions++;
+    GK.Stats._save(data);
+  };
+
+  // Banner creation
+  GK.Stats._createBanner = function(section) {
+    var text = GK.Stats._formatSummary(section);
+    if (!text) return null;
+    var div = document.createElement('div');
+    div.className = 'gk-stats-banner';
+    div.textContent = text;
+    return div;
+  };
+
+  GK.Stats._injectStyles = function() {
+    if (document.getElementById('gk-stats-styles')) return;
+    var style = document.createElement('style');
+    style.id = 'gk-stats-styles';
+    style.textContent =
+      '.gk-stats-banner{font-size:0.82rem;color:rgba(255,255,255,0.45);padding:0.4rem 0 0.15rem;letter-spacing:0.01em}' +
+      '#meditate-hub .gk-stats-banner,#games-hub .gk-stats-banner,#visuals-hub .gk-stats-banner{margin-top:0.25rem}' +
+      '.gkm-idle-info .gk-stats-banner{margin-top:0.4rem;font-size:0.8rem;color:rgba(255,255,255,0.35)}' +
+      '[id$="-instructions"] .gk-stats-banner{color:rgba(255,255,255,0.35);margin:0.5rem 0;font-size:0.8rem}' +
+      '.vp-desc+.gk-stats-banner{margin-top:0.35rem;color:rgba(255,255,255,0.35);font-size:0.8rem}' +
+      '@media(prefers-color-scheme:light){' +
+        '.gk-stats-banner{color:rgba(0,0,0,0.4)}' +
+        '.gkm-idle-info .gk-stats-banner{color:rgba(255,255,255,0.35)}' +
+        '[id$="-instructions"] .gk-stats-banner{color:rgba(0,0,0,0.35)}' +
+        '.vp-desc+.gk-stats-banner{color:rgba(0,0,0,0.35)}' +
+      '}';
+    document.head.appendChild(style);
+  };
+
+  // Page detection and auto-init
+  GK.Stats._detectSection = function() {
+    var path = window.location.pathname;
+    if (/\/meditate(\/|$)/.test(path)) return 'meditate';
+    if (/\/games(\/|$)/.test(path)) return 'games';
+    if (/\/visuals(\/|$)/.test(path)) return 'visuals';
+    return null;
+  };
+
+  GK.Stats._isHub = function(section) {
+    var path = window.location.pathname.replace(/\/$/, '');
+    var lang = GK.Stats._getLang();
+    var base = lang === 'en' ? '' : '/' + lang;
+    return path === base + '/' + section;
+  };
+
+  GK.Stats._injectHubBanner = function(section) {
+    var selectors = {
+      meditate: '#meditate-hub .mh-header p',
+      games: '#games-hub .gh-header p',
+      visuals: '#visuals-hub .vh-header p'
+    };
+    var target = document.querySelector(selectors[section]);
+    if (!target) return;
+    var banner = GK.Stats._createBanner(section);
+    if (banner) target.parentNode.insertBefore(banner, target.nextSibling);
+  };
+
+  GK.Stats._injectPageBanner = function(section) {
+    if (section === 'meditate') {
+      // Meditation: inject into #gkm-idle (created dynamically, may not exist yet)
+      // We use a short poll since initPlayer creates it async after fetch
+      var attempts = 0;
+      var tryInject = function() {
+        var idle = document.getElementById('gkm-idle');
+        if (idle && !idle.querySelector('.gk-stats-banner')) {
+          var banner = GK.Stats._createBanner('meditate');
+          if (banner) idle.appendChild(banner);
+          return;
+        }
+        if (++attempts < 20) setTimeout(tryInject, 250);
+      };
+      tryInject();
+    } else if (section === 'games') {
+      // Games: inject inside instructions, before the start button
+      var instr = document.querySelector('[id$="-instructions"]');
+      if (!instr) return;
+      var btn = instr.querySelector('[class$="-btn-primary"], button');
+      var banner = GK.Stats._createBanner('games');
+      if (banner && btn) instr.insertBefore(banner, btn);
+    } else if (section === 'visuals') {
+      // Visuals: inject after .vp-desc
+      var desc = document.querySelector('.vp-desc');
+      if (!desc) return;
+      var banner = GK.Stats._createBanner('visuals');
+      if (banner) desc.parentNode.insertBefore(banner, desc.nextSibling);
+    }
+  };
+
+  // Observers for auto-detection
+  GK.Stats._setupGameObserver = function() {
+    // Detect game completion via overlay becoming visible
+    // Pattern 1: [id$="-complete-overlay"] with style.display changing to flex
+    // Pattern 2: [id$="-complete"].mm-screen/.sr-screen getting .active class
+    var tracked = false;
+
+    // Start tracking time when page loads (game page detected)
+    GK.Stats.startTracking('games');
+
+    var checkComplete = function() {
+      if (tracked) return;
+      // Check overlay-style games
+      var overlay = document.querySelector('[id$="-complete-overlay"]');
+      if (overlay) {
+        var obs = new MutationObserver(function(mutations) {
+          if (tracked) return;
+          var d = overlay.style.display;
+          if (d === 'flex' || d === 'block') {
+            tracked = true;
+            GK.Stats.stopTracking();
+            GK.Stats.incrementSession('games');
+          }
+        });
+        obs.observe(overlay, { attributes: true, attributeFilter: ['style'] });
+        return;
+      }
+      // Check class-based games (memory-matrix, sequence-recall)
+      var screen = document.querySelector('[id$="-complete"][class*="-screen"]');
+      if (screen) {
+        var obs2 = new MutationObserver(function() {
+          if (tracked) return;
+          if (screen.classList.contains('active')) {
+            tracked = true;
+            GK.Stats.stopTracking();
+            GK.Stats.incrementSession('games');
+          }
+        });
+        obs2.observe(screen, { attributes: true, attributeFilter: ['class'] });
+        return;
+      }
+    };
+
+    // DOM might not be fully ready for game elements, poll briefly
+    var attempts = 0;
+    var trySetup = function() {
+      var overlay = document.querySelector('[id$="-complete-overlay"]');
+      var screen = document.querySelector('[id$="-complete"][class*="-screen"]');
+      if (overlay || screen) {
+        checkComplete();
+      } else if (++attempts < 20) {
+        setTimeout(trySetup, 250);
+      }
+    };
+    trySetup();
+  };
+
+  GK.Stats._setupVisualObserver = function() {
+    var fs = document.getElementById('vp-fullscreen');
+    if (!fs) return;
+    var wasVisible = false;
+    var obs = new MutationObserver(function() {
+      var visible = fs.style.display !== 'none' && fs.style.display !== '';
+      if (visible && !wasVisible) {
+        // Visual started
+        wasVisible = true;
+        GK.Stats.startTracking('visuals');
+      } else if (!visible && wasVisible) {
+        // Visual ended
+        wasVisible = false;
+        GK.Stats.stopTracking();
+        GK.Stats.incrementSession('visuals');
+      }
+    });
+    obs.observe(fs, { attributes: true, attributeFilter: ['style'] });
+  };
+
+  // Lifecycle handlers
+  GK.Stats._onPageHide = function() {
+    GK.Stats._flushTime();
+  };
+
+  GK.Stats._onVisibilityChange = function() {
+    if (document.visibilityState === 'hidden') {
+      GK.Stats._flushTime();
+    }
+  };
+
+  GK.Stats.init = function() {
+    var section = GK.Stats._detectSection();
+    if (!section) return;
+
+    GK.Stats._injectStyles();
+
+    if (GK.Stats._isHub(section)) {
+      GK.Stats._injectHubBanner(section);
+    } else {
+      // Individual page
+      GK.Stats._injectPageBanner(section);
+
+      if (section === 'games') {
+        GK.Stats._setupGameObserver();
+      } else if (section === 'visuals') {
+        GK.Stats._setupVisualObserver();
+      }
+      // Meditation tracking is handled via hooks in initPlayer
+    }
+
+    // Lifecycle
+    window.addEventListener('pagehide', GK.Stats._onPageHide);
+    document.addEventListener('visibilitychange', GK.Stats._onVisibilityChange);
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    GK.Stats.init();
+  });
 
   /* ── Add-to-Home-Screen Hint ── */
   GK.HomeScreenHint = {};

@@ -2,7 +2,7 @@
   "lang": "en",
   "title": "Sleep & Wind Down",
   "subtitle": "Let the day go. Rest is enough.",
-  "duration": 201.288,
+  "duration": 267.432,
   "colors": {
     "bg": "#08061a",
     "c1": "rgba(99,102,241,0.5)",
@@ -11,111 +11,111 @@
   },
   "cues": [
     {
-      "time": 0,
+      "time": 2,
       "text": "Lie down comfortably.\nLet your arms fall softly at your sides."
     },
     {
-      "time": 6.728,
+      "time": 11.44,
       "text": "Close your eyes."
     },
     {
-      "time": 11.952,
+      "time": 19.568,
       "text": "Take a slow, gentle breath in through your nose."
     },
     {
-      "time": 18.6,
+      "time": 27.8,
       "text": "And let it go, slowly, through your mouth."
     },
     {
-      "time": 27.696,
+      "time": 39.872,
       "text": "Again, in."
     },
     {
-      "time": 31.392,
+      "time": 45.176,
       "text": "And a long, slow, out."
     },
     {
-      "time": 35.928,
+      "time": 51.032,
       "text": "Let your body feel heavy."
     },
     {
-      "time": 43.872,
+      "time": 60.368,
       "text": "You made it through the day."
     },
     {
-      "time": 48.032,
+      "time": 65.464,
       "text": "Whatever happened, it's done.\nThere is nothing left to solve tonight."
     },
     {
-      "time": 59.168,
+      "time": 78.04,
       "text": "Feel the surface beneath you, supporting your weight completely.\nLet yourself... be held."
     },
     {
-      "time": 71.792,
+      "time": 92.44,
       "text": "Start at the top of your head.\nNotice your scalp... your forehead. Let them soften."
     },
     {
-      "time": 82.008,
+      "time": 105.152,
       "text": "Your eyes, let them relax, sinking back gently.\nYour jaw, let it loosen... teeth slightly apart."
     },
     {
-      "time": 93.04,
+      "time": 120.24,
       "text": "Your neck and shoulders, let them melt downward.\nYour chest, let it rise and fall without any effort."
     },
     {
-      "time": 104.624,
+      "time": 134.728,
       "text": "Your arms... your hands.\nYour belly, let it be soft.\nYour lower back... your hips."
     },
     {
-      "time": 114.504,
+      "time": 147.92,
       "text": "Your legs, heavy and still.\nYour feet, let them go... completely."
     },
     {
-      "time": 125.16,
+      "time": 163.232,
       "text": "Your whole body... is resting now."
     },
     {
-      "time": 133.68,
+      "time": 173.672,
       "text": "If thoughts come, that's okay.\nJust watch them like clouds passing through a quiet sky.\nThey don't need your attention. You can let them drift."
     },
     {
-      "time": 150.48,
+      "time": 193.808,
       "text": "Breathe slowly."
     },
     {
-      "time": 153.656,
+      "time": 198.664,
       "text": "Breathe in."
     },
     {
-      "time": 156.52,
+      "time": 202.488,
       "text": "And out..."
     },
     {
-      "time": 159.24,
+      "time": 208.376,
       "text": "Breathe in."
     },
     {
-      "time": 162.104,
+      "time": 213.952,
       "text": "And out..."
     },
     {
-      "time": 168.872,
+      "time": 222.256,
       "text": "You're safe."
     },
     {
-      "time": 170.76,
+      "time": 225.512,
       "text": "You're warm."
     },
     {
-      "time": 172.648,
+      "time": 229.488,
       "text": "The day is done.\nAll that's left now... is rest."
     },
     {
-      "time": 182.128,
+      "time": 242.064,
       "text": "Let yourself drift.\nDeeper and deeper into quiet.\nSofter... and softer."
     },
     {
-      "time": 197.36,
+      "time": 260.536,
       "text": "Sleep well."
     }
   ]

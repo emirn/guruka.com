@@ -2,7 +2,7 @@
   "lang": "es",
   "title": "Enfoque y Claridad",
   "subtitle": "Despeja el ruido. Afila tu mente.",
-  "duration": 189.168,
+  "duration": 258.888,
   "colors": {
     "bg": "#060d1a",
     "c1": "rgba(59,130,246,0.8)",
@@ -11,103 +11,103 @@
   },
   "cues": [
     {
-      "time": 0,
+      "time": 2,
       "text": "Siéntate erguido, pies apoyados en el suelo, espalda recta, manos sobre los muslos.\nCierra los ojos."
     },
     {
-      "time": 11.488,
+      "time": 15.936,
       "text": "Toma tres respiraciones de anclaje.\nInhala por la nariz."
     },
     {
-      "time": 18.784,
+      "time": 25.752,
       "text": "Exhala por la boca."
     },
     {
-      "time": 24.224,
+      "time": 33.28,
       "text": "Inhala."
     },
     {
-      "time": 26.872,
+      "time": 38.616,
       "text": "Exhala."
     },
     {
-      "time": 31.472,
+      "time": 44.68,
       "text": "Una más, inhala."
     },
     {
-      "time": 34.624,
+      "time": 49.296,
       "text": "Y exhala."
     },
     {
-      "time": 41.272,
+      "time": 59.544,
       "text": "Lleva tu atención al centro de tu frente.\nSolo observa ese espacio.\nSin esfuerzo, solo una conciencia suave."
     },
     {
-      "time": 55.456,
+      "time": 77.544,
       "text": "Ahora piensa en lo que estás a punto de hacer.\nEl trabajo. La tarea. La conversación que viene.\nNo pienses en cómo, ni cuándo.\nSolo sostén una imagen clara de lo que es."
     },
     {
-      "time": 74.2,
+      "time": 102.912,
       "text": "Con cada inhalación, imagina que respiras claridad.\nAire limpio y transparente, llenando tu mente."
     },
     {
-      "time": 85.496,
+      "time": 117.088,
       "text": "Con cada exhalación, suelta todo lo que no es relevante ahora.\nLas pestañas abiertas. Las otras tareas. El ruido de fondo."
     },
     {
-      "time": 100.664,
+      "time": 135.64,
       "text": "Inhala claridad."
     },
     {
-      "time": 103.912,
+      "time": 140.136,
       "text": "Exhala distracción."
     },
     {
-      "time": 107.424,
+      "time": 145.16,
       "text": "Inhala enfoque."
     },
     {
-      "time": 110.48,
+      "time": 150.496,
       "text": "Exhala ruido."
     },
     {
-      "time": 117.464,
+      "time": 160.144,
       "text": "Tu mente sabe cómo hacer esto.\nEstá preparada para esto.\nAhora mismo, solo la estás apuntando en la dirección correcta."
     },
     {
-      "time": 132.56,
+      "time": 179.536,
       "text": "Si un pensamiento te jala hacia un lado, reconócelo brevemente, y déjalo ir.\nVuelve a esa imagen clara de tu tarea."
     },
     {
-      "time": 145.344,
+      "time": 197.12,
       "text": "Siente cómo te vuelves más presente.\nMás despierto."
     },
     {
-      "time": 150.328,
+      "time": 204.744,
       "text": "Ya estás listo."
     },
     {
-      "time": 161.528,
+      "time": 217.12,
       "text": "Toma una respiración más profunda."
     },
     {
-      "time": 167.192,
+      "time": 224.08,
       "text": "Al exhalar, siente cómo llegas completamente a este momento.\nBien alerta."
     },
     {
-      "time": 173.664,
+      "time": 235.304,
       "text": "Totalmente claro."
     },
     {
-      "time": 175.936,
+      "time": 238.728,
       "text": "Completamente preparado."
     },
     {
-      "time": 181.664,
+      "time": 245.944,
       "text": "Abre los ojos.\nEstás listo."
     },
     {
-      "time": 184.68,
+      "time": 251.264,
       "text": "Suavemente, comienza."
     }
   ]
