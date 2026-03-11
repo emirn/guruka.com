@@ -1,0 +1,120 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { SiteConfig, CatalogConfig } from '../lib/config';
+import { getItemSlug, getFaviconUrl } from '../lib/catalogs';
+
+interface Props {
+  item: CollectionEntry<'catalog-items'>;
+  catalog: CatalogConfig;
+  config: SiteConfig;
+}
+
+const { item, catalog, config } = Astro.props;
+const { data } = item;
+const { Content } = await item.render();
+const itemSlug = getItemSlug(item.slug);
+const faviconSrc = data.image || getFaviconUrl(data.url, 128);
+const tags = data.tags || [];
+const siteUrl = config.branding.site.url;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: data.title,
+  description: data.description,
+  url: data.url,
+  applicationCategory: data.category || 'Database Tool',
+  ...(data.pricing ? { offers: { '@type': 'Offer', description: data.pricing } } : {}),
+};
+---
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <!-- Breadcrumb -->
+  <nav class="text-sm text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] mb-8" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5">
+      <li><a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a></li>
+      <li><span class="mx-1">/</span></li>
+      <li><a href={`/${catalog.path}/`} class="hover:text-[var(--color-primary)] transition-colors">{catalog.label}</a></li>
+      <li><span class="mx-1">/</span></li>
+      <li class="text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] font-medium">{data.title}</li>
+    </ol>
+  </nav>
+
+  <!-- Header -->
+  <header class="flex items-start gap-5 mb-8">
+    <img
+      src={faviconSrc}
+      alt={`${data.title} icon`}
+      class="w-16 h-16 rounded-xl bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)] object-contain shrink-0"
+      loading="lazy"
+      onerror="this.style.display='none'"
+    />
+    <div class="flex-1 min-w-0">
+      <h1 class="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] mb-2">
+        {data.title}
+      </h1>
+      <p class="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)]">
+        {data.description}
+      </p>
+    </div>
+  </header>
+
+  <!-- Meta row -->
+  <div class="flex flex-wrap items-center gap-3 mb-8">
+    <a
+      href={data.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+      </svg>
+      Visit Website
+    </a>
+
+    {data.category && (
+      <span class="inline-block px-3 py-1 text-xs font-medium rounded-full bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)] text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)]">
+        {data.category}
+      </span>
+    )}
+
+    {data.pricing && (
+      <span class="text-sm text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)]">
+        {data.pricing}
+      </span>
+    )}
+  </div>
+
+  <!-- Tags -->
+  {tags.length > 0 && (
+    <div class="flex flex-wrap gap-2 mb-8">
+      {tags.map((tag) => (
+        <span class="px-2 py-0.5 text-xs rounded bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)] text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)]">
+          {tag}
+        </span>
+      ))}
+    </div>
+  )}
+
+  <!-- Body content -->
+  <article class="prose dark:prose-invert max-w-none">
+    <Content />
+  </article>
+
+  <!-- Back link -->
+  <div class="mt-12 pt-8 border-t border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
+    <a
+      href={`/${catalog.path}/`}
+      class="inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] hover:text-[var(--color-primary)] transition-colors"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Back to {catalog.label}
+    </a>
+  </div>
+</div>
+
+<!-- JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

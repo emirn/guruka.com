@@ -248,6 +248,11 @@ export interface SiteConfig {
     domain?: string;
   };
   /**
+   * Catalog/directory configuration. Each entry defines a browseable directory of tools/apps/services.
+   * Gated by config — sites without catalogs work exactly as before.
+   */
+  catalogs?: CatalogConfig[];
+  /**
    * Content sections configuration. Maps article subfolders to section metadata.
    * When configured, enables section index pages, nav auto-injection, and home page filtering.
    * Sites without sections config work exactly as before.
@@ -308,6 +313,21 @@ export interface SectionConfig {
    * If not set, falls back to primary illustration style.
    */
   illustration_style?: string;
+}
+
+export interface CatalogConfig {
+  /** Matches subfolder name in src/content/catalog-items/ */
+  id: string;
+  /** Display name (e.g., "AI Database Tools Directory") */
+  label: string;
+  /** URL path (e.g., "directory") — must not conflict with other routes */
+  path: string;
+  /** Meta description for listing page */
+  description?: string;
+  /** Auto-add to header nav. Default: false */
+  show_in_nav?: boolean;
+  /** Items per page on listing. Default: all */
+  items_per_page?: number;
 }
 
 // Default configuration
@@ -434,6 +454,7 @@ const defaultConfig: SiteConfig = {
     generate_thumbnail: false,
     generate_thumbnail_max_size: 200,
   },
+  catalogs: [],
   robots_txt: {},
   llms_txt: {
     enabled: false,

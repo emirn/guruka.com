@@ -89,6 +89,23 @@ const articles = defineCollection({
   }),
 });
 
+const catalogItems = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    url: z.string(),
+    description: z.string(),
+    category: z.string().optional(),
+    tags: z.preprocess(
+      (val) => typeof val === 'string' ? val.split(',').map(t => t.trim()).filter(Boolean) : val,
+      z.array(z.string()).optional()
+    ),
+    pricing: z.string().optional(),
+    image: z.string().optional(),
+    order: z.number().default(0),
+  }),
+});
+
 const pages = defineCollection({
   type: 'content',
   schema: z.object({
@@ -104,4 +121,4 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { articles, pages, books, 'book-chapters': bookChapters };
+export const collections = { articles, pages, books, 'book-chapters': bookChapters, 'catalog-items': catalogItems };

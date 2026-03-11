@@ -158,5 +158,6 @@
     "popup_download_enabled": true,
     "generate_thumbnail": false,
     "generate_thumbnail_max_size": 200
-  }
+  },
+  "catalogs": []
 }

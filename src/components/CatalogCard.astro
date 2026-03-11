@@ -1,0 +1,104 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { CatalogConfig } from '../lib/config';
+import { getItemSlug, getFaviconUrl } from '../lib/catalogs';
+
+interface Props {
+  item: CollectionEntry<'catalog-items'>;
+  catalog: CatalogConfig;
+}
+
+const { item, catalog } = Astro.props;
+const { data } = item;
+const itemSlug = getItemSlug(item.slug);
+const detailUrl = `/${catalog.path}/${itemSlug}/`;
+const faviconSrc = data.image || getFaviconUrl(data.url, 64);
+const tags = data.tags || [];
+---
+
+<div
+  class="group bg-[var(--color-bg-primary)] dark:bg-[var(--color-dark-bg-primary)] rounded-xl border border-[var(--color-border)] dark:border-[var(--color-dark-border)] overflow-hidden hover:border-[var(--color-primary)] hover:shadow-lg transition-all duration-300 flex flex-col"
+  data-catalog-item
+  data-slug={itemSlug}
+  data-title={data.title.toLowerCase()}
+  data-description={data.description.toLowerCase()}
+  data-category={data.category?.toLowerCase() || ''}
+  data-tags={tags.join(',').toLowerCase()}
+  data-url={data.url}
+>
+  <div class="p-5 flex-1 flex flex-col">
+    <!-- Header: favicon + title + bookmark -->
+    <div class="flex items-start gap-3 mb-3">
+      <a href={detailUrl} class="shrink-0">
+        <img
+          src={faviconSrc}
+          alt={`${data.title} icon`}
+          class="w-10 h-10 rounded-lg bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)] object-contain"
+          loading="lazy"
+          onerror="this.style.display='none'"
+        />
+      </a>
+      <div class="flex-1 min-w-0">
+        <a href={detailUrl}>
+          <h3 class="text-base font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] group-hover:text-[var(--color-primary)] transition-colors truncate">
+            {data.title}
+          </h3>
+        </a>
+      </div>
+      <button
+        type="button"
+        class="catalog-bookmark shrink-0 text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] hover:text-amber-500 transition-colors"
+        data-slug={itemSlug}
+        aria-label="Bookmark"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Description -->
+    <p class="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] line-clamp-2 mb-3 flex-1">
+      {data.description}
+    </p>
+
+    <!-- Footer: category + pricing + rating -->
+    <div class="flex items-center justify-between gap-2 mt-auto">
+      <div class="flex items-center gap-2 min-w-0">
+        {data.category && (
+          <span class="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)] text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] truncate">
+            {data.category}
+          </span>
+        )}
+        {data.pricing && (
+          <span class="text-xs text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] truncate">
+            {data.pricing}
+          </span>
+        )}
+      </div>
+      <div class="catalog-rating flex gap-0.5 shrink-0" data-slug={itemSlug}>
+        {[1,2,3,4,5].map((star) => (
+          <button
+            type="button"
+            class="catalog-star text-[var(--color-text-muted)]/30 dark:text-[var(--color-dark-text-muted)]/30 hover:text-amber-400 transition-colors"
+            data-value={star}
+            aria-label={`Rate ${star}`}
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
