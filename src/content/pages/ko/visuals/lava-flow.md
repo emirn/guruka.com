@@ -1,6 +1,6 @@
 ---
-title: "Lava Flow - Meditative Visual"
-description: "Lava lamp blobs floating, merging, and separating."
+title: "용암 흐름 - 명상 비주얼"
+description: "떠다니며 합쳐지고 분리되는 용암 방울."
 full_width: true
 language: "ko"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Lava Flow</h1>
-<p class="vp-desc">Blobs merging and separating. Choose a color scheme.</p>
+<a href="/ko/visuals/" class="vp-back">&larr; 모든 비주얼</a>
+<h1 class="vp-title">용암 흐름</h1>
+<p class="vp-desc">합쳐지고 분리되는 방울. 색상 테마를 선택하세요.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#f97316,#ef4444)"></div>
-<span>Magma</span>
+<span>마그마</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#06b6d4,#d946ef)"></div>
-<span>Neon</span>
+<span>네온</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#059669,#84cc16)"></div>
-<span>Emerald</span>
+<span>에메랄드</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">시작</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">아무 곳이나 탭하여 종료</div>
 </div>
 </div>
 
@@ -325,7 +325,7 @@ initBlobs();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = '모션 감소 활성화 \u00b7 정적 뷰 표시 중<br>아무 곳이나 탭하여 종료';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

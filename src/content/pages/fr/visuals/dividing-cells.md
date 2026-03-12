@@ -1,6 +1,6 @@
 ---
-title: "Dividing Cells - Meditative Visual"
-description: "Cells growing and dividing in a meditative loop."
+title: "Cellules en Division - Visuel Méditatif"
+description: "Cellules grandissant et se divisant dans une boucle méditative."
 full_width: true
 language: "fr"
 ---
@@ -124,9 +124,9 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Dividing Cells</h1>
-<p class="vp-desc">Cells dividing endlessly. Choose a color scheme.</p>
+<a href="/fr/visuals/" class="vp-back">&larr; Tous les Visuels</a>
+<h1 class="vp-title">Cellules en Division</h1>
+<p class="vp-desc">Cellules se divisant sans fin. Choisissez un thème de couleurs.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#22d3ee,#14b8a6)"></div>
@@ -134,18 +134,18 @@ transition: opacity 1s;
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#fb923c,#f97316)"></div>
-<span>Organic</span>
+<span>Organique</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#94a3b8,#e2e8f0)"></div>
 <span>Microscope</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">Démarrer</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">Appuyez n'importe où pour quitter</div>
 </div>
 </div>
 
@@ -701,7 +701,7 @@ spawnCenterCell();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = 'Mouvement réduit activé \u00b7 Affichage statique<br>Appuyez n\u0027importe où pour quitter';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

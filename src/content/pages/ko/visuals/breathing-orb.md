@@ -1,6 +1,6 @@
 ---
-title: "Breathing Orb - Meditative Visual"
-description: "A pulsing orb that guides your breathing rhythm."
+title: "호흡 오브 - 명상 비주얼"
+description: "호흡 리듬을 안내하는 맥동하는 오브."
 full_width: true
 language: "ko"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Breathing Orb</h1>
-<p class="vp-desc">Pulsing orb guiding your breath. Choose a color scheme.</p>
+<a href="/ko/visuals/" class="vp-back">&larr; 모든 비주얼</a>
+<h1 class="vp-title">호흡 오브</h1>
+<p class="vp-desc">호흡을 안내하는 맥동하는 오브. 색상 테마를 선택하세요.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#4338ca,#7c3aed)"></div>
-<span>Twilight</span>
+<span>트와일라잇</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#f97316,#eab308)"></div>
-<span>Sunrise</span>
+<span>선라이즈</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#059669,#14b8a6)"></div>
-<span>Forest</span>
+<span>포레스트</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">시작</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">아무 곳이나 탭하여 종료</div>
 </div>
 </div>
 
@@ -324,7 +324,7 @@ initParticles();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = '모션 감소 활성화 \u00b7 정적 뷰 표시 중<br>아무 곳이나 탭하여 종료';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

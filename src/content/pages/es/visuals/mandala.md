@@ -1,6 +1,6 @@
 ---
-title: "Mandala - Meditative Visual"
-description: "Slowly rotating sacred geometry with evolving symmetry."
+title: "Mandala - Visual Meditativa"
+description: "Geometría sagrada rotando lentamente con simetría evolutiva."
 full_width: true
 language: "es"
 ---
@@ -124,13 +124,13 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
+<a href="/es/visuals/" class="vp-back">&larr; Todas las Visuales</a>
 <h1 class="vp-title">Mandala</h1>
-<p class="vp-desc">Rotating sacred geometry. Choose a color scheme.</p>
+<p class="vp-desc">Geometría sagrada rotando. Elige un esquema de colores.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#eab308,#f59e0b)"></div>
-<span>Golden</span>
+<span>Dorado</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#6366f1,#a855f7)"></div>
@@ -141,11 +141,11 @@ transition: opacity 1s;
 <span>Jade</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">Iniciar</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">Toca en cualquier lugar para salir</div>
 </div>
 </div>
 
@@ -327,7 +327,7 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = 'Movimiento reducido activado \u00b7 Mostrando vista estática<br>Toca en cualquier lugar para salir';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

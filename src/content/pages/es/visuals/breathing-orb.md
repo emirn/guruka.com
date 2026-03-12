@@ -1,6 +1,6 @@
 ---
-title: "Breathing Orb - Meditative Visual"
-description: "A pulsing orb that guides your breathing rhythm."
+title: "Orbe de Respiración - Visual Meditativa"
+description: "Un orbe pulsante que guía tu ritmo de respiración."
 full_width: true
 language: "es"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Breathing Orb</h1>
-<p class="vp-desc">Pulsing orb guiding your breath. Choose a color scheme.</p>
+<a href="/es/visuals/" class="vp-back">&larr; Todas las Visuales</a>
+<h1 class="vp-title">Orbe de Respiración</h1>
+<p class="vp-desc">Orbe pulsante que guía tu respiración. Elige un esquema de colores.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#4338ca,#7c3aed)"></div>
-<span>Twilight</span>
+<span>Crepúsculo</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#f97316,#eab308)"></div>
-<span>Sunrise</span>
+<span>Amanecer</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#059669,#14b8a6)"></div>
-<span>Forest</span>
+<span>Bosque</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">Iniciar</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">Toca en cualquier lugar para salir</div>
 </div>
 </div>
 
@@ -324,7 +324,7 @@ initParticles();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = 'Movimiento reducido activado \u00b7 Mostrando vista estática<br>Toca en cualquier lugar para salir';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

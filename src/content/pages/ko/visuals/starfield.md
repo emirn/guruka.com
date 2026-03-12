@@ -1,6 +1,6 @@
 ---
-title: "Starfield - Meditative Visual"
-description: "Twinkling stars drifting through deep space."
+title: "별빛 필드 - 명상 비주얼"
+description: "깊은 우주를 떠도는 반짝이는 별들."
 full_width: true
 language: "ko"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Starfield</h1>
-<p class="vp-desc">Twinkling stars in deep space. Choose a color scheme.</p>
+<a href="/ko/visuals/" class="vp-back">&larr; 모든 비주얼</a>
+<h1 class="vp-title">별빛 필드</h1>
+<p class="vp-desc">깊은 우주에서 반짝이는 별들. 색상 테마를 선택하세요.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#1e293b,#475569)"></div>
-<span>Deep Space</span>
+<span>딥 스페이스</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#4c1d95,#a855f7)"></div>
-<span>Nebula</span>
+<span>네뷸라</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#78350f,#f59e0b)"></div>
-<span>Warm Cosmos</span>
+<span>따뜻한 코스모스</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">시작</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">아무 곳이나 탭하여 종료</div>
 </div>
 </div>
 
@@ -284,7 +284,7 @@ initStars();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = '모션 감소 활성화 \u00b7 정적 뷰 표시 중<br>아무 곳이나 탭하여 종료';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

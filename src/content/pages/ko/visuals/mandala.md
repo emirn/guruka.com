@@ -1,6 +1,6 @@
 ---
-title: "Mandala - Meditative Visual"
-description: "Slowly rotating sacred geometry with evolving symmetry."
+title: "만다라 - 명상 비주얼"
+description: "진화하는 대칭성을 가진 천천히 회전하는 신성한 기하학."
 full_width: true
 language: "ko"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Mandala</h1>
-<p class="vp-desc">Rotating sacred geometry. Choose a color scheme.</p>
+<a href="/ko/visuals/" class="vp-back">&larr; 모든 비주얼</a>
+<h1 class="vp-title">만다라</h1>
+<p class="vp-desc">회전하는 신성한 기하학. 색상 테마를 선택하세요.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#eab308,#f59e0b)"></div>
-<span>Golden</span>
+<span>골든</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#6366f1,#a855f7)"></div>
-<span>Celestial</span>
+<span>셀레스티얼</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#14b8a6,#10b981)"></div>
-<span>Jade</span>
+<span>제이드</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">시작</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">아무 곳이나 탭하여 종료</div>
 </div>
 </div>
 
@@ -327,7 +327,7 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = '모션 감소 활성화 \u00b7 정적 뷰 표시 중<br>아무 곳이나 탭하여 종료';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

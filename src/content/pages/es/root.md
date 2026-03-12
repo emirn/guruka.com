@@ -329,3 +329,37 @@ transition: none;
 </div>
 </div>
 </div>
+
+<div class="gk-section">
+<div class="gk-section-header">
+<h2>Visuales Meditativas</h2>
+<p>Animaciones relajantes a pantalla completa para la relajación y la concentración</p>
+<p class="gk-free-tag">Gratis y sin anuncios molestos</p>
+</div>
+<div class="gk-med-cards">
+<a href="/es/visuals/breathing-orb/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #6366f1, #a78bfa);"></div>
+<span>Orbe de Respiración</span>
+</a>
+<a href="/es/visuals/aurora/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #22d3ee, #06b6d4);"></div>
+<span>Aurora</span>
+</a>
+<a href="/es/visuals/starfield/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #1e293b, #475569);"></div>
+<span>Campo de Estrellas</span>
+</a>
+<a href="/es/visuals/lava-flow/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #f97316, #ef4444);"></div>
+<span>Flujo de Lava</span>
+</a>
+<a href="/es/visuals/mandala/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #eab308, #a855f7);"></div>
+<span>Mandala</span>
+</a>
+<a href="/es/visuals/dividing-cells/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #10b981, #22d3ee);"></div>
+<span>Células Dividiéndose</span>
+</a>
+</div>
+</div>

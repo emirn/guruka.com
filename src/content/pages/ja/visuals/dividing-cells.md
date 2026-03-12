@@ -1,6 +1,6 @@
 ---
-title: "Dividing Cells - Meditative Visual"
-description: "Cells growing and dividing in a meditative loop."
+title: "細胞分裂 - 瞑想ビジュアル"
+description: "瞑想的なループで成長し分裂する細胞。"
 full_width: true
 language: "ja"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Dividing Cells</h1>
-<p class="vp-desc">Cells dividing endlessly. Choose a color scheme.</p>
+<a href="/ja/visuals/" class="vp-back">&larr; すべてのビジュアル</a>
+<h1 class="vp-title">細胞分裂</h1>
+<p class="vp-desc">絶え間なく分裂する細胞。カラースキームを選択してください。</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#22d3ee,#14b8a6)"></div>
-<span>Bioluminescent</span>
+<span>バイオルミネセンス</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#fb923c,#f97316)"></div>
-<span>Organic</span>
+<span>オーガニック</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#94a3b8,#e2e8f0)"></div>
-<span>Microscope</span>
+<span>マイクロスコープ</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">開始</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">どこでもタップして終了</div>
 </div>
 </div>
 
@@ -701,7 +701,7 @@ spawnCenterCell();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = 'モーション軽減が有効 \u00b7 静的ビューを表示中<br>どこでもタップして終了';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);
