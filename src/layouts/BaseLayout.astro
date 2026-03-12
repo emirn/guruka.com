@@ -125,19 +125,25 @@ const cssVars = {
         if (!darkModeEnabled) return;
 
         const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
         const defaultTheme = darkModeDefault || 'light';
 
         let theme;
         if (savedTheme) {
           theme = savedTheme;
-        } else if (defaultTheme === 'system') {
-          theme = prefersDark ? 'dark' : 'light';
+        } else if (prefersDark.media !== 'not all') {
+          theme = prefersDark.matches ? 'dark' : 'light';
         } else {
           theme = defaultTheme;
         }
 
         document.documentElement.setAttribute('data-theme', theme);
+
+        prefersDark.addEventListener('change', function(e) {
+          if (!localStorage.getItem('theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+          }
+        });
       })();
     </script>
 

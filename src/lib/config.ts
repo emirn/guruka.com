@@ -271,6 +271,8 @@ export interface SiteConfig {
     defaultLanguage?: string;
     /** Available languages. Only used when enabled is true. */
     languages?: Array<{ code: string; label: string }>;
+    /** UI string translations keyed by language code, e.g. { "es": { "Meditate": "Meditar" } } */
+    translations?: Record<string, Record<string, string>>;
   };
   /**
    * PDF features configuration.
@@ -452,6 +454,7 @@ const defaultConfig: SiteConfig = {
     enabled: false,
     defaultLanguage: 'en',
     languages: [],
+    translations: {},
   },
   pdf: {
     popup: true,
