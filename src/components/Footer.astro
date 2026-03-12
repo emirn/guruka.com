@@ -15,6 +15,8 @@ const copyrightText = config.footer.copyright_text
   ? replacePlaceholders(config.footer.copyright_text, config)
   : `${currentYear} ${config.branding.site.name}`;
 
+const siteVersion = config.footer.site_version || config.build_info?.git_commit || null;
+
 // In footer context, bordered and pill are too heavy — fall back to plain
 const rawLogoStyle = getLogoTextStyle(config);
 const footerLogoStyle: LogoTextStyle = (rawLogoStyle === 'bordered' || rawLogoStyle === 'pill') ? 'plain' : rawLogoStyle;
@@ -227,7 +229,14 @@ const footerLogoStyle: LogoTextStyle = (rawLogoStyle === 'bordered' || rawLogoSt
 
     <!-- Copyright and Powered By -->
     <div class="pt-8 border-t border-[var(--color-border)] dark:border-[var(--color-dark-border)] flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)]">
-      <p>&copy; {copyrightText}</p>
+      <div>
+        <p>&copy; {copyrightText}</p>
+        {siteVersion && (
+          <p class="mt-1 text-[10px] leading-tight opacity-30">
+            version: {siteVersion}
+          </p>
+        )}
+      </div>
 
       <ThemeToggle config={config} />
 

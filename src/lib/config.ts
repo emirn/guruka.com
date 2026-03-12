@@ -112,6 +112,7 @@ export interface SiteConfig {
     powered_by_text?: string;
     powered_by_url?: string;
     show_powered_by?: boolean;
+    site_version?: string;
   };
   newsletter?: {
     enabled?: boolean;
@@ -283,6 +284,10 @@ export interface SiteConfig {
     generate_thumbnail?: boolean;
     /** Skip PDFs larger than this (KB). Default: 200 */
     generate_thumbnail_max_size?: number;
+  };
+  build_info?: {
+    git_commit: string;
+    build_date: string;
   };
 }
 
