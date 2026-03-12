@@ -1,6 +1,6 @@
 ---
-title: "Dividing Cells - Meditative Visual"
-description: "Cells growing and dividing in a meditative loop."
+title: "세포 분열 - 명상 비주얼"
+description: "명상적 루프에서 성장하고 분열하는 세포."
 full_width: true
 language: "ko"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Dividing Cells</h1>
-<p class="vp-desc">Cells dividing endlessly. Choose a color scheme.</p>
+<a href="/ko/visuals/" class="vp-back">&larr; 모든 비주얼</a>
+<h1 class="vp-title">세포 분열</h1>
+<p class="vp-desc">끊임없이 분열하는 세포. 색상 테마를 선택하세요.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#22d3ee,#14b8a6)"></div>
-<span>Bioluminescent</span>
+<span>바이오루미네센스</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#fb923c,#f97316)"></div>
-<span>Organic</span>
+<span>오가닉</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#94a3b8,#e2e8f0)"></div>
-<span>Microscope</span>
+<span>마이크로스코프</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">시작</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">아무 곳이나 탭하여 종료</div>
 </div>
 </div>
 
@@ -701,7 +701,7 @@ spawnCenterCell();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = '모션 감소 활성화 \u00b7 정적 뷰 표시 중<br>아무 곳이나 탭하여 종료';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

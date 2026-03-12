@@ -329,3 +329,37 @@ transition: none;
 </div>
 </div>
 </div>
+
+<div class="gk-section">
+<div class="gk-section-header">
+<h2>瞑想ビジュアル</h2>
+<p>リラクゼーションと集中のための全画面アニメーション</p>
+<p class="gk-free-tag">無料で広告なし</p>
+</div>
+<div class="gk-med-cards">
+<a href="/ja/visuals/breathing-orb/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #6366f1, #a78bfa);"></div>
+<span>呼吸オーブ</span>
+</a>
+<a href="/ja/visuals/aurora/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #22d3ee, #06b6d4);"></div>
+<span>オーロラ</span>
+</a>
+<a href="/ja/visuals/starfield/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #1e293b, #475569);"></div>
+<span>星空</span>
+</a>
+<a href="/ja/visuals/lava-flow/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #f97316, #ef4444);"></div>
+<span>溶岩流</span>
+</a>
+<a href="/ja/visuals/mandala/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #eab308, #a855f7);"></div>
+<span>マンダラ</span>
+</a>
+<a href="/ja/visuals/dividing-cells/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #10b981, #22d3ee);"></div>
+<span>細胞分裂</span>
+</a>
+</div>
+</div>

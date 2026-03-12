@@ -1,6 +1,6 @@
 ---
-title: "Lava Flow - Meditative Visual"
-description: "Lava lamp blobs floating, merging, and separating."
+title: "Fluxo de Lava - Visual Meditativo"
+description: "Gotas de lava flutuando, fundindo e separando."
 full_width: true
 language: "pt"
 ---
@@ -124,9 +124,9 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Lava Flow</h1>
-<p class="vp-desc">Blobs merging and separating. Choose a color scheme.</p>
+<a href="/pt/visuals/" class="vp-back">&larr; Todos os Visuais</a>
+<h1 class="vp-title">Fluxo de Lava</h1>
+<p class="vp-desc">Gotas fundindo e separando. Escolha um esquema de cores.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#f97316,#ef4444)"></div>
@@ -138,14 +138,14 @@ transition: opacity 1s;
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#059669,#84cc16)"></div>
-<span>Emerald</span>
+<span>Esmeralda</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">Iniciar</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">Toque em qualquer lugar para sair</div>
 </div>
 </div>
 
@@ -325,7 +325,7 @@ initBlobs();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = 'Movimento reduzido ativado \u00b7 Exibindo vista estática<br>Toque em qualquer lugar para sair';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

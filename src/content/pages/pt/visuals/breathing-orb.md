@@ -1,6 +1,6 @@
 ---
-title: "Breathing Orb - Meditative Visual"
-description: "A pulsing orb that guides your breathing rhythm."
+title: "Orbe de Respiração - Visual Meditativo"
+description: "Um orbe pulsante que guia seu ritmo de respiração."
 full_width: true
 language: "pt"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Breathing Orb</h1>
-<p class="vp-desc">Pulsing orb guiding your breath. Choose a color scheme.</p>
+<a href="/pt/visuals/" class="vp-back">&larr; Todos os Visuais</a>
+<h1 class="vp-title">Orbe de Respiração</h1>
+<p class="vp-desc">Orbe pulsante guiando sua respiração. Escolha um esquema de cores.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#4338ca,#7c3aed)"></div>
-<span>Twilight</span>
+<span>Crepúsculo</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#f97316,#eab308)"></div>
-<span>Sunrise</span>
+<span>Nascer do Sol</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#059669,#14b8a6)"></div>
-<span>Forest</span>
+<span>Floresta</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">Iniciar</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">Toque em qualquer lugar para sair</div>
 </div>
 </div>
 
@@ -324,7 +324,7 @@ initParticles();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = 'Movimento reduzido ativado \u00b7 Exibindo vista estática<br>Toque em qualquer lugar para sair';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

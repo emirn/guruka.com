@@ -329,3 +329,37 @@ transition: none;
 </div>
 </div>
 </div>
+
+<div class="gk-section">
+<div class="gk-section-header">
+<h2>Meditative Visualisierungen</h2>
+<p>Beruhigende Vollbild-Animationen für Entspannung und Fokus</p>
+<p class="gk-free-tag">Kostenlos und ohne nervige Werbung</p>
+</div>
+<div class="gk-med-cards">
+<a href="/de/visuals/breathing-orb/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #6366f1, #a78bfa);"></div>
+<span>Atemkugel</span>
+</a>
+<a href="/de/visuals/aurora/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #22d3ee, #06b6d4);"></div>
+<span>Aurora</span>
+</a>
+<a href="/de/visuals/starfield/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #1e293b, #475569);"></div>
+<span>Sternenfeld</span>
+</a>
+<a href="/de/visuals/lava-flow/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #f97316, #ef4444);"></div>
+<span>Lavafluss</span>
+</a>
+<a href="/de/visuals/mandala/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #eab308, #a855f7);"></div>
+<span>Mandala</span>
+</a>
+<a href="/de/visuals/dividing-cells/" class="gk-med-card">
+<div class="gk-med-dot" style="background: linear-gradient(135deg, #10b981, #22d3ee);"></div>
+<span>Zellteilung</span>
+</a>
+</div>
+</div>

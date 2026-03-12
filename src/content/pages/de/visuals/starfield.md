@@ -1,6 +1,6 @@
 ---
-title: "Starfield - Meditative Visual"
-description: "Twinkling stars drifting through deep space."
+title: "Sternenfeld - Meditative Visualisierung"
+description: "Funkelnde Sterne, die durch den tiefen Weltraum treiben."
 full_width: true
 language: "de"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Starfield</h1>
-<p class="vp-desc">Twinkling stars in deep space. Choose a color scheme.</p>
+<a href="/de/visuals/" class="vp-back">&larr; Alle Visualisierungen</a>
+<h1 class="vp-title">Sternenfeld</h1>
+<p class="vp-desc">Funkelnde Sterne im tiefen Weltraum. Wähle ein Farbschema.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#1e293b,#475569)"></div>
-<span>Deep Space</span>
+<span>Tiefer Weltraum</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#4c1d95,#a855f7)"></div>
-<span>Nebula</span>
+<span>Nebel</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#78350f,#f59e0b)"></div>
-<span>Warm Cosmos</span>
+<span>Warmer Kosmos</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">Starten</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">Tippe irgendwo, um zu beenden</div>
 </div>
 </div>
 
@@ -284,7 +284,7 @@ initStars();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = 'Reduzierte Bewegung aktiviert \u00b7 Statische Ansicht<br>Tippe irgendwo, um zu beenden';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

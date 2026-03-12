@@ -1,6 +1,6 @@
 ---
-title: "Lava Flow - Meditative Visual"
-description: "Lava lamp blobs floating, merging, and separating."
+title: "溶岩流 - 瞑想ビジュアル"
+description: "浮遊し、融合し、分離する溶岩のしずく。"
 full_width: true
 language: "ja"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Lava Flow</h1>
-<p class="vp-desc">Blobs merging and separating. Choose a color scheme.</p>
+<a href="/ja/visuals/" class="vp-back">&larr; すべてのビジュアル</a>
+<h1 class="vp-title">溶岩流</h1>
+<p class="vp-desc">融合と分離を繰り返すしずく。カラースキームを選択してください。</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#f97316,#ef4444)"></div>
-<span>Magma</span>
+<span>マグマ</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#06b6d4,#d946ef)"></div>
-<span>Neon</span>
+<span>ネオン</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#059669,#84cc16)"></div>
-<span>Emerald</span>
+<span>エメラルド</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">開始</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">どこでもタップして終了</div>
 </div>
 </div>
 
@@ -325,7 +325,7 @@ initBlobs();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = 'モーション軽減が有効 \u00b7 静的ビューを表示中<br>どこでもタップして終了';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

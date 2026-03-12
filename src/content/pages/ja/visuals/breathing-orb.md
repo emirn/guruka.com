@@ -1,6 +1,6 @@
 ---
-title: "Breathing Orb - Meditative Visual"
-description: "A pulsing orb that guides your breathing rhythm."
+title: "呼吸オーブ - 瞑想ビジュアル"
+description: "呼吸のリズムをガイドする脈動するオーブ。"
 full_width: true
 language: "ja"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
-<h1 class="vp-title">Breathing Orb</h1>
-<p class="vp-desc">Pulsing orb guiding your breath. Choose a color scheme.</p>
+<a href="/ja/visuals/" class="vp-back">&larr; すべてのビジュアル</a>
+<h1 class="vp-title">呼吸オーブ</h1>
+<p class="vp-desc">呼吸をガイドする脈動するオーブ。カラースキームを選択してください。</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#4338ca,#7c3aed)"></div>
-<span>Twilight</span>
+<span>トワイライト</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#f97316,#eab308)"></div>
-<span>Sunrise</span>
+<span>サンライズ</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#059669,#14b8a6)"></div>
-<span>Forest</span>
+<span>フォレスト</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">開始</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">どこでもタップして終了</div>
 </div>
 </div>
 
@@ -324,7 +324,7 @@ initParticles();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = 'モーション軽減が有効 \u00b7 静的ビューを表示中<br>どこでもタップして終了';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

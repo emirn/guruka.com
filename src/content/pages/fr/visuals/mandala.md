@@ -1,6 +1,6 @@
 ---
-title: "Mandala - Meditative Visual"
-description: "Slowly rotating sacred geometry with evolving symmetry."
+title: "Mandala - Visuel Méditatif"
+description: "Géométrie sacrée en rotation lente avec une symétrie évolutive."
 full_width: true
 language: "fr"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
+<a href="/fr/visuals/" class="vp-back">&larr; Tous les Visuels</a>
 <h1 class="vp-title">Mandala</h1>
-<p class="vp-desc">Rotating sacred geometry. Choose a color scheme.</p>
+<p class="vp-desc">Géométrie sacrée en rotation. Choisissez un thème de couleurs.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#eab308,#f59e0b)"></div>
-<span>Golden</span>
+<span>Doré</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#6366f1,#a855f7)"></div>
-<span>Celestial</span>
+<span>Céleste</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#14b8a6,#10b981)"></div>
 <span>Jade</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">Démarrer</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">Appuyez n'importe où pour quitter</div>
 </div>
 </div>
 
@@ -327,7 +327,7 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = 'Mouvement réduit activé \u00b7 Affichage statique<br>Appuyez n\u0027importe où pour quitter';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

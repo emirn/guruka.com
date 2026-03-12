@@ -1,6 +1,6 @@
 ---
-title: "Meditative Visuals"
-description: "Calming full-screen visuals for relaxation and focus."
+title: "Visuais Meditativos"
+description: "Visuais relaxantes em tela cheia para relaxamento e foco."
 full_width: true
 language: "pt"
 ---
@@ -133,57 +133,57 @@ color: var(--color-primary-hover, #0d7d63);
 
 <div id="visuals-hub">
 <div class="vh-header">
-<h1>Meditative Visuals</h1>
-<p>Calming full-screen animations for relaxation and focus. No account needed.</p>
+<h1>Visuais Meditativos</h1>
+<p>Animações relaxantes em tela cheia para relaxamento e foco. Sem necessidade de conta.</p>
 </div>
 
 <div class="vh-grid">
-<a href="/visuals/breathing-orb/" class="vh-card">
+<a href="/pt/visuals/breathing-orb/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#6366f1,#a78bfa)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#6366f1,#a78bfa)"></div>
-<h2>Breathing Orb</h2>
-<p class="vh-sub">Pulsing orb guiding your breath</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
+<h2>Orbe de Respiração</h2>
+<p class="vh-sub">Orbe pulsante guiando sua respiração</p>
+<div class="vh-launch"><span>Iniciar &rarr;</span></div>
 </a>
 
-<a href="/visuals/aurora/" class="vh-card">
+<a href="/pt/visuals/aurora/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#22d3ee,#06b6d4)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#22d3ee,#06b6d4)"></div>
 <h2>Aurora</h2>
-<p class="vh-sub">Flowing northern lights</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
+<p class="vh-sub">Luzes do norte fluindo</p>
+<div class="vh-launch"><span>Iniciar &rarr;</span></div>
 </a>
 
-<a href="/visuals/starfield/" class="vh-card">
+<a href="/pt/visuals/starfield/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#1e293b,#475569)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#1e293b,#475569)"></div>
-<h2>Starfield</h2>
-<p class="vh-sub">Twinkling stars in deep space</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
+<h2>Campo Estelar</h2>
+<p class="vh-sub">Estrelas cintilando no espaço profundo</p>
+<div class="vh-launch"><span>Iniciar &rarr;</span></div>
 </a>
 
-<a href="/visuals/lava-flow/" class="vh-card">
+<a href="/pt/visuals/lava-flow/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#f97316,#ef4444)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#f97316,#ef4444)"></div>
-<h2>Lava Flow</h2>
-<p class="vh-sub">Blobs merging and separating</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
+<h2>Fluxo de Lava</h2>
+<p class="vh-sub">Gotas fundindo e separando</p>
+<div class="vh-launch"><span>Iniciar &rarr;</span></div>
 </a>
 
-<a href="/visuals/mandala/" class="vh-card">
+<a href="/pt/visuals/mandala/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#eab308,#a855f7)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#eab308,#a855f7)"></div>
 <h2>Mandala</h2>
-<p class="vh-sub">Rotating sacred geometry</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
+<p class="vh-sub">Geometria sagrada em rotação</p>
+<div class="vh-launch"><span>Iniciar &rarr;</span></div>
 </a>
 
-<a href="/visuals/dividing-cells/" class="vh-card">
+<a href="/pt/visuals/dividing-cells/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#10b981,#22d3ee)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#10b981,#22d3ee)"></div>
-<h2>Dividing Cells</h2>
-<p class="vh-sub">Cells dividing endlessly</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
+<h2>Células em Divisão</h2>
+<p class="vh-sub">Células dividindo-se sem parar</p>
+<div class="vh-launch"><span>Iniciar &rarr;</span></div>
 </a>
 </div>
 </div>

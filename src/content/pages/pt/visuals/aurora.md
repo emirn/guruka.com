@@ -1,6 +1,6 @@
 ---
-title: "Aurora - Meditative Visual"
-description: "Flowing northern lights color bands across the screen."
+title: "Aurora - Visual Meditativo"
+description: "Faixas de cores de auroras boreais fluindo pela tela."
 full_width: true
 language: "pt"
 ---
@@ -124,28 +124,28 @@ transition: opacity 1s;
 
 <div id="visual-page">
 <div id="vp-intro">
-<a href="/visuals/" class="vp-back">&larr; All Visuals</a>
+<a href="/pt/visuals/" class="vp-back">&larr; Todos os Visuais</a>
 <h1 class="vp-title">Aurora</h1>
-<p class="vp-desc">Flowing northern lights. Choose a color scheme.</p>
+<p class="vp-desc">Luzes do norte fluindo. Escolha um esquema de cores.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#22d3ee,#10b981)"></div>
-<span>Arctic</span>
+<span>Ártico</span>
 </button>
 <button class="vp-scheme" data-scheme="1" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#a855f7,#ec4899)"></div>
-<span>Cosmic</span>
+<span>Cósmico</span>
 </button>
 <button class="vp-scheme" data-scheme="2" aria-pressed="false">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#f472b6,#eab308)"></div>
-<span>Dawn</span>
+<span>Alvorecer</span>
 </button>
 </div>
-<button class="vp-start" id="vp-start-btn">Start</button>
+<button class="vp-start" id="vp-start-btn">Iniciar</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
 <canvas id="vp-canvas"></canvas>
-<div id="vp-hint">Tap anywhere to exit</div>
+<div id="vp-hint">Toque em qualquer lugar para sair</div>
 </div>
 </div>
 
@@ -370,7 +370,7 @@ resize();
 hideNavFooter();
 acquireWakeLock();
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = 'Movimento reduzido ativado \u00b7 Exibindo vista estática<br>Toque em qualquer lugar para sair';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);

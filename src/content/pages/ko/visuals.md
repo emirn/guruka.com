@@ -1,6 +1,6 @@
 ---
-title: "Meditative Visuals"
-description: "Calming full-screen visuals for relaxation and focus."
+title: "명상 비주얼"
+description: "휴식과 집중을 위한 전체 화면 비주얼."
 full_width: true
 language: "ko"
 ---
@@ -133,57 +133,57 @@ color: var(--color-primary-hover, #0d7d63);
 
 <div id="visuals-hub">
 <div class="vh-header">
-<h1>Meditative Visuals</h1>
-<p>Calming full-screen animations for relaxation and focus. No account needed.</p>
+<h1>명상 비주얼</h1>
+<p>휴식과 집중을 위한 전체 화면 애니메이션. 계정이 필요하지 않습니다.</p>
 </div>
 
 <div class="vh-grid">
-<a href="/visuals/breathing-orb/" class="vh-card">
+<a href="/ko/visuals/breathing-orb/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#6366f1,#a78bfa)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#6366f1,#a78bfa)"></div>
-<h2>Breathing Orb</h2>
-<p class="vh-sub">Pulsing orb guiding your breath</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
+<h2>호흡 오브</h2>
+<p class="vh-sub">호흡을 안내하는 맥동하는 오브</p>
+<div class="vh-launch"><span>시작 &rarr;</span></div>
 </a>
 
-<a href="/visuals/aurora/" class="vh-card">
+<a href="/ko/visuals/aurora/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#22d3ee,#06b6d4)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#22d3ee,#06b6d4)"></div>
-<h2>Aurora</h2>
-<p class="vh-sub">Flowing northern lights</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
+<h2>오로라</h2>
+<p class="vh-sub">흐르는 북극광</p>
+<div class="vh-launch"><span>시작 &rarr;</span></div>
 </a>
 
-<a href="/visuals/starfield/" class="vh-card">
+<a href="/ko/visuals/starfield/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#1e293b,#475569)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#1e293b,#475569)"></div>
-<h2>Starfield</h2>
-<p class="vh-sub">Twinkling stars in deep space</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
+<h2>별빛 필드</h2>
+<p class="vh-sub">깊은 우주에서 반짝이는 별들</p>
+<div class="vh-launch"><span>시작 &rarr;</span></div>
 </a>
 
-<a href="/visuals/lava-flow/" class="vh-card">
+<a href="/ko/visuals/lava-flow/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#f97316,#ef4444)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#f97316,#ef4444)"></div>
-<h2>Lava Flow</h2>
-<p class="vh-sub">Blobs merging and separating</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
+<h2>용암 흐름</h2>
+<p class="vh-sub">합쳐지고 분리되는 방울</p>
+<div class="vh-launch"><span>시작 &rarr;</span></div>
 </a>
 
-<a href="/visuals/mandala/" class="vh-card">
+<a href="/ko/visuals/mandala/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#eab308,#a855f7)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#eab308,#a855f7)"></div>
-<h2>Mandala</h2>
-<p class="vh-sub">Rotating sacred geometry</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
+<h2>만다라</h2>
+<p class="vh-sub">회전하는 신성한 기하학</p>
+<div class="vh-launch"><span>시작 &rarr;</span></div>
 </a>
 
-<a href="/visuals/dividing-cells/" class="vh-card">
+<a href="/ko/visuals/dividing-cells/" class="vh-card">
 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#10b981,#22d3ee)"></div>
 <div class="vh-dot" style="background:linear-gradient(135deg,#10b981,#22d3ee)"></div>
-<h2>Dividing Cells</h2>
-<p class="vh-sub">Cells dividing endlessly</p>
-<div class="vh-launch"><span>Launch &rarr;</span></div>
+<h2>세포 분열</h2>
+<p class="vh-sub">끊임없이 분열하는 세포</p>
+<div class="vh-launch"><span>시작 &rarr;</span></div>
 </a>
 </div>
 </div>
