@@ -1,5 +1,5 @@
 ---
-title: Terms of Service
+title: "Terms of Service"
 description: "Terms of Service for GURUKA"
 language: "es"
 ---

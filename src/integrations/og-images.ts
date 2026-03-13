@@ -66,6 +66,7 @@ function computeOgHash(inputs: {
   brandName?: string;
   gradient?: string[];
   heroImagePath?: string;
+  hasFavicon?: boolean;
 }): string {
   return crypto.createHash('sha256')
     .update(JSON.stringify(inputs))
@@ -105,6 +106,31 @@ function truncateText(text: string, max: number): string {
   return text.slice(0, lastSpace) + ellipsis;
 }
 
+async function loadFaviconBase64(publicDir: string): Promise<string | undefined> {
+  const candidates = [
+    'apple-touch-icon.png',
+    'icon-192.png',
+    'favicon-96x96.png',
+    'favicon.png',
+    'favicon.svg',
+    'favicon.ico',
+  ];
+  for (const name of candidates) {
+    const filePath = path.join(publicDir, name);
+    try {
+      const buf = await fs.readFile(filePath);
+      const pngBuf = await sharp(buf)
+        .resize(40, 40, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+        .png()
+        .toBuffer();
+      return `data:image/png;base64,${pngBuf.toString('base64')}`;
+    } catch {
+      continue;
+    }
+  }
+  return undefined;
+}
+
 /**
  * Build satori-compatible virtual DOM template for OG image
  */
@@ -115,8 +141,9 @@ function buildOgTemplate(options: {
   brandName?: string;
   gradient?: [string, string, string];
   heroImageBase64?: string;
+  faviconBase64?: string;
 }): any {
-  const { title, description, badge, brandName, heroImageBase64 } = options;
+  const { title, description, badge, brandName, heroImageBase64, faviconBase64 } = options;
   const truncTitle = truncateText(title, 80);
   const truncDesc = description ? truncateText(description, 140) : '';
   const gradient = options.gradient || ['#1e3a5f', '#4a2c6a', '#6b2d5c'];
@@ -199,12 +226,24 @@ function buildOgTemplate(options: {
           props: {
             style: {
               display: 'flex',
-              justifyContent: 'space-between',
+              justifyContent: 'flex-start',
               alignItems: 'center',
               color: 'white',
               fontSize: '20px',
+              gap: '12px',
             },
             children: [
+              faviconBase64
+                ? {
+                    type: 'img',
+                    props: {
+                      src: faviconBase64,
+                      width: 40,
+                      height: 40,
+                      style: { borderRadius: '8px' },
+                    },
+                  }
+                : null,
               brandName
                 ? {
                     type: 'div',
@@ -318,6 +357,7 @@ export function ogImages(): AstroIntegration {
         const badge = config.branding?.badge;
         const brandName = config.branding?.site?.name;
         const gradient = config.branding?.gradient || config.gradient;
+        const faviconBase64 = await loadFaviconBase64(publicDir);
 
         await fs.mkdir(ogCacheDir, { recursive: true });
 
@@ -355,6 +395,7 @@ export function ogImages(): AstroIntegration {
               badge, brandName,
               gradient: gradient ? [...gradient] : undefined,
               heroImagePath: heroPath,
+              hasFavicon: !!faviconBase64,
             });
             const cachePath = path.join(ogCacheDir, `${hash}.webp`);
 
@@ -419,6 +460,7 @@ export function ogImages(): AstroIntegration {
                 brandName,
                 gradient,
                 heroImageBase64,
+                faviconBase64,
               });
 
               const fonts: { name: string; data: Buffer; weight: number; style: 'normal' }[] = [
