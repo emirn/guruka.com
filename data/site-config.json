@@ -249,6 +249,31 @@
         ]
       },
       {
+        "title": "Compare",
+        "links": [
+          {
+            "label": "Headspace vs Calm",
+            "url": "/compare/headspace-vs-calm/"
+          },
+          {
+            "label": "Headspace Alternatives",
+            "url": "/compare/free-alternative-to-headspace/"
+          },
+          {
+            "label": "Calm Alternatives",
+            "url": "/compare/free-alternative-to-calm/"
+          },
+          {
+            "label": "Balance Alternatives",
+            "url": "/compare/free-alternative-to-balance-app/"
+          },
+          {
+            "label": "Insight Timer Alternatives",
+            "url": "/compare/free-alternative-to-insight-timer/"
+          }
+        ]
+      },
+      {
         "title": "Legal",
         "links": [
           {
@@ -363,6 +388,16 @@
       "show_in_nav": false,
       "show_on_home": true,
       "section_title": "BLOG",
+      "layout": "grid",
+      "section_type": "blog"
+    },
+    {
+      "id": "compare",
+      "label": "Compare",
+      "path": "compare",
+      "show_in_nav": false,
+      "show_on_home": false,
+      "section_title": "COMPARE",
       "layout": "grid",
       "section_type": "blog"
     }
@@ -585,7 +620,7 @@
     }
   },
   "build_info": {
-    "git_commit": "19178ef42",
-    "build_date": "2026-03-13T11:22:35.382Z"
+    "git_commit": "f5dc03463",
+    "build_date": "2026-03-13T16:47:14.159Z"
   }
 }
