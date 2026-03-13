@@ -27,6 +27,9 @@
       atl.href = '/apple-touch-icon.png';
       head.appendChild(atl);
     }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(function() {});
+    }
   })();
   /* ── Challenge Params ── */
   GK.parseChallenge = function() {
@@ -207,6 +210,17 @@
         data.audioSrc = basePath + 'meditation.mp3';
         GK.Meditation.initVisual(data.colors);
         GK.Meditation.initPlayer(data);
+      })
+      .catch(function() {
+        var app = document.getElementById('meditation-app');
+        if (app) {
+          app.innerHTML =
+            '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,0.8);text-align:center;padding:2rem;font-family:-apple-system,sans-serif">' +
+              '<div style="font-size:2.5rem;margin-bottom:1rem">&#9729;&#65039;</div>' +
+              '<div style="font-size:1.25rem;font-weight:600;margin-bottom:0.5rem">Meditation unavailable offline</div>' +
+              '<div style="font-size:0.9rem;color:rgba(255,255,255,0.5);max-width:300px;line-height:1.5">Download this meditation for offline use from the meditations hub page.</div>' +
+            '</div>';
+        }
       });
   };
 
@@ -999,6 +1013,286 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     GK.Stats.init();
+  });
+
+  /* ── Offline Support ── */
+  GK.Offline = {};
+
+  GK.Offline.THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+  GK.Offline.LAST_ONLINE_KEY = 'guruka_last_online';
+
+  GK.Offline.LANGS = ['en','es','de','fr','ja','ko','pt'];
+
+  GK.Offline.MEDITATIONS = [
+    'body-scan-and-tension-release','calm-and-stress-relief','focus-and-clarity',
+    'gratitude','loving-kindness','morning-energy','sleep-and-wind-down'
+  ];
+  GK.Offline.GAMES = [
+    'color-clash','memory-matrix','number-crunch','pattern-path',
+    'quick-sort','sequence-recall','speed-match'
+  ];
+  GK.Offline.VISUALS = [
+    'aurora','breathing-orb','dividing-cells','lava-flow','mandala','starfield'
+  ];
+
+  GK.Offline._prefKey = function(section, lang) {
+    return 'guruka_offline_' + section + (lang ? '_' + lang : '');
+  };
+
+  GK.Offline._getLang = function() {
+    var parts = window.location.pathname.split('/').filter(Boolean);
+    if (GK.Offline.LANGS.indexOf(parts[0]) !== -1) return parts[0];
+    return 'en';
+  };
+
+  GK.Offline._buildUrls = function(section, lang) {
+    var prefix = '/' + lang + '/';
+    var urls = [];
+
+    if (section === 'meditate') {
+      urls.push(prefix + 'meditate/');
+      GK.Offline.MEDITATIONS.forEach(function(slug) {
+        urls.push(prefix + 'meditate/' + slug + '/');
+        urls.push('/assets/' + lang + '/meditate/' + slug + '/content.json');
+        urls.push('/assets/' + lang + '/meditate/' + slug + '/meditation.mp3');
+      });
+    } else if (section === 'games') {
+      urls.push(prefix + 'games/');
+      GK.Offline.GAMES.forEach(function(slug) {
+        urls.push(prefix + 'games/' + slug + '/');
+      });
+    } else if (section === 'visuals') {
+      urls.push(prefix + 'visuals/');
+      GK.Offline.VISUALS.forEach(function(slug) {
+        urls.push(prefix + 'visuals/' + slug + '/');
+      });
+    }
+    return urls;
+  };
+
+  GK.Offline.downloadSection = function(section, lang, onProgress, onComplete) {
+    if (!navigator.serviceWorker) return;
+    var urls = GK.Offline._buildUrls(section, lang);
+    var totalAll = urls.length;
+    var finished = false;
+
+    function done() {
+      if (finished) return;
+      finished = true;
+      navigator.serviceWorker.removeEventListener('message', handleMessage);
+      clearTimeout(timer);
+      localStorage.setItem(GK.Offline._prefKey(section, lang), '1');
+      if (onComplete) onComplete();
+    }
+
+    function handleMessage(e) {
+      if (!e.data) return;
+      if (e.data.type === 'CACHE_PROGRESS') {
+        if (onProgress) onProgress(e.data.done, totalAll);
+      }
+      if (e.data.type === 'CACHE_COMPLETE') {
+        done();
+      }
+    }
+
+    // Timeout fallback — 90s to prevent infinite hang
+    var timer = setTimeout(function() {
+      if (!finished) done();
+    }, 90000);
+
+    navigator.serviceWorker.addEventListener('message', handleMessage);
+
+    // Wait for SW to be ready before sending message
+    navigator.serviceWorker.ready.then(function(reg) {
+      if (reg.active) {
+        reg.active.postMessage({
+          type: 'CACHE_URLS', urls: urls, cacheName: 'guruka-pages-v1'
+        });
+      }
+    });
+  };
+
+  GK.Offline.removeSection = function(section, lang, onComplete) {
+    if (!navigator.serviceWorker) return;
+    var urls = GK.Offline._buildUrls(section, lang);
+    var pageUrls = urls.filter(function(u) { return !u.endsWith('.mp3') && !u.endsWith('.json'); });
+    var audioUrls = urls.filter(function(u) { return u.endsWith('.mp3') || u.endsWith('.json'); });
+
+    navigator.serviceWorker.ready.then(function(reg) {
+      if (!reg.active) return;
+      reg.active.postMessage({
+        type: 'CLEAR_URLS', urls: pageUrls, cacheName: 'guruka-pages-v1'
+      });
+      if (audioUrls.length > 0) {
+        reg.active.postMessage({
+          type: 'CLEAR_URLS', urls: audioUrls, cacheName: 'guruka-audio-v1'
+        });
+      }
+    });
+    localStorage.removeItem(GK.Offline._prefKey(section, lang));
+    if (onComplete) onComplete();
+  };
+
+  GK.Offline._injectStyles = function() {
+    if (document.getElementById('gk-offline-styles')) return;
+    var s = document.createElement('style');
+    s.id = 'gk-offline-styles';
+    s.textContent =
+      '.gk-off-wrap{margin-top:0.5rem;font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.5}' +
+      '.gk-off-link{color:rgba(255,255,255,0.55);text-decoration:none;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.2);transition:color 0.2s,border-color 0.2s}' +
+      '.gk-off-link:hover{color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.5)}' +
+      '.gk-off-downloading{color:rgba(255,255,255,0.5)}' +
+      '.gk-off-progress{width:100%;max-width:280px;height:3px;border-radius:2px;background:rgba(255,255,255,0.1);overflow:hidden;margin:0.4rem auto 0}' +
+      '.gk-off-progress-fill{height:100%;background:rgba(15,144,114,0.8);border-radius:2px;transition:width 0.3s}' +
+      '.gk-off-done{color:rgba(15,144,114,0.8)}' +
+      '.gk-off-done a{color:rgba(255,255,255,0.4);text-decoration:none;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.15);transition:color 0.2s}' +
+      '.gk-off-done a:hover{color:rgba(255,255,255,0.65)}' +
+      '.gk-off-expiry-banner{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(180,60,60,0.95);color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.85rem;font-family:-apple-system,sans-serif}' +
+      '@media(prefers-color-scheme:light){' +
+        '.gk-off-wrap{color:rgba(0,0,0,0.4)}' +
+        '.gk-off-link{color:rgba(0,0,0,0.5);border-bottom-color:rgba(0,0,0,0.2)}' +
+        '.gk-off-link:hover{color:rgba(0,0,0,0.75);border-color:rgba(0,0,0,0.4)}' +
+        '.gk-off-downloading{color:rgba(0,0,0,0.45)}' +
+        '.gk-off-progress{background:rgba(0,0,0,0.08)}' +
+        '.gk-off-done a{color:rgba(0,0,0,0.35);border-bottom-color:rgba(0,0,0,0.15)}' +
+        '.gk-off-done a:hover{color:rgba(0,0,0,0.55)}' +
+      '}';
+    document.head.appendChild(s);
+  };
+
+  GK.Offline.injectUI = function(section) {
+    GK.Offline._injectStyles();
+
+    var selectors = {
+      meditate: '#meditate-hub .mh-header',
+      games: '#games-hub .gh-header',
+      visuals: '#visuals-hub .vh-header'
+    };
+    var header = document.querySelector(selectors[section]);
+    if (!header) return;
+
+    var lang = GK.Offline._getLang();
+
+    var wrap = document.createElement('div');
+    wrap.className = 'gk-off-wrap';
+    wrap.id = 'gk-off-wrap';
+    header.appendChild(wrap);
+
+    // Cloud SVG icon (inline, small)
+    var cloudIcon = '<svg style="vertical-align:-2px;margin-right:2px" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>';
+    var checkIcon = '<svg style="vertical-align:-2px;margin-right:2px" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+    function render() {
+      var isSaved = localStorage.getItem(GK.Offline._prefKey(section, lang));
+
+      if (isSaved) {
+        wrap.innerHTML = '<span class="gk-off-done">' + checkIcon + ' Available offline &middot; <a id="gk-off-remove" href="#">Remove</a></span>';
+        document.getElementById('gk-off-remove').addEventListener('click', function(e) {
+          e.preventDefault();
+          GK.Offline.removeSection(section, lang, render);
+        });
+      } else {
+        wrap.innerHTML = cloudIcon + ' Use offline for 30 days &mdash; <a class="gk-off-link" id="gk-off-download" href="#">Store in browser</a>';
+
+        document.getElementById('gk-off-download').addEventListener('click', function(e) {
+          e.preventDefault();
+          // Switch to downloading state
+          wrap.innerHTML =
+            '<span class="gk-off-downloading">Downloading for offline use\u2026</span>' +
+            '<div class="gk-off-progress"><div class="gk-off-progress-fill" id="gk-off-fill" style="width:0%"></div></div>';
+
+          GK.Offline.downloadSection(section, lang,
+            function(done, total) {
+              var fill = document.getElementById('gk-off-fill');
+              if (fill) fill.style.width = Math.round((done / total) * 100) + '%';
+            },
+            function() {
+              render();
+            }
+          );
+        });
+      }
+    }
+
+    render();
+  };
+
+  GK.Offline._checkExpiry = function() {
+    var lastOnline = parseInt(localStorage.getItem(GK.Offline.LAST_ONLINE_KEY), 10);
+    var now = Date.now();
+
+    if (navigator.onLine) {
+      localStorage.setItem(GK.Offline.LAST_ONLINE_KEY, String(now));
+      return;
+    }
+
+    if (!lastOnline) return; // Never recorded — first visit, skip
+
+    if (now - lastOnline > GK.Offline.THIRTY_DAYS) {
+      // Expired — show banner
+      var banner = document.createElement('div');
+      banner.className = 'gk-off-expiry-banner';
+      banner.textContent = 'Please reconnect to the internet to continue using offline content.';
+      document.body.appendChild(banner);
+
+      // Tell SW to clear caches
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.ready.then(function(reg) {
+          if (reg.active) reg.active.postMessage({ type: 'CHECK_EXPIRY' });
+        });
+      }
+
+      // Clear all offline preferences
+      GK.Offline.LANGS.forEach(function(l) {
+        localStorage.removeItem(GK.Offline._prefKey('meditate', l));
+      });
+      localStorage.removeItem(GK.Offline._prefKey('games'));
+      localStorage.removeItem(GK.Offline._prefKey('visuals'));
+    }
+  };
+
+  GK.Offline._respondToSW = function() {
+    if (!navigator.serviceWorker) return;
+    navigator.serviceWorker.addEventListener('message', function(e) {
+      if (e.data && e.data.type === 'CHECK_LAST_ONLINE' && e.ports && e.ports[0]) {
+        var last = parseInt(localStorage.getItem(GK.Offline.LAST_ONLINE_KEY), 10) || 0;
+        var expired = Date.now() - last > GK.Offline.THIRTY_DAYS;
+        e.ports[0].postMessage(expired);
+      }
+    });
+  };
+
+  GK.Offline._detectSection = function() {
+    var path = window.location.pathname;
+    if (/\/meditate\/?$/.test(path)) return 'meditate';
+    if (/\/games\/?$/.test(path)) return 'games';
+    if (/\/visuals\/?$/.test(path)) return 'visuals';
+    return null;
+  };
+
+  GK.Offline.init = function() {
+    if (!('serviceWorker' in navigator)) return;
+
+    // Update last-online timestamp when online
+    if (navigator.onLine) {
+      localStorage.setItem(GK.Offline.LAST_ONLINE_KEY, String(Date.now()));
+    }
+    window.addEventListener('online', function() {
+      localStorage.setItem(GK.Offline.LAST_ONLINE_KEY, String(Date.now()));
+    });
+
+    GK.Offline._respondToSW();
+    GK.Offline._checkExpiry();
+
+    // Inject UI on hub pages
+    var section = GK.Offline._detectSection();
+    if (section) {
+      GK.Offline.injectUI(section);
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    GK.Offline.init();
   });
 
   /* ── Add-to-Home-Screen Hint ── */
