@@ -31,7 +31,8 @@ flex: 1;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+padding-top: 2rem;
 }
 
 .cc-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
@@ -79,7 +80,7 @@ font-size: 1rem;
 color: var(--color-primary);
 }
 
-#cc-instructions .cc-how-to ol {
+#cc-instructions .cc-how-to ul {
 margin: 0;
 padding-left: 1.25rem;
 }
@@ -562,6 +563,13 @@ box-shadow: 0 0 15px rgba(239,68,68,0.4);
 text-align: center;
 font-size: 0.75rem;
 color: var(--color-text-secondary);
+display: none;
+}
+
+@media (min-width: 768px) {
+.cc-playing-hint {
+display: block;
+}
 }
 
 [data-theme="dark"] .cc-playing-hint {
@@ -868,20 +876,20 @@ box-shadow: 0 0 20px rgba(236,72,153,0.4);
 
 <div id="cc-instructions">
 <div class="cc-title-row"><span class="cc-icon">&#127912;</span><h2>Color Clash</h2></div>
-<p class="cc-subtitle">Stroop-basierte Hemmungskontrolle &amp; selektive Aufmerksamkeit</p>
+<p class="cc-subtitle">Lies Farben, ignoriere Ablenkungen</p>
+<div id="cc-best-display" class="cc-personal-best">
+Pers&ouml;nlicher Rekord: <strong id="cc-best-score">noch keiner</strong>
+</div>
 <div class="cc-how-to">
 <h3>Wie man spielt</h3>
-<ol>
-<li>Ein Farbwort erscheint in einer <strong>anderen Tintenfarbe</strong>.</li>
+<ul>
+<li>Ein Farbwort erscheint in einer <strong style="color:#ec4899">anderen Tintenfarbe</strong>.</li>
 <li>Folge dem <strong>Regelindikator</strong> &mdash; tippe auf die richtige Farbe gem&auml;&szlig; der aktuellen Regel.</li>
-<li>Die Regeln wechseln zwischen <strong>&bdquo;Tintenfarbe&ldquo;</strong> und <strong>&bdquo;Wortbedeutung&ldquo;</strong> wenn du aufsteigst.</li>
+<li>Die Regeln wechseln zwischen <strong style="color:#ec4899">&bdquo;Tintenfarbe&ldquo;</strong> und <strong style="color:#3b82f6">&bdquo;Wortbedeutung&ldquo;</strong> wenn du aufsteigst.</li>
 <li>Antworte bevor die Zeit abl&auml;uft!</li>
-<li>Geschwindigkeit und Serien bringen Bonuspunkte.</li>
-</ol>
+</ul>
 </div>
-<div id="cc-best-display" class="cc-personal-best" style="display:none;">
-Pers&ouml;nlicher Rekord: <strong id="cc-best-score">0</strong> Punkte
-</div>
+
 <button class="cc-btn-primary" id="cc-start-btn">Spiel starten</button>
 <div id="cc-challenge-banner-wrap"></div>
 </div>
@@ -1257,10 +1265,9 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString();
-elBestDisplay.style.display = 'block';
+elBestScore.textContent = best.toLocaleString() + ' Punkte';
 } else {
-elBestDisplay.style.display = 'none';
+elBestScore.textContent = 'noch keiner';
 }
 }
 
@@ -1747,13 +1754,13 @@ nextRound();
 /* ── Event listeners ── */
 btnStart.addEventListener('click', function() {
 resetState();
-showWizard();
+startPlaying();
 });
 
 btnPlayAgain.addEventListener('click', function() {
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 });
 
 for (var i = 0; i < 4; i++) {
@@ -1790,23 +1797,18 @@ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resumeGame();
 }
-} else if (state.screen === 'wizard') {
-if (e.key === 'Enter' || e.key === ' ') {
-e.preventDefault();
-advanceWizard();
-}
 } else if (state.screen === 'instructions') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
-showWizard();
+startPlaying();
 }
 } else if (state.screen === 'complete') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 }
 }
 });

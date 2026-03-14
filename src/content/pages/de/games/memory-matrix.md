@@ -63,6 +63,11 @@ to { opacity: 1; transform: translateY(0); }
 /* ---- Instructions Screen ---- */
 #memory-matrix-game .mm-instructions {
 text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+padding-top: 2rem;
 }
 
 #memory-matrix-game .mm-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
@@ -88,7 +93,7 @@ stroke-linejoin: round;
 }
 
 #memory-matrix-game .mm-title {
-font-size: 1.5rem;
+font-size: 1.75rem;
 font-weight: 700;
 margin: 0 0 0.25rem;
 }
@@ -101,42 +106,36 @@ margin: 0 0 1.5rem;
 
 #memory-matrix-game .mm-how-to {
 text-align: left;
+background: var(--color-bg-secondary);
+border-radius: 0.75rem;
+padding: 1.25rem 1.5rem;
 margin-bottom: 1.5rem;
+width: 100%;
+max-width: 420px;
+border: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] #memory-matrix-game .mm-how-to {
+background: var(--color-dark-bg-secondary);
+border-color: var(--color-dark-border);
 }
 
 #memory-matrix-game .mm-how-to h3 {
 font-size: 1rem;
 font-weight: 600;
 margin: 0 0 0.75rem;
+color: var(--color-primary);
 }
 
-#memory-matrix-game .mm-how-to ol {
-list-style: none;
-padding: 0;
+#memory-matrix-game .mm-how-to ul {
 margin: 0;
+padding-left: 1.25rem;
 }
 
 #memory-matrix-game .mm-how-to li {
-display: flex;
-align-items: flex-start;
-gap: 0.75rem;
-margin-bottom: 0.625rem;
+margin-bottom: 0.5rem;
 font-size: 0.9rem;
-color: var(--color-text-secondary);
-}
-
-#memory-matrix-game .mm-step-num {
-flex-shrink: 0;
-width: 24px;
-height: 24px;
-border-radius: 50%;
-background: color-mix(in srgb, var(--color-primary) 15%, transparent);
-color: var(--color-primary);
-font-size: 0.8rem;
-font-weight: 600;
-display: flex;
-align-items: center;
-justify-content: center;
+line-height: 1.4;
 }
 
 #memory-matrix-game .mm-best-banner {
@@ -718,19 +717,22 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 
 <div id="mm-instructions" class="mm-screen active">
 <div class="mm-instructions">
-<div class="mm-title-row"><div class="mm-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h1 class="mm-title">Memory Matrix</h1></div>
+<div class="mm-title-row"><div class="mm-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h2 class="mm-title">Memory Matrix</h2></div>
 <p class="mm-subtitle">Teste dein räumliches Gedächtnis</p>
-<div class="mm-how-to">
-<h3>So spielst du:</h3>
-<ol>
-<li><span class="mm-step-num">1</span><span>Beobachte das Muster -- Zellen leuchten nacheinander auf</span></li>
-<li><span class="mm-step-num">2</span><span>Merke dir, welche Zellen aufleuchten</span></li>
-<li><span class="mm-step-num">3</span><span>Tippe die gleichen Zellen aus dem Gedächtnis an</span></li>
-<li><span class="mm-step-num">4</span><span>Ab Level 8 ist die Reihenfolge wichtig! Tippe in der richtigen Reihenfolge</span></li>
-</ol>
+<div id="mm-instr-best" class="mm-best-banner">
+Persönlicher Rekord: <strong id="mm-best-value">noch keiner</strong>
 </div>
-<div id="mm-instr-best" class="mm-best-banner" style="display:none;"></div>
-<button class="mm-btn mm-btn-primary" onclick="mmShowWizard()">Spiel starten</button>
+<div class="mm-how-to">
+<h3>So spielst du</h3>
+<ul>
+<li>Beobachte das Muster &mdash; Zellen leuchten nacheinander auf.</li>
+<li>Merke dir, welche Zellen aufleuchten.</li>
+<li>Tippe die gleichen Zellen aus dem Ged&auml;chtnis an.</li>
+<li>Ab Level 8 ist die <strong>Reihenfolge wichtig</strong> &mdash; tippe in der richtigen Reihenfolge!</li>
+</ul>
+</div>
+
+<button class="mm-btn mm-btn-primary" onclick="mmStartGame()">Spiel starten</button>
 <div id="mm-challenge-banner-wrap"></div>
 </div>
 </div>
@@ -775,7 +777,7 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 <div class="mm-icon-wrap">
 <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
 </div>
-<h1 class="mm-title">Spiel beendet!</h1>
+<h2 class="mm-title">Spiel beendet!</h2>
 <div class="mm-score-display" id="mm-final-score">0</div>
 <div id="mm-new-best-badge" class="mm-new-best" style="display:none;">Neuer persönlicher Rekord!</div>
 <div class="gk-challenge-result" id="mm-challenge-result" style="display:none;"></div>
@@ -890,10 +892,13 @@ function showScreen(name) {
 
 function updateInstructionsBest() {
   var best = getPersonalBest();
-  var banner = document.getElementById('mm-instr-best');
-  if (best > 0 && banner) {
-    banner.style.display = 'block';
-    banner.innerHTML = 'Persönlicher Rekord: <strong>' + best.toLocaleString() + '</strong> Punkte';
+  var el = document.getElementById('mm-best-value');
+  if (el) {
+    if (best > 0) {
+      el.textContent = best.toLocaleString() + ' Punkte';
+    } else {
+      el.textContent = 'noch keiner';
+    }
   }
 }
 
@@ -941,6 +946,7 @@ mmRenderWizardStep();
 };
 
 /* ---- Start Game ---- */
+window.mmStartGame = mmStartGame;
 function mmStartGame() {
   window.scrollTo({ top: 0, behavior: 'instant' });
   var stickyNav = document.querySelector('.sticky.top-0');
@@ -1352,7 +1358,7 @@ window.mmPlayAgain = function() {
   clearTimeout(state.feedbackTimer);
   clearInterval(state.countdownTimer);
   updateInstructionsBest();
-  showScreen('instructions');
+  mmStartGame();
 };
 
 /* ---- Init ---- */

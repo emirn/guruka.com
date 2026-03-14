@@ -282,32 +282,108 @@ el.innerHTML = 'Personal Best: <strong>' + Number(best).toLocaleString() + '</st
 
 <style>
 /* ── Mobile-first responsive ── */
+.gh-grid {
+grid-template-columns: 1fr;
+gap: 1rem;
+margin-bottom: 2rem;
+}
+#games-hub .gh-header {
+margin-bottom: 1.5rem;
+}
 .gh-game-card {
-padding: 1.5rem;
-grid-template-columns: 3.25rem 1fr;
+padding: 1.25rem;
+grid-template-columns: 2.5rem 1fr;
+column-gap: 0.875rem;
 }
 .gh-game-icon {
-width: 3.25rem;
-height: 3.25rem;
+width: 2.5rem;
+height: 2.5rem;
+font-size: 1.25rem;
+border-radius: 0.75rem;
+}
+.gh-game-card h2 {
+font-size: 1.2rem;
+margin-bottom: 0.25rem;
+}
+.gh-game-card .gh-skill {
+display: none;
 }
 .gh-game-card .gh-desc {
-display: -webkit-box;
--webkit-line-clamp: 2;
--webkit-box-orient: vertical;
-overflow: hidden;
+display: none;
+}
+.gh-play-btn {
+min-height: 36px;
+font-size: 0.875rem;
+}
+.gh-best {
+margin-top: 0.5rem;
+padding-top: 0.5rem;
+font-size: 0.75rem;
+}
+.gh-info {
+padding: 1.25rem;
+}
+.gh-info h3 {
+font-size: 1.1rem;
+}
+.gh-info p {
+font-size: 0.875rem;
+}
+@media (min-width: 480px) {
+.gh-grid {
+grid-template-columns: repeat(2, 1fr);
+gap: 1.25rem;
+}
 }
 @media (min-width: 768px) {
+.gh-grid {
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1.5rem;
+margin-bottom: 3rem;
+}
+#games-hub .gh-header {
+margin-bottom: 3rem;
+}
 .gh-game-card {
 padding: 2rem;
 grid-template-columns: 4rem 1fr;
+column-gap: 1rem;
 }
 .gh-game-icon {
 width: 4rem;
 height: 4rem;
+font-size: 1.75rem;
+border-radius: 1rem;
+}
+.gh-game-card h2 {
+font-size: 1.5rem;
+margin-bottom: 0.5rem;
+}
+.gh-game-card .gh-skill {
+display: inline-block;
 }
 .gh-game-card .gh-desc {
+display: block;
 -webkit-line-clamp: unset;
 overflow: visible;
+}
+.gh-play-btn {
+min-height: 44px;
+font-size: 0.9375rem;
+}
+.gh-best {
+margin-top: 0.75rem;
+padding-top: 0.75rem;
+font-size: 0.8125rem;
+}
+.gh-info {
+padding: 2rem;
+}
+.gh-info h3 {
+font-size: 1.25rem;
+}
+.gh-info p {
+font-size: 0.9375rem;
 }
 }
 @media (hover: hover) and (pointer: fine) {

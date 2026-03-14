@@ -27,8 +27,22 @@ padding: 1.5rem;
 box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
+[data-theme="dark"] #sequence-recall-game {
+color: var(--color-dark-text-primary);
+}
+
 [data-theme="dark"] #sequence-recall-game .sr-card {
+background: var(--color-dark-bg-primary);
+border-color: var(--color-dark-border);
 box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] #sequence-recall-game .sr-subtitle {
+color: var(--color-dark-text-secondary);
+}
+
+[data-theme="dark"] #sequence-recall-game .sr-how-to li {
+color: var(--color-dark-text-secondary);
 }
 
 #sequence-recall-game .sr-title {
@@ -55,42 +69,44 @@ margin-bottom: 0;
 font-size: 2rem;
 }
 
-#sequence-recall-game .sr-instructions-list {
-list-style: none;
-padding: 0;
-margin: 0 0 1.25rem;
+#sequence-recall-game .sr-how-to {
+text-align: left;
+background: var(--color-bg-secondary, #f0f4f8);
+border-radius: 0.75rem;
+padding: 1.25rem 1.5rem;
+margin-bottom: 1.25rem;
+width: 100%;
+max-width: 420px;
+border: 1px solid var(--color-border, #dfe4ea);
 }
 
-#sequence-recall-game .sr-instructions-list li {
-padding: 0.5rem 0;
-padding-left: 1.75rem;
-position: relative;
-font-size: 0.95rem;
-color: var(--color-text-primary, #1a2332);
-line-height: 1.5;
+[data-theme="dark"] #sequence-recall-game .sr-how-to {
+background: var(--color-dark-bg-secondary);
+border-color: var(--color-dark-border);
 }
 
-#sequence-recall-game .sr-instructions-list li::before {
-content: attr(data-num);
-position: absolute;
-left: 0;
-top: 0.5rem;
-width: 1.25rem;
-height: 1.25rem;
-background: var(--color-primary, #0f9072);
-color: #fff;
-border-radius: 50%;
-font-size: 0.7rem;
-font-weight: 700;
-display: flex;
-align-items: center;
-justify-content: center;
+#sequence-recall-game .sr-how-to h3 {
+margin: 0 0 0.75rem 0;
+font-size: 1rem;
+color: var(--color-primary, #0f9072);
+}
+
+#sequence-recall-game .sr-how-to ul {
+margin: 0;
+padding-left: 1.25rem;
+}
+
+#sequence-recall-game .sr-how-to li {
+margin-bottom: 0.5rem;
+font-size: 0.9rem;
+line-height: 1.4;
 }
 
 #sequence-recall-game .sr-best-score {
 text-align: center;
 padding: 0.75rem;
 background: var(--color-bg-secondary, #f0f4f8);
+border: 1px solid var(--color-border, #dfe4ea);
 border-radius: 0.5rem;
 margin-bottom: 1.25rem;
 font-size: 0.9rem;
@@ -101,6 +117,12 @@ color: var(--color-text-secondary, #4b5b6d);
 color: var(--color-text-primary, #1a2332);
 font-weight: 700;
 }
+[data-theme="dark"] #sequence-recall-game .sr-best-score {
+background: var(--color-dark-bg-secondary);
+border-color: var(--color-dark-border);
+color: var(--color-dark-text-secondary);
+}
+
 
 #sequence-recall-game .sr-btn-primary {
 display: block;
@@ -116,6 +138,7 @@ cursor: pointer;
 transition: all 0.2s;
 text-align: center;
 text-decoration: none;
+max-width: 420px;
 }
 
 #sequence-recall-game .sr-btn-primary:hover {
@@ -688,6 +711,15 @@ align-items: center;
 margin-top: 0.5rem;
 }
 
+#sr-instructions {
+text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+padding-top: 2rem;
+}
+
 /* Hide all screens by default */
 #sequence-recall-game .sr-screen {
 display: none;
@@ -797,21 +829,24 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 <div id="sequence-recall-game">
 
 <div id="sr-instructions" class="sr-screen sr-active">
-<div class="sr-card">
-<div class="sr-title-row"><span class="sr-icon">&#x1F9E0;</span><h1 class="sr-title">Sequence Recall</h1></div>
+
+<div class="sr-title-row"><span class="sr-icon">&#x1F9E0;</span><h2 class="sr-title">Sequence Recall</h2></div>
 <p class="sr-subtitle">ワーキングメモリを鍛えよう</p>
-<ul class="sr-instructions-list">
-<li data-num="1">順番に表示される色の並びを観察してください</li>
-<li data-num="2">順番を注意深く覚えてください</li>
-<li data-num="3">まったく同じ順番で色を思い出してください</li>
-<li data-num="4">難易度が上がる20レベルをクリアしましょう</li>
-</ul>
 <div class="sr-best-score" id="sr-best-display">
-自己ベスト: <strong id="sr-best-value">0</strong> ポイント
+自己ベスト: <strong id="sr-best-value">まだなし</strong>
 </div>
+<div class="sr-how-to">
+<h3>遊び方</h3>
+<ul>
+<li>色のついたタイルが順番に光るのを見てください。</li>
+<li>記憶を頼りに同じ順番でタイルをタップしてください。</li>
+<li>高レベルでは、思い出す前に<strong>計算問題</strong>を解きます。</li>
+<li>レベル11からは<strong>色と位置の両方</strong>を覚えましょう（デュアルトラック）！</li>
+</ul>
+</div>
+
 <button class="sr-btn-primary" id="sr-start-btn">ゲームスタート</button>
 <div id="sr-challenge-banner-wrap"></div>
-</div>
 </div>
 
 <div id="sr-wizard" class="sr-screen">
@@ -1540,7 +1575,11 @@ state.positionSequence = [];
 
 function initInstructions() {
 var best = getBestScore();
-$('sr-best-value').textContent = best;
+if (best > 0) {
+$('sr-best-value').textContent = best.toLocaleString() + ' ポイント';
+} else {
+$('sr-best-value').textContent = 'まだなし';
+}
 GK.renderChallengeBanner('sr-challenge-banner-wrap', challenge);
 showScreen('instructions');
 }
@@ -1549,9 +1588,7 @@ $('sr-finish-btn').addEventListener('click', function() {
 endGame();
 });
 
-$('sr-start-btn').addEventListener('click', function() {
-resetGame();
-showWizard(function() {
+function srStartPlaying() {
 window.scrollTo({ top: 0, behavior: 'instant' });
 var stickyNav = document.querySelector('.sticky.top-0');
 if (stickyNav && window.innerWidth <= 768) { stickyNav.style.display = 'none'; document.body.style.paddingTop = '0'; }
@@ -1560,21 +1597,16 @@ if (footer && window.innerWidth <= 768) footer.style.display = 'none';
 showScreen('playing');
 GK.renderChallengeBar('sr-playing', challenge);
 startRound();
-});
+}
+
+$('sr-start-btn').addEventListener('click', function() {
+resetGame();
+srStartPlaying();
 });
 
 $('sr-play-again-btn').addEventListener('click', function() {
 resetGame();
-showWizard(function() {
-window.scrollTo({ top: 0, behavior: 'instant' });
-var stickyNav = document.querySelector('.sticky.top-0');
-if (stickyNav && window.innerWidth <= 768) { stickyNav.style.display = 'none'; document.body.style.paddingTop = '0'; }
-var footer = document.querySelector('footer');
-if (footer && window.innerWidth <= 768) footer.style.display = 'none';
-showScreen('playing');
-GK.renderChallengeBar('sr-playing', challenge);
-startRound();
-});
+srStartPlaying();
 });
 
 $('sr-share-btn').addEventListener('click', function() {

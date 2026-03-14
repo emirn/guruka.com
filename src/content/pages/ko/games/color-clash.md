@@ -31,7 +31,8 @@ flex: 1;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+padding-top: 2rem;
 }
 
 .cc-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
@@ -79,7 +80,7 @@ font-size: 1rem;
 color: var(--color-primary);
 }
 
-#cc-instructions .cc-how-to ol {
+#cc-instructions .cc-how-to ul {
 margin: 0;
 padding-left: 1.25rem;
 }
@@ -562,6 +563,13 @@ box-shadow: 0 0 15px rgba(239,68,68,0.4);
 text-align: center;
 font-size: 0.75rem;
 color: var(--color-text-secondary);
+display: none;
+}
+
+@media (min-width: 768px) {
+.cc-playing-hint {
+display: block;
+}
 }
 
 [data-theme="dark"] .cc-playing-hint {
@@ -868,20 +876,20 @@ box-shadow: 0 0 20px rgba(236,72,153,0.4);
 
 <div id="cc-instructions">
 <div class="cc-title-row"><span class="cc-icon">&#127912;</span><h2>Color Clash</h2></div>
-<p class="cc-subtitle">Stroop 기반 억제 통제와 선택적 주의력</p>
+<p class="cc-subtitle">색상을 읽고, 방해 요소를 무시하세요</p>
+<div id="cc-best-display" class="cc-personal-best">
+개인 최고: <strong id="cc-best-score">아직 없음</strong>
+</div>
 <div class="cc-how-to">
 <h3>플레이 방법</h3>
-<ol>
-<li>색 이름이 <strong>다른 잉크 색</strong>으로 표시됩니다.</li>
+<ul>
+<li>색 이름이 <strong style="color:#ec4899">다른 잉크 색</strong>으로 표시됩니다.</li>
 <li><strong>규칙 표시기</strong>에 따라 현재 규칙에 맞는 올바른 색을 탭하세요.</li>
-<li>레벨이 올라가면 규칙이 <strong>"잉크 색"</strong>과 <strong>"단어 의미"</strong> 사이에서 전환됩니다.</li>
+<li>레벨이 올라가면 규칙이 <strong style="color:#ec4899">"잉크 색"</strong>과 <strong style="color:#3b82f6">"단어 의미"</strong> 사이에서 전환됩니다.</li>
 <li>시간이 다 되기 전에 답하세요!</li>
-<li>빠른 답변과 연속 정답으로 보너스 포인트를 획득할 수 있습니다.</li>
-</ol>
+</ul>
 </div>
-<div id="cc-best-display" class="cc-personal-best" style="display:none;">
-개인 최고: <strong id="cc-best-score">0</strong> 포인트
-</div>
+
 <button class="cc-btn-primary" id="cc-start-btn">게임 시작</button>
 <div id="cc-challenge-banner-wrap"></div>
 </div>
@@ -1257,10 +1265,9 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString();
-elBestDisplay.style.display = 'block';
+elBestScore.textContent = best.toLocaleString() + ' 포인트';
 } else {
-elBestDisplay.style.display = 'none';
+elBestScore.textContent = '아직 없음';
 }
 }
 
@@ -1747,13 +1754,13 @@ nextRound();
 /* ── Event listeners ── */
 btnStart.addEventListener('click', function() {
 resetState();
-showWizard();
+startPlaying();
 });
 
 btnPlayAgain.addEventListener('click', function() {
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 });
 
 for (var i = 0; i < 4; i++) {
@@ -1790,23 +1797,18 @@ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resumeGame();
 }
-} else if (state.screen === 'wizard') {
-if (e.key === 'Enter' || e.key === ' ') {
-e.preventDefault();
-advanceWizard();
-}
 } else if (state.screen === 'instructions') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
-showWizard();
+startPlaying();
 }
 } else if (state.screen === 'complete') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 }
 }
 });

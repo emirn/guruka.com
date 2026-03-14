@@ -30,7 +30,8 @@ flex: 1;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+padding-top: 2rem;
 }
 
 .nc-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
@@ -78,7 +79,7 @@ font-size: 1rem;
 color: var(--color-primary);
 }
 
-#nc-instructions .nc-how-to ol {
+#nc-instructions .nc-how-to ul {
 margin: 0;
 padding-left: 1.25rem;
 }
@@ -510,6 +511,10 @@ background: rgba(239,68,68,0.1);
 text-align: center;
 font-size: 0.75rem;
 color: var(--color-text-secondary);
+display: none;
+}
+@media (min-width: 768px) {
+.nc-playing-hint { display: block; }
 }
 
 [data-theme="dark"] .nc-playing-hint {
@@ -802,20 +807,20 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 
 <div id="nc-instructions">
 <div class="nc-title-row"><span class="nc-icon">&#129518;</span><h2>Number Crunch</h2></div>
-<p class="nc-subtitle">Mental arithmetic meets cognitive flexibility</p>
+<p class="nc-subtitle">Solve equations under time pressure</p>
+<div id="nc-best-display" class="nc-personal-best">
+Personal Best: <strong id="nc-best-score">none yet</strong>
+</div>
 <div class="nc-how-to">
 <h3>How to Play</h3>
-<ol>
+<ul>
 <li>An equation with a missing element appears.</li>
 <li>Pick the <strong>correct answer</strong> from 4 choices.</li>
-<li>Starting at Level 6, <strong>rule modifiers</strong> appear (e.g. "double the answer").</li>
+<li>Starting at Level 6, <strong>rule modifiers</strong> change the answer (e.g. "double it").</li>
 <li>Answer before time runs out!</li>
-<li>Speed and streaks earn bonus points.</li>
-</ol>
+</ul>
 </div>
-<div id="nc-best-display" class="nc-personal-best" style="display:none;">
-Personal Best: <strong id="nc-best-score">0</strong> points
-</div>
+
 <button class="nc-btn-primary" id="nc-start-btn">Start Game</button>
 <div id="nc-challenge-banner-wrap"></div>
 </div>
@@ -1187,10 +1192,9 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString();
-elBestDisplay.style.display = 'block';
+elBestScore.textContent = best.toLocaleString() + ' points';
 } else {
-elBestDisplay.style.display = 'none';
+elBestScore.textContent = 'none yet';
 }
 }
 
@@ -1612,13 +1616,13 @@ nextRound();
 /* ── Event listeners ── */
 btnStart.addEventListener('click', function() {
 resetState();
-showWizard();
+startPlaying();
 });
 
 btnPlayAgain.addEventListener('click', function() {
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 });
 
 for (var i = 0; i < 4; i++) {
@@ -1655,23 +1659,18 @@ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resumeGame();
 }
-} else if (state.screen === 'wizard') {
-if (e.key === 'Enter' || e.key === ' ') {
-e.preventDefault();
-advanceWizard();
-}
 } else if (state.screen === 'instructions') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
-showWizard();
+startPlaying();
 }
 } else if (state.screen === 'complete') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 }
 }
 });
