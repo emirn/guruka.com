@@ -325,6 +325,8 @@
         '.gkm-pause-icon{display:inline-flex;gap:3px;margin-bottom:2px}' +
         '.gkm-pause-icon span{display:block;width:3px;height:14px;background:rgba(255,255,255,0.6);border-radius:1px}' +
         '.gkm-time-external{position:fixed;left:50%;transform:translateX(-50%);top:calc(55% + 190px);z-index:10;font-size:1.5rem;font-weight:400;font-variant-numeric:tabular-nums;color:rgba(255,255,255,0.25);min-height:2rem;text-align:center;transition:opacity 0.3s}' +
+        '.gkm-seek-thumb{position:absolute;width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.9);transform:translate(-50%,-50%);pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:2}' +
+        '.gkm-seeking .gkm-seek-thumb{opacity:1}' +
         '@media(max-width:768px){.gkm-circle{top:auto;bottom:20vh}.gkm-text{top:10vh}.gkm-time-external{top:auto;bottom:12vh}.gkm-idle-info{top:auto;bottom:4vh}}';
       document.head.appendChild(styleEl);
     }
@@ -349,6 +351,10 @@
     var rafId = null;
     var currentIdx = -1;
     var wakeLock = null;
+    var isSeeking = false;
+    var wasRunningBeforeSeek = false;
+    var seekRingInner = 50;  // px from center — inner edge of touchable ring
+    var seekRingOuter = 95;  // px from center — outer edge
 
     var circumference = 2 * Math.PI * 85; // 534.07
 
@@ -366,9 +372,10 @@
       '<div class="gkm-text" id="gkm-text"></div>' +
       '<div class="gkm-circle gkm-glow" id="gkm-circle" tabindex="0" role="button" aria-label="Start meditation" style="--gkm-glow-rgb:' + glowRgb + '">' +
         '<svg viewBox="0 0 200 200" style="transform:scaleX(-1)">' +
-          '<circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="8"/>' +
-          '<circle id="gkm-progress" cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="8" stroke-linecap="round" stroke-dasharray="' + circumference.toFixed(2) + '" stroke-dashoffset="0" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset 0.3s linear"/>' +
+          '<circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="16"/>' +
+          '<circle id="gkm-progress" cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="16" stroke-linecap="round" stroke-dasharray="' + circumference.toFixed(2) + '" stroke-dashoffset="0" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset 0.3s linear"/>' +
         '</svg>' +
+        '<div class="gkm-seek-thumb" id="gkm-seek-thumb"></div>' +
         '<div class="gkm-inner" id="gkm-inner">' +
           playIcon +
         '</div>' +
@@ -403,6 +410,7 @@
     var statsEl = document.getElementById('gkm-stats');
     var hintEl = document.getElementById('gkm-hint');
     var timeExtEl = document.getElementById('gkm-time-ext');
+    var seekThumb = document.getElementById('gkm-seek-thumb');
 
     // 3b. Audio element (optional — when data.audioSrc is set)
     var audio = null;
@@ -425,6 +433,52 @@
       if (h > 0) return h + 'h';
       if (m > 0) return m + ' minute' + (m !== 1 ? 's' : '');
       return secs + 's';
+    }
+
+    function getSeekInfo(e) {
+      var rect = circleEl.getBoundingClientRect();
+      var cx = rect.left + rect.width / 2;
+      var cy = rect.top + rect.height / 2;
+      var clientX, clientY;
+      if (e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else if (e.changedTouches && e.changedTouches.length > 0) {
+        clientX = e.changedTouches[0].clientX;
+        clientY = e.changedTouches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+      var dx = cx - clientX;
+      var dy = cy - clientY;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      var angle = Math.atan2(-dx, dy); // 0 at top, increases CW
+      if (angle < 0) angle += 2 * Math.PI;
+      var fraction = angle / (2 * Math.PI);
+      return { fraction: fraction, dist: dist };
+    }
+
+    function seekTo(fraction) {
+      fraction = Math.max(0.001, Math.min(0.999, fraction));
+      var newTime = fraction * data.duration;
+      if (audio) {
+        audio.currentTime = newTime;
+      } else {
+        startTime = Date.now() - newTime * 1000;
+      }
+      elapsed = newTime;
+      var offset = circumference * (elapsed / data.duration);
+      progressEl.setAttribute('stroke-dashoffset', String(offset));
+      timeExtEl.textContent = formatTime(data.duration - elapsed);
+      currentIdx = -1;
+      dismissing = false;
+      updateText(elapsed);
+      // Update seek thumb position
+      var thumbAngle = fraction * 2 * Math.PI;
+      var thumbR = 76.5;
+      seekThumb.style.left = (90 + thumbR * Math.sin(thumbAngle)) + 'px';
+      seekThumb.style.top = (90 - thumbR * Math.cos(thumbAngle)) + 'px';
     }
 
     function revealText(el, text) {
@@ -677,6 +731,7 @@
 
     circleEl.addEventListener('click', function(e) {
       e.stopPropagation();
+      if (isSeeking) return;
       handleCircleAction();
     });
 
@@ -688,6 +743,52 @@
     });
 
     document.getElementById('gkm-restart').addEventListener('click', restart);
+
+    // 9b. Ring seek handlers
+    function seekStart(e) {
+      if (state !== 'running' && state !== 'paused') return;
+      var info = getSeekInfo(e);
+      if (info.dist < seekRingInner || info.dist > seekRingOuter) return;
+      e.preventDefault();
+      isSeeking = true;
+      wasRunningBeforeSeek = (state === 'running');
+      if (state === 'running') {
+        if (audio) audio.pause();
+        if (rafId) cancelAnimationFrame(rafId);
+        circleEl.classList.remove('gkm-breathing');
+      }
+      progressEl.style.transition = 'none';
+      circleEl.classList.add('gkm-seeking');
+      seekTo(info.fraction);
+    }
+
+    function seekMove(e) {
+      if (!isSeeking) return;
+      e.preventDefault();
+      var info = getSeekInfo(e);
+      seekTo(info.fraction);
+    }
+
+    function seekEnd(e) {
+      if (!isSeeking) return;
+      progressEl.style.transition = '';
+      circleEl.classList.remove('gkm-seeking');
+      if (wasRunningBeforeSeek) {
+        state = 'running';
+        if (audio) audio.play();
+        circleEl.classList.add('gkm-breathing');
+        tick();
+      }
+      // Delay clearing isSeeking so the click event that fires after touchend is ignored
+      setTimeout(function() { isSeeking = false; }, 0);
+    }
+
+    circleEl.addEventListener('touchstart', seekStart, { passive: false });
+    circleEl.addEventListener('mousedown', seekStart);
+    document.addEventListener('touchmove', seekMove, { passive: false });
+    document.addEventListener('mousemove', seekMove);
+    document.addEventListener('touchend', seekEnd);
+    document.addEventListener('mouseup', seekEnd);
 
     // 10. Visibility change → re-acquire wake lock
     document.addEventListener('visibilitychange', function() {
