@@ -1177,8 +1177,8 @@
     header.appendChild(wrap);
 
     // Cloud SVG icon (inline, small)
-    var cloudIcon = '<svg style="vertical-align:-2px;margin-right:2px" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>';
-    var checkIcon = '<svg style="vertical-align:-2px;margin-right:2px" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    var cloudIcon = '<svg style="display:inline;vertical-align:-2px;margin-right:4px" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>';
+    var checkIcon = '<svg style="display:inline;vertical-align:-2px;margin-right:2px" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 
     function render() {
       var isSaved = localStorage.getItem(GK.Offline._prefKey(section, lang));
@@ -1190,7 +1190,7 @@
           GK.Offline.removeSection(section, lang, render);
         });
       } else {
-        wrap.innerHTML = cloudIcon + ' use offline for 30 days &ndash; <a class="gk-off-link" id="gk-off-download" href="#">enable</a>';
+        wrap.innerHTML = cloudIcon + ' Use offline &ndash; <a class="gk-off-link" id="gk-off-download" href="#">enable</a>';
 
         document.getElementById('gk-off-download').addEventListener('click', function(e) {
           e.preventDefault();
