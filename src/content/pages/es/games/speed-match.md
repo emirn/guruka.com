@@ -31,7 +31,8 @@ flex: 1;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+padding-top: 2rem;
 }
 
 .sm-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
@@ -79,7 +80,7 @@ font-size: 1rem;
 color: var(--color-primary);
 }
 
-#sm-instructions .sm-how-to ol {
+#sm-instructions .sm-how-to ul {
 margin: 0;
 padding-left: 1.25rem;
 }
@@ -91,11 +92,18 @@ line-height: 1.4;
 }
 
 .sm-kbd-hints {
-display: flex;
+display: none;
 gap: 1.5rem;
 justify-content: center;
 margin-bottom: 1.5rem;
 flex-wrap: wrap;
+}
+@media (min-width: 768px) {
+.sm-kbd-hints { display: flex; }
+}
+.sm-playing-kbd-hint { display: none; }
+@media (min-width: 768px) {
+.sm-playing-kbd-hint { display: block; }
 }
 
 .sm-kbd-hint {
@@ -514,6 +522,10 @@ font-size: 1.5rem;
 font-size: 0.65rem;
 color: var(--color-text-secondary);
 font-weight: 400;
+display: none;
+}
+@media (min-width: 768px) {
+.sm-action-btn .sm-btn-kbd { display: inline; }
 }
 
 [data-theme="dark"] .sm-action-btn .sm-btn-kbd {
@@ -840,24 +852,24 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 <div id="sm-instructions">
 <div class="sm-title-row"><span class="sm-icon">&#9889;</span><h2>Speed Match</h2></div>
 <p class="sm-subtitle">¿Qué tan rápido puedes procesar?</p>
+<div id="sm-best-display" class="sm-personal-best">
+Mejor Puntuación: <strong id="sm-best-score">ninguno aún</strong>
+</div>
 <div class="sm-how-to">
 <h3>Cómo Jugar</h3>
-<ol>
+<ul>
 <li>Un símbolo aparece en pantalla cada ronda.</li>
 <li>Decide si <strong>coincide</strong> con el símbolo de la ronda anterior.</li>
 <li>Haz clic en <strong>Igual</strong> si coincide, <strong>Diferente</strong> si no.</li>
-<li>¡Responde antes de que se acabe el tiempo o contará como error!</li>
-<li>A medida que subes de nivel, el juego se vuelve más rápido y difícil.</li>
-</ol>
+<li>¡Responde antes de que se acabe el tiempo &mdash; el juego se vuelve más rápido a medida que subes de nivel!</li>
+</ul>
 </div>
 <div class="sm-kbd-hints">
 <span class="sm-kbd-hint"><span class="sm-kbd">A</span> / <span class="sm-kbd">&larr;</span> Diferente</span>
 <span class="sm-kbd-hint"><span class="sm-kbd">D</span> / <span class="sm-kbd">&rarr;</span> Igual</span>
 <span class="sm-kbd-hint"><span class="sm-kbd">Esc</span> Pausa</span>
 </div>
-<div id="sm-best-display" class="sm-personal-best" style="display:none;">
-Mejor Puntuación: <strong id="sm-best-score">0</strong> puntos
-</div>
+
 <button class="sm-btn-primary" id="sm-start-btn">Iniciar Juego</button>
 <div id="sm-challenge-banner-wrap"></div>
 </div>
@@ -1064,10 +1076,9 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString();
-elBestDisplay.style.display = 'block';
+elBestScore.textContent = best.toLocaleString() + ' puntos';
 } else {
-elBestDisplay.style.display = 'none';
+elBestScore.textContent = 'ninguno aún';
 }
 }
 
@@ -1488,13 +1499,13 @@ nextRound();
 /* ── Event listeners ── */
 btnStart.addEventListener('click', function() {
 resetState();
-showWizard();
+startPlaying();
 });
 
 btnPlayAgain.addEventListener('click', function() {
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 });
 
 btnDifferent.addEventListener('click', function() {
@@ -1534,23 +1545,18 @@ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resumeGame();
 }
-} else if (state.screen === 'wizard') {
-if (e.key === 'Enter' || e.key === ' ') {
-e.preventDefault();
-advanceWizard();
-}
 } else if (state.screen === 'instructions') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
-showWizard();
+startPlaying();
 }
 } else if (state.screen === 'complete') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 }
 }
 });

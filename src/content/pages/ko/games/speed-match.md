@@ -31,7 +31,8 @@ flex: 1;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+padding-top: 2rem;
 }
 
 .sm-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
@@ -79,7 +80,7 @@ font-size: 1rem;
 color: var(--color-primary);
 }
 
-#sm-instructions .sm-how-to ol {
+#sm-instructions .sm-how-to ul {
 margin: 0;
 padding-left: 1.25rem;
 }
@@ -91,11 +92,18 @@ line-height: 1.4;
 }
 
 .sm-kbd-hints {
-display: flex;
+display: none;
 gap: 1.5rem;
 justify-content: center;
 margin-bottom: 1.5rem;
 flex-wrap: wrap;
+}
+@media (min-width: 768px) {
+.sm-kbd-hints { display: flex; }
+}
+.sm-playing-kbd-hint { display: none; }
+@media (min-width: 768px) {
+.sm-playing-kbd-hint { display: block; }
 }
 
 .sm-kbd-hint {
@@ -514,6 +522,10 @@ font-size: 1.5rem;
 font-size: 0.65rem;
 color: var(--color-text-secondary);
 font-weight: 400;
+display: none;
+}
+@media (min-width: 768px) {
+.sm-action-btn .sm-btn-kbd { display: inline; }
 }
 
 [data-theme="dark"] .sm-action-btn .sm-btn-kbd {
@@ -840,24 +852,24 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 <div id="sm-instructions">
 <div class="sm-title-row"><span class="sm-icon">&#9889;</span><h2>Speed Match</h2></div>
 <p class="sm-subtitle">당신의 처리 속도는 얼마나 빠를까요?</p>
+<div id="sm-best-display" class="sm-personal-best">
+개인 최고: <strong id="sm-best-score">아직 없음</strong>
+</div>
 <div class="sm-how-to">
 <h3>플레이 방법</h3>
-<ol>
+<ul>
 <li>매 라운드마다 화면에 심볼이 표시됩니다.</li>
 <li>이전 라운드의 심볼과 <strong>같은지 다른지</strong> 판단하세요.</li>
 <li>같으면 <strong>같음</strong>, 다르면 <strong>다름</strong>을 클릭하세요.</li>
-<li>시간이 다 되기 전에 답하세요. 그렇지 않으면 오답 처리됩니다!</li>
-<li>레벨이 올라가면 게임이 더 빠르고 어려워집니다.</li>
-</ol>
+<li>시간이 다 되기 전에 답하세요 &mdash; 레벨이 올라가면 게임이 더 빨라집니다!</li>
+</ul>
 </div>
 <div class="sm-kbd-hints">
 <span class="sm-kbd-hint"><span class="sm-kbd">A</span> / <span class="sm-kbd">&larr;</span> 다름</span>
 <span class="sm-kbd-hint"><span class="sm-kbd">D</span> / <span class="sm-kbd">&rarr;</span> 같음</span>
 <span class="sm-kbd-hint"><span class="sm-kbd">Esc</span> 일시정지</span>
 </div>
-<div id="sm-best-display" class="sm-personal-best" style="display:none;">
-개인 최고: <strong id="sm-best-score">0</strong> 포인트
-</div>
+
 <button class="sm-btn-primary" id="sm-start-btn">게임 시작</button>
 <div id="sm-challenge-banner-wrap"></div>
 </div>
@@ -1063,10 +1075,9 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString();
-elBestDisplay.style.display = 'block';
+elBestScore.textContent = best.toLocaleString() + ' 포인트';
 } else {
-elBestDisplay.style.display = 'none';
+elBestScore.textContent = '아직 없음';
 }
 }
 
@@ -1487,13 +1498,13 @@ nextRound();
 /* ── Event listeners ── */
 btnStart.addEventListener('click', function() {
 resetState();
-showWizard();
+startPlaying();
 });
 
 btnPlayAgain.addEventListener('click', function() {
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 });
 
 btnDifferent.addEventListener('click', function() {
@@ -1533,23 +1544,18 @@ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resumeGame();
 }
-} else if (state.screen === 'wizard') {
-if (e.key === 'Enter' || e.key === ' ') {
-e.preventDefault();
-advanceWizard();
-}
 } else if (state.screen === 'instructions') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
-showWizard();
+startPlaying();
 }
 } else if (state.screen === 'complete') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 }
 }
 });

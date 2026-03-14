@@ -30,7 +30,8 @@ flex: 1;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+padding-top: 2rem;
 }
 
 .pp-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
@@ -78,7 +79,7 @@ font-size: 1rem;
 color: #14b8a6;
 }
 
-#pp-instructions .pp-how-to ol {
+#pp-instructions .pp-how-to ul {
 margin: 0;
 padding-left: 1.25rem;
 }
@@ -540,6 +541,13 @@ background: rgba(239,68,68,0.1);
 text-align: center;
 font-size: 0.75rem;
 color: var(--color-text-secondary);
+display: none;
+}
+
+@media (min-width: 768px) {
+.pp-playing-hint {
+display: block;
+}
 }
 
 [data-theme="dark"] .pp-playing-hint {
@@ -844,20 +852,20 @@ box-shadow: 0 0 20px rgba(20,184,166,0.4);
 
 <div id="pp-instructions">
 <div class="pp-title-row"><span class="pp-icon">&#129513;</span><h2>Pattern Path</h2></div>
-<p class="pp-subtitle">Visual pattern recognition &amp; fluid intelligence</p>
+<p class="pp-subtitle">Spot patterns, find the missing piece</p>
+<div id="pp-best-display" class="pp-personal-best">
+Personal Best: <strong id="pp-best-score">none yet</strong>
+</div>
 <div class="pp-how-to">
 <h3>How to Play</h3>
-<ol>
+<ul>
 <li>A sequence of shapes with a <strong>missing element</strong> (?) appears.</li>
 <li>Identify the pattern (color, shape, size, or rotation changes).</li>
 <li>Pick the <strong>correct completion</strong> from 4 choices.</li>
-<li>Answer before time runs out!</li>
-<li>Speed and streaks earn bonus points.</li>
-</ol>
+<li>Answer before time runs out &mdash; higher levels combine multiple attributes!</li>
+</ul>
 </div>
-<div id="pp-best-display" class="pp-personal-best" style="display:none;">
-Personal Best: <strong id="pp-best-score">0</strong> points
-</div>
+
 <button class="pp-btn-primary" id="pp-start-btn">Start Game</button>
 <div id="pp-challenge-banner-wrap"></div>
 </div>
@@ -1274,10 +1282,9 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString();
-elBestDisplay.style.display = 'block';
+elBestScore.textContent = best.toLocaleString() + ' points';
 } else {
-elBestDisplay.style.display = 'none';
+elBestScore.textContent = 'none yet';
 }
 }
 
@@ -1711,13 +1718,13 @@ nextRound();
 /* ── Event listeners ── */
 btnStart.addEventListener('click', function() {
 resetState();
-showWizard();
+startPlaying();
 });
 
 btnPlayAgain.addEventListener('click', function() {
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 });
 
 for (var i = 0; i < 4; i++) {
@@ -1754,23 +1761,18 @@ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resumeGame();
 }
-} else if (state.screen === 'wizard') {
-if (e.key === 'Enter' || e.key === ' ') {
-e.preventDefault();
-advanceWizard();
-}
 } else if (state.screen === 'instructions') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
-showWizard();
+startPlaying();
 }
 } else if (state.screen === 'complete') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 }
 }
 });

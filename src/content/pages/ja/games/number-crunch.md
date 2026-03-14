@@ -31,7 +31,8 @@ flex: 1;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+padding-top: 2rem;
 }
 
 .nc-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
@@ -79,7 +80,7 @@ font-size: 1rem;
 color: var(--color-primary);
 }
 
-#nc-instructions .nc-how-to ol {
+#nc-instructions .nc-how-to ul {
 margin: 0;
 padding-left: 1.25rem;
 }
@@ -508,6 +509,7 @@ background: rgba(239,68,68,0.1);
 }
 
 .nc-playing-hint {
+display: none;
 text-align: center;
 font-size: 0.75rem;
 color: var(--color-text-secondary);
@@ -515,6 +517,12 @@ color: var(--color-text-secondary);
 
 [data-theme="dark"] .nc-playing-hint {
 color: var(--color-dark-text-secondary);
+}
+
+@media (min-width: 768px) {
+.nc-playing-hint {
+display: block;
+}
 }
 
 /* ── Pause Overlay ── */
@@ -803,20 +811,20 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 
 <div id="nc-instructions">
 <div class="nc-title-row"><span class="nc-icon">&#129518;</span><h2>Number Crunch</h2></div>
-<p class="nc-subtitle">暗算×認知の柔軟性</p>
+<p class="nc-subtitle">時間制限の中で方程式を解こう</p>
+<div id="nc-best-display" class="nc-personal-best">
+自己ベスト: <strong id="nc-best-score">まだなし</strong>
+</div>
 <div class="nc-how-to">
 <h3>遊び方</h3>
-<ol>
+<ul>
 <li>欠けた要素のある方程式が表示されます。</li>
 <li>4つの選択肢から<strong>正しい答え</strong>を選んでください。</li>
 <li>レベル6からは<strong>ルールモディファイア</strong>（例：「2倍にする」）が登場します。</li>
 <li>時間切れになる前に答えてください！</li>
-<li>スピードと連続正解でボーナスポイントが獲得できます。</li>
-</ol>
+</ul>
 </div>
-<div id="nc-best-display" class="nc-personal-best" style="display:none;">
-自己ベスト: <strong id="nc-best-score">0</strong> ポイント
-</div>
+
 <button class="nc-btn-primary" id="nc-start-btn">ゲームスタート</button>
 <div id="nc-challenge-banner-wrap"></div>
 </div>
@@ -1188,10 +1196,9 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString();
-elBestDisplay.style.display = 'block';
+elBestScore.textContent = best.toLocaleString() + ' ポイント';
 } else {
-elBestDisplay.style.display = 'none';
+elBestScore.textContent = 'まだなし';
 }
 }
 
@@ -1613,13 +1620,13 @@ nextRound();
 /* ── Event listeners ── */
 btnStart.addEventListener('click', function() {
 resetState();
-showWizard();
+startPlaying();
 });
 
 btnPlayAgain.addEventListener('click', function() {
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 });
 
 for (var i = 0; i < 4; i++) {
@@ -1656,23 +1663,18 @@ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resumeGame();
 }
-} else if (state.screen === 'wizard') {
-if (e.key === 'Enter' || e.key === ' ') {
-e.preventDefault();
-advanceWizard();
-}
 } else if (state.screen === 'instructions') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
-showWizard();
+startPlaying();
 }
 } else if (state.screen === 'complete') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 }
 }
 });

@@ -63,6 +63,11 @@ to { opacity: 1; transform: translateY(0); }
 /* ---- Instructions Screen ---- */
 #memory-matrix-game .mm-instructions {
 text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+padding-top: 2rem;
 }
 
 #memory-matrix-game .mm-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
@@ -88,7 +93,7 @@ stroke-linejoin: round;
 }
 
 #memory-matrix-game .mm-title {
-font-size: 1.5rem;
+font-size: 1.75rem;
 font-weight: 700;
 margin: 0 0 0.25rem;
 }
@@ -101,42 +106,36 @@ margin: 0 0 1.5rem;
 
 #memory-matrix-game .mm-how-to {
 text-align: left;
+background: var(--color-bg-secondary);
+border-radius: 0.75rem;
+padding: 1.25rem 1.5rem;
 margin-bottom: 1.5rem;
+width: 100%;
+max-width: 420px;
+border: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] #memory-matrix-game .mm-how-to {
+background: var(--color-dark-bg-secondary);
+border-color: var(--color-dark-border);
 }
 
 #memory-matrix-game .mm-how-to h3 {
 font-size: 1rem;
 font-weight: 600;
 margin: 0 0 0.75rem;
+color: var(--color-primary);
 }
 
-#memory-matrix-game .mm-how-to ol {
-list-style: none;
-padding: 0;
+#memory-matrix-game .mm-how-to ul {
 margin: 0;
+padding-left: 1.25rem;
 }
 
 #memory-matrix-game .mm-how-to li {
-display: flex;
-align-items: flex-start;
-gap: 0.75rem;
-margin-bottom: 0.625rem;
+margin-bottom: 0.5rem;
 font-size: 0.9rem;
-color: var(--color-text-secondary);
-}
-
-#memory-matrix-game .mm-step-num {
-flex-shrink: 0;
-width: 24px;
-height: 24px;
-border-radius: 50%;
-background: color-mix(in srgb, var(--color-primary) 15%, transparent);
-color: var(--color-primary);
-font-size: 0.8rem;
-font-weight: 600;
-display: flex;
-align-items: center;
-justify-content: center;
+line-height: 1.4;
 }
 
 #memory-matrix-game .mm-best-banner {
@@ -718,19 +717,22 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 
 <div id="mm-instructions" class="mm-screen active">
 <div class="mm-instructions">
-<div class="mm-title-row"><div class="mm-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h1 class="mm-title">Memory Matrix</h1></div>
+<div class="mm-title-row"><div class="mm-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h2 class="mm-title">Memory Matrix</h2></div>
 <p class="mm-subtitle">공간 기억력을 테스트하세요</p>
-<div class="mm-how-to">
-<h3>플레이 방법:</h3>
-<ol>
-<li><span class="mm-step-num">1</span><span>패턴 관찰 -- 셀이 순서대로 빛납니다</span></li>
-<li><span class="mm-step-num">2</span><span>어떤 셀이 빛났는지 기억하세요</span></li>
-<li><span class="mm-step-num">3</span><span>기억에서 같은 셀을 탭하세요</span></li>
-<li><span class="mm-step-num">4</span><span>레벨 8부터는 순서가 중요합니다! 올바른 순서로 탭하세요</span></li>
-</ol>
+<div id="mm-instr-best" class="mm-best-banner">
+개인 최고: <strong id="mm-best-value">아직 없음</strong>
 </div>
-<div id="mm-instr-best" class="mm-best-banner" style="display:none;"></div>
-<button class="mm-btn mm-btn-primary" onclick="mmShowWizard()">게임 시작</button>
+<div class="mm-how-to">
+<h3>플레이 방법</h3>
+<ul>
+<li>패턴 관찰 &mdash; 셀이 순서대로 빛납니다.</li>
+<li>어떤 셀이 빛났는지 기억하세요.</li>
+<li>기억에서 같은 셀을 탭하세요.</li>
+<li>레벨 8부터는 <strong>순서가 중요합니다</strong> &mdash; 올바른 순서로 탭하세요!</li>
+</ul>
+</div>
+
+<button class="mm-btn mm-btn-primary" onclick="mmStartGame()">게임 시작</button>
 <div id="mm-challenge-banner-wrap"></div>
 </div>
 </div>
@@ -775,7 +777,7 @@ box-shadow: 0 0 20px rgba(245,158,11,0.4);
 <div class="mm-icon-wrap">
 <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
 </div>
-<h1 class="mm-title">게임 종료!</h1>
+<h2 class="mm-title">게임 종료!</h2>
 <div class="mm-score-display" id="mm-final-score">0</div>
 <div id="mm-new-best-badge" class="mm-new-best" style="display:none;">새로운 개인 최고!</div>
 <div class="gk-challenge-result" id="mm-challenge-result" style="display:none;"></div>
@@ -890,10 +892,13 @@ function showScreen(name) {
 
 function updateInstructionsBest() {
   var best = getPersonalBest();
-  var banner = document.getElementById('mm-instr-best');
-  if (best > 0 && banner) {
-    banner.style.display = 'block';
-    banner.innerHTML = '개인 최고: <strong>' + best.toLocaleString() + '</strong> 포인트';
+  var el = document.getElementById('mm-best-value');
+  if (el) {
+    if (best > 0) {
+      el.textContent = best.toLocaleString() + ' 포인트';
+    } else {
+      el.textContent = '아직 없음';
+    }
   }
 }
 
@@ -941,6 +946,7 @@ mmRenderWizardStep();
 };
 
 /* ---- Start Game ---- */
+window.mmStartGame = mmStartGame;
 function mmStartGame() {
   window.scrollTo({ top: 0, behavior: 'instant' });
   var stickyNav = document.querySelector('.sticky.top-0');
@@ -1352,7 +1358,7 @@ window.mmPlayAgain = function() {
   clearTimeout(state.feedbackTimer);
   clearInterval(state.countdownTimer);
   updateInstructionsBest();
-  showScreen('instructions');
+  mmStartGame();
 };
 
 /* ---- Init ---- */

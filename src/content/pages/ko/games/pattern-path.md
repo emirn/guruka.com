@@ -31,7 +31,8 @@ flex: 1;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+padding-top: 2rem;
 }
 
 .pp-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
@@ -79,7 +80,7 @@ font-size: 1rem;
 color: #14b8a6;
 }
 
-#pp-instructions .pp-how-to ol {
+#pp-instructions .pp-how-to ul {
 margin: 0;
 padding-left: 1.25rem;
 }
@@ -541,6 +542,13 @@ background: rgba(239,68,68,0.1);
 text-align: center;
 font-size: 0.75rem;
 color: var(--color-text-secondary);
+display: none;
+}
+
+@media (min-width: 768px) {
+.pp-playing-hint {
+display: block;
+}
 }
 
 [data-theme="dark"] .pp-playing-hint {
@@ -845,20 +853,20 @@ box-shadow: 0 0 20px rgba(20,184,166,0.4);
 
 <div id="pp-instructions">
 <div class="pp-title-row"><span class="pp-icon">&#129513;</span><h2>Pattern Path</h2></div>
-<p class="pp-subtitle">시각적 패턴 인식과 유동 지능</p>
+<p class="pp-subtitle">패턴을 찾고, 빠진 조각을 맞추세요</p>
+<div id="pp-best-display" class="pp-personal-best">
+개인 최고: <strong id="pp-best-score">아직 없음</strong>
+</div>
 <div class="pp-how-to">
 <h3>플레이 방법</h3>
-<ol>
+<ul>
 <li>도형 시퀀스에 <strong>빠진 요소</strong>(?)가 표시됩니다.</li>
 <li>패턴을 찾아보세요 (색상, 도형, 크기, 회전의 변화).</li>
 <li>4개의 선택지에서 <strong>올바른 보완</strong>을 선택하세요.</li>
 <li>시간이 다 되기 전에 답하세요!</li>
-<li>빠른 답변과 연속 정답으로 보너스 포인트를 획득할 수 있습니다.</li>
-</ol>
+</ul>
 </div>
-<div id="pp-best-display" class="pp-personal-best" style="display:none;">
-개인 최고: <strong id="pp-best-score">0</strong> 포인트
-</div>
+
 <button class="pp-btn-primary" id="pp-start-btn">게임 시작</button>
 <div id="pp-challenge-banner-wrap"></div>
 </div>
@@ -1275,10 +1283,9 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString();
-elBestDisplay.style.display = 'block';
+elBestScore.textContent = best.toLocaleString() + ' 포인트';
 } else {
-elBestDisplay.style.display = 'none';
+elBestScore.textContent = '아직 없음';
 }
 }
 
@@ -1712,13 +1719,13 @@ nextRound();
 /* ── Event listeners ── */
 btnStart.addEventListener('click', function() {
 resetState();
-showWizard();
+startPlaying();
 });
 
 btnPlayAgain.addEventListener('click', function() {
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 });
 
 for (var i = 0; i < 4; i++) {
@@ -1755,23 +1762,18 @@ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resumeGame();
 }
-} else if (state.screen === 'wizard') {
-if (e.key === 'Enter' || e.key === ' ') {
-e.preventDefault();
-advanceWizard();
-}
 } else if (state.screen === 'instructions') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
-showWizard();
+startPlaying();
 }
 } else if (state.screen === 'complete') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 }
 }
 });

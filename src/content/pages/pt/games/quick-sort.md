@@ -31,7 +31,8 @@ flex: 1;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+padding-top: 2rem;
 }
 
 .qs-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
@@ -79,7 +80,7 @@ font-size: 1rem;
 color: #f97316;
 }
 
-#qs-instructions .qs-how-to ol {
+#qs-instructions .qs-how-to ul {
 margin: 0;
 padding-left: 1.25rem;
 }
@@ -535,6 +536,13 @@ background: rgba(239,68,68,0.1);
 text-align: center;
 font-size: 0.75rem;
 color: var(--color-text-secondary);
+display: none;
+}
+
+@media (min-width: 768px) {
+.qs-playing-hint {
+display: block;
+}
 }
 
 [data-theme="dark"] .qs-playing-hint {
@@ -703,12 +711,14 @@ font-weight: 700;
 font-size: 1rem;
 z-index: 999;
 box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+opacity: 0;
+transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
 white-space: nowrap;
 }
 
 .qs-level-up-toast.qs-toast-show {
 transform: translateX(-50%) translateY(0);
+opacity: 1;
 }
 
 /* ── Rule Change Toast ── */
@@ -725,12 +735,14 @@ font-weight: 700;
 font-size: 0.95rem;
 z-index: 999;
 box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+opacity: 0;
+transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
 white-space: nowrap;
 }
 
 .qs-rule-toast.qs-toast-show {
 transform: translateX(-50%) translateY(0);
+opacity: 1;
 }
 
 /* ── Responsive ── */
@@ -863,20 +875,20 @@ box-shadow: 0 0 20px rgba(249,115,22,0.4);
 
 <div id="qs-instructions">
 <div class="qs-title-row"><span class="qs-icon">&#128450;</span><h2>Quick Sort</h2></div>
-<p class="qs-subtitle">Velocidade de categorizacao e alternancia de tarefas</p>
+<p class="qs-subtitle">Ordene rápido enquanto as regras mudam</p>
+<div id="qs-best-display" class="qs-personal-best">
+Recorde Pessoal: <strong id="qs-best-score">nenhum ainda</strong>
+</div>
 <div class="qs-how-to">
 <h3>Como Jogar</h3>
-<ol>
+<ul>
 <li>Um elemento (numero, forma ou palavra) aparece na tela.</li>
 <li>Duas categorias sao mostradas <strong>a esquerda e a direita</strong>.</li>
 <li>Toque no lado correto para classificar o elemento.</li>
 <li>A regra de classificacao <strong>muda</strong> a cada poucas rodadas!</li>
-<li>Velocidade e sequencias dao pontos bonus.</li>
-</ol>
+</ul>
 </div>
-<div id="qs-best-display" class="qs-personal-best" style="display:none;">
-Recorde Pessoal: <strong id="qs-best-score">0</strong> Pontos
-</div>
+
 <button class="qs-btn-primary" id="qs-start-btn">Iniciar Jogo</button>
 <div id="qs-challenge-banner-wrap"></div>
 </div>
@@ -1293,10 +1305,9 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString();
-elBestDisplay.style.display = 'block';
+elBestScore.textContent = best.toLocaleString() + ' Pontos';
 } else {
-elBestDisplay.style.display = 'none';
+elBestScore.textContent = 'nenhum ainda';
 }
 }
 
@@ -1750,13 +1761,13 @@ nextRound();
 /* ── Event listeners ── */
 btnStart.addEventListener('click', function() {
 resetState();
-showWizard();
+startPlaying();
 });
 
 btnPlayAgain.addEventListener('click', function() {
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 });
 
 elBtnLeft.addEventListener('click', function() {
@@ -1796,23 +1807,18 @@ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resumeGame();
 }
-} else if (state.screen === 'wizard') {
-if (e.key === 'Enter' || e.key === ' ') {
-e.preventDefault();
-advanceWizard();
-}
 } else if (state.screen === 'instructions') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
-showWizard();
+startPlaying();
 }
 } else if (state.screen === 'complete') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 }
 }
 });

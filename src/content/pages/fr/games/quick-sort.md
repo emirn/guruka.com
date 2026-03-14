@@ -31,7 +31,8 @@ flex: 1;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+padding-top: 2rem;
 }
 
 .qs-title-row { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 0.25rem; }
@@ -79,7 +80,7 @@ font-size: 1rem;
 color: #f97316;
 }
 
-#qs-instructions .qs-how-to ol {
+#qs-instructions .qs-how-to ul {
 margin: 0;
 padding-left: 1.25rem;
 }
@@ -535,6 +536,13 @@ background: rgba(239,68,68,0.1);
 text-align: center;
 font-size: 0.75rem;
 color: var(--color-text-secondary);
+display: none;
+}
+
+@media (min-width: 768px) {
+.qs-playing-hint {
+display: block;
+}
 }
 
 [data-theme="dark"] .qs-playing-hint {
@@ -703,12 +711,14 @@ font-weight: 700;
 font-size: 1rem;
 z-index: 999;
 box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+opacity: 0;
+transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
 white-space: nowrap;
 }
 
 .qs-level-up-toast.qs-toast-show {
 transform: translateX(-50%) translateY(0);
+opacity: 1;
 }
 
 /* ── Rule Change Toast ── */
@@ -725,12 +735,14 @@ font-weight: 700;
 font-size: 0.95rem;
 z-index: 999;
 box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+opacity: 0;
+transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
 white-space: nowrap;
 }
 
 .qs-rule-toast.qs-toast-show {
 transform: translateX(-50%) translateY(0);
+opacity: 1;
 }
 
 /* ── Responsive ── */
@@ -863,20 +875,20 @@ box-shadow: 0 0 20px rgba(249,115,22,0.4);
 
 <div id="qs-instructions">
 <div class="qs-title-row"><span class="qs-icon">&#128450;</span><h2>Quick Sort</h2></div>
-<p class="qs-subtitle">Vitesse de cat&eacute;gorisation et changement de t&acirc;che</p>
+<p class="qs-subtitle">Triez vite quand les règles changent</p>
+<div id="qs-best-display" class="qs-personal-best">
+Record Personnel: <strong id="qs-best-score">aucun</strong>
+</div>
 <div class="qs-how-to">
 <h3>Comment Jouer</h3>
-<ol>
+<ul>
 <li>Un &eacute;l&eacute;ment (nombre, forme ou mot) appara&icirc;t &agrave; l'&eacute;cran.</li>
 <li>Deux cat&eacute;gories sont affich&eacute;es &agrave; <strong>gauche et &agrave; droite</strong>.</li>
 <li>Appuyez sur le bon c&ocirc;t&eacute; pour trier l'&eacute;l&eacute;ment.</li>
 <li>La r&egrave;gle de tri <strong>change</strong> toutes les quelques manches !</li>
-<li>La vitesse et les s&eacute;ries rapportent des points bonus.</li>
-</ol>
+</ul>
 </div>
-<div id="qs-best-display" class="qs-personal-best" style="display:none;">
-Record Personnel : <strong id="qs-best-score">0</strong> points
-</div>
+
 <button class="qs-btn-primary" id="qs-start-btn">Commencer</button>
 <div id="qs-challenge-banner-wrap"></div>
 </div>
@@ -1293,10 +1305,9 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString();
-elBestDisplay.style.display = 'block';
+elBestScore.textContent = best.toLocaleString() + ' points';
 } else {
-elBestDisplay.style.display = 'none';
+elBestScore.textContent = 'aucun';
 }
 }
 
@@ -1750,13 +1761,13 @@ nextRound();
 /* ── Event listeners ── */
 btnStart.addEventListener('click', function() {
 resetState();
-showWizard();
+startPlaying();
 });
 
 btnPlayAgain.addEventListener('click', function() {
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 });
 
 elBtnLeft.addEventListener('click', function() {
@@ -1796,23 +1807,18 @@ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resumeGame();
 }
-} else if (state.screen === 'wizard') {
-if (e.key === 'Enter' || e.key === ' ') {
-e.preventDefault();
-advanceWizard();
-}
 } else if (state.screen === 'instructions') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
-showWizard();
+startPlaying();
 }
 } else if (state.screen === 'complete') {
 if (e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
 resetState();
 showPersonalBest();
-showWizard();
+startPlaying();
 }
 }
 });
