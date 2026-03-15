@@ -352,8 +352,6 @@
     var currentIdx = -1;
     var wakeLock = null;
     var isSeeking = false;
-    var seekStarted = false;
-    var seekStartFraction = 0;
     var wasRunningBeforeSeek = false;
     var seekRingInner = 50;  // px from center — inner edge of touchable ring
     var seekRingOuter = 95;  // px from center — outer edge
@@ -464,17 +462,13 @@
     function seekTo(fraction) {
       fraction = Math.max(0.001, Math.min(0.999, fraction));
       var newTime = fraction * data.duration;
-      if (audio) {
-        audio.currentTime = newTime;
-      } else {
-        startTime = Date.now() - newTime * 1000;
-      }
+      // No audio.currentTime or startTime update here — done once in seekEnd
       elapsed = newTime;
       var offset = circumference * (elapsed / data.duration);
       progressEl.setAttribute('stroke-dashoffset', String(offset));
       timeExtEl.textContent = formatTime(data.duration - elapsed);
-      currentIdx = -1;
       dismissing = false;
+      textEl.style.opacity = '1';    // undo any dismiss fade
       updateText(elapsed);
       // Update seek thumb position
       var thumbAngle = fraction * 2 * Math.PI;
@@ -565,7 +559,7 @@
       }
 
       // Pre-dismiss: start fading out before the next cue arrives
-      if (!dismissing && currentIdx >= 0 && currentIdx < data.body.length - 1) {
+      if (!isSeeking && !dismissing && currentIdx >= 0 && currentIdx < data.body.length - 1) {
         var nextTime = data.body[currentIdx + 1].time;
         if (sec >= nextTime - DISMISS_LEAD) {
           dismissing = true;
@@ -747,30 +741,29 @@
     document.getElementById('gkm-restart').addEventListener('click', restart);
 
     // 9b. Ring seek handlers
+    var seekStarted = false;
+
     function seekStart(e) {
       if (state !== 'running' && state !== 'paused') return;
       var info = getSeekInfo(e);
       if (info.dist < seekRingInner || info.dist > seekRingOuter) return;
       e.preventDefault();
       isSeeking = true;
-      seekStarted = false;
-      seekStartFraction = info.fraction;
+      seekStarted = true;
       wasRunningBeforeSeek = (state === 'running');
+      if (state === 'running') {
+        if (audio) audio.pause();
+        if (rafId) cancelAnimationFrame(rafId);
+        circleEl.classList.remove('gkm-breathing');
+      }
+      progressEl.style.transition = 'none';
+      circleEl.classList.add('gkm-seeking');
+      seekTo(info.fraction);
     }
 
     function seekMove(e) {
       if (!isSeeking) return;
       e.preventDefault();
-      if (!seekStarted) {
-        seekStarted = true;
-        if (wasRunningBeforeSeek) {
-          if (audio) audio.pause();
-          if (rafId) cancelAnimationFrame(rafId);
-          circleEl.classList.remove('gkm-breathing');
-        }
-        progressEl.style.transition = 'none';
-        circleEl.classList.add('gkm-seeking');
-      }
       var info = getSeekInfo(e);
       seekTo(info.fraction);
     }
@@ -778,8 +771,16 @@
     function seekEnd(e) {
       if (!isSeeking) return;
       if (seekStarted) {
+        // Sync audio/timer to final drag position (single seek, not 60/s)
+        if (audio) {
+          audio.currentTime = elapsed;
+        } else {
+          startTime = Date.now() - elapsed * 1000;
+        }
         progressEl.style.transition = '';
         circleEl.classList.remove('gkm-seeking');
+        currentIdx = -1;
+        dismissing = false;
         if (wasRunningBeforeSeek) {
           state = 'running';
           if (audio) audio.play();
