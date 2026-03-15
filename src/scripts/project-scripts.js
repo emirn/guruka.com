@@ -352,6 +352,8 @@
     var currentIdx = -1;
     var wakeLock = null;
     var isSeeking = false;
+    var seekStarted = false;
+    var seekStartFraction = 0;
     var wasRunningBeforeSeek = false;
     var seekRingInner = 50;  // px from center — inner edge of touchable ring
     var seekRingOuter = 95;  // px from center — outer edge
@@ -751,36 +753,42 @@
       if (info.dist < seekRingInner || info.dist > seekRingOuter) return;
       e.preventDefault();
       isSeeking = true;
+      seekStarted = false;
+      seekStartFraction = info.fraction;
       wasRunningBeforeSeek = (state === 'running');
-      if (state === 'running') {
-        if (audio) audio.pause();
-        if (rafId) cancelAnimationFrame(rafId);
-        circleEl.classList.remove('gkm-breathing');
-      }
-      progressEl.style.transition = 'none';
-      circleEl.classList.add('gkm-seeking');
-      seekTo(info.fraction);
     }
 
     function seekMove(e) {
       if (!isSeeking) return;
       e.preventDefault();
+      if (!seekStarted) {
+        seekStarted = true;
+        if (wasRunningBeforeSeek) {
+          if (audio) audio.pause();
+          if (rafId) cancelAnimationFrame(rafId);
+          circleEl.classList.remove('gkm-breathing');
+        }
+        progressEl.style.transition = 'none';
+        circleEl.classList.add('gkm-seeking');
+      }
       var info = getSeekInfo(e);
       seekTo(info.fraction);
     }
 
     function seekEnd(e) {
       if (!isSeeking) return;
-      progressEl.style.transition = '';
-      circleEl.classList.remove('gkm-seeking');
-      if (wasRunningBeforeSeek) {
-        state = 'running';
-        if (audio) audio.play();
-        circleEl.classList.add('gkm-breathing');
-        tick();
+      if (seekStarted) {
+        progressEl.style.transition = '';
+        circleEl.classList.remove('gkm-seeking');
+        if (wasRunningBeforeSeek) {
+          state = 'running';
+          if (audio) audio.play();
+          circleEl.classList.add('gkm-breathing');
+          tick();
+        }
       }
       // Delay clearing isSeeking so the click event that fires after touchend is ignored
-      setTimeout(function() { isSeeking = false; }, 0);
+      setTimeout(function() { isSeeking = false; seekStarted = false; }, 0);
     }
 
     circleEl.addEventListener('touchstart', seekStart, { passive: false });
