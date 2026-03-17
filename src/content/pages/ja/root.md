@@ -1,6 +1,6 @@
 ---
-title: "GURUKA – 脳を鍛えて、心を研ぎ澄ます"
-description: "記憶力、集中力、メンタルの明晰さを向上させる脳トレゲームとガイド付き瞑想。毎日プレイして進捗を記録しましょう。"
+title: "GURUKA — 無料のガイド付き瞑想・ビジュアライゼーション・脳トレゲーム"
+description: "無料のガイド付き瞑想、癒しのビジュアライゼーション、脳トレゲーム。アカウント不要。個人データ収集なし。オフラインモード対応。"
 full_width: true
 blog_grid: true
 blog_grid_title: "ブログから"
@@ -81,18 +81,49 @@ border-color: rgba(15,144,114,0.4);
 .gk-hero-icon { font-size: 2.5rem; }
 .gk-hero-body h2 { font-size: 1.5rem; }
 }
+.gk-headline {
+text-align: center;
+margin-bottom: 0.5rem;
+}
+.gk-headline h1 {
+font-size: 1.6rem;
+font-weight: 800;
+line-height: 1.2;
+margin: 0 0 0.5rem;
+color: var(--color-text-primary, #1a2332);
+}
+[data-theme="dark"] .gk-headline h1 {
+color: var(--color-dark-text-primary, #f9fafb);
+}
+.gk-headline p {
+font-size: 0.9rem;
+font-weight: 500;
+letter-spacing: 0.03em;
+color: var(--color-text-secondary, #4b5b6d);
+margin: 0;
+}
+[data-theme="dark"] .gk-headline p {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
+@media (min-width: 480px) {
+.gk-headline h1 { font-size: 2rem; }
+}
 @media (prefers-reduced-motion: reduce) {
 .gk-hero-card { transition: none; }
 }
 </style>
 
 <div class="gk-home">
+<div class="gk-headline">
+<h1>無料のガイド付き瞑想・ビジュアライゼーション・脳トレゲーム</h1>
+<p>無料 · アカウント不要 · 個人データ収集なし · オフラインモード対応</p>
+</div>
 <a href="/ja/meditate/" class="gk-hero-card">
 <div class="gk-hero-icon">🧘</div>
 <div class="gk-hero-body">
 <h2>瞑想</h2>
 <p>落ち着き、集中力、ウェルビーイングのためのガイド付き瞑想</p>
-<div class="gk-hero-meta">7セッション · 無料・広告なし</div>
+<div class="gk-hero-meta">無料・アカウント不要</div>
 </div>
 </a>
 <a href="/ja/games/" class="gk-hero-card">
@@ -100,7 +131,7 @@ border-color: rgba(15,144,114,0.4);
 <div class="gk-hero-body">
 <h2>脳トレゲーム</h2>
 <p>さまざまな認知スキルを鍛えるゲーム</p>
-<div class="gk-hero-meta">7ゲーム · 無料・広告なし</div>
+<div class="gk-hero-meta">無料・アカウント不要</div>
 </div>
 </a>
 <a href="/ja/visuals/" class="gk-hero-card">
@@ -108,7 +139,7 @@ border-color: rgba(15,144,114,0.4);
 <div class="gk-hero-body">
 <h2>瞑想ビジュアル</h2>
 <p>リラクゼーションのための全画面アニメーション</p>
-<div class="gk-hero-meta">6ビジュアル · 無料・広告なし</div>
+<div class="gk-hero-meta">無料・アカウント不要</div>
 </div>
 </a>
 </div>

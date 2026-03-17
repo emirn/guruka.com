@@ -1,6 +1,6 @@
 ---
-title: "GURUKA – Trainiere dein Gehirn, schärfe deinen Geist"
-description: "Gehirntraining-Spiele und geführte Meditationen zur Verbesserung von Gedächtnis, Fokus und mentaler Klarheit. Spiele täglich und verfolge deinen Fortschritt."
+title: "GURUKA — Kostenlose geführte Meditationen, Visualisierungen & Gehirnspiele"
+description: "Kostenlose geführte Meditationen, beruhigende Visualisierungen und Gehirntraining-Spiele. Kein Konto nötig. Keine persönlichen Daten. Unterstützt Offline-Modus."
 full_width: true
 blog_grid: true
 blog_grid_title: "Aus dem Blog"
@@ -81,18 +81,49 @@ border-color: rgba(15,144,114,0.4);
 .gk-hero-icon { font-size: 2.5rem; }
 .gk-hero-body h2 { font-size: 1.5rem; }
 }
+.gk-headline {
+text-align: center;
+margin-bottom: 0.5rem;
+}
+.gk-headline h1 {
+font-size: 1.6rem;
+font-weight: 800;
+line-height: 1.2;
+margin: 0 0 0.5rem;
+color: var(--color-text-primary, #1a2332);
+}
+[data-theme="dark"] .gk-headline h1 {
+color: var(--color-dark-text-primary, #f9fafb);
+}
+.gk-headline p {
+font-size: 0.9rem;
+font-weight: 500;
+letter-spacing: 0.03em;
+color: var(--color-text-secondary, #4b5b6d);
+margin: 0;
+}
+[data-theme="dark"] .gk-headline p {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
+@media (min-width: 480px) {
+.gk-headline h1 { font-size: 2rem; }
+}
 @media (prefers-reduced-motion: reduce) {
 .gk-hero-card { transition: none; }
 }
 </style>
 
 <div class="gk-home">
+<div class="gk-headline">
+<h1>Kostenlose geführte Meditationen, Visualisierungen & Gehirnspiele</h1>
+<p>Kostenlos · Kein Konto nötig · Keine persönlichen Daten · Unterstützt Offline-Modus</p>
+</div>
 <a href="/de/meditate/" class="gk-hero-card">
 <div class="gk-hero-icon">🧘</div>
 <div class="gk-hero-body">
 <h2>Meditieren</h2>
 <p>Geführte Meditationen für Ruhe, Fokus und Wohlbefinden</p>
-<div class="gk-hero-meta">7 Sitzungen · Kostenlos, ohne Werbung</div>
+<div class="gk-hero-meta">Kostenlos, kein Konto nötig</div>
 </div>
 </a>
 <a href="/de/games/" class="gk-hero-card">
@@ -100,7 +131,7 @@ border-color: rgba(15,144,114,0.4);
 <div class="gk-hero-body">
 <h2>Gehirnspiele</h2>
 <p>Trainiere dein Gehirn mit Spielen für verschiedene kognitive Fähigkeiten</p>
-<div class="gk-hero-meta">7 Spiele · Kostenlos, ohne Werbung</div>
+<div class="gk-hero-meta">Kostenlos, kein Konto nötig</div>
 </div>
 </a>
 <a href="/de/visuals/" class="gk-hero-card">
@@ -108,7 +139,7 @@ border-color: rgba(15,144,114,0.4);
 <div class="gk-hero-body">
 <h2>Meditative Visuals</h2>
 <p>Beruhigende Vollbild-Animationen zur Entspannung</p>
-<div class="gk-hero-meta">6 Visuals · Kostenlos, ohne Werbung</div>
+<div class="gk-hero-meta">Kostenlos, kein Konto nötig</div>
 </div>
 </a>
 </div>

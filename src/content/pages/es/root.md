@@ -1,6 +1,6 @@
 ---
-title: "GURUKA – Entrena tu Cerebro, Agudiza tu Mente"
-description: "Juegos de entrenamiento mental y meditaciones guiadas para mejorar la memoria, el enfoque y la claridad mental. Juega a diario y sigue tu progreso."
+title: "GURUKA — Meditaciones Guiadas, Visualizaciones y Juegos Mentales Gratis"
+description: "Meditaciones guiadas, visualizaciones relajantes y juegos de entrenamiento cerebral gratuitos. Sin cuenta. Sin datos personales. Compatible con modo sin conexión."
 full_width: true
 blog_grid: true
 blog_grid_title: "Del Blog"
@@ -81,18 +81,49 @@ border-color: rgba(15,144,114,0.4);
 .gk-hero-icon { font-size: 2.5rem; }
 .gk-hero-body h2 { font-size: 1.5rem; }
 }
+.gk-headline {
+text-align: center;
+margin-bottom: 0.5rem;
+}
+.gk-headline h1 {
+font-size: 1.6rem;
+font-weight: 800;
+line-height: 1.2;
+margin: 0 0 0.5rem;
+color: var(--color-text-primary, #1a2332);
+}
+[data-theme="dark"] .gk-headline h1 {
+color: var(--color-dark-text-primary, #f9fafb);
+}
+.gk-headline p {
+font-size: 0.9rem;
+font-weight: 500;
+letter-spacing: 0.03em;
+color: var(--color-text-secondary, #4b5b6d);
+margin: 0;
+}
+[data-theme="dark"] .gk-headline p {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
+@media (min-width: 480px) {
+.gk-headline h1 { font-size: 2rem; }
+}
 @media (prefers-reduced-motion: reduce) {
 .gk-hero-card { transition: none; }
 }
 </style>
 
 <div class="gk-home">
+<div class="gk-headline">
+<h1>Meditaciones Guiadas, Visualizaciones y Juegos Mentales Gratis</h1>
+<p>Gratis · Sin cuenta · Sin datos personales · Compatible con modo sin conexión</p>
+</div>
 <a href="/es/meditate/" class="gk-hero-card">
 <div class="gk-hero-icon">🧘</div>
 <div class="gk-hero-body">
 <h2>Meditar</h2>
 <p>Meditaciones guiadas para la calma, el enfoque y el bienestar</p>
-<div class="gk-hero-meta">7 sesiones · Gratis, sin anuncios</div>
+<div class="gk-hero-meta">Gratis, sin cuenta necesaria</div>
 </div>
 </a>
 <a href="/es/games/" class="gk-hero-card">
@@ -100,7 +131,7 @@ border-color: rgba(15,144,114,0.4);
 <div class="gk-hero-body">
 <h2>Juegos Mentales</h2>
 <p>Entrena tu cerebro con juegos para diferentes habilidades cognitivas</p>
-<div class="gk-hero-meta">7 juegos · Gratis, sin anuncios</div>
+<div class="gk-hero-meta">Gratis, sin cuenta necesaria</div>
 </div>
 </a>
 <a href="/es/visuals/" class="gk-hero-card">
@@ -108,7 +139,7 @@ border-color: rgba(15,144,114,0.4);
 <div class="gk-hero-body">
 <h2>Visuales Meditativas</h2>
 <p>Animaciones relajantes a pantalla completa para la relajación</p>
-<div class="gk-hero-meta">6 visuales · Gratis, sin anuncios</div>
+<div class="gk-hero-meta">Gratis, sin cuenta necesaria</div>
 </div>
 </a>
 </div>
