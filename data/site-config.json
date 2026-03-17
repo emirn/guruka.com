@@ -3,8 +3,8 @@
     "badge": "",
     "site": {
       "name": "GURUKA",
-      "tagline": "Train Your Brain and Memory, Sharpen Your Mind",
-      "description": "Brain and memory training games and guided meditations to improve memory, focus, and mental clarity. Play daily and track your progress.",
+      "tagline": "Free Guided Meditations, Visualizations & Brain Games",
+      "description": "Free guided meditations, calming visualizations, and brain training games. No account required. No personal data collected. Supports offline mode.",
       "url": "https://guruka.com",
       "language": "en",
       "favicon_url": "",
@@ -665,6 +665,6 @@
   },
   "build_info": {
     "git_commit": "eb8cf853a",
-    "build_date": "2026-03-17T09:46:10.522Z"
+    "build_date": "2026-03-17T12:40:28.263Z"
   }
 }
