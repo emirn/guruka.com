@@ -76,6 +76,9 @@ const showCategories = config.blog.show_categories && config.categories?.enabled
 const tags = data.tags || [];
 const showTags = config.tags?.enabled !== false && tags.length > 0;
 const hasInlineToc = article.body?.includes('<div id="toc">') || false;
+
+// Author display: respect show_authors flag (default true for articles, false for pages)
+const showAuthors = data.show_authors ?? true;
 ---
 
 <BaseLayout
@@ -132,7 +135,7 @@ const hasInlineToc = article.body?.includes('<div id="toc">') || false;
           </>
         )}
 
-        {(() => {
+        {showAuthors && (() => {
           // Prefer new authors[] system, fallback to reviewed_by
           const reviewers = data.authors?.filter(a => a.role === 'reviewer') || [];
           if (reviewers.length > 0) {
@@ -160,7 +163,7 @@ const hasInlineToc = article.body?.includes('<div id="toc">') || false;
           return null;
         })()}
 
-        {config.blog.show_author && (data.author || getDefaultAuthor(config)) && (() => {
+        {showAuthors && config.blog.show_author && (data.author || getDefaultAuthor(config)) && (() => {
           const authorName = data.author || getDefaultAuthor(config);
           const authorUrl = config.authors?.length ? getAuthorUrl(authorName) : undefined;
           return authorUrl
@@ -240,7 +243,7 @@ const hasInlineToc = article.body?.includes('<div id="toc">') || false;
     )}
 
     <!-- Article History -->
-    {(data.authors?.length || data.reviewed_by?.length) && (
+    {showAuthors && (data.authors?.length || data.reviewed_by?.length) && (
       <section class="mt-12 pt-6 border-t border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
         <h3 class="text-sm font-semibold text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] uppercase tracking-wide mb-3">Article History</h3>
         <ul class="space-y-1 text-xs text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)]">

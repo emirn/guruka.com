@@ -256,6 +256,34 @@
             "url": "/compare/headspace-vs-calm/"
           },
           {
+            "label": "Guruka vs Headspace",
+            "url": "/compare/guruka-vs-headspace/"
+          },
+          {
+            "label": "Guruka vs Calm",
+            "url": "/compare/guruka-vs-calm/"
+          },
+          {
+            "label": "Guruka vs Insight Timer",
+            "url": "/compare/guruka-vs-insight-timer/"
+          },
+          {
+            "label": "Guruka vs Waking Up",
+            "url": "/compare/guruka-vs-waking-up/"
+          },
+          {
+            "label": "Guruka vs Simple Habit",
+            "url": "/compare/guruka-vs-simple-habit/"
+          },
+          {
+            "label": "Guruka vs Ten Percent Happier",
+            "url": "/compare/guruka-vs-ten-percent-happier/"
+          },
+          {
+            "label": "Guruka vs Balance",
+            "url": "/compare/guruka-vs-balance/"
+          },
+          {
             "label": "Headspace Alternatives",
             "url": "/compare/free-alternative-to-headspace/"
           },
@@ -264,12 +292,28 @@
             "url": "/compare/free-alternative-to-calm/"
           },
           {
-            "label": "Balance Alternatives",
-            "url": "/compare/free-alternative-to-balance-app/"
-          },
-          {
             "label": "Insight Timer Alternatives",
             "url": "/compare/free-alternative-to-insight-timer/"
+          },
+          {
+            "label": "Waking Up Alternatives",
+            "url": "/compare/free-alternative-to-waking-up-app/"
+          },
+          {
+            "label": "Simple Habit Alternatives",
+            "url": "/compare/free-alternative-to-simple-habit/"
+          },
+          {
+            "label": "Ten Percent Happier Alternatives",
+            "url": "/compare/free-alternative-to-ten-percent-happier/"
+          },
+          {
+            "label": "Smiling Mind Alternatives",
+            "url": "/compare/free-alternative-to-smiling-mind/"
+          },
+          {
+            "label": "Balance Alternatives",
+            "url": "/compare/free-alternative-to-balance-app/"
           }
         ]
       },
@@ -620,7 +664,7 @@
     }
   },
   "build_info": {
-    "git_commit": "1c5f281cc",
-    "build_date": "2026-03-15T16:35:33.688Z"
+    "git_commit": "eb8cf853a",
+    "build_date": "2026-03-17T09:46:10.522Z"
   }
 }

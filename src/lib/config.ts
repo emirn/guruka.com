@@ -223,7 +223,16 @@ export interface SiteConfig {
     custom_content?: string;
   };
   /** Author profiles from project config. If non-empty, author pages are generated. */
-  authors?: Array<{ id: string; name: string; url: string }>;
+  authors?: Array<{
+    id: string;
+    name: string;
+    url: string;
+    bio?: string;
+    image?: string;
+    jobTitle?: string;
+    sameAs?: string[];
+    system?: boolean;
+  }>;
   tracking: {
     widget_code?: string;
     custom_head_code?: string;
@@ -312,8 +321,8 @@ export interface SectionConfig {
   posts_per_page?: number;
   /** Article display layout. 'grid' = tile cards, 'list' = horizontal rows. Default: 'grid' */
   layout?: 'grid' | 'list';
-  /** Section content type. 'blog' sections appear in the homepage blog grid. Default: undefined (treated as 'blog' for backward compat) */
-  section_type?: 'blog' | 'page';
+  /** Section content type. 'blog' sections appear in the homepage blog grid. 'directory' renders as a searchable/filterable card grid. Default: undefined (treated as 'blog' for backward compat) */
+  section_type?: 'blog' | 'page' | 'directory';
   /**
    * Illustration style override for this section.
    * Can be a reference ("primary", "secondary", "tertiary") or a direct style ID.
@@ -501,7 +510,8 @@ export function replacePlaceholders(text: string, config: SiteConfig): string {
  */
 export function getDefaultAuthor(config: SiteConfig): string {
   if (config.authors && config.authors.length > 0) {
-    return config.authors[0].name;
+    const systemAuthor = config.authors.find(a => a.system);
+    return (systemAuthor || config.authors[0]).name;
   }
   return `Content Team at ${config.branding.site.name}`;
 }
@@ -526,7 +536,7 @@ export function getAuthorUrl(name: string): string {
 /**
  * Get author by ID from site config
  */
-export function getAuthorById(id: string, config: SiteConfig): { id: string; name: string; url: string } | undefined {
+export function getAuthorById(id: string, config: SiteConfig) {
   return config.authors?.find(a => a.id === id);
 }
 

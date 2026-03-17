@@ -10,7 +10,7 @@ import Pagination from '../../../components/Pagination.astro';
 export const getStaticPaths = (async () => {
   const config = getConfig();
   const allSections = await getAllLocalSections(config);
-  const sections = allSections.filter(s => s.section_type !== 'page');
+  const sections = allSections.filter(s => s.section_type !== 'page' && s.section_type !== 'directory');
 
   if (sections.length === 0) return [];
 
