@@ -1,0 +1,117 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { SiteConfig, SectionConfig } from '../lib/config';
+import { getArticleBaseSlug } from '../lib/articles';
+import { getFaviconUrl } from '../lib/catalogs';
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+  section: SectionConfig;
+  config: SiteConfig;
+}
+
+const { article, section, config } = Astro.props;
+const { data } = article;
+const baseSlug = getArticleBaseSlug(article.slug, config);
+const detailUrl = `/${baseSlug}/`;
+const category = data.categories?.[0] || '';
+const tags = data.tags || [];
+const externalUrl = data.url || '';
+const faviconSrc = data.image_hero || (externalUrl ? getFaviconUrl(externalUrl, 64) : '');
+const itemSlug = baseSlug.includes('/') ? baseSlug.split('/').slice(1).join('/') : baseSlug;
+---
+
+<div
+  class="group bg-[var(--color-bg-primary)] dark:bg-[var(--color-dark-bg-primary)] rounded-xl border border-[var(--color-border)] dark:border-[var(--color-dark-border)] overflow-hidden hover:border-[var(--color-primary)] hover:shadow-lg transition-all duration-300 flex flex-col"
+  data-directory-item
+  data-slug={itemSlug}
+  data-title={data.title.toLowerCase()}
+  data-description={(data.description || '').toLowerCase()}
+  data-category={category.toLowerCase()}
+  data-tags={tags.join(',').toLowerCase()}
+  data-url={externalUrl}
+>
+  <div class="p-5 flex-1 flex flex-col">
+    <!-- Header: icon + title + bookmark -->
+    <div class="flex items-start gap-3 mb-3">
+      <a href={detailUrl} class="shrink-0">
+        {faviconSrc ? (
+          <img
+            src={faviconSrc}
+            alt={`${data.title} icon`}
+            class="w-10 h-10 rounded-lg bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)] object-contain"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          />
+        ) : (
+          <div class="w-10 h-10 rounded-lg bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)] flex items-center justify-center text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)]">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            </svg>
+          </div>
+        )}
+      </a>
+      <div class="flex-1 min-w-0">
+        <a href={detailUrl}>
+          <h3 class="text-base font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] group-hover:text-[var(--color-primary)] transition-colors truncate">
+            {data.title}
+          </h3>
+        </a>
+      </div>
+      <button
+        type="button"
+        class="directory-bookmark shrink-0 text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] hover:text-amber-500 transition-colors"
+        data-slug={itemSlug}
+        aria-label="Bookmark"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Description -->
+    <p class="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] line-clamp-2 mb-3 flex-1">
+      {data.description}
+    </p>
+
+    <!-- Footer: category + pricing + rating -->
+    <div class="flex items-center justify-between gap-2 mt-auto">
+      <div class="flex items-center gap-2 min-w-0">
+        {category && (
+          <span class="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-[var(--color-bg-secondary)] dark:bg-[var(--color-dark-bg-secondary)] text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] truncate">
+            {category}
+          </span>
+        )}
+        {data.pricing && (
+          <span class="text-xs text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] truncate">
+            {data.pricing}
+          </span>
+        )}
+      </div>
+      <div class="directory-rating flex gap-0.5 shrink-0" data-slug={itemSlug}>
+        {[1,2,3,4,5].map((star) => (
+          <button
+            type="button"
+            class="directory-star text-[var(--color-text-muted)]/30 dark:text-[var(--color-dark-text-muted)]/30 hover:text-amber-400 transition-colors"
+            data-value={star}
+            aria-label={`Rate ${star}`}
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

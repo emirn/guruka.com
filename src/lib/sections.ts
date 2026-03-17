@@ -107,7 +107,7 @@ export async function getHomeArticles(config?: SiteConfig) {
     // Articles in unconfigured subfolders show on home by default
     if (!section) return true;
 
-    // If section_type is used anywhere, only show 'blog' type sections
+    // If section_type is used anywhere, only show 'blog' type sections (not 'page' or 'directory')
     if (hasSectionTypes) {
       return section.section_type === 'blog';
     }

@@ -1,0 +1,317 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { SiteConfig, SectionConfig } from '../lib/config';
+import DirectoryCard from './DirectoryCard.astro';
+
+interface Props {
+  section: SectionConfig;
+  articles: CollectionEntry<'articles'>[];
+  config: SiteConfig;
+}
+
+const { section, articles, config } = Astro.props;
+
+// Extract unique categories from articles
+const categories = [...new Set(
+  articles
+    .flatMap(a => a.data.categories || [])
+    .filter(Boolean)
+)].sort();
+
+const sectionId = section.id;
+const itemLabel = articles.length === 1 ? 'item' : 'items';
+---
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" data-directory-grid={sectionId}>
+  <!-- Header -->
+  <header class="text-center mb-10">
+    <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] mb-3">
+      {section.label}
+    </h1>
+    {section.description && (
+      <p class="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] max-w-2xl mx-auto mb-2">
+        {section.description}
+      </p>
+    )}
+    <p class="text-sm text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)]">
+      {articles.length} {itemLabel}
+    </p>
+  </header>
+
+  <!-- Toolbar: search, filters, actions -->
+  <div class="mb-8 space-y-4">
+    <!-- Search -->
+    <div class="relative max-w-md mx-auto">
+      <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input
+        type="text"
+        id="directory-search"
+        placeholder={`Search ${articles.length} ${itemLabel}...`}
+        class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-[var(--color-border)] dark:border-[var(--color-dark-border)] bg-[var(--color-bg-primary)] dark:bg-[var(--color-dark-bg-primary)] text-[var(--color-text-primary)] dark:text-[var(--color-dark-text-primary)] placeholder-[var(--color-text-muted)] dark:placeholder-[var(--color-dark-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-sm"
+      />
+    </div>
+
+    <!-- Category pills -->
+    {categories.length > 0 && (
+      <div class="flex flex-wrap items-center justify-center gap-2">
+        <button
+          type="button"
+          class="directory-cat-pill active px-3 py-1.5 text-xs font-medium rounded-full border transition-colors"
+          data-category="all"
+        >
+          All
+        </button>
+        {categories.map((cat) => (
+          <button
+            type="button"
+            class="directory-cat-pill px-3 py-1.5 text-xs font-medium rounded-full border transition-colors"
+            data-category={cat.toLowerCase()}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+    )}
+
+    <!-- Action buttons -->
+    <div class="flex items-center justify-center gap-3">
+      <button
+        type="button"
+        id="directory-bookmarks-toggle"
+        class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-medium rounded-lg border-2 border-amber-300 dark:border-amber-500/40 text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10 hover:bg-amber-100 dark:hover:bg-amber-500/20 hover:border-amber-400 dark:hover:border-amber-400 transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+        </svg>
+        My Bookmarks
+      </button>
+
+      <button
+        type="button"
+        id="directory-export-csv"
+        class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-medium rounded-lg border-2 border-[var(--color-border)] dark:border-[var(--color-dark-border)] text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] hover:bg-[color-mix(in_srgb,var(--color-primary)_5%,transparent)] transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        Export CSV
+      </button>
+    </div>
+  </div>
+
+  <!-- Result count -->
+  <p id="directory-result-count" class="text-center text-sm text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] mb-6 hidden"></p>
+
+  <!-- Grid -->
+  <div id="directory-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    {articles.map((article) => (
+      <DirectoryCard article={article} section={section} config={config} />
+    ))}
+  </div>
+
+  {articles.length === 0 && (
+    <p class="text-center text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] py-12">
+      No items in this directory yet.
+    </p>
+  )}
+</div>
+
+<style>
+  .directory-cat-pill {
+    border-color: var(--color-border);
+    color: var(--color-text-secondary);
+  }
+  :global(.dark) .directory-cat-pill {
+    border-color: var(--color-dark-border);
+    color: var(--color-dark-text-secondary);
+  }
+  .directory-cat-pill:hover,
+  .directory-cat-pill.active {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background-color: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  }
+</style>
+
+<script define:vars={{ sectionId }}>
+  (function() {
+    const STORAGE_KEY = `directory_${sectionId}`;
+
+    function loadStore() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+      catch { return {}; }
+    }
+    function saveStore(store) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+    }
+    function getItem(store, slug) {
+      return store[slug] || { bookmarked: false, rating: 0 };
+    }
+
+    const store = loadStore();
+
+    // --- Apply stored state ---
+    function applyStoredState() {
+      document.querySelectorAll('[data-directory-item]').forEach(card => {
+        const slug = card.dataset.slug;
+        const info = getItem(store, slug);
+
+        // Bookmark
+        const btn = card.querySelector('.directory-bookmark');
+        if (btn) {
+          btn.querySelector('svg').style.fill = info.bookmarked ? 'currentColor' : 'none';
+          if (info.bookmarked) btn.classList.add('text-amber-500');
+          else btn.classList.remove('text-amber-500');
+        }
+
+        // Rating
+        card.querySelectorAll('.directory-star').forEach(star => {
+          const val = parseInt(star.dataset.value);
+          if (val <= info.rating) {
+            star.classList.remove('text-[var(--color-text-muted)]/30', 'dark:text-[var(--color-dark-text-muted)]/30');
+            star.classList.add('text-amber-400');
+          } else {
+            star.classList.add('text-[var(--color-text-muted)]/30', 'dark:text-[var(--color-dark-text-muted)]/30');
+            star.classList.remove('text-amber-400');
+          }
+        });
+      });
+    }
+    applyStoredState();
+
+    // --- Bookmark clicks ---
+    document.querySelectorAll('.directory-bookmark').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        const slug = btn.dataset.slug;
+        const info = getItem(store, slug);
+        info.bookmarked = !info.bookmarked;
+        store[slug] = info;
+        saveStore(store);
+        applyStoredState();
+      });
+    });
+
+    // --- Rating clicks ---
+    document.querySelectorAll('.directory-star').forEach(star => {
+      star.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        const ratingDiv = star.closest('.directory-rating');
+        const slug = ratingDiv.dataset.slug;
+        const val = parseInt(star.dataset.value);
+        const info = getItem(store, slug);
+        info.rating = info.rating === val ? 0 : val;
+        store[slug] = info;
+        saveStore(store);
+        applyStoredState();
+      });
+    });
+
+    // --- Search ---
+    const searchInput = document.getElementById('directory-search');
+    const resultCount = document.getElementById('directory-result-count');
+    const cards = document.querySelectorAll('[data-directory-item]');
+    let activeCategory = 'all';
+    let bookmarksOnly = false;
+
+    function filterCards() {
+      const q = (searchInput?.value || '').toLowerCase().trim();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const title = card.dataset.title;
+        const desc = card.dataset.description;
+        const tags = card.dataset.tags;
+        const cat = card.dataset.category;
+        const slug = card.dataset.slug;
+
+        let show = true;
+
+        // Text search
+        if (q) {
+          show = title.includes(q) || desc.includes(q) || tags.includes(q);
+        }
+
+        // Category filter
+        if (show && activeCategory !== 'all') {
+          show = cat === activeCategory;
+        }
+
+        // Bookmarks filter
+        if (show && bookmarksOnly) {
+          const info = getItem(store, slug);
+          show = info.bookmarked;
+        }
+
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      if (q || activeCategory !== 'all' || bookmarksOnly) {
+        resultCount.textContent = `Showing ${visible} of ${cards.length} items`;
+        resultCount.classList.remove('hidden');
+      } else {
+        resultCount.classList.add('hidden');
+      }
+    }
+
+    searchInput?.addEventListener('input', filterCards);
+
+    // --- Category pills ---
+    document.querySelectorAll('.directory-cat-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.directory-cat-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        activeCategory = pill.dataset.category;
+        filterCards();
+      });
+    });
+
+    // --- Bookmarks toggle ---
+    const bmToggle = document.getElementById('directory-bookmarks-toggle');
+    bmToggle?.addEventListener('click', () => {
+      bookmarksOnly = !bookmarksOnly;
+      bmToggle.classList.toggle('bg-amber-200');
+      bmToggle.classList.toggle('dark:bg-amber-500/30');
+      bmToggle.classList.toggle('border-amber-500');
+      const svg = bmToggle.querySelector('svg');
+      if (svg) svg.style.fill = bookmarksOnly ? 'currentColor' : 'none';
+      filterCards();
+    });
+
+    // --- CSV Export ---
+    document.getElementById('directory-export-csv')?.addEventListener('click', () => {
+      const rows = [['Title', 'URL', 'Category', 'Pricing', 'Rating', 'Bookmarked']];
+      cards.forEach(card => {
+        const slug = card.dataset.slug;
+        const info = getItem(store, slug);
+        if (info.bookmarked || info.rating > 0) {
+          const title = card.querySelector('h3')?.textContent?.trim() || '';
+          rows.push([
+            title,
+            card.dataset.url,
+            card.dataset.category,
+            '',
+            String(info.rating),
+            info.bookmarked ? 'Yes' : 'No',
+          ]);
+        }
+      });
+      if (rows.length === 1) {
+        alert('Bookmark or rate some items first to export them.');
+        return;
+      }
+      const csv = rows.map(r => r.map(c => `"${(c||'').replace(/"/g, '""')}"`).join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${sectionId}-directory.csv`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+  })();
+</script>

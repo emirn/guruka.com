@@ -13,7 +13,7 @@ export const getStaticPaths = (async () => {
   if (!config.i18n?.enabled) return [];
 
   const allSections = await getAllLocalSections(config);
-  const sections = allSections.filter(s => s.section_type !== 'page');
+  const sections = allSections.filter(s => s.section_type !== 'page' && s.section_type !== 'directory');
   if (sections.length === 0) return [];
 
   const defaultLang = config.i18n.defaultLanguage || 'en';

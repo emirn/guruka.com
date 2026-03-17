@@ -94,17 +94,40 @@ export function generateBlogPosting(
     blogPosting.dateModified = data.published_at.toISOString();
   }
 
-  const authorName = data.author || getDefaultAuthor(config);
-  const authorEntry: Record<string, unknown> = {
-    '@type': 'Person',
-    name: authorName,
-  };
-  // Add author URL from site config if available
-  const configAuthor = config.authors?.find(a => a.name === authorName);
-  if (configAuthor?.url) {
-    authorEntry.url = configAuthor.url;
+  // Build author(s) from IArticleAuthorEntry + project config for rich E-E-A-T data
+  const authorEntries = data.authors?.filter((a: { role: string }) => a.role === 'author' || a.role === 'contributor') || [];
+  if (authorEntries.length > 0 && config.authors?.length) {
+    const authorJsonLd = authorEntries.map((entry: { id: string }) => {
+      const authorInfo = config.authors?.find(a => a.id === entry.id) as Record<string, any> | undefined;
+      if (!authorInfo) return null;
+      const person: Record<string, unknown> = {
+        '@type': 'Person',
+        name: authorInfo.name,
+      };
+      if (authorInfo.url) person.url = authorInfo.url;
+      if (authorInfo.image) person.image = authorInfo.image;
+      if (authorInfo.jobTitle) person.jobTitle = authorInfo.jobTitle;
+      if (authorInfo.sameAs?.length) person.sameAs = authorInfo.sameAs;
+      return person;
+    }).filter(Boolean);
+    if (authorJsonLd.length > 0) {
+      blogPosting.author = authorJsonLd.length === 1 ? authorJsonLd[0] : authorJsonLd;
+    } else {
+      // Fallback to string author
+      const authorName = data.author || getDefaultAuthor(config);
+      blogPosting.author = { '@type': 'Person', name: authorName };
+    }
+  } else {
+    // Fallback to legacy string author field
+    const authorName = data.author || getDefaultAuthor(config);
+    const authorObj: Record<string, unknown> = { '@type': 'Person', name: authorName };
+    const configAuthor = config.authors?.find(a => a.name === authorName) as Record<string, any> | undefined;
+    if (configAuthor?.url) authorObj.url = configAuthor.url;
+    if (configAuthor?.image) authorObj.image = configAuthor.image;
+    if (configAuthor?.jobTitle) authorObj.jobTitle = configAuthor.jobTitle;
+    if (configAuthor?.sameAs?.length) authorObj.sameAs = configAuthor.sameAs;
+    blogPosting.author = authorObj;
   }
-  blogPosting.author = authorEntry;
 
   // Image - use OG image or hero image
   const imageUrl = data.image_og || data.image_hero;
