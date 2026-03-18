@@ -263,7 +263,7 @@ flex-direction: column;
 
 .cc-header {
 display: grid;
-grid-template-columns: 1fr 1fr 1fr;
+grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 0.5rem;
 margin-bottom: 0.75rem;
 padding: 0.75rem;
@@ -883,11 +883,27 @@ Personal Best: <strong id="cc-best-score">none yet</strong>
 <li>Follow the <strong>rule indicator</strong> &mdash; tap the correct color.</li>
 <li>Rules switch between <strong style="color:#ec4899">"Ink Color"</strong> and <strong style="color:#3b82f6">"Word Meaning"</strong> as you level up.</li>
 <li>Answer before time runs out!</li>
+<li>You have 3 lives — each wrong answer or timeout costs one!</li>
 </ul>
 </div>
 
 <button class="cc-btn-primary" id="cc-start-btn">Start Game</button>
 <div id="cc-challenge-banner-wrap"></div>
+<div class="gc-faq" style="margin-top:1.5rem;text-align:left;width:100%;max-width:420px;">
+<h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;">FAQ</h3>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">How do I play?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">A color word appears in a different ink. Follow the rule — tap the ink color or the word.</p>
+</details>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">When do rules change?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">From Level 7, the rule alternates. From Level 17, background color adds a third layer.</p>
+</details>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">How is scoring counted?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">1 point per correct answer. 3 lives total.</p>
+</details>
+</div>
 </div>
 
 <div id="cc-wizard">
@@ -897,7 +913,7 @@ Personal Best: <strong id="cc-best-score">none yet</strong>
 <div id="cc-playing">
 <div class="cc-header">
 <div class="cc-stat">
-<div class="cc-stat-label">Score</div>
+<div class="cc-stat-label">Correct</div>
 <div class="cc-stat-value" id="cc-score">0</div>
 </div>
 <div class="cc-stat">
@@ -907,6 +923,10 @@ Personal Best: <strong id="cc-best-score">none yet</strong>
 <div class="cc-stat">
 <div class="cc-stat-label">Level</div>
 <div class="cc-stat-value" id="cc-level">1</div>
+</div>
+<div class="cc-stat">
+<div class="cc-stat-label">Lives</div>
+<div class="cc-stat-value" id="cc-lives">❤️❤️❤️</div>
 </div>
 </div>
 <div class="cc-level-info">
@@ -962,6 +982,10 @@ Personal Best: <strong id="cc-best-score">none yet</strong>
 <div class="cc-complete-stat">
 <div class="cc-complete-stat-label">Best Streak</div>
 <div class="cc-complete-stat-value" id="cc-final-streak">0</div>
+</div>
+<div class="cc-complete-stat">
+<div class="cc-complete-stat-label">Lives Left</div>
+<div class="cc-complete-stat-value" id="cc-final-lives">0</div>
 </div>
 <div class="cc-complete-stat">
 <div class="cc-complete-stat-label">Personal Best</div>
@@ -1026,7 +1050,9 @@ gameOver: false,
 correctColorName: '',
 currentRule: RULES.INK,
 roundsSinceRuleSwitch: 0,
-nextRuleSwitchAt: 0
+nextRuleSwitchAt: 0,
+lives: 3,
+maxLives: 3
 };
 
 /* ── DOM refs ── */
@@ -1261,7 +1287,7 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString() + ' points';
+elBestScore.textContent = best + ' correct';
 } else {
 elBestScore.textContent = 'none yet';
 }
@@ -1299,6 +1325,17 @@ var roundsNeeded = getRoundsPerLevel(state.level);
 var pct = Math.min((state.round / roundsNeeded) * 100, 100);
 elProgressFill.style.width = pct + '%';
 if (challenge.active) GK.updateChallengeBar('cc-playing', state.score, challenge.score);
+updateLives();
+}
+
+function updateLives() {
+var el = document.getElementById('cc-lives');
+if (!el) return;
+var s = '';
+for (var i = 0; i < state.maxLives; i++) {
+s += i < state.lives ? '❤️' : '🤍';
+}
+el.textContent = s;
 }
 
 /* ── Timer bar countdown ── */
@@ -1332,11 +1369,11 @@ void elFeedbackIcon.offsetWidth;
 
 if (correct) {
 elFeedbackFlash.classList.add('cc-flash-correct');
-elFeedbackIcon.textContent = '\u2713';
+elFeedbackIcon.textContent = '✓';
 elFeedbackIcon.classList.add('cc-show-check');
 } else {
 elFeedbackFlash.classList.add('cc-flash-wrong');
-elFeedbackIcon.textContent = '\u2717';
+elFeedbackIcon.textContent = '✗';
 elFeedbackIcon.classList.add('cc-show-x');
 }
 
@@ -1431,18 +1468,18 @@ flashAnswerBtn(chosenIdx, correct);
 
 if (correct) {
 state.totalCorrect++;
-var responseTime = Date.now() - state.roundStartTime;
-var points = 100;
-if (responseTime < 1000) {
-points += Math.floor((1000 - responseTime) / 10);
-}
-points += Math.floor(state.streak * 0.1 * 100);
-state.score += points;
+state.score += 1;
 state.streak++;
 if (state.streak > state.bestStreak) state.bestStreak = state.streak;
 showFeedback(true);
 } else {
 state.streak = 0;
+state.lives--;
+updateLives();
+if (state.lives <= 0) {
+endGame();
+return;
+}
 showFeedback(false);
 }
 
@@ -1475,6 +1512,12 @@ if (state.answered || state.gameOver) return;
 state.answered = true;
 state.totalAnswered++;
 state.streak = 0;
+state.lives--;
+updateLives();
+if (state.lives <= 0) {
+endGame();
+return;
+}
 
 if (state.timerInterval) {
 clearInterval(state.timerInterval);
@@ -1621,13 +1664,13 @@ var title = document.querySelector('#cc-complete-overlay .cc-complete-card h2');
 
 if (isNewBest) {
 showConfetti();
-trophy.textContent = '\uD83C\uDF89';
+trophy.textContent = '🎉';
 title.textContent = 'AMAZING!';
 elNewBest.className = 'cc-new-best-enhanced';
-elNewBest.innerHTML = '\uD83C\uDF1F AMAZING! New Best!';
+elNewBest.innerHTML = '🌟 AMAZING! New Best!';
 elNewBest.style.display = 'inline-block';
 } else {
-trophy.textContent = '\uD83C\uDFC6';
+trophy.textContent = '🏆';
 title.textContent = 'Good Job!';
 elNewBest.className = 'cc-new-best';
 elNewBest.style.display = 'none';
@@ -1636,12 +1679,13 @@ elNewBest.style.display = 'none';
 elFinalLevel.textContent = state.level;
 elFinalAccuracy.textContent = accuracy + '%';
 elFinalStreak.textContent = state.bestStreak;
-elFinalBest.textContent = best.toLocaleString();
+elFinalBest.textContent = best + ' correct';
 
 GK.renderChallengeResult('cc-challenge-result', state.score, challenge);
 
 showScreen('complete');
-animateScoreCountUp(elFinalScore, state.score);
+elFinalScore.textContent = state.score;
+var livesEl = document.getElementById('cc-final-lives'); if (livesEl) { var lh = ''; for (var li = 0; li < state.maxLives; li++) { lh += li < state.lives ? '❤️' : '🤍'; } livesEl.textContent = state.lives > 0 ? lh : '0'; }
 }
 
 /* ── Pause / Resume ── */
@@ -1673,9 +1717,9 @@ handleTimeout();
 
 /* ── Start game flow ── */
 var CC_WIZARD_STEPS = [
-{icon: '\uD83C\uDFA8', title: 'Read the color, not the word', desc: 'A color word appears in a different ink color. Follow the rule indicator to pick the right answer!'},
-{icon: '\uD83D\uDD04', title: 'Rules switch as you level up', desc: 'At higher levels, the rule alternates between "Ink Color" and "Word Meaning." Stay sharp!'},
-{icon: '\u26A1', title: 'Be fast!', desc: 'Answer before time runs out. Speed and streaks earn bonus points!', final: true}
+{icon: '🎨', title: 'Read the color, not the word', desc: 'A color word appears in a different ink color. Follow the rule indicator to pick the right answer!'},
+{icon: '🔄', title: 'Rules switch as you level up', desc: 'At higher levels, the rule alternates between "Ink Color" and "Word Meaning." Stay sharp!'},
+{icon: '⚡', title: 'Be fast!', desc: 'Answer before time runs out. Speed and streaks earn bonus points!', final: true}
 ];
 var ccWizardStep = 0;
 
@@ -1729,6 +1773,7 @@ state.correctColorName = '';
 state.currentRule = RULES.INK;
 state.roundsSinceRuleSwitch = 0;
 state.nextRuleSwitchAt = randInt(3, 5);
+state.lives = 3;
 if (state.timerInterval) clearInterval(state.timerInterval);
 if (state.autoAdvanceTimeout) clearTimeout(state.autoAdvanceTimeout);
 state.timerInterval = null;

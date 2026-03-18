@@ -263,7 +263,7 @@ flex-direction: column;
 
 .qs-header {
 display: grid;
-grid-template-columns: 1fr 1fr 1fr;
+grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 0.5rem;
 margin-bottom: 0.75rem;
 padding: 0.75rem;
@@ -885,11 +885,28 @@ Personal Best: <strong id="qs-best-score">none yet</strong>
 <li>Two categories are shown on <strong>left and right</strong>.</li>
 <li>Tap the correct side to sort the item.</li>
 <li>The sorting rule <strong>changes</strong> every few rounds &mdash; stay sharp!</li>
+<li>You have 3 lives &mdash; each wrong answer or timeout costs one!</li>
 </ul>
 </div>
 
+
 <button class="qs-btn-primary" id="qs-start-btn">Start Game</button>
 <div id="qs-challenge-banner-wrap"></div>
+<div class="gc-faq" style="margin-top:1.5rem;text-align:left;width:100%;max-width:420px;">
+<h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;">FAQ</h3>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">How do I play?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">Sort items by swiping left or right based on the current category rule.</p>
+</details>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">What makes it harder?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">The sorting rule changes every few rounds.</p>
+</details>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">How is scoring counted?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">1 point per correct sort. 3 lives &mdash; mistakes cost a life.</p>
+</details>
+</div>
 </div>
 
 <div id="qs-wizard">
@@ -899,7 +916,7 @@ Personal Best: <strong id="qs-best-score">none yet</strong>
 <div id="qs-playing">
 <div class="qs-header">
 <div class="qs-stat">
-<div class="qs-stat-label">Score</div>
+<div class="qs-stat-label">Correct</div>
 <div class="qs-stat-value" id="qs-score">0</div>
 </div>
 <div class="qs-stat">
@@ -909,6 +926,10 @@ Personal Best: <strong id="qs-best-score">none yet</strong>
 <div class="qs-stat">
 <div class="qs-stat-label">Level</div>
 <div class="qs-stat-value" id="qs-level">1</div>
+</div>
+<div class="qs-stat">
+<div class="qs-stat-label">Lives</div>
+<div class="qs-stat-value" id="qs-lives">3</div>
 </div>
 </div>
 <div class="qs-level-info">
@@ -970,6 +991,10 @@ Personal Best: <strong id="qs-best-score">none yet</strong>
 <div class="qs-complete-stat-label">Personal Best</div>
 <div class="qs-complete-stat-value" id="qs-final-best">0</div>
 </div>
+<div class="qs-complete-stat">
+<div class="qs-complete-stat-label">Lives Left</div>
+<div class="qs-complete-stat-value" id="qs-final-lives">0</div>
+</div>
 </div>
 <div class="qs-complete-actions">
 <button class="qs-btn-primary" id="qs-play-again-btn">Play Again</button>
@@ -1014,6 +1039,8 @@ roundStartTime: 0,
 timerInterval: null,
 autoAdvanceTimeout: null,
 gameOver: false,
+lives: 3,
+maxLives: 3,
 correctSide: null,
 currentRule: null,
 currentStimulus: null,
@@ -1048,6 +1075,8 @@ var elFinalLevel = document.getElementById('qs-final-level');
 var elFinalAccuracy = document.getElementById('qs-final-accuracy');
 var elFinalStreak = document.getElementById('qs-final-streak');
 var elFinalBest = document.getElementById('qs-final-best');
+var elLives = document.getElementById('qs-lives');
+var elFinalLives = document.getElementById('qs-final-lives');
 var elBestDisplay = document.getElementById('qs-best-display');
 var elBestScore = document.getElementById('qs-best-score');
 var elLevelToast = document.getElementById('qs-level-toast');
@@ -1116,7 +1145,7 @@ correctSide: (n % 2 === 0) ? 'left' : 'right'
 function ruleBigSmall() {
 return {
 name: 'Big / Small',
-leftLabel: 'Big (\u226550)',
+leftLabel: 'Big (≥50)',
 rightLabel: 'Small (<50)',
 generate: function() {
 var n = randInt(1, 100);
@@ -1304,7 +1333,7 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString() + ' points';
+elBestScore.textContent = best + ' correct';
 } else {
 elBestScore.textContent = 'none yet';
 }
@@ -1318,6 +1347,11 @@ elWizard.style.display = name === 'wizard' ? 'flex' : 'none';
 elPauseOverlay.style.display = name === 'paused' ? 'flex' : 'none';
 elCompleteOverlay.style.display = name === 'complete' ? 'flex' : 'none';
 state.screen = name;
+}
+
+/* ── Update lives display ── */
+function updateLives() {
+elLives.textContent = state.lives;
 }
 
 /* ── Update the HUD ── */
@@ -1337,6 +1371,7 @@ var roundsNeeded = getRoundsPerLevel(state.level);
 var pct = Math.min((state.round / roundsNeeded) * 100, 100);
 elProgressFill.style.width = pct + '%';
 if (challenge.active) GK.updateChallengeBar('qs-playing', state.score, challenge.score);
+updateLives();
 }
 
 /* ── Update rule display ── */
@@ -1378,11 +1413,11 @@ void elFeedbackIcon.offsetWidth;
 
 if (correct) {
 elFeedbackFlash.classList.add('qs-flash-correct');
-elFeedbackIcon.textContent = '\u2713';
+elFeedbackIcon.textContent = '✓';
 elFeedbackIcon.classList.add('qs-show-check');
 } else {
 elFeedbackFlash.classList.add('qs-flash-wrong');
-elFeedbackIcon.textContent = '\u2717';
+elFeedbackIcon.textContent = '✗';
 elFeedbackIcon.classList.add('qs-show-x');
 }
 
@@ -1440,18 +1475,18 @@ flashSortBtn(chosenSide, correct);
 
 if (correct) {
 state.totalCorrect++;
-var responseTime = Date.now() - state.roundStartTime;
-var points = 100;
-if (responseTime < 1000) {
-points += Math.floor((1000 - responseTime) / 10);
-}
-points += Math.floor(state.streak * 0.1 * 100);
-state.score += points;
+state.score += 1;
 state.streak++;
 if (state.streak > state.bestStreak) state.bestStreak = state.streak;
 showFeedback(true);
 } else {
 state.streak = 0;
+state.lives--;
+updateLives();
+if (state.lives <= 0) {
+endGame();
+return;
+}
 showFeedback(false);
 }
 
@@ -1486,6 +1521,16 @@ if (state.answered || state.gameOver) return;
 state.answered = true;
 state.totalAnswered++;
 state.streak = 0;
+state.lives--;
+updateLives();
+if (state.lives <= 0) {
+if (state.timerInterval) {
+clearInterval(state.timerInterval);
+state.timerInterval = null;
+}
+endGame();
+return;
+}
 
 if (state.timerInterval) {
 clearInterval(state.timerInterval);
@@ -1627,13 +1672,13 @@ var title = document.querySelector('#qs-complete-overlay .qs-complete-card h2');
 
 if (isNewBest) {
 showConfetti();
-trophy.textContent = '\uD83C\uDF89';
+trophy.textContent = '🎉';
 title.textContent = 'AMAZING!';
 elNewBest.className = 'qs-new-best-enhanced';
-elNewBest.innerHTML = '\uD83C\uDF1F AMAZING! New Best!';
+elNewBest.innerHTML = '🌟 AMAZING! New Best!';
 elNewBest.style.display = 'inline-block';
 } else {
-trophy.textContent = '\uD83C\uDFC6';
+trophy.textContent = '🏆';
 title.textContent = 'Good Job!';
 elNewBest.className = 'qs-new-best';
 elNewBest.style.display = 'none';
@@ -1642,12 +1687,13 @@ elNewBest.style.display = 'none';
 elFinalLevel.textContent = state.level;
 elFinalAccuracy.textContent = accuracy + '%';
 elFinalStreak.textContent = state.bestStreak;
-elFinalBest.textContent = best.toLocaleString();
+elFinalBest.textContent = best + ' correct';
 
 GK.renderChallengeResult('qs-challenge-result', state.score, challenge);
 
 showScreen('complete');
-animateScoreCountUp(elFinalScore, state.score);
+elFinalScore.textContent = state.score;
+elFinalLives.textContent = state.lives;
 }
 
 /* ── Pause / Resume ── */
@@ -1679,9 +1725,9 @@ handleTimeout();
 
 /* ── Start game flow ── */
 var QS_WIZARD_STEPS = [
-{icon: '\uD83D\uDCC2', title: 'Sort items fast', desc: 'An item appears on screen. Tap the correct category (left or right) to sort it!'},
-{icon: '\uD83D\uDD00', title: 'Rules change!', desc: 'Every few rounds the sorting rule switches. Stay sharp and adapt quickly!'},
-{icon: '\u26A1', title: 'Be fast!', desc: 'Answer before time runs out. Speed and streaks earn bonus points!', final: true}
+{icon: '📂', title: 'Sort items fast', desc: 'An item appears on screen. Tap the correct category (left or right) to sort it!'},
+{icon: '🔀', title: 'Rules change!', desc: 'Every few rounds the sorting rule switches. Stay sharp and adapt quickly!'},
+{icon: '⚡', title: 'Be fast!', desc: 'Answer before time runs out. Speed and streaks earn bonus points!', final: true}
 ];
 var qsWizardStep = 0;
 
@@ -1731,6 +1777,7 @@ state.totalAnswered = 0;
 state.answered = false;
 state.paused = false;
 state.gameOver = false;
+state.lives = 3;
 state.roundStartTime = 0;
 state.correctSide = null;
 state.currentRule = null;

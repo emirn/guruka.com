@@ -74,11 +74,10 @@ const articles = defineCollection({
     twitter_description: z.string().optional(),
     breadcrumbs: z.string().optional(),
     things: z.string().optional(),
-    reviewed_by: z.array(z.object({
-      reviewer_id: z.string(),
-      reviewer_name: z.string(),
-      reviewer_url: z.string(),
-      reviewed_at: z.coerce.date(),
+    authors: z.array(z.object({
+      id: z.string(),
+      role: z.enum(['author', 'reviewer', 'contributor']),
+      updated_at: z.string(),
     })).optional(),
     show_authors: z.boolean().optional(),
     language: z.string().default('en').optional(),

@@ -274,7 +274,7 @@ games.forEach(function(game) {
 var best = localStorage.getItem('guruka_' + game + '_best');
 var el = document.getElementById('best-' + game);
 if (el && best) {
-el.innerHTML = 'Personal Best: <strong>' + Number(best).toLocaleString() + '</strong> points';
+el.innerHTML = 'Best: <strong>' + best + '</strong> correct';
 }
 });
 })();

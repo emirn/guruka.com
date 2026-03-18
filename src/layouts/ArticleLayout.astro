@@ -146,12 +146,18 @@ const showDates = (config.blog.show_date ?? true) && !pathHidesDates;
           </>
         )}
 
-        {showAuthors && data.reviewed_by && data.reviewed_by.length > 0 && (() => {
-          const latest = data.reviewed_by[0];
+        {showAuthors && data.authors && (() => {
+          const latestReviewer = data.authors.find(a => a.role === 'reviewer');
+          if (!latestReviewer) return null;
+          const authorEntry = config.authors?.find(a => a.id === latestReviewer.id);
+          if (!authorEntry) return null;
+          const authorUrl = getAuthorUrl(authorEntry.id);
           return (
             <>
               <span class="w-1 h-1 rounded-full bg-current"></span>
-              <span>Reviewed by <a href={latest.reviewer_url} class="underline" rel="author">{latest.reviewer_name}</a></span>
+              {authorUrl
+                ? <span>Reviewed by <a href={authorUrl} class="underline" rel="author">{authorEntry.name}</a></span>
+                : <span>Reviewed by {authorEntry.name}</span>}
             </>
           );
         })()}
@@ -237,14 +243,19 @@ const showDates = (config.blog.show_date ?? true) && !pathHidesDates;
     )}
 
     <!-- Article History -->
-    {showAuthors && data.reviewed_by?.length && (
+    {showAuthors && data.authors?.some(a => a.role === 'reviewer') && (
       <section class="mt-12 pt-6 border-t border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
         <h3 class="text-sm font-semibold text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] uppercase tracking-wide mb-3">Article History</h3>
         <ul class="space-y-1 text-xs text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)]">
           {showDates && <li>{formatDate(data.published_at)} &mdash; Published</li>}
-          {data.reviewed_by?.map(r => (
-            <li>{showDates && <>{formatDate(r.reviewed_at)} &mdash; </>}Reviewed by <a href={r.reviewer_url} class="underline">{r.reviewer_name}</a></li>
-          ))}
+          {data.authors?.filter(a => a.role === 'reviewer').map(a => {
+            const entry = config.authors?.find(ca => ca.id === a.id);
+            const url = entry ? getAuthorUrl(entry.id) : undefined;
+            const name = entry?.name || a.id;
+            return (
+              <li>{showDates && a.updated_at && <>{formatDate(new Date(a.updated_at))} &mdash; </>}Reviewed by {url ? <a href={url} class="underline">{name}</a> : name}</li>
+            );
+          })}
           {showDates && data.updated_at && <li>{formatDate(data.updated_at)} &mdash; Last updated</li>}
         </ul>
       </section>

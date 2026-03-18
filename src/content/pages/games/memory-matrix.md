@@ -903,9 +903,9 @@ function updateInstructionsBest() {
 
 /* ---- Wizard ---- */
 var MM_WIZARD_STEPS = [
-{icon: '\uD83D\uDCA1', title: 'Watch the cells light up', desc: 'Cells highlight one by one. Pay attention!'},
-{icon: '\uD83D\uDC46', title: 'Tap them from memory', desc: 'Recreate the pattern after it disappears.'},
-{icon: '\uD83D\uDE80', title: 'Ready? Let\u2019s go!', desc: 'Patterns grow harder as you level up!', final: true}
+{icon: '💡', title: 'Watch the cells light up', desc: 'Cells highlight one by one. Pay attention!'},
+{icon: '👆', title: 'Tap them from memory', desc: 'Recreate the pattern after it disappears.'},
+{icon: '🚀', title: 'Ready? Let’s go!', desc: 'Patterns grow harder as you level up!', final: true}
 ];
 var mmWizardStep = 0;
 
@@ -1328,9 +1328,9 @@ function endGame() {
   if (isNewBest) {
     mmShowConfetti();
     titleEl.textContent = 'AMAZING!';
-    iconWrap.innerHTML = '<span style="font-size:2.25rem">\uD83C\uDF89</span>';
+    iconWrap.innerHTML = '<span style="font-size:2.25rem">🎉</span>';
     bestBadge.className = 'mm-new-best-enhanced';
-    bestBadge.innerHTML = '\uD83C\uDF1F AMAZING! New Best!';
+    bestBadge.innerHTML = '🌟 AMAZING! New Best!';
     bestBadge.style.display = 'inline-block';
   } else {
     titleEl.textContent = 'Good Job!';
