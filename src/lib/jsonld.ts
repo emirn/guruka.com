@@ -49,7 +49,8 @@ export function generateBreadcrumbList(
 export function generateBlogPosting(
   config: SiteConfig,
   article: CollectionEntry<'articles'>,
-  canonicalUrl: string
+  canonicalUrl: string,
+  showAuthors: boolean = true
 ): object {
   const { data } = article;
   const siteUrl = config.seo.canonical_domain || config.branding.site.url;
@@ -94,31 +95,8 @@ export function generateBlogPosting(
     blogPosting.dateModified = data.published_at.toISOString();
   }
 
-  // Build author(s) from IArticleAuthorEntry + project config for rich E-E-A-T data
-  const authorEntries = data.authors?.filter((a: { role: string }) => a.role === 'author' || a.role === 'contributor') || [];
-  if (authorEntries.length > 0 && config.authors?.length) {
-    const authorJsonLd = authorEntries.map((entry: { id: string }) => {
-      const authorInfo = config.authors?.find(a => a.id === entry.id) as Record<string, any> | undefined;
-      if (!authorInfo) return null;
-      const person: Record<string, unknown> = {
-        '@type': 'Person',
-        name: authorInfo.name,
-      };
-      if (authorInfo.url) person.url = authorInfo.url;
-      if (authorInfo.image) person.image = authorInfo.image;
-      if (authorInfo.jobTitle) person.jobTitle = authorInfo.jobTitle;
-      if (authorInfo.sameAs?.length) person.sameAs = authorInfo.sameAs;
-      return person;
-    }).filter(Boolean);
-    if (authorJsonLd.length > 0) {
-      blogPosting.author = authorJsonLd.length === 1 ? authorJsonLd[0] : authorJsonLd;
-    } else {
-      // Fallback to string author
-      const authorName = data.author || getDefaultAuthor(config);
-      blogPosting.author = { '@type': 'Person', name: authorName };
-    }
-  } else {
-    // Fallback to legacy string author field
+  // Build author from config — when showAuthors is false, omit author from JSON-LD entirely
+  if (showAuthors) {
     const authorName = data.author || getDefaultAuthor(config);
     const authorObj: Record<string, unknown> = { '@type': 'Person', name: authorName };
     const configAuthor = config.authors?.find(a => a.name === authorName) as Record<string, any> | undefined;

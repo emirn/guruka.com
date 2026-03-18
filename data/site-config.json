@@ -4,7 +4,7 @@
     "site": {
       "name": "GURUKA",
       "tagline": "Free Guided Meditations, Visualizations & Brain Games",
-      "description": "Free guided meditations, calming visualizations, and brain training games. No account required. No personal data collected. Supports offline mode.",
+      "description": "Free guided meditations, calming visualizations, and brain training games. No account required. No personal data collected. Works offline.",
       "url": "https://guruka.com",
       "language": "en",
       "favicon_url": "",
@@ -14,13 +14,13 @@
       }
     },
     "logo": {
-      "type": "text",
+      "type": "image+text",
       "text": "GURUKA",
-      "image_url": "",
+      "image_url": "/favicon.svg",
       "style": "plain",
       "font_family": "Space Grotesk, system-ui, sans-serif",
       "font_weight": "700",
-      "layout": "text-only",
+      "layout": "image-text",
       "mark_text": "",
       "color": "#FFFFFF",
       "background_color": "#0f9072",
@@ -424,6 +424,14 @@
     "generate_thumbnail_max_size": 200
   },
   "catalogs": [],
+  "authors_display": {
+    "show_pages": false
+  },
+  "date_display": {
+    "hide_paths": [
+      "^root$"
+    ]
+  },
   "sections": [
     {
       "id": "blog",
@@ -448,8 +456,8 @@
   ],
   "authors": [
     {
-      "id": "guruka-team",
-      "name": "GURUKA Team",
+      "id": "guruka-content-team",
+      "name": "Guruka Content Team",
       "url": ""
     }
   ],
@@ -664,7 +672,7 @@
     }
   },
   "build_info": {
-    "git_commit": "eb8cf853a",
-    "build_date": "2026-03-17T12:40:28.263Z"
+    "git_commit": "ef8b8976f",
+    "build_date": "2026-03-18T15:21:58.207Z"
   }
 }

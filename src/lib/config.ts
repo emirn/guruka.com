@@ -222,12 +222,31 @@ export interface SiteConfig {
     /** Custom content to include after site header, before auto-generated sections */
     custom_content?: string;
   };
+  /**
+   * Author display configuration.
+   * Controls author page generation and path-based visibility.
+   */
+  authors_display?: {
+    /** Generate /authors/{id}/ pages. Default: true */
+    show_pages?: boolean;
+    /** Regex patterns matched against article slug — matching articles hide author info */
+    hide_paths?: string[];
+  };
+  /**
+   * Date display configuration.
+   * Controls path-based date visibility.
+   */
+  date_display?: {
+    /** Regex patterns matched against article slug — matching articles hide dates */
+    hide_paths?: string[];
+  };
   /** Author profiles from project config. If non-empty, author pages are generated. */
   authors?: Array<{
     id: string;
     name: string;
     url: string;
     bio?: string;
+    description?: string;
     image?: string;
     jobTitle?: string;
     sameAs?: string[];
@@ -527,10 +546,10 @@ export function authorSlug(name: string): string {
 }
 
 /**
- * Get the URL for an author page
+ * Get the URL for an author page by ID
  */
-export function getAuthorUrl(name: string): string {
-  return `/authors/${authorSlug(name)}/`;
+export function getAuthorUrl(authorId: string): string {
+  return `/authors/${authorId}/`;
 }
 
 /**

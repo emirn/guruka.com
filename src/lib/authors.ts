@@ -1,5 +1,5 @@
 import { type CollectionEntry } from 'astro:content';
-import { getConfig, type SiteConfig, authorSlug, getAuthorUrl, getAuthorById } from './config';
+import { getConfig, type SiteConfig, getAuthorUrl, getAuthorById } from './config';
 import { getPublishedArticles } from './articles';
 
 /**
@@ -19,14 +19,8 @@ export async function getAllAuthors(config?: SiteConfig): Promise<Array<{
 
   const defaultAuthorId = cfg.authors?.[0]?.id;
   for (const article of articles) {
-    const authors = article.data.authors || [];
-    if (authors.length > 0) {
-      for (const entry of authors) {
-        authorCounts.set(entry.id, (authorCounts.get(entry.id) || 0) + 1);
-      }
-    } else if (defaultAuthorId) {
-      // Articles without authors[] are attributed to the default author
-      // (matches getArticlesByAuthor behavior)
+    if (defaultAuthorId) {
+      // All articles are attributed to the default (first) author
       authorCounts.set(defaultAuthorId, (authorCounts.get(defaultAuthorId) || 0) + 1);
     }
   }
@@ -47,8 +41,8 @@ export async function getAllAuthors(config?: SiteConfig): Promise<Array<{
         id: author.id,
         name: author.name,
         url: author.url,
-        slug: authorSlug(author.name),
-        pageUrl: getAuthorUrl(author.name),
+        slug: author.id,
+        pageUrl: getAuthorUrl(author.id),
         count,
       });
     }
@@ -72,11 +66,7 @@ export async function getArticlesByAuthor(
 
   return articles
     .filter((article) => {
-      const authors = article.data.authors || [];
-      if (authors.length > 0) {
-        return authors.some(a => a.id === authorId);
-      }
-      // Articles without authors[] are attributed to the default author
+      // All articles are attributed to the default (first) author
       return authorId === defaultAuthorId;
     })
     .sort((a, b) => {
@@ -91,5 +81,5 @@ export async function getArticlesByAuthor(
  */
 export function findAuthorBySlug(slug: string, config?: SiteConfig): { id: string; name: string; url: string } | undefined {
   const cfg = config || getConfig();
-  return cfg.authors?.find(a => authorSlug(a.name) === slug);
+  return cfg.authors?.find(a => a.id === slug);
 }

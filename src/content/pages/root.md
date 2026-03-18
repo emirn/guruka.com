@@ -1,6 +1,6 @@
 ---
 title: "GURUKA — Free Guided Meditations, Visualizations & Brain Games"
-description: "Free guided meditations, calming visualizations, and brain training games. No account required. No personal data collected. Supports offline mode."
+description: "Free guided meditations, calming visualizations, and brain training games. No account required. No personal data collected. Works offline."
 full_width: true
 blog_grid: true
 blog_grid_title: "From the Blog"
@@ -57,11 +57,14 @@ color: var(--color-text-secondary, #4b5b6d);
 [data-theme="dark"] .gk-hero-body p {
 color: var(--color-dark-text-secondary, #cbd5e1);
 }
-.gk-hero-meta {
-margin-top: 0.5rem;
-font-size: 0.8rem;
+.gk-brand {
+font-family: 'Space Grotesk', system-ui, sans-serif;
+font-size: 1rem;
+font-weight: 600;
+letter-spacing: 0.2em;
+text-transform: uppercase;
 color: var(--color-primary, #0f9072);
-font-weight: 500;
+margin-bottom: 0.25rem;
 }
 @media (hover: hover) and (pointer: fine) {
 .gk-hero-card:hover {
@@ -114,15 +117,15 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 
 <div class="gk-home">
 <div class="gk-headline">
+<div class="gk-brand">GURUKA</div>
 <h1>Free Guided Meditations, Visualizations & Brain Games</h1>
-<p>Free · No account required · No personal data collected · Supports offline mode</p>
+<p>No account required · No personal data collected · Works offline</p>
 </div>
 <a href="/meditate/" class="gk-hero-card">
 <div class="gk-hero-icon">🧘</div>
 <div class="gk-hero-body">
 <h2>Meditate</h2>
 <p>Guided meditations for calm, focus, and well-being</p>
-<div class="gk-hero-meta">Free, no account needed</div>
 </div>
 </a>
 <a href="/games/" class="gk-hero-card">
@@ -130,7 +133,6 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 <div class="gk-hero-body">
 <h2>Brain Games</h2>
 <p>Train your brain with games targeting different cognitive skills</p>
-<div class="gk-hero-meta">Free, no account needed</div>
 </div>
 </a>
 <a href="/visuals/" class="gk-hero-card">
@@ -138,7 +140,6 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 <div class="gk-hero-body">
 <h2>Meditative Visuals</h2>
 <p>Calming full-screen animations for relaxation and focus</p>
-<div class="gk-hero-meta">Free, no account needed</div>
 </div>
 </a>
 </div>

@@ -361,6 +361,7 @@ export function ogImages(): AstroIntegration {
 
         await fs.mkdir(ogCacheDir, { recursive: true });
 
+
         let generated = 0;
         let skipped = 0;
         let failed = 0;
@@ -409,6 +410,7 @@ export function ogImages(): AstroIntegration {
               skipped++;
               continue;
             }
+
 
             // Skip if image_og is already set and file exists
             if (frontmatter.image_og) {

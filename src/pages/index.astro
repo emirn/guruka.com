@@ -57,7 +57,7 @@ const showBlogGrid = customRoot ? customRoot.data.blog_grid : true;
 const blogGridTitle = customRoot?.data.blog_grid_title || config.blog.section_title;
 ---
 
-<BaseLayout title={customRoot?.data.title} description={customRoot?.data.description}>
+<BaseLayout title={customRoot?.data.title} description={customRoot?.data.description} image={customRoot ? (customRoot.data.image_og || `/assets/pages/${customRoot.slug}/og.webp`) : undefined}>
   {projectScripts && <script is:inline set:html={projectScripts} />}
   {customRoot ? (
     <>

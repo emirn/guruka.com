@@ -1294,7 +1294,7 @@
       var isSaved = localStorage.getItem(GK.Offline._prefKey(section, lang));
 
       if (isSaved) {
-        wrap.innerHTML = '<span class="gk-off-done">' + checkIcon + ' Available offline &middot; <a id="gk-off-remove" href="#">Remove</a></span>';
+        wrap.innerHTML = '<span class="gk-off-done">' + checkIcon + ' Available offline for 30 days &middot; <a id="gk-off-remove" href="#">Remove</a></span>';
         document.getElementById('gk-off-remove').addEventListener('click', function(e) {
           e.preventDefault();
           GK.Offline.removeSection(section, lang, render);
