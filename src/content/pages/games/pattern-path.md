@@ -263,7 +263,7 @@ flex-direction: column;
 
 .pp-header {
 display: grid;
-grid-template-columns: 1fr 1fr 1fr;
+grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 0.5rem;
 margin-bottom: 0.75rem;
 padding: 0.75rem;
@@ -863,11 +863,27 @@ Personal Best: <strong id="pp-best-score">none yet</strong>
 <li>Identify the pattern (color, shape, size, or rotation changes).</li>
 <li>Pick the <strong>correct completion</strong> from 4 choices.</li>
 <li>Answer before time runs out &mdash; higher levels combine multiple attributes!</li>
+<li>You have 3 lives &mdash; each wrong answer or timeout costs one!</li>
 </ul>
 </div>
 
 <button class="pp-btn-primary" id="pp-start-btn">Start Game</button>
 <div id="pp-challenge-banner-wrap"></div>
+<div class="gc-faq" style="margin-top:1.5rem;text-align:left;width:100%;max-width:420px;">
+<h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;">FAQ</h3>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">How do I play?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">Find the missing piece that completes the visual pattern sequence.</p>
+</details>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">What changes at higher levels?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">Patterns involve more dimensions — color, size, rotation, and shape.</p>
+</details>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">How is scoring counted?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">1 point per correct answer. 3 lives total.</p>
+</details>
+</div>
 </div>
 
 <div id="pp-wizard">
@@ -877,7 +893,7 @@ Personal Best: <strong id="pp-best-score">none yet</strong>
 <div id="pp-playing">
 <div class="pp-header">
 <div class="pp-stat">
-<div class="pp-stat-label">Score</div>
+<div class="pp-stat-label">Correct</div>
 <div class="pp-stat-value" id="pp-score">0</div>
 </div>
 <div class="pp-stat">
@@ -887,6 +903,10 @@ Personal Best: <strong id="pp-best-score">none yet</strong>
 <div class="pp-stat">
 <div class="pp-stat-label">Level</div>
 <div class="pp-stat-value" id="pp-level">1</div>
+</div>
+<div class="pp-stat">
+<div class="pp-stat-label">Lives</div>
+<div class="pp-stat-value" id="pp-lives">3</div>
 </div>
 </div>
 <div class="pp-level-info">
@@ -940,6 +960,10 @@ Personal Best: <strong id="pp-best-score">none yet</strong>
 <div class="pp-complete-stat-value" id="pp-final-streak">0</div>
 </div>
 <div class="pp-complete-stat">
+<div class="pp-complete-stat-label">Lives Left</div>
+<div class="pp-complete-stat-value" id="pp-final-lives">0</div>
+</div>
+<div class="pp-complete-stat">
 <div class="pp-complete-stat-label">Personal Best</div>
 <div class="pp-complete-stat-value" id="pp-final-best">0</div>
 </div>
@@ -985,6 +1009,8 @@ roundStartTime: 0,
 timerInterval: null,
 autoAdvanceTimeout: null,
 gameOver: false,
+lives: 3,
+maxLives: 3,
 correctChoice: null
 };
 
@@ -1282,7 +1308,7 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString() + ' points';
+elBestScore.textContent = best + ' correct';
 } else {
 elBestScore.textContent = 'none yet';
 }
@@ -1309,6 +1335,12 @@ var roundsNeeded = getRoundsPerLevel(state.level);
 var pct = Math.min((state.round / roundsNeeded) * 100, 100);
 elProgressFill.style.width = pct + '%';
 if (challenge.active) GK.updateChallengeBar('pp-playing', state.score, challenge.score);
+updateLives();
+}
+
+function updateLives() {
+var el = document.getElementById('pp-lives');
+if (el) el.textContent = state.lives;
 }
 
 /* ── Timer bar countdown ── */
@@ -1342,11 +1374,11 @@ void elFeedbackIcon.offsetWidth;
 
 if (correct) {
 elFeedbackFlash.classList.add('pp-flash-correct');
-elFeedbackIcon.textContent = '\u2713';
+elFeedbackIcon.textContent = '✓';
 elFeedbackIcon.classList.add('pp-show-check');
 } else {
 elFeedbackFlash.classList.add('pp-flash-wrong');
-elFeedbackIcon.textContent = '\u2717';
+elFeedbackIcon.textContent = '✗';
 elFeedbackIcon.classList.add('pp-show-x');
 }
 
@@ -1382,7 +1414,7 @@ html += '<div class="pp-seq-element">';
 html += renderShape(el.shape, el.color, el.size, el.rotation);
 html += '</div>';
 if (i < sequence.length) {
-html += '<div class="pp-seq-arrow">\u2192</div>';
+html += '<div class="pp-seq-arrow">→</div>';
 }
 }
 /* Missing element placeholder */
@@ -1419,18 +1451,18 @@ flashAnswerBtn(chosenIdx, correct);
 
 if (correct) {
 state.totalCorrect++;
-var responseTime = Date.now() - state.roundStartTime;
-var points = 100;
-if (responseTime < 2000) {
-points += Math.floor((2000 - responseTime) / 10);
-}
-points += Math.floor(state.streak * 0.1 * 100);
-state.score += points;
+state.score += 1;
 state.streak++;
 if (state.streak > state.bestStreak) state.bestStreak = state.streak;
 showFeedback(true);
 } else {
 state.streak = 0;
+state.lives--;
+updateLives();
+if (state.lives <= 0) {
+endGame();
+return;
+}
 showFeedback(false);
 }
 
@@ -1461,6 +1493,12 @@ if (state.answered || state.gameOver) return;
 state.answered = true;
 state.totalAnswered++;
 state.streak = 0;
+state.lives--;
+updateLives();
+if (state.lives <= 0) {
+endGame();
+return;
+}
 
 if (state.timerInterval) {
 clearInterval(state.timerInterval);
@@ -1592,13 +1630,13 @@ var title = document.querySelector('#pp-complete-overlay .pp-complete-card h2');
 
 if (isNewBest) {
 showConfetti();
-trophy.textContent = '\uD83C\uDF89';
+trophy.textContent = '🎉';
 title.textContent = 'AMAZING!';
 elNewBest.className = 'pp-new-best-enhanced';
-elNewBest.innerHTML = '\uD83C\uDF1F AMAZING! New Best!';
+elNewBest.innerHTML = '🌟 AMAZING! New Best!';
 elNewBest.style.display = 'inline-block';
 } else {
-trophy.textContent = '\uD83C\uDFC6';
+trophy.textContent = '🏆';
 title.textContent = 'Good Job!';
 elNewBest.className = 'pp-new-best';
 elNewBest.style.display = 'none';
@@ -1607,12 +1645,14 @@ elNewBest.style.display = 'none';
 elFinalLevel.textContent = state.level;
 elFinalAccuracy.textContent = accuracy + '%';
 elFinalStreak.textContent = state.bestStreak;
-elFinalBest.textContent = best.toLocaleString();
+var elFinalLives = document.getElementById("pp-final-lives");
+if (elFinalLives) elFinalLives.textContent = state.lives;
+elFinalBest.textContent = best + ' correct';
 
 GK.renderChallengeResult('pp-challenge-result', state.score, challenge);
 
 showScreen('complete');
-animateScoreCountUp(elFinalScore, state.score);
+elFinalScore.textContent = state.score;
 }
 
 /* ── Pause / Resume ── */
@@ -1644,9 +1684,9 @@ handleTimeout();
 
 /* ── Start game flow ── */
 var PP_WIZARD_STEPS = [
-{icon: '\uD83E\uDDE9', title: 'Spot the pattern', desc: 'A sequence of shapes appears with one missing element. Identify the pattern!'},
-{icon: '\uD83C\uDFA8', title: 'Attributes change', desc: 'Patterns involve color, shape, size, and rotation. Higher levels combine multiple attributes.'},
-{icon: '\u26A1', title: 'Be fast!', desc: 'Pick the correct shape before time runs out. Speed and streaks earn bonus points!', final: true}
+{icon: '🧩', title: 'Spot the pattern', desc: 'A sequence of shapes appears with one missing element. Identify the pattern!'},
+{icon: '🎨', title: 'Attributes change', desc: 'Patterns involve color, shape, size, and rotation. Higher levels combine multiple attributes.'},
+{icon: '⚡', title: 'Be fast!', desc: 'Pick the correct shape before time runs out. Speed and streaks earn bonus points!', final: true}
 ];
 var ppWizardStep = 0;
 
@@ -1695,6 +1735,7 @@ state.totalAnswered = 0;
 state.answered = false;
 state.paused = false;
 state.gameOver = false;
+state.lives = 3;
 state.roundStartTime = 0;
 state.correctChoiceIdx = -1;
 if (state.timerInterval) clearInterval(state.timerInterval);

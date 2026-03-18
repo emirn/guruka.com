@@ -1039,7 +1039,7 @@ if (Math.random() < 0.5) {
 op = '+';
 answer = a + b;
 } else {
-op = '\u2212';
+op = '−';
 answer = a - b;
 }
 display = a + ' ' + op + ' ' + b + ' = ?';
@@ -1047,7 +1047,7 @@ display = a + ' ' + op + ' ' + b + ' = ?';
 /* multiply */
 a = randInt(3, 12);
 b = randInt(3, 12);
-op = '\u00D7';
+op = '×';
 answer = a * b;
 display = a + ' ' + op + ' ' + b + ' = ?';
 } else if (lvl <= 8) {
@@ -1062,12 +1062,12 @@ display = a + ' + ' + b + ' = ?';
 a = randInt(20, 99);
 b = randInt(5, a);
 answer = a - b;
-display = a + ' \u2212 ' + b + ' = ?';
+display = a + ' − ' + b + ' = ?';
 } else {
 a = randInt(4, 12);
 b = randInt(4, 12);
 answer = a * b;
-display = a + ' \u00D7 ' + b + ' = ?';
+display = a + ' × ' + b + ' = ?';
 }
 } else if (lvl <= 12) {
 /* 3-digit + division */
@@ -1081,17 +1081,17 @@ display = a + ' + ' + b + ' = ?';
 a = randInt(100, 400);
 b = randInt(10, a);
 answer = a - b;
-display = a + ' \u2212 ' + b + ' = ?';
+display = a + ' − ' + b + ' = ?';
 } else if (r2 < 0.75) {
 a = randInt(5, 15);
 b = randInt(5, 15);
 answer = a * b;
-display = a + ' \u00D7 ' + b + ' = ?';
+display = a + ' × ' + b + ' = ?';
 } else {
 b = randInt(2, 12);
 answer = randInt(3, 20);
 a = answer * b;
-display = a + ' \u00F7 ' + b + ' = ?';
+display = a + ' ÷ ' + b + ' = ?';
 }
 } else if (lvl <= 16) {
 /* stacking modifiers + harder ops */
@@ -1105,12 +1105,12 @@ display = a + ' + ' + b + ' = ?';
 a = randInt(10, 20);
 b = randInt(5, 15);
 answer = a * b;
-display = a + ' \u00D7 ' + b + ' = ?';
+display = a + ' × ' + b + ' = ?';
 } else {
 b = randInt(3, 15);
 answer = randInt(5, 25);
 a = answer * b;
-display = a + ' \u00F7 ' + b + ' = ?';
+display = a + ' ÷ ' + b + ' = ?';
 }
 } else {
 /* L17-20: 3-operand + dual modifiers */
@@ -1120,13 +1120,13 @@ a = randInt(10, 50);
 b = randInt(5, 30);
 var c = randInt(3, 20);
 answer = a + b - c;
-display = a + ' + ' + b + ' \u2212 ' + c + ' = ?';
+display = a + ' + ' + b + ' − ' + c + ' = ?';
 } else {
 a = randInt(3, 10);
 b = randInt(3, 10);
 var c2 = randInt(5, 20);
 answer = a * b + c2;
-display = a + ' \u00D7 ' + b + ' + ' + c2 + ' = ?';
+display = a + ' × ' + b + ' + ' + c2 + ' = ?';
 }
 }
 
@@ -1257,11 +1257,11 @@ void elFeedbackIcon.offsetWidth;
 
 if (correct) {
 elFeedbackFlash.classList.add('nc-flash-correct');
-elFeedbackIcon.textContent = '\u2713';
+elFeedbackIcon.textContent = '✓';
 elFeedbackIcon.classList.add('nc-show-check');
 } else {
 elFeedbackFlash.classList.add('nc-flash-wrong');
-elFeedbackIcon.textContent = '\u2717';
+elFeedbackIcon.textContent = '✗';
 elFeedbackIcon.classList.add('nc-show-x');
 }
 
@@ -1394,7 +1394,7 @@ void elEquation.offsetWidth;
 elEquation.style.animation = '';
 
 if (eq.modifier) {
-elRuleModifier.textContent = '\u2728 ' + eq.modifier.name;
+elRuleModifier.textContent = '✨ ' + eq.modifier.name;
 elRuleModifier.style.display = '';
 } else {
 elRuleModifier.style.display = 'none';
@@ -1489,13 +1489,13 @@ var title = document.querySelector('#nc-complete-overlay .nc-complete-card h2');
 
 if (isNewBest) {
 showConfetti();
-trophy.textContent = '\uD83C\uDF89';
+trophy.textContent = '🎉';
 title.textContent = 'AMAZING!';
 elNewBest.className = 'nc-new-best-enhanced';
-elNewBest.innerHTML = '\uD83C\uDF1F AMAZING! New Best!';
+elNewBest.innerHTML = '🌟 AMAZING! New Best!';
 elNewBest.style.display = 'inline-block';
 } else {
-trophy.textContent = '\uD83C\uDFC6';
+trophy.textContent = '🏆';
 title.textContent = 'Good Job!';
 elNewBest.className = 'nc-new-best';
 elNewBest.style.display = 'none';
@@ -1541,9 +1541,9 @@ handleTimeout();
 
 /* ── Start game flow ── */
 var NC_WIZARD_STEPS = [
-{icon: '\uD83E\uDDEE', title: 'Solve the equation', desc: 'An equation with a missing answer appears. Pick the right one!'},
-{icon: '\u2728', title: 'Watch for modifiers', desc: 'From Level 6, rule modifiers change the answer (e.g. "Double it").'},
-{icon: '\u26A1', title: 'Be fast!', desc: 'Answer before time runs out. Speed = bonus points!', final: true}
+{icon: '🧮', title: 'Solve the equation', desc: 'An equation with a missing answer appears. Pick the right one!'},
+{icon: '✨', title: 'Watch for modifiers', desc: 'From Level 6, rule modifiers change the answer (e.g. "Double it").'},
+{icon: '⚡', title: 'Be fast!', desc: 'Answer before time runs out. Speed = bonus points!', final: true}
 ];
 var ncWizardStep = 0;
 

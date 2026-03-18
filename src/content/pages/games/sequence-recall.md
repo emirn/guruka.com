@@ -659,7 +659,7 @@ margin: 0 0 1.25rem;
 
 #sequence-recall-game .sr-stats-grid {
 display: grid;
-grid-template-columns: repeat(3, 1fr);
+grid-template-columns: repeat(4, 1fr);
 gap: 0.75rem;
 margin-bottom: 1.25rem;
 }
@@ -750,7 +750,7 @@ height: 54px;
 gap: 0.5rem;
 }
 #sequence-recall-game .sr-stats-grid {
-grid-template-columns: repeat(3, 1fr);
+grid-template-columns: repeat(2, 1fr);
 }
 }
 @media (max-width: 360px) {
@@ -841,11 +841,28 @@ Personal Best: <strong id="sr-best-value">none yet</strong>
 <li>Memorize the order, then recall them in the exact sequence.</li>
 <li>At higher levels, solve a <strong>math distraction</strong> before recalling.</li>
 <li>From level 11, recall both <strong>colors and positions</strong> (dual-track)!</li>
+<li>You have 3 lives — each wrong answer costs one!</li>
 </ul>
 </div>
 
+
 <button class="sr-btn-primary" id="sr-start-btn">Start Game</button>
 <div id="sr-challenge-banner-wrap"></div>
+<div class="gc-faq" style="margin-top:1.5rem;text-align:left;width:100%;max-width:420px;">
+<h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;">FAQ</h3>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">How do I play?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">Watch the color sequence, then tap the colors in the same order.</p>
+</details>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">What makes it harder?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">Longer sequences, math distractions, and dual-track challenges at higher levels.</p>
+</details>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">How is scoring counted?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">1 point per correct sequence. 3 lives total.</p>
+</details>
+</div>
 </div>
 
 <div id="sr-wizard" class="sr-screen">
@@ -857,7 +874,7 @@ Personal Best: <strong id="sr-best-value">none yet</strong>
 <div id="sr-playing" class="sr-screen">
 <div class="sr-header">
 <div class="sr-header-item">
-<span class="sr-header-label">Score</span>
+<span class="sr-header-label">Correct</span>
 <span class="sr-header-value" id="sr-score">0</span>
 </div>
 <div class="sr-header-item">
@@ -867,6 +884,10 @@ Personal Best: <strong id="sr-best-value">none yet</strong>
 <div class="sr-header-item">
 <span class="sr-header-label">Streak</span>
 <span class="sr-header-value sr-streak" id="sr-streak">0</span>
+</div>
+<div class="sr-header-item">
+<span class="sr-header-label">Lives</span>
+<span class="sr-header-value" id="sr-lives">❤️❤️❤️</span>
 </div>
 </div>
 <div class="sr-phase-label" id="sr-phase-label">Memorize</div>
@@ -889,7 +910,7 @@ Personal Best: <strong id="sr-best-value">none yet</strong>
 <div class="sr-stats-grid">
 <div class="sr-stat-box">
 <span class="sr-stat-value" id="sr-final-score">0</span>
-<span class="sr-stat-label">Score</span>
+<span class="sr-stat-label">Correct</span>
 </div>
 <div class="sr-stat-box">
 <span class="sr-stat-value" id="sr-final-level">1</span>
@@ -898,6 +919,10 @@ Personal Best: <strong id="sr-best-value">none yet</strong>
 <div class="sr-stat-box">
 <span class="sr-stat-value" id="sr-final-accuracy">0%</span>
 <span class="sr-stat-label">Accuracy</span>
+</div>
+<div class="sr-stat-box">
+<span class="sr-stat-value" id="sr-final-lives">0</span>
+<span class="sr-stat-label">Lives Left</span>
 </div>
 </div>
 <div class="sr-complete-links">
@@ -941,6 +966,8 @@ score: 0,
 streak: 0,
 totalCorrect: 0,
 totalAttempts: 0,
+lives: 3,
+maxLives: 3,
 colorSequence: [],
 positionSequence: [],
 selectedColors: [],
@@ -1045,14 +1072,25 @@ a = Math.floor(Math.random() * 12) + 2;
 b = Math.floor(Math.random() * 12) + 2;
 answer = a * b;
 }
-var display = op === '*' ? (a + ' \u00D7 ' + b) : (a + ' ' + op + ' ' + b);
+var display = op === '*' ? (a + ' × ' + b) : (a + ' ' + op + ' ' + b);
 return { display: display, answer: answer };
+}
+
+function updateLives() {
+var el = $('sr-lives');
+if (!el) return;
+var s = '';
+for (var i = 0; i < state.maxLives; i++) {
+s += i < state.lives ? '❤️' : '🤍';
+}
+el.textContent = s;
 }
 
 function updateHeader() {
 $('sr-score').textContent = state.score;
 $('sr-level').textContent = state.level;
 $('sr-streak').textContent = state.streak;
+updateLives();
 if (challenge.active) GK.updateChallengeBar('sr-playing', state.score, challenge.score);
 }
 
@@ -1063,9 +1101,9 @@ $('sr-progress-fill').style.width = pct + '%';
 }
 
 var SR_WIZARD_STEPS = [
-{icon: '\uD83C\uDFA8', title: 'Watch the color sequence', desc: 'Colors appear one at a time. Memorize the order!'},
-{icon: '\uD83E\uDDE0', title: 'Recall them in order', desc: 'Tap colors in the exact sequence you saw.'},
-{icon: '\uD83D\uDE80', title: 'Ready? Let\u2019s go!', desc: 'Sequences get longer. Stay focused!', final: true}
+{icon: '🎨', title: 'Watch the color sequence', desc: 'Colors appear one at a time. Memorize the order!'},
+{icon: '🧠', title: 'Recall them in order', desc: 'Tap colors in the exact sequence you saw.'},
+{icon: '🚀', title: 'Ready? Let’s go!', desc: 'Sequences get longer. Stay focused!', final: true}
 ];
 var srWizardStep = 0;
 var srWizardCallback = null;
@@ -1413,41 +1451,41 @@ resolveRound(bothCorrect, combinedTime);
 
 function resolveRound(correct, responseTime) {
 state.totalAttempts++;
-var points = 0;
 
 if (correct) {
 state.totalCorrect++;
 state.streak++;
-points = 100;
-if (responseTime < 1000) {
-points += Math.floor((1000 - responseTime) / 10);
-}
-points += Math.floor(state.streak * 0.1 * 100);
-state.score += points;
+state.score += 1;
 } else {
 state.streak = 0;
+state.lives--;
+updateLives();
 }
 
 updateHeader();
-showFeedback(correct, points);
+showFeedback(correct);
 }
 
-function showFeedback(correct, points) {
+function showFeedback(correct) {
 $('sr-phase-label').textContent = '';
 var html = '<div class="sr-feedback"><div>';
 if (correct) {
 html += '<div class="sr-feedback-correct">Correct!</div>';
-html += '<div class="sr-feedback-points">+' + points + ' points</div>';
+html += '<div class="sr-feedback-points">+1 correct</div>';
 } else {
 html += '<div class="sr-feedback-wrong">Incorrect</div>';
-html += '<div class="sr-feedback-points">Streak reset</div>';
+html += '<div class="sr-feedback-points">-1 life</div>';
 }
 html += '</div></div>';
 
 $('sr-play-area').innerHTML = html;
 
 state.feedbackTimer = setTimeout(function() {
+if (state.lives <= 0) {
+endGame();
+} else {
 advanceRound(correct);
+}
 }, 1200);
 }
 
@@ -1536,13 +1574,13 @@ var badge = $('sr-new-best-badge');
 
 if (isNewBest) {
 srShowConfetti();
-iconEl.textContent = '\uD83C\uDF89';
+iconEl.textContent = '🎉';
 titleEl.textContent = 'AMAZING!';
 badge.className = 'sr-new-best-enhanced';
-badge.innerHTML = '\uD83C\uDF1F AMAZING! New Best!';
+badge.innerHTML = '🌟 AMAZING! New Best!';
 badge.style.display = 'inline-block';
 } else {
-iconEl.textContent = '\uD83C\uDFC6';
+iconEl.textContent = '🏆';
 titleEl.textContent = 'Good Job!';
 badge.className = 'sr-new-best';
 badge.style.display = 'none';
@@ -1552,9 +1590,10 @@ GK.renderChallengeResult('sr-challenge-result', state.score, challenge);
 
 $('sr-final-level').textContent = state.level > MAX_LEVEL ? MAX_LEVEL : state.level;
 $('sr-final-accuracy').textContent = accuracy + '%';
+$('sr-final-lives').textContent = state.lives > 0 ? state.lives : 0;
 
 showScreen('complete');
-srAnimateScoreCountUp($('sr-final-score'), state.score);
+$('sr-final-score').textContent = state.score;
 }
 
 function resetGame() {
@@ -1566,6 +1605,7 @@ state.score = 0;
 state.streak = 0;
 state.totalCorrect = 0;
 state.totalAttempts = 0;
+state.lives = 3;
 state.selectedColors = [];
 state.selectedPositions = [];
 state.colorSequence = [];
@@ -1575,7 +1615,7 @@ state.positionSequence = [];
 function initInstructions() {
 var best = getBestScore();
 if (best > 0) {
-$('sr-best-value').textContent = best.toLocaleString() + ' points';
+$('sr-best-value').textContent = best + ' correct';
 } else {
 $('sr-best-value').textContent = 'none yet';
 }

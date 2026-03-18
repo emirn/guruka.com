@@ -306,7 +306,7 @@ flex-direction: column;
 
 .sm-header {
 display: grid;
-grid-template-columns: 1fr 1fr 1fr;
+grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 0.5rem;
 margin-bottom: 0.75rem;
 padding: 0.75rem;
@@ -861,6 +861,7 @@ Personal Best: <strong id="sm-best-score">none yet</strong>
 <li>Decide if it <strong>matches</strong> the symbol from the previous round.</li>
 <li>Tap <strong>Same</strong> if it matches, <strong>Different</strong> if not.</li>
 <li>Respond before time runs out &mdash; the game gets faster as you level up!</li>
+<li>You have 3 lives &mdash; each wrong answer or timeout costs one!</li>
 </ul>
 </div>
 <div class="sm-kbd-hints">
@@ -871,6 +872,21 @@ Personal Best: <strong id="sm-best-score">none yet</strong>
 
 <button class="sm-btn-primary" id="sm-start-btn">Start Game</button>
 <div id="sm-challenge-banner-wrap"></div>
+<div class="gc-faq" style="margin-top:1.5rem;text-align:left;width:100%;max-width:420px;">
+<h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;">FAQ</h3>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">How do I play?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">Compare the current symbol to the previous one. Tap \"Same\" or \"Different\" before time runs out.</p>
+</details>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">What are the levels?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">20 levels. Higher levels add more symbols and reduce time.</p>
+</details>
+<details style="margin-bottom:0.5rem;">
+<summary style="font-weight:600;font-size:0.9rem;cursor:pointer;padding:0.5rem 0;">How is scoring counted?</summary>
+<p style="margin:0.25rem 0 0.5rem 1rem;font-size:0.85rem;color:var(--color-text-secondary);line-height:1.5;">You earn 1 point for each correct answer. The game ends when you lose all 3 lives.</p>
+</details>
+</div>
 </div>
 
 <div id="sm-wizard">
@@ -880,7 +896,7 @@ Personal Best: <strong id="sm-best-score">none yet</strong>
 <div id="sm-playing">
 <div class="sm-header">
 <div class="sm-stat">
-<div class="sm-stat-label">Score</div>
+<div class="sm-stat-label">Correct</div>
 <div class="sm-stat-value" id="sm-score">0</div>
 </div>
 <div class="sm-stat">
@@ -890,6 +906,10 @@ Personal Best: <strong id="sm-best-score">none yet</strong>
 <div class="sm-stat">
 <div class="sm-stat-label">Level</div>
 <div class="sm-stat-value" id="sm-level">1</div>
+</div>
+<div class="sm-stat">
+<div class="sm-stat-label">Lives</div>
+<div class="sm-stat-value" id="sm-lives">❤️❤️❤️</div>
 </div>
 </div>
 <div class="sm-level-info">
@@ -949,6 +969,10 @@ Personal Best: <strong id="sm-best-score">none yet</strong>
 <div class="sm-complete-stat-value" id="sm-final-streak">0</div>
 </div>
 <div class="sm-complete-stat">
+<div class="sm-complete-stat-label">Lives Left</div>
+<div class="sm-complete-stat-value" id="sm-final-lives">0</div>
+</div>
+<div class="sm-complete-stat">
 <div class="sm-complete-stat-label">Personal Best</div>
 <div class="sm-complete-stat-value" id="sm-final-best">0</div>
 </div>
@@ -973,7 +997,7 @@ Personal Best: <strong id="sm-best-score">none yet</strong>
 (function() {
 "use strict";
 
-var SYMBOLS = ['\u25C6', '\u25CF', '\u25A0', '\u25B2', '\u2605', '\u2666', '\u2660', '\u2663', '\u2665', '\u2B1F', '\u2B21', '\u25EF'];
+var SYMBOLS = ['◆', '●', '■', '▲', '★', '♦', '♠', '♣', '♥', '⬟', '⬡', '◯'];
 var MAX_LEVEL = 20;
 var STORAGE_HISTORY = 'guruka_speed-match_history';
 var STORAGE_BEST = 'guruka_speed-match_best';
@@ -996,7 +1020,9 @@ paused: false,
 roundStartTime: 0,
 timerInterval: null,
 autoAdvanceTimeout: null,
-gameOver: false
+gameOver: false,
+lives: 3,
+maxLives: 3
 };
 
 /* ── DOM refs ── */
@@ -1074,7 +1100,7 @@ localStorage.setItem(STORAGE_HISTORY, JSON.stringify(arr));
 function showPersonalBest() {
 var best = loadBest();
 if (best > 0) {
-elBestScore.textContent = best.toLocaleString() + ' points';
+elBestScore.textContent = best + ' correct';
 } else {
 elBestScore.textContent = 'none yet';
 }
@@ -1117,6 +1143,17 @@ var roundsNeeded = getRoundsPerLevel(state.level);
 var pct = Math.min((state.round / roundsNeeded) * 100, 100);
 elProgressFill.style.width = pct + '%';
 if (challenge.active) GK.updateChallengeBar('sm-playing', state.score, challenge.score);
+updateLives();
+}
+
+function updateLives() {
+var el = document.getElementById('sm-lives');
+if (!el) return;
+var s = '';
+for (var i = 0; i < state.maxLives; i++) {
+s += i < state.lives ? '❤️' : '🤍';
+}
+el.textContent = s;
 }
 
 /* ── Timer bar countdown ── */
@@ -1150,11 +1187,11 @@ void elFeedbackIcon.offsetWidth;
 
 if (correct) {
 elFeedbackFlash.classList.add('sm-flash-correct');
-elFeedbackIcon.textContent = '\u2713';
+elFeedbackIcon.textContent = '✓';
 elFeedbackIcon.classList.add('sm-show-check');
 } else {
 elFeedbackFlash.classList.add('sm-flash-wrong');
-elFeedbackIcon.textContent = '\u2717';
+elFeedbackIcon.textContent = '✗';
 elFeedbackIcon.classList.add('sm-show-x');
 }
 
@@ -1202,18 +1239,18 @@ state.totalAnswered++;
 
 if (correct) {
 state.totalCorrect++;
-var responseTime = Date.now() - state.roundStartTime;
-var points = 100;
-if (responseTime < 1000) {
-points += Math.floor((1000 - responseTime) / 10);
-}
-points += Math.floor(state.streak * 0.1 * 100);
-state.score += points;
+state.score += 1;
 state.streak++;
 if (state.streak > state.bestStreak) state.bestStreak = state.streak;
 showFeedback(true);
 } else {
 state.streak = 0;
+state.lives--;
+updateLives();
+if (state.lives <= 0) {
+endGame();
+return;
+}
 showFeedback(false);
 }
 
@@ -1245,6 +1282,12 @@ if (state.answered || state.gameOver) return;
 state.answered = true;
 state.totalAnswered++;
 state.streak = 0;
+state.lives--;
+updateLives();
+if (state.lives <= 0) {
+endGame();
+return;
+}
 
 if (state.timerInterval) {
 clearInterval(state.timerInterval);
@@ -1369,13 +1412,13 @@ var title = document.querySelector('#sm-complete-overlay .sm-complete-card h2');
 
 if (isNewBest) {
 showConfetti();
-trophy.textContent = '\uD83C\uDF89';
+trophy.textContent = '🎉';
 title.textContent = 'AMAZING!';
 elNewBest.className = 'sm-new-best-enhanced';
-elNewBest.innerHTML = '\uD83C\uDF1F AMAZING! New Best!';
+elNewBest.innerHTML = '🌟 AMAZING! New Best!';
 elNewBest.style.display = 'inline-block';
 } else {
-trophy.textContent = '\uD83C\uDFC6';
+trophy.textContent = '🏆';
 title.textContent = 'Good Job!';
 elNewBest.className = 'sm-new-best';
 elNewBest.style.display = 'none';
@@ -1384,12 +1427,18 @@ elNewBest.style.display = 'none';
 elFinalLevel.textContent = state.level;
 elFinalAccuracy.textContent = accuracy + '%';
 elFinalStreak.textContent = state.bestStreak;
-elFinalBest.textContent = best.toLocaleString();
+elFinalBest.textContent = best + ' correct';
+
+var livesStr = '';
+for (var li = 0; li < state.maxLives; li++) {
+livesStr += li < state.lives ? '❤️' : '🤍';
+}
+document.getElementById('sm-final-lives').textContent = livesStr;
 
 GK.renderChallengeResult('sm-challenge-result', state.score, challenge);
 
 showScreen('complete');
-animateScoreCountUp(elFinalScore, state.score);
+elFinalScore.textContent = state.score;
 }
 
 /* ── Pause / Resume ── */
@@ -1422,9 +1471,9 @@ handleTimeout();
 
 /* ── Start game flow ── */
 var SM_WIZARD_STEPS = [
-{icon: '\u2728', title: 'A symbol appears on screen', desc: 'Each round shows a symbol. Watch it!'},
-{icon: '\u2194\uFE0F', title: 'Same or Different?', desc: 'Does it match the previous one? Tap to answer.'},
-{icon: '\u26A1', title: 'Be fast!', desc: 'React before time runs out. Speed = bonus points!', final: true}
+{icon: '✨', title: 'A symbol appears on screen', desc: 'Each round shows a symbol. Watch it!'},
+{icon: '↔️', title: 'Same or Different?', desc: 'Does it match the previous one? Tap to answer.'},
+{icon: '⚡', title: 'Be fast!', desc: 'React before time runs out. Speed = bonus points!', final: true}
 ];
 var smWizardStep = 0;
 
@@ -1475,6 +1524,7 @@ state.currentSymbol = '';
 state.answered = false;
 state.paused = false;
 state.gameOver = false;
+state.lives = 3;
 state.roundStartTime = 0;
 if (state.timerInterval) clearInterval(state.timerInterval);
 if (state.autoAdvanceTimeout) clearTimeout(state.autoAdvanceTimeout);
