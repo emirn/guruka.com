@@ -80,11 +80,6 @@ const articles = defineCollection({
       reviewer_url: z.string(),
       reviewed_at: z.coerce.date(),
     })).optional(),
-    authors: z.array(z.object({
-      id: z.string(),
-      role: z.enum(['author', 'reviewer', 'contributor']),
-      updated_at: z.coerce.date(),
-    })).optional(),
     show_authors: z.boolean().optional(),
     language: z.string().default('en').optional(),
     /** External URL (used in directory sections for "Visit Website" links) */

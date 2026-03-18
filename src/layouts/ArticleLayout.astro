@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
-import { getConfig, getDefaultAuthor, getAuthorById, getAuthorUrl } from '../lib/config';
+import { getConfig, getDefaultAuthor, getAuthorUrl } from '../lib/config';
 import MobileToc from '../components/MobileToc.astro';
 import SocialShare from '../components/SocialShare.astro';
 import ArticleCard from '../components/ArticleCard.astro';
@@ -77,8 +77,19 @@ const tags = data.tags || [];
 const showTags = config.tags?.enabled !== false && tags.length > 0;
 const hasInlineToc = article.body?.includes('<div id="toc">') || false;
 
-// Author display: respect show_authors flag (default true for articles, false for pages)
-const showAuthors = data.show_authors ?? true;
+// Path-based display matching
+function matchesAnyPattern(slug: string, patterns: string[] | undefined): boolean {
+  if (!patterns || patterns.length === 0) return false;
+  return patterns.some(pattern => new RegExp(pattern).test(slug));
+}
+
+// Author display: respect show_authors flag, then path-based hide
+const pathHidesAuthors = matchesAnyPattern(article.slug, config.authors_display?.hide_paths);
+const showAuthors = (data.show_authors ?? true) && !pathHidesAuthors;
+
+// Date display: respect path-based hide
+const pathHidesDates = matchesAnyPattern(article.slug, config.date_display?.hide_paths);
+const showDates = (config.blog.show_date ?? true) && !pathHidesDates;
 ---
 
 <BaseLayout
@@ -101,7 +112,7 @@ const showAuthors = data.show_authors ?? true;
   <!-- Article-specific JSON-LD (BlogPosting + Breadcrumbs) - skipped if article has inline JSON-LD -->
   {config.seo.enable_json_ld && !hasInlineJsonLd && (
     <Fragment slot="head">
-      <script type="application/ld+json" set:html={JSON.stringify(generateBlogPosting(config, article, canonicalUrl))} />
+      <script type="application/ld+json" set:html={JSON.stringify(generateBlogPosting(config, article, canonicalUrl, showAuthors))} />
       <script type="application/ld+json" set:html={JSON.stringify(generateArticleBreadcrumbs(config, article))} />
     </Fragment>
   )}
@@ -122,50 +133,33 @@ const showAuthors = data.show_authors ?? true;
       </h1>
 
       <div class="flex flex-wrap items-center gap-4 text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-dark-text-secondary)]">
-        {config.blog.show_date && (
+        {showDates && (
           <time datetime={data.published_at.toISOString()}>
             {formatDate(data.published_at)}
           </time>
         )}
 
-        {config.blog.show_date && data.updated_at && (
+        {showDates && data.updated_at && (
           <>
             <span class="w-1 h-1 rounded-full bg-current"></span>
             <span>Updated <time datetime={data.updated_at.toISOString()}>{formatDate(data.updated_at)}</time></span>
           </>
         )}
 
-        {showAuthors && (() => {
-          // Prefer new authors[] system, fallback to reviewed_by
-          const reviewers = data.authors?.filter(a => a.role === 'reviewer') || [];
-          if (reviewers.length > 0) {
-            const latest = reviewers[0];
-            const authorInfo = getAuthorById(latest.id, config);
-            const name = authorInfo?.name || latest.id;
-            const url = authorInfo ? getAuthorUrl(name) : undefined;
-            return (
-              <>
-                <span class="w-1 h-1 rounded-full bg-current"></span>
-                <span>Reviewed by {url ? <a href={url} class="underline" rel="author">{name}</a> : name}</span>
-              </>
-            );
-          }
-          // Fallback to legacy reviewed_by
-          if (data.reviewed_by && data.reviewed_by.length > 0) {
-            const latest = data.reviewed_by[0];
-            return (
-              <>
-                <span class="w-1 h-1 rounded-full bg-current"></span>
-                <span>Reviewed by <a href={latest.reviewer_url} class="underline" rel="author">{latest.reviewer_name}</a></span>
-              </>
-            );
-          }
-          return null;
+        {showAuthors && data.reviewed_by && data.reviewed_by.length > 0 && (() => {
+          const latest = data.reviewed_by[0];
+          return (
+            <>
+              <span class="w-1 h-1 rounded-full bg-current"></span>
+              <span>Reviewed by <a href={latest.reviewer_url} class="underline" rel="author">{latest.reviewer_name}</a></span>
+            </>
+          );
         })()}
 
         {showAuthors && config.blog.show_author && (data.author || getDefaultAuthor(config)) && (() => {
           const authorName = data.author || getDefaultAuthor(config);
-          const authorUrl = config.authors?.length ? getAuthorUrl(authorName) : undefined;
+          const authorEntry = config.authors?.find(a => a.name === authorName);
+          const authorUrl = authorEntry ? getAuthorUrl(authorEntry.id) : undefined;
           return authorUrl
             ? <span>by <a href={authorUrl} class="underline">{authorName}</a></span>
             : <span>by {authorName}</span>;
@@ -243,23 +237,15 @@ const showAuthors = data.show_authors ?? true;
     )}
 
     <!-- Article History -->
-    {showAuthors && (data.authors?.length || data.reviewed_by?.length) && (
+    {showAuthors && data.reviewed_by?.length && (
       <section class="mt-12 pt-6 border-t border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
         <h3 class="text-sm font-semibold text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)] uppercase tracking-wide mb-3">Article History</h3>
         <ul class="space-y-1 text-xs text-[var(--color-text-muted)] dark:text-[var(--color-dark-text-muted)]">
-          <li>{formatDate(data.published_at)} &mdash; Published</li>
-          {data.authors && data.authors.length > 0 ? data.authors.map(a => {
-            const authorInfo = getAuthorById(a.id, config);
-            const name = authorInfo?.name || a.id;
-            const url = authorInfo ? getAuthorUrl(name) : undefined;
-            const roleLabel = a.role === 'reviewer' ? 'Reviewed by' : a.role === 'author' ? 'Written by' : 'Contributed by';
-            return (
-              <li>{formatDate(a.updated_at)} &mdash; {roleLabel} {url ? <a href={url} class="underline">{name}</a> : name}</li>
-            );
-          }) : data.reviewed_by?.map(r => (
-            <li>{formatDate(r.reviewed_at)} &mdash; Reviewed by <a href={r.reviewer_url} class="underline">{r.reviewer_name}</a></li>
+          {showDates && <li>{formatDate(data.published_at)} &mdash; Published</li>}
+          {data.reviewed_by?.map(r => (
+            <li>{showDates && <>{formatDate(r.reviewed_at)} &mdash; </>}Reviewed by <a href={r.reviewer_url} class="underline">{r.reviewer_name}</a></li>
           ))}
-          {data.updated_at && <li>{formatDate(data.updated_at)} &mdash; Last updated</li>}
+          {showDates && data.updated_at && <li>{formatDate(data.updated_at)} &mdash; Last updated</li>}
         </ul>
       </section>
     )}

@@ -86,7 +86,8 @@ const heroImage = data.image_hero || extractFirstImage(article.body);
 
         {config.blog.show_author && (data.author || getDefaultAuthor(config)) && (() => {
           const authorName = data.author || getDefaultAuthor(config);
-          const authorUrl = config.authors?.length ? getAuthorUrl(authorName) : undefined;
+          const authorEntry = config.authors?.find(a => a.name === authorName);
+          const authorUrl = authorEntry ? getAuthorUrl(authorEntry.id) : undefined;
           return (
             <>
               <span class="w-1 h-1 rounded-full bg-current"></span>
