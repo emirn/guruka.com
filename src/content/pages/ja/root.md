@@ -7,7 +7,6 @@ blog_grid_title: "ブログから"
 blog_grid_limit: 3
 language: "ja"
 ---
-
 <style>
 .gk-home {
 max-width: 40rem;

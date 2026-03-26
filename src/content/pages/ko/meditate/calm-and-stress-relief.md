@@ -4,7 +4,6 @@ description: "긴장을 풀고, 자신에게 돌아오세요."
 full_width: true
 language: "ko"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

@@ -4,7 +4,6 @@ description: "すでにある「良いもの」を見つける。"
 full_width: true
 language: "ja"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

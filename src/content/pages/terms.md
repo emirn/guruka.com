@@ -2,7 +2,6 @@
 title: "Terms of Service"
 description: "Terms of Service for GURUKA"
 ---
-
 # Terms of Service
 
 *Last updated: March 6, 2026*

@@ -4,7 +4,6 @@ description: "瞑想的なループで成長し分裂する細胞。"
 full_width: true
 language: "ja"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

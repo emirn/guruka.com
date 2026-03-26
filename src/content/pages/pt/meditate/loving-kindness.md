@@ -4,7 +4,6 @@ description: "Ofereça calor, a si mesmo primeiro."
 full_width: true
 language: "pt"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

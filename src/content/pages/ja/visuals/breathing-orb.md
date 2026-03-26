@@ -4,7 +4,6 @@ description: "呼吸のリズムをガイドする脈動するオーブ。"
 full_width: true
 language: "ja"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

@@ -4,7 +4,6 @@ description: "Um orbe pulsante que guia seu ritmo de respiração."
 full_width: true
 language: "pt"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

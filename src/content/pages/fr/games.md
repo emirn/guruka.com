@@ -4,7 +4,6 @@ description: "Jouez gratuitement à des jeux d'entraînement cérébral pour am�
 full_width: true
 language: "fr"
 ---
-
 <style>
 #games-hub {
 max-width: 64rem;

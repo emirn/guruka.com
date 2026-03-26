@@ -4,7 +4,6 @@ description: "Zellen, die in einer meditativen Schleife wachsen und sich teilen.
 full_width: true
 language: "de"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

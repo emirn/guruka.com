@@ -4,7 +4,6 @@ description: "화면을 가로지르는 흐르는 오로라 색상 띠."
 full_width: true
 language: "ko"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

@@ -4,7 +4,6 @@ description: "Faixas de cores de auroras boreais fluindo pela tela."
 full_width: true
 language: "pt"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

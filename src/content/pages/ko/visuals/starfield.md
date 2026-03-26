@@ -4,7 +4,6 @@ description: "깊은 우주를 떠도는 반짝이는 별들."
 full_width: true
 language: "ko"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

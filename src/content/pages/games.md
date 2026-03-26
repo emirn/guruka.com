@@ -3,7 +3,6 @@ title: "Games"
 description: "Play free brain and memory training games to improve memory, processing speed, and mental agility. Seven games with adaptive difficulty."
 full_width: true
 ---
-
 <style>
 #games-hub {
 max-width: 64rem;

@@ -4,7 +4,6 @@ description: "떠다니며 합쳐지고 분리되는 용암 방울."
 full_width: true
 language: "ko"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

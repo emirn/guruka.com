@@ -4,7 +4,6 @@ description: "Bandes de couleurs d'aurores boréales traversant l'écran."
 full_width: true
 language: "fr"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

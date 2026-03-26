@@ -4,7 +4,6 @@ description: "Entra&icirc;nez votre vitesse de cat&eacute;gorisation et votre ch
 full_width: true
 language: "fr"
 ---
-
 <style>
 #quick-sort-game {
 max-width: 600px;

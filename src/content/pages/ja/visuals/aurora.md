@@ -4,7 +4,6 @@ description: "画面を横切る流れるオーロラの色帯。"
 full_width: true
 language: "ja"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

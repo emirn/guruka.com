@@ -4,7 +4,6 @@ description: "Gouttes de lave flottant, fusionnant et se séparant."
 full_width: true
 language: "fr"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

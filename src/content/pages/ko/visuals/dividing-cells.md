@@ -4,7 +4,6 @@ description: "명상적 루프에서 성장하고 분열하는 세포."
 full_width: true
 language: "ko"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

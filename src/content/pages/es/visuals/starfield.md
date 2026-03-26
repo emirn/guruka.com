@@ -4,7 +4,6 @@ description: "Estrellas titilando en el espacio profundo."
 full_width: true
 language: "es"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

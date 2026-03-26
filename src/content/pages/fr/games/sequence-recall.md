@@ -4,7 +4,6 @@ description: "Entraînez votre mémoire de travail en mémorisant des séquences
 full_width: true
 language: "fr"
 ---
-
 <style>
 #sequence-recall-game {
 max-width: 600px;

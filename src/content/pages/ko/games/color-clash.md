@@ -4,7 +4,6 @@ description: "스트룹 효과를 이용해 억제 통제와 선택적 주의력
 full_width: true
 language: "ko"
 ---
-
 <style>
 #color-clash-game {
 max-width: 600px;

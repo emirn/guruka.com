@@ -4,7 +4,6 @@ description: "Meditaciones guiadas gratuitas para calma, enfoque, sue√±o, energ√
 full_width: true
 language: "es"
 ---
-
 <style>
 #meditate-hub {
 max-width: 64rem;

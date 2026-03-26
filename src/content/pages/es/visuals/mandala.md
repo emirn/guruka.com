@@ -4,7 +4,6 @@ description: "Geometría sagrada rotando lentamente con simetría evolutiva."
 full_width: true
 language: "es"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

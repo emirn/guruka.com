@@ -4,7 +4,6 @@ description: "Trainiere dein Arbeitsgedächtnis, indem du dir Farbfolgen merkst.
 full_width: true
 language: "de"
 ---
-
 <style>
 #sequence-recall-game {
 max-width: 600px;

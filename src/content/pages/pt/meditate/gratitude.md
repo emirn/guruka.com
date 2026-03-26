@@ -4,7 +4,6 @@ description: "Encontre o que já é bom."
 full_width: true
 language: "pt"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

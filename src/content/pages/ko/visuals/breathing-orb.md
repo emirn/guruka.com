@@ -4,7 +4,6 @@ description: "호흡 리듬을 안내하는 맥동하는 오브."
 full_width: true
 language: "ko"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

@@ -4,7 +4,6 @@ description: "Solte a tensão. Volte para si."
 full_width: true
 language: "pt"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

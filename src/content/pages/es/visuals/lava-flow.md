@@ -4,7 +4,6 @@ description: "Gotas de lava flotando, fusionándose y separándose."
 full_width: true
 language: "es"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

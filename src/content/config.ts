@@ -80,6 +80,7 @@ const articles = defineCollection({
       updated_at: z.string(),
     })).optional(),
     show_authors: z.boolean().optional(),
+    show_dates: z.boolean().optional(),
     language: z.string().default('en').optional(),
     /** External URL (used in directory sections for "Visit Website" links) */
     url: z.string().optional(),
@@ -117,6 +118,8 @@ const pages = defineCollection({
     blog_grid_title: z.string().optional(),
     blog_grid_limit: z.number().default(9),
     language: z.string().default('en').optional(),
+    show_authors: z.boolean().optional(),
+    show_dates: z.boolean().optional(),
   }),
 });
 

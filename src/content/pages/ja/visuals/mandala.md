@@ -4,7 +4,6 @@ description: "進化する対称性を持つゆっくりと回転する神聖幾
 full_width: true
 language: "ja"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

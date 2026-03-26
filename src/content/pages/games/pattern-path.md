@@ -3,7 +3,6 @@ title: "Pattern Path - Brain Training Game"
 description: "Train your pattern recognition and fluid intelligence. Identify the missing element in visual sequences of shapes, colors, and transformations!"
 full_width: true
 ---
-
 <style>
 #pattern-path-game {
 max-width: 600px;

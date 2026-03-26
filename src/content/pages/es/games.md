@@ -4,7 +4,6 @@ description: "Juega juegos gratuitos de entrenamiento mental para mejorar la mem
 full_width: true
 language: "es"
 ---
-
 <style>
 #games-hub {
 max-width: 64rem;

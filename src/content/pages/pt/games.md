@@ -4,7 +4,6 @@ description: "Jogue jogos gratuitos de treinamento cerebral para melhorar memori
 full_width: true
 language: "pt"
 ---
-
 <style>
 #games-hub {
 max-width: 64rem;

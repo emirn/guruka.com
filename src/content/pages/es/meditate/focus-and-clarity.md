@@ -4,7 +4,6 @@ description: "Despeja el ruido. Afila tu mente."
 full_width: true
 language: "es"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

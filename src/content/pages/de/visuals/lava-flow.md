@@ -4,7 +4,6 @@ description: "Lavatropfen schweben, verschmelzen und trennen sich."
 full_width: true
 language: "de"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

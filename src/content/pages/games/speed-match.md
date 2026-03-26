@@ -3,7 +3,6 @@ title: "Speed Match - Brain Training Game"
 description: "Test your processing speed and working memory with this fast-paced symbol matching game. Compare symbols and respond quickly!"
 full_width: true
 ---
-
 <style>
 #speed-match-game {
 max-width: 600px;

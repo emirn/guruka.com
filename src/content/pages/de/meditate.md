@@ -4,7 +4,6 @@ description: "Kostenlose geführte Meditationen für Ruhe, Fokus, Schlaf, Energi
 full_width: true
 language: "de"
 ---
-
 <style>
 #meditate-hub {
 max-width: 64rem;

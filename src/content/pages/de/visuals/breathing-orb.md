@@ -4,7 +4,6 @@ description: "Eine pulsierende Kugel, die deinen Atemrhythmus führt."
 full_width: true
 language: "de"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

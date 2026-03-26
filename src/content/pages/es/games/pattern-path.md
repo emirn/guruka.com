@@ -4,7 +4,6 @@ description: "Entrena tu reconocimiento de patrones e inteligencia fluida. Ident
 full_width: true
 language: "es"
 ---
-
 <style>
 #pattern-path-game {
 max-width: 600px;

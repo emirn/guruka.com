@@ -3,7 +3,6 @@ title: "Aurora - Meditative Visual"
 description: "Flowing northern lights color bands across the screen."
 full_width: true
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

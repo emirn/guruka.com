@@ -4,7 +4,6 @@ description: "暗算スキルと認知の柔軟性を鍛えましょう。欠け
 full_width: true
 language: "ja"
 ---
-
 <style>
 #number-crunch-game {
 max-width: 600px;

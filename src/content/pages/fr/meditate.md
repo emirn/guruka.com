@@ -4,7 +4,6 @@ description: "Méditations guidées gratuites pour le calme, la concentration, l
 full_width: true
 language: "fr"
 ---
-
 <style>
 #meditate-hub {
 max-width: 64rem;

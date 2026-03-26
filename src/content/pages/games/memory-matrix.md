@@ -3,7 +3,6 @@ title: "Memory Matrix - Brain Training Game"
 description: "Strengthen your spatial memory by memorizing and recalling grid patterns. Watch the pattern, then tap the cells from memory!"
 full_width: true
 ---
-
 <style>
 #memory-matrix-game {
 max-width: 540px;

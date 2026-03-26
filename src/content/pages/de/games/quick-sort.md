@@ -4,7 +4,6 @@ description: "Trainiere deine Kategorisierungsgeschwindigkeit und Aufgabenwechse
 full_width: true
 language: "de"
 ---
-
 <style>
 #quick-sort-game {
 max-width: 600px;

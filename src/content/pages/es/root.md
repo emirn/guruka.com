@@ -7,7 +7,6 @@ blog_grid_title: "Del Blog"
 blog_grid_limit: 3
 language: "es"
 ---
-
 <style>
 .gk-home {
 max-width: 40rem;

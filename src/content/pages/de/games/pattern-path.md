@@ -4,7 +4,6 @@ description: "Trainiere deine Mustererkennung und fluide Intelligenz. Identifizi
 full_width: true
 language: "de"
 ---
-
 <style>
 #pattern-path-game {
 max-width: 600px;

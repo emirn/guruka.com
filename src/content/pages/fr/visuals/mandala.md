@@ -4,7 +4,6 @@ description: "Géométrie sacrée en rotation lente avec une symétrie évolutiv
 full_width: true
 language: "fr"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

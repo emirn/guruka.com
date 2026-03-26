@@ -3,7 +3,6 @@ title: "Lava Flow - Meditative Visual"
 description: "Lava lamp blobs floating, merging, and separating."
 full_width: true
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

@@ -4,7 +4,6 @@ description: "Treine seu controle inibitorio e atencao seletiva com o efeito Str
 full_width: true
 language: "pt"
 ---
-
 <style>
 #color-clash-game {
 max-width: 600px;

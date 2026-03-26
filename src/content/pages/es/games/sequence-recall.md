@@ -4,7 +4,6 @@ description: "Entrena tu memoria de trabajo memorizando secuencias de colores. Â
 full_width: true
 language: "es"
 ---
-
 <style>
 #sequence-recall-game {
 max-width: 600px;

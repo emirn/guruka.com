@@ -4,7 +4,6 @@ description: "心の静けさ、集中力、睡眠、エネルギー、ウェル
 full_width: true
 language: "ja"
 ---
-
 <style>
 #meditate-hub {
 max-width: 64rem;

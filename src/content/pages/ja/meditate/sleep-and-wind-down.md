@@ -4,7 +4,6 @@ description: "一日を手放して。休むことで、十分です。"
 full_width: true
 language: "ja"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

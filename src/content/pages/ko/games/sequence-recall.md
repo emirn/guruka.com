@@ -4,7 +4,6 @@ description: "색의 순서를 기억하여 작업 기억력을 단련하세요.
 full_width: true
 language: "ko"
 ---
-
 <style>
 #sequence-recall-game {
 max-width: 600px;

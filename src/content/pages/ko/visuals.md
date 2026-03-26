@@ -4,7 +4,6 @@ description: "휴식과 집중을 위한 전체 화면 비주얼."
 full_width: true
 language: "ko"
 ---
-
 <style>
 #visuals-hub {
 max-width: 64rem;

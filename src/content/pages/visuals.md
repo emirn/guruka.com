@@ -3,7 +3,6 @@ title: "Meditative Visuals"
 description: "Calming full-screen visuals for relaxation and focus."
 full_width: true
 ---
-
 <style>
 #visuals-hub {
 max-width: 64rem;

@@ -4,7 +4,6 @@ description: "Spielen Sie kostenlose Gehirntraining-Spiele zur Verbesserung von 
 full_width: true
 language: "de"
 ---
-
 <style>
 #games-hub {
 max-width: 64rem;

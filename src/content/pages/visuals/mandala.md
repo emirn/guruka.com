@@ -3,7 +3,6 @@ title: "Mandala - Meditative Visual"
 description: "Slowly rotating sacred geometry with evolving symmetry."
 full_width: true
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

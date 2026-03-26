@@ -4,7 +4,6 @@ description: "패턴 인식과 유동 지능을 단련하세요. 형태, 색상,
 full_width: true
 language: "ko"
 ---
-
 <style>
 #pattern-path-game {
 max-width: 600px;

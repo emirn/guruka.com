@@ -7,7 +7,6 @@ blog_grid_title: "Do Blog"
 blog_grid_limit: 3
 language: "pt"
 ---
-
 <style>
 .gk-home {
 max-width: 40rem;

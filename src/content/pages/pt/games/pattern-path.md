@@ -4,7 +4,6 @@ description: "Treine seu reconhecimento de padroes e inteligencia fluida. Identi
 full_width: true
 language: "pt"
 ---
-
 <style>
 #pattern-path-game {
 max-width: 600px;

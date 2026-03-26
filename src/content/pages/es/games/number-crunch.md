@@ -4,7 +4,6 @@ description: "Agudiza tu aritmética mental y flexibilidad cognitiva. ¡Resuelve
 full_width: true
 language: "es"
 ---
-
 <style>
 #number-crunch-game {
 max-width: 600px;

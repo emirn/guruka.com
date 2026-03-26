@@ -3,7 +3,6 @@ title: "Guided Meditations"
 description: "Free guided meditations for calm, focus, sleep, energy, and well-being. Tap to start, no account needed."
 full_width: true
 ---
-
 <style>
 #meditate-hub {
 max-width: 64rem;

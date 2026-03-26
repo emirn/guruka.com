@@ -4,7 +4,6 @@ description: "Libera la tensión. Vuelve a ti."
 full_width: true
 language: "es"
 ---
-
 <div id="meditation-app"></div>
 
 <script>
