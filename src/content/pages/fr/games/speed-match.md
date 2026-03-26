@@ -4,7 +4,6 @@ description: "Testez votre vitesse de traitement et votre mémoire de travail av
 full_width: true
 language: "fr"
 ---
-
 <style>
 #speed-match-game {
 max-width: 600px;

@@ -3,7 +3,6 @@ title: "Color Clash - Brain Training Game"
 description: "Train your inhibitory control and selective attention with the Stroop effect. Identify colors while suppressing automatic word reading!"
 full_width: true
 ---
-
 <style>
 #color-clash-game {
 max-width: 600px;

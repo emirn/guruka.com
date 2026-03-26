@@ -4,7 +4,6 @@ description: "Treine sua velocidade de categorizacao e alternancia de tarefas. C
 full_width: true
 language: "pt"
 ---
-
 <style>
 #quick-sort-game {
 max-width: 600px;

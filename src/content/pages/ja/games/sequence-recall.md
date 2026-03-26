@@ -4,7 +4,6 @@ description: "色の順番を覚えてワーキングメモリを鍛えましょ
 full_width: true
 language: "ja"
 ---
-
 <style>
 #sequence-recall-game {
 max-width: 600px;

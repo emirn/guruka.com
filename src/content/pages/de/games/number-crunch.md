@@ -4,7 +4,6 @@ description: "Schärfe deine Kopfrechnen-Fähigkeiten und kognitive Flexibilitä
 full_width: true
 language: "de"
 ---
-
 <style>
 #number-crunch-game {
 max-width: 600px;

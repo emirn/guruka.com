@@ -4,7 +4,6 @@ description: "深宇宙を漂う瞬く星々。"
 full_width: true
 language: "ja"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

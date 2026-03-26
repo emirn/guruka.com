@@ -3,7 +3,6 @@ title: "Number Crunch - Brain Training Game"
 description: "Sharpen your mental arithmetic and cognitive flexibility. Solve equations with missing elements while adapting to rule modifiers!"
 full_width: true
 ---
-
 <style>
 #number-crunch-game {
 max-width: 600px;

@@ -4,7 +4,6 @@ description: "Fortalece tu memoria espacial memorizando y recordando patrones de
 full_width: true
 language: "es"
 ---
-
 <style>
 #memory-matrix-game {
 max-width: 540px;

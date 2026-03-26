@@ -4,7 +4,6 @@ description: "Beruhigende Vollbild-Visualisierungen für Entspannung und Fokus."
 full_width: true
 language: "de"
 ---
-
 <style>
 #visuals-hub {
 max-width: 64rem;

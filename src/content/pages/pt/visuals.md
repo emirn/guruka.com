@@ -4,7 +4,6 @@ description: "Visuais relaxantes em tela cheia para relaxamento e foco."
 full_width: true
 language: "pt"
 ---
-
 <style>
 #visuals-hub {
 max-width: 64rem;

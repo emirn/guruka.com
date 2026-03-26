@@ -4,7 +4,6 @@ description: "Fais le point. Relâche. Reviens dans ton corps."
 full_width: true
 language: "fr"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

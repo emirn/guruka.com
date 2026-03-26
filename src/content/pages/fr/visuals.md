@@ -4,7 +4,6 @@ description: "Visuels relaxants en plein écran pour la détente et la concentra
 full_width: true
 language: "fr"
 ---
-
 <style>
 #visuals-hub {
 max-width: 64rem;

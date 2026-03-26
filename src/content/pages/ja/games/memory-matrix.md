@@ -4,7 +4,6 @@ description: "グリッドパターンを覚えて再現する空間記憶トレ
 full_width: true
 language: "ja"
 ---
-
 <style>
 #memory-matrix-game {
 max-width: 540px;

@@ -4,7 +4,6 @@ description: "Wach sanft auf. Begrüße den Tag."
 full_width: true
 language: "de"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

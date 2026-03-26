@@ -4,7 +4,6 @@ description: "Étoiles scintillantes dérivant dans l'espace profond."
 full_width: true
 language: "fr"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

@@ -3,7 +3,6 @@ title: "Privacy Policy"
 description: "Privacy Policy for GURUKA"
 language: "de"
 ---
-
 # Privacy Policy
 
 *Last updated: March 11, 2026*

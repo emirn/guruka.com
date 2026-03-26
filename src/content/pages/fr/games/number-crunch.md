@@ -4,7 +4,6 @@ description: "Aiguisez votre calcul mental et votre flexibilité cognitive. Rés
 full_width: true
 language: "fr"
 ---
-
 <style>
 #number-crunch-game {
 max-width: 600px;

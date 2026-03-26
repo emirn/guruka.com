@@ -4,7 +4,6 @@ description: "Deixe o dia ir. Descansar é suficiente."
 full_width: true
 language: "pt"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

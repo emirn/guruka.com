@@ -4,7 +4,6 @@ description: "Cellules grandissant et se divisant dans une boucle méditative."
 full_width: true
 language: "fr"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

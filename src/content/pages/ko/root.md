@@ -7,7 +7,6 @@ blog_grid_title: "블로그에서"
 blog_grid_limit: 3
 language: "ko"
 ---
-
 <style>
 .gk-home {
 max-width: 40rem;

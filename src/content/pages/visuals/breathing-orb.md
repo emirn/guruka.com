@@ -3,7 +3,6 @@ title: "Breathing Orb - Meditative Visual"
 description: "A pulsing orb that guides your breathing rhythm."
 full_width: true
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

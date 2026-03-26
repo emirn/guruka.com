@@ -3,7 +3,6 @@ title: "Quick Sort - Brain Training Game"
 description: "Train your categorization speed and task switching. Sort items into the correct category as rules change every few rounds!"
 full_width: true
 ---
-
 <style>
 #quick-sort-game {
 max-width: 600px;

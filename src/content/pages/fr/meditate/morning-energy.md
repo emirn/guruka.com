@@ -4,7 +4,6 @@ description: "Éveille-toi en douceur. Accueille la journée."
 full_width: true
 language: "fr"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

@@ -4,7 +4,6 @@ description: "Despierta con suavidad. Saluda al día."
 full_width: true
 language: "es"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

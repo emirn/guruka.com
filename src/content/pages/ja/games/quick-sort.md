@@ -4,7 +4,6 @@ description: "カテゴリー分けのスピードとタスク切り替えを鍛
 full_width: true
 language: "ja"
 ---
-
 <style>
 #quick-sort-game {
 max-width: 600px;

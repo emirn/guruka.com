@@ -4,7 +4,6 @@ description: "Fließende Nordlicht-Farbbänder über den Bildschirm."
 full_width: true
 language: "de"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

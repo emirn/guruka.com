@@ -4,7 +4,6 @@ description: "그리드 패턴을 기억하고 재현하는 공간 기억력 트
 full_width: true
 language: "ko"
 ---
-
 <style>
 #memory-matrix-game {
 max-width: 540px;

@@ -4,7 +4,6 @@ description: "ストループ効果を使って抑制制御と選択的注意を
 full_width: true
 language: "ja"
 ---
-
 <style>
 #color-clash-game {
 max-width: 600px;

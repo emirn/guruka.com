@@ -4,7 +4,6 @@ description: "Langsam rotierende heilige Geometrie mit sich entwickelnder Symmet
 full_width: true
 language: "de"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

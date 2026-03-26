@@ -4,7 +4,6 @@ description: "Funkelnde Sterne, die durch den tiefen Weltraum treiben."
 full_width: true
 language: "de"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

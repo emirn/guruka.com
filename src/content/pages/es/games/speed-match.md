@@ -4,7 +4,6 @@ description: "Pon a prueba tu velocidad de procesamiento y memoria de trabajo co
 full_width: true
 language: "es"
 ---
-
 <style>
 #speed-match-game {
 max-width: 600px;

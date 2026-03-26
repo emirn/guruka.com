@@ -456,9 +456,10 @@
   ],
   "authors": [
     {
-      "id": "guruka-content-team",
+      "id": "content-team",
       "name": "Guruka Content Team",
-      "url": ""
+      "url": "/author/content-team/",
+      "system": true
     }
   ],
   "i18n": {
@@ -672,7 +673,7 @@
     }
   },
   "build_info": {
-    "git_commit": "42698ea38",
-    "build_date": "2026-03-18T20:14:13.676Z"
+    "git_commit": "09f688615",
+    "build_date": "2026-03-26T09:51:04.614Z"
   }
 }

@@ -3,7 +3,6 @@ title: "Sequence Recall - Brain Training Game"
 description: "Train your working memory by memorizing color sequences. Watch the colors, then recall them in order!"
 full_width: true
 ---
-
 <style>
 #sequence-recall-game {
 max-width: 600px;

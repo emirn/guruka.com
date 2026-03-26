@@ -4,7 +4,6 @@ description: "パターン認識と流動性知能を鍛えましょう。形、
 full_width: true
 language: "ja"
 ---
-
 <style>
 #pattern-path-game {
 max-width: 600px;

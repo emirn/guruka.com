@@ -4,7 +4,6 @@ description: "Stärke dein räumliches Gedächtnis, indem du Gittermuster auswen
 full_width: true
 language: "de"
 ---
-
 <style>
 #memory-matrix-game {
 max-width: 540px;

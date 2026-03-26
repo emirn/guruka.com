@@ -3,7 +3,6 @@ title: "Starfield - Meditative Visual"
 description: "Twinkling stars drifting through deep space."
 full_width: true
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

@@ -4,7 +4,6 @@ description: "Entra\u00eenez votre reconnaissance de motifs et votre intelligenc
 full_width: true
 language: "fr"
 ---
-
 <style>
 #pattern-path-game {
 max-width: 600px;

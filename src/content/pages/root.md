@@ -6,7 +6,6 @@ blog_grid: true
 blog_grid_title: "From the Blog"
 blog_grid_limit: 3
 ---
-
 <style>
 .gk-home {
 max-width: 40rem;

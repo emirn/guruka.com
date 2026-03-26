@@ -4,7 +4,6 @@ description: "Trainiere deine Hemmungskontrolle und selektive Aufmerksamkeit mit
 full_width: true
 language: "de"
 ---
-
 <style>
 #color-clash-game {
 max-width: 600px;

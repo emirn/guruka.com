@@ -4,7 +4,6 @@ description: "Entrena tu control inhibitorio y atenci&oacute;n selectiva con el 
 full_width: true
 language: "es"
 ---
-
 <style>
 #color-clash-game {
 max-width: 600px;

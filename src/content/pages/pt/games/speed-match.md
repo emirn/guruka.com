@@ -4,7 +4,6 @@ description: "Teste sua velocidade de processamento e memoria de trabalho com es
 full_width: true
 language: "pt"
 ---
-
 <style>
 #speed-match-game {
 max-width: 600px;

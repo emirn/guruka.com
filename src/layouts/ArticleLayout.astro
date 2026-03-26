@@ -77,19 +77,9 @@ const tags = data.tags || [];
 const showTags = config.tags?.enabled !== false && tags.length > 0;
 const hasInlineToc = article.body?.includes('<div id="toc">') || false;
 
-// Path-based display matching
-function matchesAnyPattern(slug: string, patterns: string[] | undefined): boolean {
-  if (!patterns || patterns.length === 0) return false;
-  return patterns.some(pattern => new RegExp(pattern).test(slug));
-}
-
-// Author display: respect show_authors flag, then path-based hide
-const pathHidesAuthors = matchesAnyPattern(article.slug, config.authors_display?.hide_paths);
-const showAuthors = (data.show_authors ?? true) && !pathHidesAuthors;
-
-// Date display: respect path-based hide
-const pathHidesDates = matchesAnyPattern(article.slug, config.date_display?.hide_paths);
-const showDates = (config.blog.show_date ?? true) && !pathHidesDates;
+// Display controls: per-article flags take precedence
+const showAuthors = data.show_authors ?? true;
+const showDates = data.show_dates ?? (config.blog.show_date ?? true);
 ---
 
 <BaseLayout

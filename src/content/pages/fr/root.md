@@ -7,7 +7,6 @@ blog_grid_title: "Du Blog"
 blog_grid_limit: 3
 language: "fr"
 ---
-
 <style>
 .gk-home {
 max-width: 40rem;

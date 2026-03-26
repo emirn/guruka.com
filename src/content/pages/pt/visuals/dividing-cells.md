@@ -4,7 +4,6 @@ description: "Células crescendo e dividindo-se em um ciclo meditativo."
 full_width: true
 language: "pt"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

@@ -4,7 +4,6 @@ description: "진화하는 대칭성을 가진 천천히 회전하는 신성한 
 full_width: true
 language: "ko"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

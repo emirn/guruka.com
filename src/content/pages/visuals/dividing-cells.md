@@ -3,7 +3,6 @@ title: "Dividing Cells - Meditative Visual"
 description: "Cells growing and dividing in a meditative loop."
 full_width: true
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

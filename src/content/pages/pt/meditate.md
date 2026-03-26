@@ -4,7 +4,6 @@ description: "Meditacoes guiadas gratuitas para calma, foco, sono, energia e bem
 full_width: true
 language: "pt"
 ---
-
 <style>
 #meditate-hub {
 max-width: 64rem;

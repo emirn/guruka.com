@@ -4,7 +4,6 @@ description: "Entrena tu velocidad de categorización y cambio de tarea. ¡Orden
 full_width: true
 language: "es"
 ---
-
 <style>
 #quick-sort-game {
 max-width: 600px;

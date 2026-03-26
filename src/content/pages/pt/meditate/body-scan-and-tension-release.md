@@ -4,7 +4,6 @@ description: "Observe. Solte. Volte para o seu corpo."
 full_width: true
 language: "pt"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

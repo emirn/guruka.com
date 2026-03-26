@@ -4,7 +4,6 @@ description: "Visuales relajantes a pantalla completa para relajación y concent
 full_width: true
 language: "es"
 ---
-
 <style>
 #visuals-hub {
 max-width: 64rem;

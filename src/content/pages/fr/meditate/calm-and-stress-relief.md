@@ -4,7 +4,6 @@ description: "Relâche les tensions. Reviens à toi."
 full_width: true
 language: "fr"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

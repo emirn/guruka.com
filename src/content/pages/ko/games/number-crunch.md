@@ -4,7 +4,6 @@ description: "암산 능력과 인지 유연성을 단련하세요. 빠진 요�
 full_width: true
 language: "ko"
 ---
-
 <style>
 #number-crunch-game {
 max-width: 600px;

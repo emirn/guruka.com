@@ -4,7 +4,6 @@ description: "浮遊し、融合し、分離する溶岩のしずく。"
 full_width: true
 language: "ja"
 ---
-
 <style>
 #visual-page {
 max-width: 40rem;

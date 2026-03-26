@@ -4,7 +4,6 @@ description: "力を抜いて。自分自身に戻りましょう。"
 full_width: true
 language: "ja"
 ---
-
 <div id="meditation-app"></div>
 
 <script>

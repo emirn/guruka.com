@@ -4,7 +4,6 @@ description: "このスピーディーなシンボルマッチングゲームで
 full_width: true
 language: "ja"
 ---
-
 <style>
 #speed-match-game {
 max-width: 600px;

@@ -4,7 +4,6 @@ description: "記憶力、処理速度、メンタルの俊敏性を鍛える無
 full_width: true
 language: "ja"
 ---
-
 <style>
 #games-hub {
 max-width: 64rem;

@@ -4,7 +4,6 @@ description: "Entra&icirc;nez votre contr&ocirc;le inhibiteur et votre attention
 full_width: true
 language: "fr"
 ---
-
 <style>
 #color-clash-game {
 max-width: 600px;

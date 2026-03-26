@@ -4,7 +4,6 @@ description: "リラクゼーションと集中のための全画面ビジュア
 full_width: true
 language: "ja"
 ---
-
 <style>
 #visuals-hub {
 max-width: 64rem;
