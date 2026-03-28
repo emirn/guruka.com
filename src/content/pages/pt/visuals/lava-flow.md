@@ -8,7 +8,7 @@ language: "pt"
 #visual-page {
 max-width: 40rem;
 margin: 0 auto;
-padding: 2rem 1rem 4rem;
+padding: 1.5rem 1rem 2rem;
 text-align: center;
 }
 .vp-back {
@@ -37,7 +37,7 @@ color: var(--color-dark-text-primary, #f9fafb);
 color: var(--color-text-secondary, #4b5b6d);
 font-size: 1rem;
 max-width: 28rem;
-margin: 0 auto 2rem;
+margin: 0 auto 0.25rem;
 line-height: 1.6;
 }
 [data-theme="dark"] .vp-desc {
@@ -46,28 +46,28 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 .vp-schemes {
 display: flex;
 justify-content: center;
-gap: 1rem;
-margin-bottom: 2rem;
+gap: 0.75rem;
+margin-bottom: 1.25rem;
 flex-wrap: wrap;
 }
 .vp-scheme {
 display: flex;
 flex-direction: column;
 align-items: center;
-gap: 0.5rem;
+gap: 0.25rem;
 cursor: pointer;
 background: none;
 border: 3px solid transparent;
 border-radius: 1rem;
-padding: 0.75rem 1rem;
+padding: 0.5rem 0.75rem;
 transition: border-color 0.2s;
 }
 .vp-scheme[aria-pressed="true"] {
 border-color: var(--color-primary, #0f9072);
 }
 .vp-scheme-dot {
-width: 3rem;
-height: 3rem;
+width: 2rem;
+height: 2rem;
 border-radius: 50%;
 }
 .vp-scheme span {
@@ -120,7 +120,7 @@ transition: opacity 1s;
 .vp-scheme, .vp-start { transition: none; }
 }
 .vp-affirmation {
-margin-bottom: 2rem;
+margin-bottom: 1.25rem;
 text-align: left;
 max-width: 28rem;
 margin-left: auto;
@@ -154,7 +154,7 @@ border-color: var(--color-dark-border, #334155);
 color: var(--color-dark-text-primary, #f9fafb);
 }
 .vp-pace {
-margin-bottom: 2rem;
+margin-bottom: 1.25rem;
 max-width: 28rem;
 margin-left: auto;
 margin-right: auto;
@@ -208,17 +208,7 @@ cursor: pointer;
 border: 2px solid #fff;
 box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
-.vp-pace-ends {
-display: flex;
-justify-content: space-between;
-font-size: 0.75rem;
-color: var(--color-text-secondary, #4b5b6d);
-margin-top: 0.25rem;
-}
-[data-theme="dark"] .vp-pace-ends {
-color: var(--color-dark-text-secondary, #cbd5e1);
-}
-.vp-aff-header {
+[data-theme="dark"] .vp-aff-header {
 display: flex;
 justify-content: space-between;
 align-items: baseline;
@@ -314,7 +304,7 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 <div id="vp-intro">
 <a href="/pt/visuals/" class="vp-back">&larr; Todos os Visuais</a>
 <h1 class="vp-title">Fluxo de Lava</h1>
-<p class="vp-desc">Gotas fundindo e separando. Escolha um esquema de cores.</p>
+<p class="vp-desc">Gotas fundindo e separando.</p>
 <div class="vp-schemes">
 <button class="vp-scheme" data-scheme="0" aria-pressed="true">
 <div class="vp-scheme-dot" style="background:linear-gradient(135deg,#f97316,#ef4444)"></div>
@@ -331,12 +321,11 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 </div>
 <div class="vp-affirmation">
 <div class="vp-aff-header"><label for="vp-aff-input" class="vp-aff-label">Texto de afirmação (opcional)</label><div class="vp-aff-presets"><button type="button" class="vp-aff-presets-btn" id="vp-aff-presets-btn" aria-expanded="false">predefinições <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="vp-aff-menu" id="vp-aff-menu"></div></div></div>
-<textarea id="vp-aff-input" class="vp-aff-textarea" rows="3" maxlength="300" placeholder="opcional. Insira afirmações aqui. O texto será exibido linha por linha."></textarea>
+<textarea id="vp-aff-input" class="vp-aff-textarea" rows="2" maxlength="300" placeholder="opcional. Insira afirmações aqui. O texto será exibido linha por linha."></textarea>
 </div>
 <div class="vp-pace">
 <div class="vp-pace-label">Ritmo <span id="vp-pace-val">Normal</span></div>
 <input type="range" id="vp-pace-input" class="vp-pace-slider" min="0" max="4" step="1" value="2">
-<div class="vp-pace-ends"><span>Lento</span><span>Rápido</span></div>
 </div>
 <button class="vp-start" id="vp-start-btn">Iniciar</button>
 </div>
