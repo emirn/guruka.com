@@ -1,6 +1,6 @@
 ---
-title: "溶岩流 - 瞑想ビジュアル"
-description: "浮遊し、融合し、分離する溶岩のしずく。"
+title: "溶岩流 - アファメーションビジュアル"
+description: "浮遊し、融合し、分離する溶岩のしずく。. カスタムアファメーションテキストを追加。ブラウザにプライベートに保存。"
 full_width: true
 language: "ja"
 ---
@@ -119,6 +119,195 @@ transition: opacity 1s;
 @media (prefers-reduced-motion: reduce) {
 .vp-scheme, .vp-start { transition: none; }
 }
+.vp-affirmation {
+margin-bottom: 2rem;
+text-align: left;
+max-width: 28rem;
+margin-left: auto;
+margin-right: auto;
+}
+.vp-aff-label {
+display: block;
+font-size: 0.875rem;
+font-weight: 600;
+color: var(--color-text-secondary, #4b5b6d);
+margin-bottom: 0.5rem;
+}
+[data-theme="dark"] .vp-aff-label {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
+.vp-aff-textarea {
+width: 100%;
+padding: 0.75rem;
+border: 1px solid var(--color-border, #dfe4ea);
+border-radius: 0.75rem;
+font-size: 1rem;
+font-family: inherit;
+resize: vertical;
+background: var(--color-bg-primary, #fff);
+color: var(--color-text-primary, #1a2332);
+box-sizing: border-box;
+}
+[data-theme="dark"] .vp-aff-textarea {
+background: var(--color-dark-bg-primary, #0f1729);
+border-color: var(--color-dark-border, #334155);
+color: var(--color-dark-text-primary, #f9fafb);
+}
+.vp-pace {
+margin-bottom: 2rem;
+max-width: 28rem;
+margin-left: auto;
+margin-right: auto;
+}
+.vp-pace-label {
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 0.875rem;
+font-weight: 600;
+color: var(--color-text-secondary, #4b5b6d);
+margin-bottom: 0.5rem;
+}
+[data-theme="dark"] .vp-pace-label {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
+.vp-pace-label span {
+font-weight: 400;
+font-size: 0.8125rem;
+}
+.vp-pace-slider {
+width: 100%;
+height: 6px;
+-webkit-appearance: none;
+appearance: none;
+background: var(--color-border, #dfe4ea);
+border-radius: 3px;
+outline: none;
+cursor: pointer;
+}
+[data-theme="dark"] .vp-pace-slider {
+background: var(--color-dark-border, #334155);
+}
+.vp-pace-slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: var(--color-primary, #0f9072);
+cursor: pointer;
+border: 2px solid #fff;
+box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.vp-pace-slider::-moz-range-thumb {
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: var(--color-primary, #0f9072);
+cursor: pointer;
+border: 2px solid #fff;
+box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.vp-pace-ends {
+display: flex;
+justify-content: space-between;
+font-size: 0.75rem;
+color: var(--color-text-secondary, #4b5b6d);
+margin-top: 0.25rem;
+}
+[data-theme="dark"] .vp-pace-ends {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
+.vp-aff-header {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+margin-bottom: 0.5rem;
+}
+.vp-aff-header .vp-aff-label {
+margin-bottom: 0;
+}
+.vp-aff-presets {
+position: relative;
+display: inline-block;
+}
+.vp-aff-presets-btn {
+font-size: 0.8125rem;
+font-weight: 500;
+color: var(--color-primary, #0f9072);
+cursor: pointer;
+background: none;
+border: none;
+padding: 0;
+display: flex;
+align-items: center;
+gap: 0.25rem;
+}
+.vp-aff-presets-btn:hover {
+color: var(--color-primary-hover, #0d7d63);
+}
+.vp-aff-presets-btn svg {
+width: 12px;
+height: 12px;
+transition: transform 0.2s;
+}
+.vp-aff-presets-btn[aria-expanded="true"] svg {
+transform: rotate(180deg);
+}
+.vp-aff-menu {
+display: none;
+position: absolute;
+right: 0;
+top: calc(100% + 0.375rem);
+background: var(--color-bg-primary, #fff);
+border: 1px solid var(--color-border, #dfe4ea);
+border-radius: 0.75rem;
+box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+min-width: 15rem;
+z-index: 100;
+padding: 0.375rem;
+max-height: 20rem;
+overflow-y: auto;
+}
+[data-theme="dark"] .vp-aff-menu {
+background: var(--color-dark-bg-primary, #0f1729);
+border-color: var(--color-dark-border, #334155);
+box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.vp-aff-menu.vp-aff-menu-open {
+display: block;
+}
+.vp-aff-menu-item {
+display: block;
+width: 100%;
+text-align: left;
+background: none;
+border: none;
+padding: 0.625rem 0.75rem;
+border-radius: 0.5rem;
+cursor: pointer;
+color: var(--color-text-primary, #1a2332);
+font-size: 0.875rem;
+line-height: 1.4;
+}
+[data-theme="dark"] .vp-aff-menu-item {
+color: var(--color-dark-text-primary, #f9fafb);
+}
+.vp-aff-menu-item:hover {
+background: rgba(0,0,0,0.04);
+}
+[data-theme="dark"] .vp-aff-menu-item:hover {
+background: rgba(255,255,255,0.06);
+}
+.vp-aff-menu-item-title {
+font-weight: 600;
+font-size: 0.8125rem;
+color: var(--color-text-secondary, #4b5b6d);
+margin-bottom: 0.125rem;
+}
+[data-theme="dark"] .vp-aff-menu-item-title {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
 </style>
 
 <div id="visual-page">
@@ -140,6 +329,15 @@ transition: opacity 1s;
 <span>エメラルド</span>
 </button>
 </div>
+<div class="vp-affirmation">
+<div class="vp-aff-header"><label for="vp-aff-input" class="vp-aff-label">アファメーションテキスト（任意）</label><div class="vp-aff-presets"><button type="button" class="vp-aff-presets-btn" id="vp-aff-presets-btn" aria-expanded="false">プリセット <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="vp-aff-menu" id="vp-aff-menu"></div></div></div>
+<textarea id="vp-aff-input" class="vp-aff-textarea" rows="3" maxlength="300" placeholder="任意。アファメーションを入力してください。テキストは一行ずつ表示されます。"></textarea>
+</div>
+<div class="vp-pace">
+<div class="vp-pace-label">ペース <span id="vp-pace-val">普通</span></div>
+<input type="range" id="vp-pace-input" class="vp-pace-slider" min="0" max="4" step="1" value="2">
+<div class="vp-pace-ends"><span>遅い</span><span>速い</span></div>
+</div>
 <button class="vp-start" id="vp-start-btn">開始</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
@@ -150,6 +348,10 @@ transition: opacity 1s;
 
 <script>
 (function() {
+var VISUAL_SLUG = 'lava-flow';
+var currentAffId = null;
+var paceLabels = ["とても遅い","遅い","普通","速い","とても速い"];
+var currentPace = 2;
 var schemes = [
 { name:'Magma', bg:'#0d0505', colors:['#ff4500','#ff6b35','#ffaa00','#ff2200','#ff8c00','#cc3300','#ff5500'] },
 { name:'Neon', bg:'#050510', colors:['#00e5ff','#e040fb','#2979ff','#00bcd4','#d500f9','#448aff','#18ffff'] },
@@ -175,6 +377,50 @@ btns.forEach(function(x) { x.setAttribute('aria-pressed', 'false'); });
 b.setAttribute('aria-pressed', 'true');
 currentScheme = parseInt(b.getAttribute('data-scheme'));
 });
+});
+
+// Pace slider
+var paceInput = document.getElementById('vp-pace-input');
+var paceVal = document.getElementById('vp-pace-val');
+paceInput.addEventListener('input', function() {
+currentPace = parseInt(paceInput.value);
+paceVal.textContent = paceLabels[currentPace];
+});
+
+// Preset examples dropdown
+var affPresets = [
+{title:'なし',text:''},
+{title:'心の平穏',text:'私の心は穏やかで澄んでいる\n私はコントロールできないことを手放す\n私は今この瞬間にいる'},
+{title:'自信',text:'私は自分自身と自分の能力を信じている\n私は良いものに値する\n私は日々強くなっている'},
+{title:'手放す',text:'もう必要のないものを手放す\n自分自身と他者を許す\n平和のための空間を作る'},
+{title:'感謝',text:'この瞬間に感謝している\n豊かさが人生に流れ込む\nシンプルなことに感謝する'},
+{title:'集中とエネルギー',text:'私の集中力は鋭く安定している\n目的を持ってエネルギーを注ぐ\n意図を持って前に進む'},
+{title:'睡眠と休息',text:'休むことを自分に許す\n呼吸のたびに体がリラックスする\n穏やかな眠りへと導かれる'},
+{title:'禁煙',text:'肺は日々きれいになっている\n私はどんな衝動よりも強い\n一息一息が勝利である'}
+];
+var presetsBtn = document.getElementById('vp-aff-presets-btn');
+var presetsMenu = document.getElementById('vp-aff-menu');
+var menuHtml = '';
+for (var pi = 0; pi < affPresets.length; pi++) {
+menuHtml += '<button class="vp-aff-menu-item" data-preset="' + pi + '"><div class="vp-aff-menu-item-title">' + affPresets[pi].title + '</div>' + (affPresets[pi].text ? affPresets[pi].text.split('\n')[0] + '…' : 'テキストをクリア') + '</button>';
+}
+presetsMenu.innerHTML = menuHtml;
+presetsBtn.addEventListener('click', function(e) {
+e.stopPropagation();
+var open = presetsMenu.classList.toggle('vp-aff-menu-open');
+presetsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+presetsMenu.addEventListener('click', function(e) {
+var item = e.target.closest('[data-preset]');
+if (!item) return;
+var idx = parseInt(item.getAttribute('data-preset'));
+document.getElementById('vp-aff-input').value = affPresets[idx].text;
+presetsMenu.classList.remove('vp-aff-menu-open');
+presetsBtn.setAttribute('aria-expanded', 'false');
+});
+document.addEventListener('click', function() {
+presetsMenu.classList.remove('vp-aff-menu-open');
+presetsBtn.setAttribute('aria-expanded', 'false');
 });
 
 var blobs = [];
@@ -323,17 +569,28 @@ resize();
 initBlobs();
 hideNavFooter();
 acquireWakeLock();
+var affText = document.getElementById('vp-aff-input').value.trim();
+if (affText && window.GK && GK.Affirmations) {
+var meta = GK.Affirmations.VISUAL_META[VISUAL_SLUG];
+GK.Affirmations.createOverlay(fs, affText, meta.pulseDuration, currentPace);
+GK.Affirmations.save({
+id: currentAffId || GK.Affirmations.generateId(),
+text: affText, visual: VISUAL_SLUG, scheme: currentScheme, pace: currentPace,
+createdAt: Date.now()
+});
+}
 if (reducedMotion) {
 hint.innerHTML = 'モーション軽減が有効 \u00b7 静的ビューを表示中<br>どこでもタップして終了';
 }
 hint.style.opacity = '1';
-setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);
+setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 2500 : 1500);
 animId = requestAnimationFrame(draw);
 }
 
 function stop() {
 running = false;
 if (animId) { cancelAnimationFrame(animId); animId = null; }
+if (window.GK && GK.Affirmations) GK.Affirmations.destroyOverlay();
 fs.style.display = 'none';
 intro.style.display = '';
 showNavFooter();
@@ -346,5 +603,28 @@ window.addEventListener('resize', function() { if (running) resize(); });
 document.addEventListener('keydown', function(e) {
 if (e.key === 'Escape' && running) stop();
 });
+// Query param handling for affirmation play/edit
+if (window.GK && GK.Affirmations) {
+GK.Affirmations._loadFont();
+var params = new URLSearchParams(window.location.search);
+var affParam = params.get('aff');
+var editParam = params.get('edit');
+var affId = affParam || editParam;
+if (affId) {
+var found = GK.Affirmations.getById(affId);
+if (found) {
+currentAffId = found.id;
+document.getElementById('vp-aff-input').value = found.text;
+currentScheme = found.scheme || 0;
+currentPace = found.pace != null ? found.pace : 2;
+paceInput.value = currentPace;
+paceVal.textContent = paceLabels[currentPace];
+btns.forEach(function(b) {
+b.setAttribute('aria-pressed', b.getAttribute('data-scheme') == String(currentScheme) ? 'true' : 'false');
+});
+if (affParam) start();
+}
+}
+}
 })();
 </script>

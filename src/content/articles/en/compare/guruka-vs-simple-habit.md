@@ -32,6 +32,7 @@ Simple Habit is a meditation app designed for busy people. Its signature feature
 | **Time to start** | Download → signup → onboarding | Open page → meditate |
 | **Privacy** | Collects account and usage data | No personal data collected |
 | **Brain games** | No | Yes |
+| **Affirmations** | No | Yes — [editable, 100% private](/visuals/) (stored in your browser only) |
 | **5-minute sessions** | Yes (core feature) | Yes (multiple durations) |
 | **Situation-specific sessions** | Yes (commuting, work, conversations) | Yes (by category) |
 | **On-the-go sessions** | Yes (designed for mobile) | Yes (works in any browser) |

@@ -32,6 +32,7 @@ Balance is a meditation app that uses AI-driven personalization to tailor sessio
 | **Time to start** | Download → signup → onboarding quiz | Open page → meditate |
 | **Privacy** | Collects account, usage, and personalization data | No personal data collected |
 | **Brain games** | No | Yes |
+| **Affirmations** | No | Yes — [editable, 100% private](/visuals/) (stored in your browser only) |
 | **AI personalization** | Yes (adapts daily) | No (choose by category) |
 | **Daily check-ins** | Yes (drives session selection) | No |
 | **Lock-in after trial** | Yes (habit built on paid platform) | No (free forever) |

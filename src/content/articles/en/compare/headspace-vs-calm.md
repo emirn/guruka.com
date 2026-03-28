@@ -35,6 +35,7 @@ Here's how they compare.
 | **Sleep content** | Yes (premium) | Yes (premium) | Sleep meditation included |
 | **Beginner program** | Structured courses | Less structured | Guided sessions |
 | **Brain games** | No | No | Yes (focus & memory games) |
+| **Affirmations** | No | No | Yes — [editable, 100% private](/visuals/) (stored in your browser only) |
 | **Time to start** | Download app → create account → choose plan | Download app → create account → choose plan | Open page → meditate |
 
 ## Headspace Strengths

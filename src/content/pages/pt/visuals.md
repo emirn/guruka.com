@@ -1,6 +1,6 @@
 ---
-title: "Visuais Meditativos"
-description: "Visuais relaxantes em tela cheia para relaxamento e foco."
+title: "Afirmações e Visuais Meditativos"
+description: "Visuais relaxantes em tela cheia com texto de afirmação personalizado. Crie suas próprias afirmações, armazenadas com privacidade no seu navegador."
 full_width: true
 language: "pt"
 ---
@@ -133,7 +133,7 @@ color: var(--color-primary-hover, #0d7d63);
 <div id="visuals-hub">
 <div class="vh-header">
 <h1>Visuais Meditativos</h1>
-<p>Animações relaxantes em tela cheia para relaxamento e foco. Sem necessidade de conta.</p>
+<p>Animações relaxantes em tela cheia para relaxamento e foco. Insira seu texto de afirmação para exibir.<br>Sem necessidade de conta.</p>
 </div>
 
 <div class="vh-grid">

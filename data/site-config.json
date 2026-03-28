@@ -3,8 +3,8 @@
     "badge": "",
     "site": {
       "name": "GURUKA",
-      "tagline": "Free Guided Meditations, Visualizations & Brain Games",
-      "description": "Free guided meditations, calming visualizations, and brain training games. No account required. No personal data collected. Works offline.",
+      "tagline": "Free Guided Meditations, Affirmations & Brain Games",
+      "description": "Free guided meditations, custom affirmations with calming visuals, and brain training games. No account required. No personal data collected. Works offline.",
       "url": "https://guruka.com",
       "language": "en",
       "favicon_url": "",
@@ -46,7 +46,7 @@
     },
     "dark_mode": {
       "enabled": true,
-      "default": "light",
+      "default": "dark",
       "toggle_position": "footer",
       "colors": {
         "text_primary": "#f9fafb",
@@ -104,12 +104,12 @@
         "url": "/meditate/"
       },
       {
-        "label": "Games",
-        "url": "/games/"
+        "label": "Affirmations",
+        "url": "/visuals/"
       },
       {
-        "label": "Visuals",
-        "url": "/visuals/"
+        "label": "Games",
+        "url": "/games/"
       },
       {
         "label": "Blog",
@@ -190,24 +190,7 @@
         ]
       },
       {
-        "title": "Games",
-        "links": [
-          {
-            "label": "Speed Match",
-            "url": "/games/speed-match/"
-          },
-          {
-            "label": "Memory Matrix",
-            "url": "/games/memory-matrix/"
-          },
-          {
-            "label": "Sequence Recall",
-            "url": "/games/sequence-recall/"
-          }
-        ]
-      },
-      {
-        "title": "Visuals",
+        "title": "Affirmations",
         "links": [
           {
             "label": "Breathing Orb",
@@ -236,6 +219,23 @@
           {
             "label": "Ocean Waves",
             "url": "/visuals/ocean-waves/"
+          }
+        ]
+      },
+      {
+        "title": "Games",
+        "links": [
+          {
+            "label": "Speed Match",
+            "url": "/games/speed-match/"
+          },
+          {
+            "label": "Memory Matrix",
+            "url": "/games/memory-matrix/"
+          },
+          {
+            "label": "Sequence Recall",
+            "url": "/games/sequence-recall/"
           }
         ]
       },
@@ -382,7 +382,7 @@
     "show_tags": false
   },
   "seo": {
-    "title_separator": " | ",
+    "title_separator": ", ",
     "default_og_image": "",
     "twitter_handle": "",
     "enable_json_ld": true,
@@ -500,6 +500,7 @@
         "Meditate": "Meditar",
         "Games": "Juegos",
         "Visuals": "Visuales",
+        "Affirmations": "Afirmaciones",
         "Blog": "Blog",
         "Learn": "Aprender",
         "Legal": "Legal",
@@ -529,6 +530,7 @@
         "Meditate": "Meditieren",
         "Games": "Spiele",
         "Visuals": "Visuelles",
+        "Affirmations": "Affirmationen",
         "Blog": "Blog",
         "Learn": "Lernen",
         "Legal": "Rechtliches",
@@ -558,6 +560,7 @@
         "Meditate": "Méditer",
         "Games": "Jeux",
         "Visuals": "Visuels",
+        "Affirmations": "Affirmations",
         "Blog": "Blog",
         "Learn": "Apprendre",
         "Legal": "Mentions légales",
@@ -587,6 +590,7 @@
         "Meditate": "Meditar",
         "Games": "Jogos",
         "Visuals": "Visuais",
+        "Affirmations": "Afirmações",
         "Blog": "Blog",
         "Learn": "Aprender",
         "Legal": "Legal",
@@ -616,6 +620,7 @@
         "Meditate": "瞑想",
         "Games": "ゲーム",
         "Visuals": "ビジュアル",
+        "Affirmations": "アファメーション",
         "Blog": "ブログ",
         "Learn": "学ぶ",
         "Legal": "法的情報",
@@ -645,6 +650,7 @@
         "Meditate": "명상",
         "Games": "게임",
         "Visuals": "비주얼",
+        "Affirmations": "확언",
         "Blog": "블로그",
         "Learn": "배우기",
         "Legal": "법적 정보",
@@ -673,7 +679,7 @@
     }
   },
   "build_info": {
-    "git_commit": "09f688615",
-    "build_date": "2026-03-26T09:51:04.614Z"
+    "git_commit": "5f11b4ac8",
+    "build_date": "2026-03-28T09:21:57.872Z"
   }
 }

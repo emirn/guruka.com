@@ -35,6 +35,7 @@ Headspace locks about 95% of its content behind its annual subscription. The fre
 | **Offline access** | Premium only | Yes (works offline) | Premium only | Yes |
 | **Beginner friendly** | Excellent (paid) | Very good | Moderate (overwhelming) | Very good |
 | **Brain games** | No | Yes | No | No |
+| **Affirmations** | No | Yes — editable, private | No | No |
 | **Time to start** | Download → signup → free trial | Open page → meditate | Download → signup → browse | Download → signup → choose program |
 
 ## Why Guruka Works as a Headspace Replacement

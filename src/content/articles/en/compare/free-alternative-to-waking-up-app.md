@@ -35,6 +35,7 @@ Waking Up focuses on what Harris calls "non-dual awareness" — the idea that th
 | **Platforms** | iOS, Android app | Any web browser | iOS, Android app | iOS, Android app |
 | **Offline access** | Yes | Yes (works offline) | Premium only | Yes |
 | **Brain games** | No | Yes | No | No |
+| **Affirmations** | No | Yes — editable, private | No | No |
 | **Philosophy content** | Extensive | No | Some | No |
 | **Time to start** | Download → signup → purchase or request free | Open page → meditate | Download → signup → browse | Download → signup → choose program |
 

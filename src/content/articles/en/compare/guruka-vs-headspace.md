@@ -32,6 +32,7 @@ Headspace is one of the most recognized names in meditation. Founded by Andy Pud
 | **Time to start** | Download → signup → onboarding | Open page → meditate |
 | **Privacy** | Account with email, usage tracking | No account, no personal data collected |
 | **Brain games** | No | Yes — [focus and memory games](/games/) |
+| **Affirmations** | No | Yes — [editable, 100% private](/visuals/) (stored in your browser only) |
 | **Structured courses** | Yes (Basics, Pro, etc.) | No — category-based sessions |
 | **Animations & videos** | Yes | No |
 | **Sleep content** | Premium only | Yes — [sleep & wind down](/meditate/sleep-and-wind-down/) |

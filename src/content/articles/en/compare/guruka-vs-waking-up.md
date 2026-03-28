@@ -32,6 +32,7 @@ Waking Up is Sam Harris's meditation app, built around a secular, philosophical 
 | **Time to start** | Download → signup → onboarding | Open page → meditate |
 | **Privacy** | Account with email, usage tracking | No account, no personal data collected |
 | **Brain games** | No | Yes — [focus and memory games](/games/) |
+| **Affirmations** | No | Yes — [editable, 100% private](/visuals/) (stored in your browser only) |
 | **Theory & philosophy** | Yes — lessons, conversations, podcasts | No — focused on practice |
 | **Teaching style** | Non-dual awareness, intellectual | Guided meditation, accessible |
 | **Intro course** | 28-day structured program | Category-based, start anytime |

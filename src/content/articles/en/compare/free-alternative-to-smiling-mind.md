@@ -35,6 +35,7 @@ Smiling Mind offers about 300 sessions organized into programs for different age
 | **Offline access** | Yes | Yes (works offline) | Premium only | Premium only |
 | **Adult-focused content** | Limited | Yes | Extensive | Yes (premium) |
 | **Brain games** | No | Yes | No | No |
+| **Affirmations** | No | Yes — editable, private | No | No |
 | **Time to start** | Download → signup → choose age group | Open page → meditate | Download → signup → browse | Download → signup → hit paywall |
 
 ## Why Guruka Works as a Smiling Mind Alternative

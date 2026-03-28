@@ -1,6 +1,6 @@
 ---
-title: "오로라 - 명상 비주얼"
-description: "화면을 가로지르는 흐르는 오로라 색상 띠."
+title: "오로라 - 확언 비주얼"
+description: "화면을 가로지르는 흐르는 오로라 색상 띠. 맞춤 확언 텍스트를 추가하세요. 브라우저에 비공개로 저장됩니다."
 full_width: true
 language: "ko"
 ---
@@ -119,6 +119,195 @@ transition: opacity 1s;
 @media (prefers-reduced-motion: reduce) {
 .vp-scheme, .vp-start { transition: none; }
 }
+.vp-affirmation {
+margin-bottom: 2rem;
+text-align: left;
+max-width: 28rem;
+margin-left: auto;
+margin-right: auto;
+}
+.vp-aff-label {
+display: block;
+font-size: 0.875rem;
+font-weight: 600;
+color: var(--color-text-secondary, #4b5b6d);
+margin-bottom: 0.5rem;
+}
+[data-theme="dark"] .vp-aff-label {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
+.vp-aff-textarea {
+width: 100%;
+padding: 0.75rem;
+border: 1px solid var(--color-border, #dfe4ea);
+border-radius: 0.75rem;
+font-size: 1rem;
+font-family: inherit;
+resize: vertical;
+background: var(--color-bg-primary, #fff);
+color: var(--color-text-primary, #1a2332);
+box-sizing: border-box;
+}
+[data-theme="dark"] .vp-aff-textarea {
+background: var(--color-dark-bg-primary, #0f1729);
+border-color: var(--color-dark-border, #334155);
+color: var(--color-dark-text-primary, #f9fafb);
+}
+.vp-pace {
+margin-bottom: 2rem;
+max-width: 28rem;
+margin-left: auto;
+margin-right: auto;
+}
+.vp-pace-label {
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 0.875rem;
+font-weight: 600;
+color: var(--color-text-secondary, #4b5b6d);
+margin-bottom: 0.5rem;
+}
+[data-theme="dark"] .vp-pace-label {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
+.vp-pace-label span {
+font-weight: 400;
+font-size: 0.8125rem;
+}
+.vp-pace-slider {
+width: 100%;
+height: 6px;
+-webkit-appearance: none;
+appearance: none;
+background: var(--color-border, #dfe4ea);
+border-radius: 3px;
+outline: none;
+cursor: pointer;
+}
+[data-theme="dark"] .vp-pace-slider {
+background: var(--color-dark-border, #334155);
+}
+.vp-pace-slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: var(--color-primary, #0f9072);
+cursor: pointer;
+border: 2px solid #fff;
+box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.vp-pace-slider::-moz-range-thumb {
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: var(--color-primary, #0f9072);
+cursor: pointer;
+border: 2px solid #fff;
+box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.vp-pace-ends {
+display: flex;
+justify-content: space-between;
+font-size: 0.75rem;
+color: var(--color-text-secondary, #4b5b6d);
+margin-top: 0.25rem;
+}
+[data-theme="dark"] .vp-pace-ends {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
+.vp-aff-header {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+margin-bottom: 0.5rem;
+}
+.vp-aff-header .vp-aff-label {
+margin-bottom: 0;
+}
+.vp-aff-presets {
+position: relative;
+display: inline-block;
+}
+.vp-aff-presets-btn {
+font-size: 0.8125rem;
+font-weight: 500;
+color: var(--color-primary, #0f9072);
+cursor: pointer;
+background: none;
+border: none;
+padding: 0;
+display: flex;
+align-items: center;
+gap: 0.25rem;
+}
+.vp-aff-presets-btn:hover {
+color: var(--color-primary-hover, #0d7d63);
+}
+.vp-aff-presets-btn svg {
+width: 12px;
+height: 12px;
+transition: transform 0.2s;
+}
+.vp-aff-presets-btn[aria-expanded="true"] svg {
+transform: rotate(180deg);
+}
+.vp-aff-menu {
+display: none;
+position: absolute;
+right: 0;
+top: calc(100% + 0.375rem);
+background: var(--color-bg-primary, #fff);
+border: 1px solid var(--color-border, #dfe4ea);
+border-radius: 0.75rem;
+box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+min-width: 15rem;
+z-index: 100;
+padding: 0.375rem;
+max-height: 20rem;
+overflow-y: auto;
+}
+[data-theme="dark"] .vp-aff-menu {
+background: var(--color-dark-bg-primary, #0f1729);
+border-color: var(--color-dark-border, #334155);
+box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.vp-aff-menu.vp-aff-menu-open {
+display: block;
+}
+.vp-aff-menu-item {
+display: block;
+width: 100%;
+text-align: left;
+background: none;
+border: none;
+padding: 0.625rem 0.75rem;
+border-radius: 0.5rem;
+cursor: pointer;
+color: var(--color-text-primary, #1a2332);
+font-size: 0.875rem;
+line-height: 1.4;
+}
+[data-theme="dark"] .vp-aff-menu-item {
+color: var(--color-dark-text-primary, #f9fafb);
+}
+.vp-aff-menu-item:hover {
+background: rgba(0,0,0,0.04);
+}
+[data-theme="dark"] .vp-aff-menu-item:hover {
+background: rgba(255,255,255,0.06);
+}
+.vp-aff-menu-item-title {
+font-weight: 600;
+font-size: 0.8125rem;
+color: var(--color-text-secondary, #4b5b6d);
+margin-bottom: 0.125rem;
+}
+[data-theme="dark"] .vp-aff-menu-item-title {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
 </style>
 
 <div id="visual-page">
@@ -140,6 +329,15 @@ transition: opacity 1s;
 <span>새벽</span>
 </button>
 </div>
+<div class="vp-affirmation">
+<div class="vp-aff-header"><label for="vp-aff-input" class="vp-aff-label">확언 텍스트 (선택 사항)</label><div class="vp-aff-presets"><button type="button" class="vp-aff-presets-btn" id="vp-aff-presets-btn" aria-expanded="false">프리셋 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="vp-aff-menu" id="vp-aff-menu"></div></div></div>
+<textarea id="vp-aff-input" class="vp-aff-textarea" rows="3" maxlength="300" placeholder="선택 사항. 확언을 입력하세요. 텍스트가 한 줄씩 표시됩니다."></textarea>
+</div>
+<div class="vp-pace">
+<div class="vp-pace-label">속도 <span id="vp-pace-val">보통</span></div>
+<input type="range" id="vp-pace-input" class="vp-pace-slider" min="0" max="4" step="1" value="2">
+<div class="vp-pace-ends"><span>느림</span><span>빠름</span></div>
+</div>
 <button class="vp-start" id="vp-start-btn">시작</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
@@ -150,6 +348,10 @@ transition: opacity 1s;
 
 <script>
 (function() {
+var VISUAL_SLUG = 'aurora';
+var currentAffId = null;
+var paceLabels = ["매우 느림","느림","보통","빠름","매우 빠름"];
+var currentPace = 2;
 var schemes = [
 { name:'Arctic', bg:'#020810',
 bands:[
@@ -198,6 +400,50 @@ btns.forEach(function(x) { x.setAttribute('aria-pressed', 'false'); });
 b.setAttribute('aria-pressed', 'true');
 currentScheme = parseInt(b.getAttribute('data-scheme'));
 });
+});
+
+// Pace slider
+var paceInput = document.getElementById('vp-pace-input');
+var paceVal = document.getElementById('vp-pace-val');
+paceInput.addEventListener('input', function() {
+currentPace = parseInt(paceInput.value);
+paceVal.textContent = paceLabels[currentPace];
+});
+
+// Preset examples dropdown
+var affPresets = [
+{title:'없음',text:''},
+{title:'평온과 명확함',text:'내 마음은 평온하고 맑다\n통제할 수 없는 것을 내려놓는다\n나는 이 순간에 존재한다'},
+{title:'자신감',text:'나는 나 자신과 내 능력을 뿰는다\n나는 좋은 것을 받을 자격이 있다\n나는 매일 더 강해진다'},
+{title:'내려놓기',text:'더 이상 도움이 되지 않는 것을 내려놓는다\n나 자신과 다른 사람을 용서한다\n평화를 위한 공간을 만든다'},
+{title:'감사',text:'이 순간에 감사한다\n풍요로움이 내 삶에 흐른다\n소박한 것들에 감사한다'},
+{title:'집중과 에너지',text:'내 집중력은 날카록고 안정적이다\n목적을 가지고 에너지를 쓴다\n의지를 가지고 앞으로 나아간다'},
+{title:'수면과 휴식',text:'쉬어도 된다고 나에게 허락한다\n숨을 쉴 때마다 몸이 이완된다\n평화로운 잠 속으로 빠져든다'},
+{title:'금연',text:'내 폐는 매일 깨끗해지고 있다\n나는 어떤 갈망보다 강하다\n모든 호흡이 승리이다'}
+];
+var presetsBtn = document.getElementById('vp-aff-presets-btn');
+var presetsMenu = document.getElementById('vp-aff-menu');
+var menuHtml = '';
+for (var pi = 0; pi < affPresets.length; pi++) {
+menuHtml += '<button class="vp-aff-menu-item" data-preset="' + pi + '"><div class="vp-aff-menu-item-title">' + affPresets[pi].title + '</div>' + (affPresets[pi].text ? affPresets[pi].text.split('\n')[0] + '…' : '텍스트 지우기') + '</button>';
+}
+presetsMenu.innerHTML = menuHtml;
+presetsBtn.addEventListener('click', function(e) {
+e.stopPropagation();
+var open = presetsMenu.classList.toggle('vp-aff-menu-open');
+presetsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+presetsMenu.addEventListener('click', function(e) {
+var item = e.target.closest('[data-preset]');
+if (!item) return;
+var idx = parseInt(item.getAttribute('data-preset'));
+document.getElementById('vp-aff-input').value = affPresets[idx].text;
+presetsMenu.classList.remove('vp-aff-menu-open');
+presetsBtn.setAttribute('aria-expanded', 'false');
+});
+document.addEventListener('click', function() {
+presetsMenu.classList.remove('vp-aff-menu-open');
+presetsBtn.setAttribute('aria-expanded', 'false');
 });
 
 function resize() {
@@ -368,17 +614,28 @@ fs.style.display = 'block';
 resize();
 hideNavFooter();
 acquireWakeLock();
+var affText = document.getElementById('vp-aff-input').value.trim();
+if (affText && window.GK && GK.Affirmations) {
+var meta = GK.Affirmations.VISUAL_META[VISUAL_SLUG];
+GK.Affirmations.createOverlay(fs, affText, meta.pulseDuration, currentPace);
+GK.Affirmations.save({
+id: currentAffId || GK.Affirmations.generateId(),
+text: affText, visual: VISUAL_SLUG, scheme: currentScheme, pace: currentPace,
+createdAt: Date.now()
+});
+}
 if (reducedMotion) {
 hint.innerHTML = '모션 감소 활성화 \u00b7 정적 뷰 표시 중<br>아무 곳이나 탭하여 종료';
 }
 hint.style.opacity = '1';
-setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);
+setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 2500 : 1500);
 animId = requestAnimationFrame(draw);
 }
 
 function stop() {
 running = false;
 if (animId) { cancelAnimationFrame(animId); animId = null; }
+if (window.GK && GK.Affirmations) GK.Affirmations.destroyOverlay();
 fs.style.display = 'none';
 intro.style.display = '';
 showNavFooter();
@@ -391,5 +648,28 @@ window.addEventListener('resize', function() { if (running) resize(); });
 document.addEventListener('keydown', function(e) {
 if (e.key === 'Escape' && running) stop();
 });
+// Query param handling for affirmation play/edit
+if (window.GK && GK.Affirmations) {
+GK.Affirmations._loadFont();
+var params = new URLSearchParams(window.location.search);
+var affParam = params.get('aff');
+var editParam = params.get('edit');
+var affId = affParam || editParam;
+if (affId) {
+var found = GK.Affirmations.getById(affId);
+if (found) {
+currentAffId = found.id;
+document.getElementById('vp-aff-input').value = found.text;
+currentScheme = found.scheme || 0;
+currentPace = found.pace != null ? found.pace : 2;
+paceInput.value = currentPace;
+paceVal.textContent = paceLabels[currentPace];
+btns.forEach(function(b) {
+b.setAttribute('aria-pressed', b.getAttribute('data-scheme') == String(currentScheme) ? 'true' : 'false');
+});
+if (affParam) start();
+}
+}
+}
 })();
 </script>

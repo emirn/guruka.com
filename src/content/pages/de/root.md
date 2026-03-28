@@ -125,19 +125,19 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 <div class="gk-hero-meta">Kostenlos, kein Konto nötig</div>
 </div>
 </a>
+<a href="/de/visuals/" class="gk-hero-card">
+<div class="gk-hero-icon">✨</div>
+<div class="gk-hero-body">
+<h2>Affirmationen</h2>
+<p>Beruhigende Visuals mit optionalem Affirmationstext</p>
+<div class="gk-hero-meta">Kostenlos, kein Konto nötig</div>
+</div>
+</a>
 <a href="/de/games/" class="gk-hero-card">
 <div class="gk-hero-icon">🧠</div>
 <div class="gk-hero-body">
 <h2>Gehirnspiele</h2>
 <p>Trainiere dein Gehirn mit Spielen für verschiedene kognitive Fähigkeiten</p>
-<div class="gk-hero-meta">Kostenlos, kein Konto nötig</div>
-</div>
-</a>
-<a href="/de/visuals/" class="gk-hero-card">
-<div class="gk-hero-icon">✨</div>
-<div class="gk-hero-body">
-<h2>Meditative Visuals</h2>
-<p>Beruhigende Vollbild-Animationen zur Entspannung</p>
 <div class="gk-hero-meta">Kostenlos, kein Konto nötig</div>
 </div>
 </a>

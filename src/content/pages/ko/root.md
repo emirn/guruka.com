@@ -125,19 +125,19 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 <div class="gk-hero-meta">무료, 계정 불필요</div>
 </div>
 </a>
+<a href="/ko/visuals/" class="gk-hero-card">
+<div class="gk-hero-icon">✨</div>
+<div class="gk-hero-body">
+<h2>확언</h2>
+<p>선택적 확언 텍스트가 포함된 편안한 비주얼</p>
+<div class="gk-hero-meta">무료, 계정 불필요</div>
+</div>
+</a>
 <a href="/ko/games/" class="gk-hero-card">
 <div class="gk-hero-icon">🧠</div>
 <div class="gk-hero-body">
 <h2>두뇌 게임</h2>
 <p>다양한 인지 능력을 훈련하는 게임</p>
-<div class="gk-hero-meta">무료, 계정 불필요</div>
-</div>
-</a>
-<a href="/ko/visuals/" class="gk-hero-card">
-<div class="gk-hero-icon">✨</div>
-<div class="gk-hero-body">
-<h2>명상 비주얼</h2>
-<p>휴식을 위한 전체 화면 애니메이션</p>
 <div class="gk-hero-meta">무료, 계정 불필요</div>
 </div>
 </a>
