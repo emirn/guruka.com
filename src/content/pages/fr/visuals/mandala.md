@@ -401,7 +401,7 @@ var presetsBtn = document.getElementById('vp-aff-presets-btn');
 var presetsMenu = document.getElementById('vp-aff-menu');
 var menuHtml = '';
 for (var pi = 0; pi < affPresets.length; pi++) {
-menuHtml += '<button class="vp-aff-menu-item" data-preset="' + pi + '"><div class="vp-aff-menu-item-title">' + affPresets[pi].title + '</div>' + (affPresets[pi].text ? affPresets[pi].text.split('\n')[0] + '\u2026' : 'Effacer le texte') + '</button>';
+menuHtml += '<button class="vp-aff-menu-item" data-preset="' + pi + '"><div class="vp-aff-menu-item-title">' + affPresets[pi].title + '</div>' + (affPresets[pi].text ? affPresets[pi].text.split('\n')[0] + '…' : 'Effacer le texte') + '</button>';
 }
 presetsMenu.innerHTML = menuHtml;
 presetsBtn.addEventListener('click', function(e) {
@@ -582,7 +582,7 @@ createdAt: Date.now()
 });
 }
 if (reducedMotion) {
-hint.innerHTML = 'Mouvement réduit activé \u00b7 Affichage statique<br>Appuyez n\u0027importe où pour quitter';
+hint.innerHTML = 'Mouvement réduit activé · Affichage statique<br>Appuyez n'importe où pour quitter';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 2500 : 1500);
