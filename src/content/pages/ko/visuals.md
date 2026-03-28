@@ -1,6 +1,6 @@
 ---
-title: "명상 비주얼"
-description: "휴식과 집중을 위한 전체 화면 비주얼."
+title: "확언 및 명상 비주얼"
+description: "맞춤 확언 텍스트가 포함된 전체 화면 편안한 비주얼. 나만의 확언을 만들고 브라우저에 비공개로 저장하세요."
 full_width: true
 language: "ko"
 ---
@@ -133,7 +133,7 @@ color: var(--color-primary-hover, #0d7d63);
 <div id="visuals-hub">
 <div class="vh-header">
 <h1>명상 비주얼</h1>
-<p>휴식과 집중을 위한 전체 화면 애니메이션. 계정이 필요하지 않습니다.</p>
+<p>휴식과 집중을 위한 차분한 전체 화면 애니메이션. 확언 텍스트를 입력하여 표시하세요.<br>계정이 필요하지 않습니다.</p>
 </div>
 
 <div class="vh-grid">

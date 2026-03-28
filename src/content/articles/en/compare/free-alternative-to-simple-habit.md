@@ -35,6 +35,7 @@ Simple Habit's free tier gives you a limited selection of sessions. The full lib
 | **Platforms** | iOS, Android app | Any web browser | iOS, Android app | iOS, Android app |
 | **Offline access** | Premium only | Yes (works offline) | Premium only | Yes |
 | **Brain games** | No | Yes | No | No |
+| **Affirmations** | No | Yes — editable, private | No | No |
 | **Time to start** | Download → signup → free trial | Open page → meditate | Download → signup → browse | Download → signup → choose program |
 
 ## Why Guruka Works as a Simple Habit Replacement

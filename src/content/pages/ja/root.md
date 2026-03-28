@@ -125,19 +125,19 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 <div class="gk-hero-meta">無料・アカウント不要</div>
 </div>
 </a>
+<a href="/ja/visuals/" class="gk-hero-card">
+<div class="gk-hero-icon">✨</div>
+<div class="gk-hero-body">
+<h2>アファメーション</h2>
+<p>リラックスできるビジュアルとオプションのアファメーションテキスト</p>
+<div class="gk-hero-meta">無料・アカウント不要</div>
+</div>
+</a>
 <a href="/ja/games/" class="gk-hero-card">
 <div class="gk-hero-icon">🧠</div>
 <div class="gk-hero-body">
 <h2>脳トレゲーム</h2>
 <p>さまざまな認知スキルを鍛えるゲーム</p>
-<div class="gk-hero-meta">無料・アカウント不要</div>
-</div>
-</a>
-<a href="/ja/visuals/" class="gk-hero-card">
-<div class="gk-hero-icon">✨</div>
-<div class="gk-hero-body">
-<h2>瞑想ビジュアル</h2>
-<p>リラクゼーションのための全画面アニメーション</p>
 <div class="gk-hero-meta">無料・アカウント不要</div>
 </div>
 </a>

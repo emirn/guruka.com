@@ -1,6 +1,6 @@
 ---
-title: "Meditative Visuals"
-description: "Calming full-screen visuals for relaxation and focus."
+title: "Affirmations & Meditative Visuals"
+description: "Calming full-screen visuals with custom affirmation text. Create your own affirmations, displayed privately in your browser."
 full_width: true
 ---
 <style>
@@ -132,7 +132,7 @@ color: var(--color-primary-hover, #0d7d63);
 <div id="visuals-hub">
 <div class="vh-header">
 <h1>Meditative Visuals</h1>
-<p>Calming full-screen animations for relaxation and focus. No account needed.</p>
+<p>Calming full-screen animations for relaxation and focus. Enter your affirmation text to show.<br>No account needed.</p>
 </div>
 
 <div class="vh-grid">

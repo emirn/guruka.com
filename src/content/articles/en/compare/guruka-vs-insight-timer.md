@@ -32,6 +32,7 @@ Insight Timer is the largest free meditation library in the world, with over 200
 | **Time to start** | Download → signup → browse → choose | Open page → meditate |
 | **Privacy** | Account with email, social features | No account, no personal data collected |
 | **Brain games** | No | Yes — [focus and memory games](/games/) |
+| **Affirmations** | No | Yes — [editable, 100% private](/visuals/) (stored in your browser only) |
 | **Number of teachers** | Thousands | Curated content |
 | **Community features** | Groups, live events, messaging | No — focused on practice |
 | **Quality consistency** | Varies widely | Consistent |

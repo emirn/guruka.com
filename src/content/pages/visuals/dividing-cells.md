@@ -1,6 +1,6 @@
 ---
-title: "Dividing Cells - Meditative Visual"
-description: "Cells growing and dividing in a meditative loop."
+title: "Dividing Cells - Affirmation Visual"
+description: "Cells growing and dividing in a meditative loop. Add personal affirmation text, stored privately in your browser."
 full_width: true
 ---
 <style>
@@ -118,6 +118,195 @@ transition: opacity 1s;
 @media (prefers-reduced-motion: reduce) {
 .vp-scheme, .vp-start { transition: none; }
 }
+.vp-affirmation {
+margin-bottom: 2rem;
+text-align: left;
+max-width: 28rem;
+margin-left: auto;
+margin-right: auto;
+}
+.vp-aff-label {
+display: block;
+font-size: 0.875rem;
+font-weight: 600;
+color: var(--color-text-secondary, #4b5b6d);
+margin-bottom: 0.5rem;
+}
+[data-theme="dark"] .vp-aff-label {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
+.vp-aff-textarea {
+width: 100%;
+padding: 0.75rem;
+border: 1px solid var(--color-border, #dfe4ea);
+border-radius: 0.75rem;
+font-size: 1rem;
+font-family: inherit;
+resize: vertical;
+background: var(--color-bg-primary, #fff);
+color: var(--color-text-primary, #1a2332);
+box-sizing: border-box;
+}
+[data-theme="dark"] .vp-aff-textarea {
+background: var(--color-dark-bg-primary, #0f1729);
+border-color: var(--color-dark-border, #334155);
+color: var(--color-dark-text-primary, #f9fafb);
+}
+.vp-pace {
+margin-bottom: 2rem;
+max-width: 28rem;
+margin-left: auto;
+margin-right: auto;
+}
+.vp-pace-label {
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 0.875rem;
+font-weight: 600;
+color: var(--color-text-secondary, #4b5b6d);
+margin-bottom: 0.5rem;
+}
+[data-theme="dark"] .vp-pace-label {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
+.vp-pace-label span {
+font-weight: 400;
+font-size: 0.8125rem;
+}
+.vp-pace-slider {
+width: 100%;
+height: 6px;
+-webkit-appearance: none;
+appearance: none;
+background: var(--color-border, #dfe4ea);
+border-radius: 3px;
+outline: none;
+cursor: pointer;
+}
+[data-theme="dark"] .vp-pace-slider {
+background: var(--color-dark-border, #334155);
+}
+.vp-pace-slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: var(--color-primary, #0f9072);
+cursor: pointer;
+border: 2px solid #fff;
+box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.vp-pace-slider::-moz-range-thumb {
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: var(--color-primary, #0f9072);
+cursor: pointer;
+border: 2px solid #fff;
+box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.vp-pace-ends {
+display: flex;
+justify-content: space-between;
+font-size: 0.75rem;
+color: var(--color-text-secondary, #4b5b6d);
+margin-top: 0.25rem;
+}
+[data-theme="dark"] .vp-pace-ends {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
+.vp-aff-header {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+margin-bottom: 0.5rem;
+}
+.vp-aff-header .vp-aff-label {
+margin-bottom: 0;
+}
+.vp-aff-presets {
+position: relative;
+display: inline-block;
+}
+.vp-aff-presets-btn {
+font-size: 0.8125rem;
+font-weight: 500;
+color: var(--color-primary, #0f9072);
+cursor: pointer;
+background: none;
+border: none;
+padding: 0;
+display: flex;
+align-items: center;
+gap: 0.25rem;
+}
+.vp-aff-presets-btn:hover {
+color: var(--color-primary-hover, #0d7d63);
+}
+.vp-aff-presets-btn svg {
+width: 12px;
+height: 12px;
+transition: transform 0.2s;
+}
+.vp-aff-presets-btn[aria-expanded="true"] svg {
+transform: rotate(180deg);
+}
+.vp-aff-menu {
+display: none;
+position: absolute;
+right: 0;
+top: calc(100% + 0.375rem);
+background: var(--color-bg-primary, #fff);
+border: 1px solid var(--color-border, #dfe4ea);
+border-radius: 0.75rem;
+box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+min-width: 15rem;
+z-index: 100;
+padding: 0.375rem;
+max-height: 20rem;
+overflow-y: auto;
+}
+[data-theme="dark"] .vp-aff-menu {
+background: var(--color-dark-bg-primary, #0f1729);
+border-color: var(--color-dark-border, #334155);
+box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.vp-aff-menu.vp-aff-menu-open {
+display: block;
+}
+.vp-aff-menu-item {
+display: block;
+width: 100%;
+text-align: left;
+background: none;
+border: none;
+padding: 0.625rem 0.75rem;
+border-radius: 0.5rem;
+cursor: pointer;
+color: var(--color-text-primary, #1a2332);
+font-size: 0.875rem;
+line-height: 1.4;
+}
+[data-theme="dark"] .vp-aff-menu-item {
+color: var(--color-dark-text-primary, #f9fafb);
+}
+.vp-aff-menu-item:hover {
+background: rgba(0,0,0,0.04);
+}
+[data-theme="dark"] .vp-aff-menu-item:hover {
+background: rgba(255,255,255,0.06);
+}
+.vp-aff-menu-item-title {
+font-weight: 600;
+font-size: 0.8125rem;
+color: var(--color-text-secondary, #4b5b6d);
+margin-bottom: 0.125rem;
+}
+[data-theme="dark"] .vp-aff-menu-item-title {
+color: var(--color-dark-text-secondary, #cbd5e1);
+}
 </style>
 
 <div id="visual-page">
@@ -139,6 +328,15 @@ transition: opacity 1s;
 <span>Microscope</span>
 </button>
 </div>
+<div class="vp-affirmation">
+<div class="vp-aff-header"><label for="vp-aff-input" class="vp-aff-label">Affirmation text (optional)</label><div class="vp-aff-presets"><button type="button" class="vp-aff-presets-btn" id="vp-aff-presets-btn" aria-expanded="false">presets <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="vp-aff-menu" id="vp-aff-menu"></div></div></div>
+<textarea id="vp-aff-input" class="vp-aff-textarea" rows="3" maxlength="300" placeholder="optional. Enter affirmations here. Text will display one line after another."></textarea>
+</div>
+<div class="vp-pace">
+<div class="vp-pace-label">Pace <span id="vp-pace-val">Normal</span></div>
+<input type="range" id="vp-pace-input" class="vp-pace-slider" min="0" max="4" step="1" value="2">
+<div class="vp-pace-ends"><span>Slow</span><span>Fast</span></div>
+</div>
 <button class="vp-start" id="vp-start-btn">Start</button>
 </div>
 <div id="vp-fullscreen" style="display:none">
@@ -149,6 +347,10 @@ transition: opacity 1s;
 
 <script>
 (function() {
+var VISUAL_SLUG = 'dividing-cells';
+var currentAffId = null;
+var paceLabels = ["Very slow","Slow","Normal","Fast","Very fast"];
+var currentPace = 2;
 var schemes = [
 { name:'Bioluminescent', bg:'#050a12',
 colors:['#22d3ee','#14b8a6','#06b6d4','#2dd4bf','#67e8f9','#5eead4'] },
@@ -189,6 +391,50 @@ currentScheme = parseInt(b.getAttribute('data-scheme'));
 });
 });
 
+// Pace slider
+var paceInput = document.getElementById('vp-pace-input');
+var paceVal = document.getElementById('vp-pace-val');
+paceInput.addEventListener('input', function() {
+currentPace = parseInt(paceInput.value);
+paceVal.textContent = paceLabels[currentPace];
+});
+
+// Preset examples dropdown
+var affPresets = [
+{title:'None',text:''},
+{title:'Calm & clarity',text:'My mind is calm and clear\nI release what I cannot control\nI am present in this moment'},
+{title:'Self-confidence',text:'I believe in myself and my abilities\nI am worthy of good things\nI grow stronger every day'},
+{title:'Letting go',text:'I let go of what no longer serves me\nI forgive myself and others\nI make space for peace'},
+{title:'Gratitude',text:'I am grateful for this moment\nAbundance flows into my life\nI appreciate the simple things'},
+{title:'Focus & energy',text:'My focus is sharp and steady\nI channel my energy with purpose\nI move forward with intention'},
+{title:'Sleep & rest',text:'I give myself permission to rest\nMy body relaxes with each breath\nI drift into peaceful sleep'},
+{title:'Quit smoking',text:'My lungs are cleaner every day\nI am stronger than any craving\nEvery breath is a victory'}
+];
+var presetsBtn = document.getElementById('vp-aff-presets-btn');
+var presetsMenu = document.getElementById('vp-aff-menu');
+var menuHtml = '';
+for (var pi = 0; pi < affPresets.length; pi++) {
+menuHtml += '<button class="vp-aff-menu-item" data-preset="' + pi + '"><div class="vp-aff-menu-item-title">' + affPresets[pi].title + '</div>' + (affPresets[pi].text ? affPresets[pi].text.split('\n')[0] + '…' : 'Clear text') + '</button>';
+}
+presetsMenu.innerHTML = menuHtml;
+presetsBtn.addEventListener('click', function(e) {
+e.stopPropagation();
+var open = presetsMenu.classList.toggle('vp-aff-menu-open');
+presetsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+presetsMenu.addEventListener('click', function(e) {
+var item = e.target.closest('[data-preset]');
+if (!item) return;
+var idx = parseInt(item.getAttribute('data-preset'));
+document.getElementById('vp-aff-input').value = affPresets[idx].text;
+presetsMenu.classList.remove('vp-aff-menu-open');
+presetsBtn.setAttribute('aria-expanded', 'false');
+});
+document.addEventListener('click', function() {
+presetsMenu.classList.remove('vp-aff-menu-open');
+presetsBtn.setAttribute('aria-expanded', 'false');
+});
+
 function resize() {
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -226,7 +472,7 @@ y: H / 2,
 r: targetR * 0.15,
 targetR: targetR,
 divAngle: Math.random() * Math.PI * 2,
-colorIdx: Math.floor(Math.random() * 6),
+colorIdx: 0,
 divProgress: 0,
 organelles: makeOrganelles(),
 opacity: 0.7,
@@ -241,8 +487,8 @@ id: nextId++,
 x: x,
 y: y,
 r: r,
-vx: Math.cos(angle) * 0.15,
-vy: Math.sin(angle) * 0.15,
+vx: Math.cos(angle) * 0.25,
+vy: Math.sin(angle) * 0.25,
 phase: Math.random() * Math.PI * 2,
 colorIdx: colorIdx,
 organelles: organelles,
@@ -269,6 +515,7 @@ ctx.fillRect(0, 0, W, H);
 offCtx.fillStyle = s.bg;
 offCtx.fillRect(0, 0, halfW, halfH);
 offCtx.globalCompositeOperation = 'lighter';
+var breathe = 0.85 + 0.15 * Math.sin(t * 0.0008);
 // Draw a center cell mid-division and a couple daughters
 var midR = Math.min(W, H) * 0.07;
 var ci = 0;
@@ -278,10 +525,10 @@ var a = Math.PI * 0.25;
 for (var bi = 0; bi < 2; bi++) {
 var bx = (W / 2 + Math.cos(a) * sep * (bi === 0 ? 1 : -1)) * scaleX;
 var by = (H / 2 + Math.sin(a) * sep * (bi === 0 ? 1 : -1)) * scaleY;
-var br = midR * 0.7 * scaleR;
+var br = midR * 0.7 * breathe * scaleR;
 var grad = offCtx.createRadialGradient(bx, by, 0, bx, by, br * 1.8);
-grad.addColorStop(0, s.colors[ci] + 'ff');
-grad.addColorStop(0.5, s.colors[ci] + 'cc');
+grad.addColorStop(0, s.colors[ci] + '73');
+grad.addColorStop(0.5, s.colors[ci] + '59');
 grad.addColorStop(1, s.colors[ci] + '00');
 offCtx.beginPath();
 offCtx.arc(bx, by, br * 1.8, 0, Math.PI * 2);
@@ -292,10 +539,10 @@ offCtx.fill();
 var dPositions = [[W * 0.25, H * 0.35], [W * 0.72, H * 0.65]];
 for (var di = 0; di < 2; di++) {
 var dx = dPositions[di][0] * scaleX, dy = dPositions[di][1] * scaleY;
-var dr = midR * 0.5 * scaleR;
+var dr = midR * 0.5 * breathe * scaleR;
 var grad = offCtx.createRadialGradient(dx, dy, 0, dx, dy, dr * 1.8);
-grad.addColorStop(0, s.colors[2] + 'cc');
-grad.addColorStop(0.5, s.colors[2] + '99');
+grad.addColorStop(0, s.colors[2] + '73');
+grad.addColorStop(0.5, s.colors[2] + '59');
 grad.addColorStop(1, s.colors[2] + '00');
 offCtx.beginPath();
 offCtx.arc(dx, dy, dr * 1.8, 0, Math.PI * 2);
@@ -330,6 +577,7 @@ drawNucleus(nx, ny, midR * 0.7, s, ci, t, true);
 for (var di = 0; di < 2; di++) {
 drawNucleus(dPositions[di][0], dPositions[di][1], midR * 0.5, s, 2, t, true);
 }
+animId = requestAnimationFrame(draw);
 return;
 }
 
@@ -352,21 +600,25 @@ dc.age++;
 // Sinusoidal wobble drift
 dc.x += dc.vx + Math.sin(t * 0.0002 + dc.phase) * 0.06;
 dc.y += dc.vy + Math.cos(t * 0.00015 + dc.phase + 1) * 0.06;
-dc.vx *= 0.997;
-dc.vy *= 0.997;
+dc.vx *= 0.999;
+dc.vy *= 0.999;
 
-// Soft boundary bounce
-if (dc.x - dc.r < 0) { dc.x = dc.r; dc.vx = Math.abs(dc.vx) * 0.5; }
-if (dc.x + dc.r > W) { dc.x = W - dc.r; dc.vx = -Math.abs(dc.vx) * 0.5; }
-if (dc.y - dc.r < 0) { dc.y = dc.r; dc.vy = Math.abs(dc.vy) * 0.5; }
-if (dc.y + dc.r > H) { dc.y = H - dc.r; dc.vy = -Math.abs(dc.vy) * 0.5; }
+// Edge-based fading: fade as cells approach screen edges
+var edgeMargin = Math.max(W, H) * 0.15;
+var edgeFade = 1;
+if (dc.x < edgeMargin) edgeFade = Math.min(edgeFade, dc.x / edgeMargin);
+if (dc.x > W - edgeMargin) edgeFade = Math.min(edgeFade, (W - dc.x) / edgeMargin);
+if (dc.y < edgeMargin) edgeFade = Math.min(edgeFade, dc.y / edgeMargin);
+if (dc.y > H - edgeMargin) edgeFade = Math.min(edgeFade, (H - dc.y) / edgeMargin);
+edgeFade = Math.max(0, edgeFade);
+dc.opacity = Math.min(dc.opacity, edgeFade);
 
-// Start fading after ~18 seconds (1080 frames at 60fps)
-if (dc.age > 1080 && !dc.fading) dc.fading = true;
+// Also fade over time after ~30 seconds (1800 frames)
+if (dc.age > 1800 && !dc.fading) dc.fading = true;
 if (dc.fading) {
-dc.opacity -= 0.003;
-if (dc.opacity <= 0) { daughters.splice(i, 1); continue; }
+dc.opacity -= 0.002;
 }
+if (dc.opacity <= 0) { daughters.splice(i, 1); continue; }
 }
 
 // Daughter-daughter repulsion
@@ -405,8 +657,8 @@ cc.divProgress = 0;
 }
 } else if (cycleState === 'DIVIDING') {
 var cc = centerCell;
-// divProgress 0→1 over ~12s: 0.0014/frame * 60fps ≈ 0.084/s → ~12s
-cc.divProgress += 0.0014;
+// divProgress 0→1 over ~8s: 0.002/frame * 60fps ≈ 0.12/s → ~8s
+cc.divProgress += 0.002;
 // Keep at center with wobble
 cc.x = W / 2 + Math.sin(t * 0.001) * 1.5;
 cc.y = H / 2 + Math.cos(t * 0.0008) * 1.5;
@@ -425,7 +677,7 @@ pauseTimer = 0;
 } else if (cycleState === 'STAGING_PAUSE') {
 pauseTimer++;
 // ~1.5s pause (90 frames)
-if (pauseTimer >= 90) {
+if (pauseTimer >= 60) {
 spawnCenterCell();
 }
 }
@@ -446,8 +698,8 @@ if (dc.opacity <= 0) continue;
 var ci = dc.colorIdx % s.colors.length;
 var hx = dc.x * scaleX, hy = dc.y * scaleY, hr = dc.r * scaleR;
 var grad = offCtx.createRadialGradient(hx, hy, 0, hx, hy, hr * 1.8);
-grad.addColorStop(0, s.colors[ci] + alphaHex(dc.opacity));
-grad.addColorStop(0.5, s.colors[ci] + alphaHex(dc.opacity * 0.8));
+grad.addColorStop(0, s.colors[ci] + alphaHex(dc.opacity * 0.45));
+grad.addColorStop(0.5, s.colors[ci] + alphaHex(dc.opacity * 0.35));
 grad.addColorStop(1, s.colors[ci] + '00');
 offCtx.beginPath();
 offCtx.arc(hx, hy, hr * 1.8, 0, Math.PI * 2);
@@ -487,14 +739,14 @@ var y2 = cc.y - Math.sin(a) * sep * 0.5;
 // Sub-blob radius: slightly smaller as they separate
 var subR = cc.r * (0.75 - dp * 0.15);
 
-var overlapScale = 0.5 + 0.5 * Math.min(1, sepFactor / 1.2);
+var overlapScale = 1;
 for (var bi = 0; bi < 2; bi++) {
 var bx = (bi === 0 ? x1 : x2) * scaleX;
 var by = (bi === 0 ? y1 : y2) * scaleY;
 var br = subR * scaleR;
 var grad = offCtx.createRadialGradient(bx, by, 0, bx, by, br * 1.8);
-grad.addColorStop(0, s.colors[ci] + alphaHex(cc.opacity * overlapScale));
-grad.addColorStop(0.5, s.colors[ci] + alphaHex(cc.opacity * 0.8 * overlapScale));
+grad.addColorStop(0, s.colors[ci] + alphaHex(cc.opacity * 0.45));
+grad.addColorStop(0.5, s.colors[ci] + alphaHex(cc.opacity * 0.35));
 grad.addColorStop(1, s.colors[ci] + '00');
 offCtx.beginPath();
 offCtx.arc(bx, by, br * 1.8, 0, Math.PI * 2);
@@ -505,8 +757,8 @@ offCtx.fill();
 // Single blob
 var hx = cc.x * scaleX, hy = cc.y * scaleY, hr = cc.r * scaleR;
 var grad = offCtx.createRadialGradient(hx, hy, 0, hx, hy, hr * 1.8);
-grad.addColorStop(0, s.colors[ci] + alphaHex(cc.opacity));
-grad.addColorStop(0.5, s.colors[ci] + alphaHex(cc.opacity * 0.8));
+grad.addColorStop(0, s.colors[ci] + alphaHex(cc.opacity * 0.45));
+grad.addColorStop(0.5, s.colors[ci] + alphaHex(cc.opacity * 0.35));
 grad.addColorStop(1, s.colors[ci] + '00');
 offCtx.beginPath();
 offCtx.arc(hx, hy, hr * 1.8, 0, Math.PI * 2);
@@ -698,17 +950,28 @@ nextId = 0;
 spawnCenterCell();
 hideNavFooter();
 acquireWakeLock();
+var affText = document.getElementById('vp-aff-input').value.trim();
+if (affText && window.GK && GK.Affirmations) {
+var meta = GK.Affirmations.VISUAL_META[VISUAL_SLUG];
+GK.Affirmations.createOverlay(fs, affText, meta.pulseDuration, currentPace);
+GK.Affirmations.save({
+id: currentAffId || GK.Affirmations.generateId(),
+text: affText, visual: VISUAL_SLUG, scheme: currentScheme, pace: currentPace,
+createdAt: Date.now()
+});
+}
 if (reducedMotion) {
 hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
 }
 hint.style.opacity = '1';
-setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 5000 : 3000);
+setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 2500 : 1500);
 animId = requestAnimationFrame(draw);
 }
 
 function stop() {
 running = false;
 if (animId) { cancelAnimationFrame(animId); animId = null; }
+if (window.GK && GK.Affirmations) GK.Affirmations.destroyOverlay();
 fs.style.display = 'none';
 intro.style.display = '';
 showNavFooter();
@@ -721,5 +984,33 @@ window.addEventListener('resize', function() { if (running) resize(); });
 document.addEventListener('keydown', function(e) {
 if (e.key === 'Escape' && running) stop();
 });
+// Pre-fill default affirmation text
+var affInput = document.getElementById('vp-aff-input');
+if (!affInput.value) {
+affInput.value = 'My mind is calm and clear\nI release what I cannot control\nI am present in this moment';
+}
+// Query param handling for affirmation play/edit
+if (window.GK && GK.Affirmations) {
+GK.Affirmations._loadFont();
+var params = new URLSearchParams(window.location.search);
+var affParam = params.get('aff');
+var editParam = params.get('edit');
+var affId = affParam || editParam;
+if (affId) {
+var found = GK.Affirmations.getById(affId);
+if (found) {
+currentAffId = found.id;
+document.getElementById('vp-aff-input').value = found.text;
+currentScheme = found.scheme || 0;
+currentPace = found.pace != null ? found.pace : 2;
+paceInput.value = currentPace;
+paceVal.textContent = paceLabels[currentPace];
+btns.forEach(function(b) {
+b.setAttribute('aria-pressed', b.getAttribute('data-scheme') == String(currentScheme) ? 'true' : 'false');
+});
+if (affParam) start();
+}
+}
+}
 })();
 </script>

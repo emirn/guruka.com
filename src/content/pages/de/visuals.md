@@ -1,6 +1,6 @@
 ---
-title: "Meditative Visualisierungen"
-description: "Beruhigende Vollbild-Visualisierungen für Entspannung und Fokus."
+title: "Affirmationen & Meditative Visualisierungen"
+description: "Beruhigende Vollbild-Visualisierungen mit eigenem Affirmationstext. Erstellen Sie Ihre eigenen Affirmationen, privat in Ihrem Browser gespeichert."
 full_width: true
 language: "de"
 ---
@@ -133,7 +133,7 @@ color: var(--color-primary-hover, #0d7d63);
 <div id="visuals-hub">
 <div class="vh-header">
 <h1>Meditative Visualisierungen</h1>
-<p>Beruhigende Vollbild-Animationen für Entspannung und Fokus. Kein Konto erforderlich.</p>
+<p>Beruhigende Vollbild-Animationen für Entspannung und Fokus. Geben Sie Ihren Affirmationstext ein.<br>Kein Konto erforderlich.</p>
 </div>
 
 <div class="vh-grid">

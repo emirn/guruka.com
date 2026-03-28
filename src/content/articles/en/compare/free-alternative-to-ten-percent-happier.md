@@ -35,6 +35,7 @@ The app's subscription unlocks courses taught by well-known meditation teachers 
 | **Platforms** | iOS, Android app | Any web browser | iOS, Android app | iOS, Android app |
 | **Offline access** | Premium only | Yes (works offline) | Premium only | Yes |
 | **Brain games** | No | Yes | No | No |
+| **Affirmations** | No | Yes — editable, private | No | No |
 | **Personal coaching** | Yes (premium) | No | No | No |
 | **Time to start** | Download → signup → free trial | Open page → meditate | Download → signup → browse | Download → signup → choose program |
 

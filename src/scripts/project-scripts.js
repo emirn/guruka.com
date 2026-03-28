@@ -945,7 +945,9 @@
         '.gkm-idle-info .gk-stats-banner{color:rgba(255,255,255,0.35)}' +
         '[id$="-instructions"] .gk-stats-banner{color:rgba(0,0,0,0.35)}' +
         '.vp-desc+.gk-stats-banner{color:rgba(0,0,0,0.35)}' +
-      '}';
+      '}' +
+      '[data-theme="light"] .gk-stats-banner{color:rgba(0,0,0,0.4)}' +
+      '[data-theme="light"] .vp-desc+.gk-stats-banner{color:rgba(0,0,0,0.35)}';
     document.head.appendChild(style);
   };
 
@@ -1401,7 +1403,285 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     GK.Offline.init();
+    GK.Affirmations.init();
   });
+
+  /* ── Visual Affirmations ── */
+  GK.Affirmations = {};
+
+  GK.Affirmations.STORAGE_KEY = 'guruka_visual_affirmations';
+
+  GK.Affirmations.VISUAL_META = {
+    'breathing-orb': { name:'Breathing Orb', gradient:'linear-gradient(135deg,#6366f1,#a78bfa)', pulseDuration:6 },
+    'aurora':        { name:'Aurora', gradient:'linear-gradient(135deg,#22d3ee,#06b6d4)', pulseDuration:8 },
+    'starfield':     { name:'Starfield', gradient:'linear-gradient(135deg,#1e293b,#475569)', pulseDuration:10 },
+    'lava-flow':     { name:'Lava Flow', gradient:'linear-gradient(135deg,#f97316,#ef4444)', pulseDuration:7 },
+    'mandala':       { name:'Mandala', gradient:'linear-gradient(135deg,#eab308,#a855f7)', pulseDuration:9 },
+    'dividing-cells':{ name:'Dividing Cells', gradient:'linear-gradient(135deg,#10b981,#22d3ee)', pulseDuration:8 }
+  };
+
+  GK.Affirmations.PACE_STEPS = [
+    { label: 'Very slow', mult: 3.0 },
+    { label: 'Slow', mult: 2.0 },
+    { label: 'Normal', mult: 1.0 },
+    { label: 'Fast', mult: 0.6 },
+    { label: 'Very fast', mult: 0.4 }
+  ];
+
+  GK.Affirmations._DEFAULT_SAMPLE = {
+    id: 'sample-1',
+    text: 'My mind is calm and clear\nI release what I cannot control\nI am present in this moment',
+    visual: 'breathing-orb',
+    scheme: 0,
+    pace: 2,
+    createdAt: 0,
+    isSample: true
+  };
+
+  GK.Affirmations.generateId = function() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  };
+
+  GK.Affirmations.getAll = function() {
+    var raw = localStorage.getItem(GK.Affirmations.STORAGE_KEY);
+    if (raw) {
+      try { return JSON.parse(raw); } catch(e) {}
+    }
+    // First call: seed with sample
+    var initial = [GK.Affirmations._DEFAULT_SAMPLE];
+    localStorage.setItem(GK.Affirmations.STORAGE_KEY, JSON.stringify(initial));
+    return initial;
+  };
+
+  GK.Affirmations.save = function(aff) {
+    var all = GK.Affirmations.getAll();
+    var found = false;
+    for (var i = 0; i < all.length; i++) {
+      if (all[i].visual === aff.visual) {
+        all[i] = aff;
+        found = true;
+        break;
+      }
+    }
+    if (!found) all.push(aff);
+    localStorage.setItem(GK.Affirmations.STORAGE_KEY, JSON.stringify(all));
+  };
+
+  GK.Affirmations.remove = function(id) {
+    var all = GK.Affirmations.getAll().filter(function(a) { return a.id !== id; });
+    localStorage.setItem(GK.Affirmations.STORAGE_KEY, JSON.stringify(all));
+  };
+
+  GK.Affirmations.getById = function(id) {
+    var all = GK.Affirmations.getAll();
+    for (var i = 0; i < all.length; i++) {
+      if (all[i].id === id) return all[i];
+    }
+    return null;
+  };
+
+  GK.Affirmations._loadFont = function() {
+    if (document.getElementById('gk-aff-font')) return;
+    var link = document.createElement('link');
+    link.id = 'gk-aff-font';
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap';
+    document.head.appendChild(link);
+  };
+
+  GK.Affirmations._stylesInjected = false;
+
+  GK.Affirmations._injectStyles = function() {
+    if (GK.Affirmations._stylesInjected) return;
+    GK.Affirmations._stylesInjected = true;
+    var s = document.createElement('style');
+    s.id = 'gk-aff-styles';
+    s.textContent =
+      '.gk-aff-overlay{position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;pointer-events:none}' +
+      '.gk-aff-text{font-family:"Cinzel",Georgia,"Times New Roman",serif;font-size:clamp(1.5rem,5vw,3rem);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.85);text-align:center;padding:0 2rem;max-width:40rem;line-height:1.4;text-shadow:0 2px 20px rgba(0,0,0,0.5);opacity:0;transition:opacity var(--gk-aff-fade,1.2s) ease-in-out}' +
+      '.gk-aff-text.gk-aff-visible{opacity:1}' +
+      '@media(prefers-reduced-motion:reduce){.gk-aff-text{opacity:0}}' +
+      /* Hub styles */
+      '.gk-aff-section{max-width:64rem;margin:0 auto;padding:0 1rem 1.5rem}' +
+      '.gk-aff-section h3{font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:var(--color-text-primary,#1a2332)}' +
+      '[data-theme="dark"] .gk-aff-section h3{color:var(--color-dark-text-primary,#f9fafb)}' +
+      '.gk-aff-list{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:0.75rem}' +
+      '.gk-aff-card{display:flex;align-items:center;gap:0.75rem;background:var(--color-bg-primary,#fff);border:1px solid var(--color-border,#dfe4ea);border-radius:0.75rem;padding:0.75rem 1rem;text-decoration:none;color:inherit}' +
+      '[data-theme="dark"] .gk-aff-card{background:var(--color-dark-bg-primary,#0f1729);border-color:var(--color-dark-border,#334155)}' +
+      '.gk-aff-card-dot{width:2rem;height:2rem;border-radius:50%;flex-shrink:0}' +
+      '.gk-aff-card-body{flex:1;min-width:0}' +
+      '.gk-aff-card-visual{font-size:0.75rem;font-weight:600;color:var(--color-text-secondary,#4b5b6d);text-transform:uppercase;letter-spacing:0.03em}' +
+      '[data-theme="dark"] .gk-aff-card-visual{color:var(--color-dark-text-secondary,#cbd5e1)}' +
+      '.gk-aff-card-text{font-size:0.9375rem;color:var(--color-text-primary,#1a2332);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}' +
+      '[data-theme="dark"] .gk-aff-card-text{color:var(--color-dark-text-primary,#f9fafb)}' +
+      '.gk-aff-card-actions{display:flex;gap:0.25rem;flex-shrink:0}' +
+      '.gk-aff-card-actions button,.gk-aff-card-actions a{background:none;border:none;cursor:pointer;color:var(--color-text-secondary,#4b5b6d);padding:0.375rem;border-radius:0.375rem;display:flex;align-items:center;justify-content:center;min-width:36px;min-height:36px;text-decoration:none}' +
+      '[data-theme="dark"] .gk-aff-card-actions button,[data-theme="dark"] .gk-aff-card-actions a{color:var(--color-dark-text-secondary,#cbd5e1)}' +
+      '.gk-aff-card-actions button:hover,.gk-aff-card-actions a:hover{background:rgba(0,0,0,0.05);color:var(--color-primary,#0f9072)}' +
+      '[data-theme="dark"] .gk-aff-card-actions button:hover,[data-theme="dark"] .gk-aff-card-actions a:hover{background:rgba(255,255,255,0.05)}' +
+      '.gk-aff-new{display:inline-flex;align-items:center;gap:0.375rem;font-size:0.9375rem;font-weight:600;color:var(--color-primary,#0f9072);text-decoration:none;padding:0.5rem 0}' +
+      '.gk-aff-new:hover{color:var(--color-primary-hover,#0d7d63)}';
+    document.head.appendChild(s);
+  };
+
+  GK.Affirmations._overlay = null;
+  GK.Affirmations._timers = [];
+
+  GK.Affirmations.createOverlay = function(container, text, pulseDuration, paceIdx) {
+    var pace = GK.Affirmations.PACE_STEPS[paceIdx != null ? paceIdx : 2];
+    var mult = pace ? pace.mult : 1;
+    var breath = pulseDuration * mult * 1000;
+    var displayDur = breath * 3;
+    var lines = text.split('\n').filter(function(l) { return l.trim(); });
+    if (!lines.length) return;
+
+    GK.Affirmations._loadFont();
+    GK.Affirmations._injectStyles();
+    GK.Affirmations.destroyOverlay();
+
+    var overlay = document.createElement('div');
+    overlay.className = 'gk-aff-overlay';
+    var textEl = document.createElement('div');
+    textEl.className = 'gk-aff-text';
+    overlay.appendChild(textEl);
+    container.appendChild(overlay);
+
+    var fadeDur = breath;
+    var breathPause = breath;
+    textEl.style.setProperty('--gk-aff-fade', (fadeDur / 1000) + 's');
+    var idx = 0;
+    var timers = [];
+    var stopped = false;
+
+    function showNext() {
+      if (stopped) return;
+      textEl.textContent = lines[idx];
+      requestAnimationFrame(function() {
+        if (stopped) return;
+        textEl.classList.add('gk-aff-visible');
+      });
+
+      timers.push(setTimeout(function() {
+        if (stopped) return;
+        textEl.classList.remove('gk-aff-visible');
+
+        var nextIdx = (idx + 1) % lines.length;
+        var gap = nextIdx === 0 ? breathPause : fadeDur;
+        timers.push(setTimeout(function() {
+          if (stopped) return;
+          idx = nextIdx;
+          showNext();
+        }, gap));
+      }, displayDur));
+    }
+
+    timers.push(setTimeout(function() { showNext(); }, breathPause));
+    GK.Affirmations._overlay = overlay;
+    GK.Affirmations._timers = timers;
+    GK.Affirmations._stopped = function() { stopped = true; };
+  };
+
+  GK.Affirmations.destroyOverlay = function() {
+    if (GK.Affirmations._stopped) GK.Affirmations._stopped();
+    if (GK.Affirmations._timers) {
+      GK.Affirmations._timers.forEach(function(t) { clearTimeout(t); });
+      GK.Affirmations._timers = [];
+    }
+    if (GK.Affirmations._overlay) {
+      GK.Affirmations._overlay.remove();
+      GK.Affirmations._overlay = null;
+    }
+  };
+
+  GK.Affirmations._HUB_I18N = {
+    en: { title: 'My Affirmations', create: '+ Create new affirmation', lines: 'lines' },
+    es: { title: 'Mis Afirmaciones', create: '+ Crear nueva afirmación', lines: 'líneas' },
+    de: { title: 'Meine Affirmationen', create: '+ Neue Affirmation erstellen', lines: 'Zeilen' },
+    fr: { title: 'Mes Affirmations', create: '+ Créer une nouvelle affirmation', lines: 'lignes' },
+    pt: { title: 'Minhas Afirmações', create: '+ Criar nova afirmação', lines: 'linhas' },
+    ja: { title: 'マイアファメーション', create: '+ 新しいアファメーションを作成', lines: '行' },
+    ko: { title: '내 확언', create: '+ 새 확언 만들기', lines: '줄' }
+  };
+
+  GK.Affirmations.injectHub = function() {
+    var hub = document.getElementById('visuals-hub');
+    if (!hub) return;
+
+    GK.Affirmations._injectStyles();
+
+    var header = hub.querySelector('.vh-header');
+    var grid = hub.querySelector('.vh-grid');
+    if (!header || !grid) return;
+
+    var lang = (window.GK && GK.Offline && GK.Offline._getLang) ? GK.Offline._getLang() : 'en';
+    var t = GK.Affirmations._HUB_I18N[lang] || GK.Affirmations._HUB_I18N.en;
+    var langPrefix = lang === 'en' ? '' : '/' + lang;
+
+    var section = document.createElement('div');
+    section.className = 'gk-aff-section';
+    section.id = 'gk-aff-hub';
+    hub.insertBefore(section, grid);
+
+    function render() {
+      var all = GK.Affirmations.getAll();
+      if (!all.length) {
+        section.style.display = 'none';
+        return;
+      }
+      section.style.display = '';
+
+      var playSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>';
+      var editSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
+      var delSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+
+      var html = '<h3>' + t.title + '</h3><div class="gk-aff-list">';
+
+      for (var i = 0; i < all.length; i++) {
+        var a = all[i];
+        var meta = GK.Affirmations.VISUAL_META[a.visual] || GK.Affirmations.VISUAL_META['breathing-orb'];
+        var firstLine = (a.text || '').split('\n')[0];
+        if (firstLine.length > 60) firstLine = firstLine.slice(0, 57) + '\u2026';
+        var lineCount = (a.text || '').split('\n').filter(function(l) { return l.trim(); }).length;
+        var linesLabel = lineCount > 1 ? ' \u00b7 ' + lineCount + ' ' + t.lines : '';
+        var paceStep = GK.Affirmations.PACE_STEPS[a.pace != null ? a.pace : 2];
+        var paceLabel = paceStep && paceStep.label !== 'Normal' ? ' \u00b7 ' + paceStep.label : '';
+
+        html += '<div class="gk-aff-card" data-aff-id="' + a.id + '">' +
+          '<div class="gk-aff-card-dot" style="background:' + meta.gradient + '"></div>' +
+          '<div class="gk-aff-card-body">' +
+            '<div class="gk-aff-card-visual">' + meta.name + linesLabel + paceLabel + '</div>' +
+            '<div class="gk-aff-card-text">' + firstLine.replace(/</g, '&lt;') + '</div>' +
+          '</div>' +
+          '<div class="gk-aff-card-actions">' +
+            '<a href="' + langPrefix + '/visuals/' + a.visual + '/?aff=' + a.id + '" title="Play" aria-label="Play">' + playSvg + '</a>' +
+            '<a href="' + langPrefix + '/visuals/' + a.visual + '/?edit=' + a.id + '" title="Edit" aria-label="Edit">' + editSvg + '</a>' +
+            '<button data-del="' + a.id + '" title="Delete" aria-label="Delete">' + delSvg + '</button>' +
+          '</div>' +
+        '</div>';
+      }
+
+      html += '</div>';
+      html += '<a href="' + langPrefix + '/visuals/breathing-orb/" class="gk-aff-new">' + t.create + '</a>';
+
+      section.innerHTML = html;
+
+      // Bind delete buttons
+      section.querySelectorAll('button[data-del]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          GK.Affirmations.remove(btn.getAttribute('data-del'));
+          render();
+        });
+      });
+    }
+
+    render();
+  };
+
+  GK.Affirmations.init = function() {
+    GK.Affirmations.injectHub();
+  };
 
   /* ── Add-to-Home-Screen Hint ── */
   GK.HomeScreenHint = {};

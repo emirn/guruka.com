@@ -35,6 +35,7 @@ Calm's subscription unlocks Sleep Stories (celebrity-narrated bedtime stories), 
 | **Platforms** | iOS, Android app | Any web browser | iOS, Android app | iOS, Android app |
 | **Offline access** | Premium only | Yes (works offline) | Premium only | Yes |
 | **Brain games** | No | Yes | No | No |
+| **Affirmations** | No | Yes — editable, private | No | No |
 | **Time to start** | Download → signup → free trial | Open page → meditate | Download → signup → browse | Download → signup → choose program |
 
 ## Why Guruka Works as a Calm Replacement

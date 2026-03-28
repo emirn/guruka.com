@@ -35,6 +35,7 @@ Balance creates personalized daily meditation sessions based on your answers to 
 | **Platforms** | iOS, Android app | Any web browser | iOS, Android app | iOS, Android app |
 | **Offline access** | Yes | Yes (works offline) | Premium only | Yes |
 | **Brain games** | No | Yes | No | No |
+| **Affirmations** | No | Yes — editable, private | No | No |
 | **Time to start** | Download → signup → answer questions → wait | Open page → meditate | Download → signup → browse | Download → signup → choose program |
 
 ## Why Guruka Works as a Balance Replacement

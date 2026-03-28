@@ -127,18 +127,18 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 <p>Guided meditations for calm, focus, and well-being</p>
 </div>
 </a>
+<a href="/visuals/" class="gk-hero-card">
+<div class="gk-hero-icon">✨</div>
+<div class="gk-hero-body">
+<h2>Affirmations</h2>
+<p>Calming visuals with optional affirmation text</p>
+</div>
+</a>
 <a href="/games/" class="gk-hero-card">
 <div class="gk-hero-icon">🧠</div>
 <div class="gk-hero-body">
 <h2>Brain Games</h2>
 <p>Train your brain with games targeting different cognitive skills</p>
-</div>
-</a>
-<a href="/visuals/" class="gk-hero-card">
-<div class="gk-hero-icon">✨</div>
-<div class="gk-hero-body">
-<h2>Meditative Visuals</h2>
-<p>Calming full-screen animations for relaxation and focus</p>
 </div>
 </a>
 </div>

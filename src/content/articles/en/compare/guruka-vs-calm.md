@@ -32,6 +32,7 @@ Calm is one of the most popular meditation and sleep apps, known for its Sleep S
 | **Time to start** | Download → signup → onboarding | Open page → meditate |
 | **Privacy** | Account with email, usage tracking | No account, no personal data collected |
 | **Brain games** | No | Yes — [focus and memory games](/games/) |
+| **Affirmations** | No | Yes — [editable, 100% private](/visuals/) (stored in your browser only) |
 | **Sleep Stories** | Yes — celebrity narrated (premium) | No |
 | **Sleep meditation** | Premium only | Yes — [sleep & wind down](/meditate/sleep-and-wind-down/) |
 | **Nature sounds** | Limited free, full library premium | Background sounds included |

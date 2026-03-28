@@ -35,6 +35,7 @@ Insight Timer's biggest strength is also its biggest weakness: choice overload. 
 | **Offline access** | Premium only | Yes (works offline) | Yes | Premium only |
 | **Ease of choosing** | Difficult (too many options) | Easy (curated categories) | Easy (structured programs) | Easy (limited content) |
 | **Brain games** | No | Yes | No | No |
+| **Affirmations** | No | Yes — editable, private | No | No |
 | **Time to start** | Download → signup → browse 200k sessions | Open page → meditate | Download → signup → choose program | Download → signup → hit paywall |
 
 ## Why Guruka Works as an Insight Timer Alternative

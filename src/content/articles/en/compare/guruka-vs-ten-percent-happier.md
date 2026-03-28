@@ -32,6 +32,7 @@ Ten Percent Happier started with a compelling story. Dan Harris, an ABC News anc
 | **Time to start** | Download → signup → onboarding | Open page → meditate |
 | **Privacy** | Collects account and usage data | No personal data collected |
 | **Brain games** | No | Yes |
+| **Affirmations** | No | Yes — [editable, 100% private](/visuals/) (stored in your browser only) |
 | **Coaching feature** | Yes (paid) | No |
 | **Structured courses** | Yes (premium) | Organized by category |
 | **Skeptic-friendly tone** | Yes (core brand identity) | Yes (no-nonsense design) |
