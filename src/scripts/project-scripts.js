@@ -939,7 +939,7 @@
       '#meditate-hub .gk-stats-banner,#games-hub .gk-stats-banner,#visuals-hub .gk-stats-banner{margin-top:0.25rem}' +
       '.gkm-idle-info .gk-stats-banner{margin-top:0.4rem;font-size:0.8rem;color:rgba(255,255,255,0.35)}' +
       '[id$="-instructions"] .gk-stats-banner{color:rgba(255,255,255,0.35);margin:0.5rem 0;font-size:0.8rem}' +
-      '.vp-desc+.gk-stats-banner{margin-top:0.35rem;color:rgba(255,255,255,0.35);font-size:0.8rem}' +
+      '.vp-desc+.gk-stats-banner{margin-top:-0.25rem;margin-bottom:0.25rem;color:rgba(255,255,255,0.35);font-size:0.8rem}' +
       '@media(prefers-color-scheme:light){' +
         '.gk-stats-banner{color:rgba(0,0,0,0.4)}' +
         '.gkm-idle-info .gk-stats-banner{color:rgba(255,255,255,0.35)}' +
