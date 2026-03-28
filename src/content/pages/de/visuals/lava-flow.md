@@ -331,7 +331,7 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 </div>
 <div class="vp-affirmation">
 <div class="vp-aff-header"><label for="vp-aff-input" class="vp-aff-label">Affirmationstext (optional)</label><div class="vp-aff-presets"><button type="button" class="vp-aff-presets-btn" id="vp-aff-presets-btn" aria-expanded="false">Vorlagen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="vp-aff-menu" id="vp-aff-menu"></div></div></div>
-<textarea id="vp-aff-input" class="vp-aff-textarea" rows="3" maxlength="300" placeholder="optional. Affirmationen hier eingeben. Text wird Zeile f\u00fcr Zeile angezeigt."></textarea>
+<textarea id="vp-aff-input" class="vp-aff-textarea" rows="3" maxlength="300" placeholder="optional. Affirmationen hier eingeben. Text wird Zeile für Zeile angezeigt."></textarea>
 </div>
 <div class="vp-pace">
 <div class="vp-pace-label">Tempo <span id="vp-pace-val">Normal</span></div>
@@ -390,19 +390,19 @@ paceVal.textContent = paceLabels[currentPace];
 // Preset examples dropdown
 var affPresets = [
 {title:'Keine',text:''},
-{title:'Ruhe & Klarheit',text:'Mein Geist ist ruhig und klar\nIch lasse los, was ich nicht kontrollieren kann\nIch bin in diesem Moment pr\u00e4sent'},
-{title:'Selbstvertrauen',text:'Ich glaube an mich und meine F\u00e4higkeiten\nIch bin guter Dinge w\u00fcrdig\nIch werde jeden Tag st\u00e4rker'},
-{title:'Loslassen',text:'Ich lasse los, was mir nicht mehr dient\nIch vergebe mir selbst und anderen\nIch schaffe Raum f\u00fcr Frieden'},
-{title:'Dankbarkeit',text:'Ich bin dankbar f\u00fcr diesen Moment\nF\u00fclle flie\u00dft in mein Leben\nIch sch\u00e4tze die einfachen Dinge'},
-{title:'Fokus & Energie',text:'Mein Fokus ist scharf und best\u00e4ndig\nIch lenke meine Energie mit Absicht\nIch gehe mit Vorsatz voran'},
-{title:'Schlaf & Ruhe',text:'Ich erlaube mir zu ruhen\nMein K\u00f6rper entspannt sich mit jedem Atemzug\nIch gleite in friedlichen Schlaf'},
+{title:'Ruhe & Klarheit',text:'Mein Geist ist ruhig und klar\nIch lasse los, was ich nicht kontrollieren kann\nIch bin in diesem Moment präsent'},
+{title:'Selbstvertrauen',text:'Ich glaube an mich und meine Fähigkeiten\nIch bin guter Dinge würdig\nIch werde jeden Tag stärker'},
+{title:'Loslassen',text:'Ich lasse los, was mir nicht mehr dient\nIch vergebe mir selbst und anderen\nIch schaffe Raum für Frieden'},
+{title:'Dankbarkeit',text:'Ich bin dankbar für diesen Moment\nFülle fließt in mein Leben\nIch schätze die einfachen Dinge'},
+{title:'Fokus & Energie',text:'Mein Fokus ist scharf und beständig\nIch lenke meine Energie mit Absicht\nIch gehe mit Vorsatz voran'},
+{title:'Schlaf & Ruhe',text:'Ich erlaube mir zu ruhen\nMein Körper entspannt sich mit jedem Atemzug\nIch gleite in friedlichen Schlaf'},
 {title:'Rauchen aufhören',text:'Meine Lungen werden jeden Tag reiner\nIch bin stärker als jedes Verlangen\nJeder Atemzug ist ein Sieg'}
 ];
 var presetsBtn = document.getElementById('vp-aff-presets-btn');
 var presetsMenu = document.getElementById('vp-aff-menu');
 var menuHtml = '';
 for (var pi = 0; pi < affPresets.length; pi++) {
-menuHtml += '<button class="vp-aff-menu-item" data-preset="' + pi + '"><div class="vp-aff-menu-item-title">' + affPresets[pi].title + '</div>' + (affPresets[pi].text ? affPresets[pi].text.split('\n')[0] + '\u2026' : 'Text l\u00f6schen') + '</button>';
+menuHtml += '<button class="vp-aff-menu-item" data-preset="' + pi + '"><div class="vp-aff-menu-item-title">' + affPresets[pi].title + '</div>' + (affPresets[pi].text ? affPresets[pi].text.split('\n')[0] + '…' : 'Text löschen') + '</button>';
 }
 presetsMenu.innerHTML = menuHtml;
 presetsBtn.addEventListener('click', function(e) {
@@ -580,7 +580,7 @@ createdAt: Date.now()
 });
 }
 if (reducedMotion) {
-hint.innerHTML = 'Reduzierte Bewegung aktiviert \u00b7 Statische Ansicht<br>Tippe irgendwo, um zu beenden';
+hint.innerHTML = 'Reduzierte Bewegung aktiviert · Statische Ansicht<br>Tippe irgendwo, um zu beenden';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 2500 : 1500);

@@ -219,6 +219,34 @@
           {
             "label": "Ocean Waves",
             "url": "/visuals/ocean-waves/"
+          },
+          {
+            "label": "Calm & Clarity",
+            "url": "/affirmation-calm-and-clarity/"
+          },
+          {
+            "label": "Self-Confidence",
+            "url": "/affirmation-self-confidence/"
+          },
+          {
+            "label": "Letting Go",
+            "url": "/affirmation-letting-go/"
+          },
+          {
+            "label": "Gratitude",
+            "url": "/affirmation-gratitude/"
+          },
+          {
+            "label": "Focus & Energy",
+            "url": "/affirmation-focus-and-energy/"
+          },
+          {
+            "label": "Sleep & Rest",
+            "url": "/affirmation-sleep-and-rest/"
+          },
+          {
+            "label": "Quit Smoking",
+            "url": "/affirmation-quit-smoking/"
           }
         ]
       },
@@ -680,6 +708,6 @@
   },
   "build_info": {
     "git_commit": "5f11b4ac8",
-    "build_date": "2026-03-28T09:21:57.872Z"
+    "build_date": "2026-03-28T10:42:14.338Z"
   }
 }

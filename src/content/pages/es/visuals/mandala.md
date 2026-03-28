@@ -401,7 +401,7 @@ var presetsBtn = document.getElementById('vp-aff-presets-btn');
 var presetsMenu = document.getElementById('vp-aff-menu');
 var menuHtml = '';
 for (var pi = 0; pi < affPresets.length; pi++) {
-menuHtml += '<button class="vp-aff-menu-item" data-preset="' + pi + '"><div class="vp-aff-menu-item-title">' + affPresets[pi].title + '</div>' + (affPresets[pi].text ? affPresets[pi].text.split('\n')[0] + '\u2026' : 'Borrar texto') + '</button>';
+menuHtml += '<button class="vp-aff-menu-item" data-preset="' + pi + '"><div class="vp-aff-menu-item-title">' + affPresets[pi].title + '</div>' + (affPresets[pi].text ? affPresets[pi].text.split('\n')[0] + '…' : 'Borrar texto') + '</button>';
 }
 presetsMenu.innerHTML = menuHtml;
 presetsBtn.addEventListener('click', function(e) {
@@ -582,7 +582,7 @@ createdAt: Date.now()
 });
 }
 if (reducedMotion) {
-hint.innerHTML = 'Movimiento reducido activado \u00b7 Mostrando vista estática<br>Toca en cualquier lugar para salir';
+hint.innerHTML = 'Movimiento reducido activado · Mostrando vista estática<br>Toca en cualquier lugar para salir';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 2500 : 1500);

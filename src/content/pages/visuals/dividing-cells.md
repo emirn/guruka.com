@@ -961,7 +961,7 @@ createdAt: Date.now()
 });
 }
 if (reducedMotion) {
-hint.innerHTML = 'Reduced motion enabled \u00b7 Showing static view<br>Tap anywhere to exit';
+hint.innerHTML = 'Reduced motion enabled · Showing static view<br>Tap anywhere to exit';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 2500 : 1500);

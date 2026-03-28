@@ -625,7 +625,7 @@ createdAt: Date.now()
 });
 }
 if (reducedMotion) {
-hint.innerHTML = 'モーション軽減が有効 \u00b7 静的ビューを表示中<br>どこでもタップして終了';
+hint.innerHTML = 'モーション軽減が有効 · 静的ビューを表示中<br>どこでもタップして終了';
 }
 hint.style.opacity = '1';
 setTimeout(function() { hint.style.opacity = '0'; }, reducedMotion ? 2500 : 1500);
