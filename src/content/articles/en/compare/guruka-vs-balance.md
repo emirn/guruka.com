@@ -26,7 +26,7 @@ Balance is a meditation app that uses AI-driven personalization to tailor sessio
 | **Free content** | Full access for 1 year only | Full access, always |
 | **Account required** | Yes | No |
 | **Credit card needed** | No (for first year) | No |
-| **Ads** | No | No |
+| **Ads** | No | No intrusive ads |
 | **Platforms** | iOS, Android app | Any web browser |
 | **Offline access** | Yes | Yes |
 | **Time to start** | Download → signup → onboarding quiz | Open page → meditate |
@@ -53,7 +53,7 @@ After the free first year, Balance costs $69.99/year. There's no permanently fre
 
 - **No account required — start instantly** — no email, no signup, no credit card, no onboarding. Open the page and you're meditating
 - **Completely free** — no subscription, no premium tier, no hidden costs
-- **No ads during practice** — your meditation session won't be interrupted
+- **No intrusive ads** — your meditation session won't be interrupted
 - **Works on any device** — phone, tablet, or computer, no app download needed
 - **Works offline** — meditate anywhere, even without internet
 - **Your data stays private** — no account means no personal data collected

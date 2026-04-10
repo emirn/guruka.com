@@ -30,7 +30,7 @@ Waking Up focuses on what Harris calls "non-dual awareness" — the idea that th
 | **Free content** | Limited (or full if you request) | Full access | 200,000+ sessions | 300+ sessions |
 | **Signup required** | Yes | No | Yes | Yes |
 | **Credit card needed** | For standard purchase, yes | No | No | No |
-| **Ads** | No | No | Occasional | No |
+| **Ads** | No | No | Occasional | No intrusive ads |
 | **Teaching style** | Philosophical, non-dual | Guided practical sessions | Varies by teacher | Evidence-based |
 | **Platforms** | iOS, Android app | Any web browser | iOS, Android app | iOS, Android app |
 | **Offline access** | Yes | Yes (works offline) | Premium only | Yes |
@@ -45,7 +45,7 @@ Waking Up appeals to people who want meditation grounded in reason rather than r
 
 - **No account required — start instantly** — no email, no signup, no credit card, no onboarding. Open the page and you're meditating
 - **Completely free** — no subscription, no need to request free access
-- **No ads** — uninterrupted meditation sessions
+- **No intrusive ads** — uninterrupted meditation sessions
 - **Works on any device** — browser-based, works on phone, tablet, or computer
 - **Works offline** — meditate anywhere, even without internet
 - **Your data stays private** — no account means no data collected

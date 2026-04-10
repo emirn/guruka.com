@@ -30,7 +30,7 @@ Headspace locks about 95% of its content behind its annual subscription. The fre
 | **Free content** | ~10 sessions | Full access | 200,000+ sessions | 300+ sessions |
 | **Signup required** | Yes | No | Yes | Yes |
 | **Credit card needed** | For trial, yes | No | No | No |
-| **Ads** | Upgrade prompts | No | Occasional | No |
+| **Ads** | Upgrade prompts | No | Occasional | No intrusive ads |
 | **Platforms** | iOS, Android app | Any web browser | iOS, Android app | iOS, Android app |
 | **Offline access** | Premium only | Yes (works offline) | Premium only | Yes |
 | **Beginner friendly** | Excellent (paid) | Very good | Moderate (overwhelming) | Very good |
@@ -44,7 +44,7 @@ If you like Headspace's simplicity but not its price tag, [Guruka](/) is the clo
 
 - **No account required — start instantly** — no email, no signup, no credit card, no onboarding. Open the page and you're meditating
 - **Completely free** — no subscription, no premium tier, no "free trial" that auto-charges
-- **No ads** — nothing interrupts your meditation session
+- **No intrusive ads** — nothing interrupts your meditation session
 - **Works on any device** — just open your browser on phone, tablet, or computer
 - **Works offline** — meditate anywhere, even without internet
 - **Your data stays private** — no account means nothing to track

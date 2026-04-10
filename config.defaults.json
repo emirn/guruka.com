@@ -90,7 +90,7 @@
       "tiktok": "",
       "bluesky": "",
       "threads": "",
-      "rss": true
+      "rss": false
     },
     "copyright_text": "{{YEAR}} {{SITE_NAME}}",
     "powered_by_text": "",

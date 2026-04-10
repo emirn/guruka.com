@@ -377,7 +377,7 @@
       "tiktok": "",
       "bluesky": "",
       "threads": "",
-      "rss": true
+      "rss": false
     },
     "copyright_text": "{{YEAR}} {{SITE_NAME}}",
     "powered_by_text": "",
@@ -724,6 +724,6 @@
   },
   "build_info": {
     "git_commit": "090501013",
-    "build_date": "2026-04-10T10:20:32.463Z"
+    "build_date": "2026-04-10T11:20:27.417Z"
   }
 }

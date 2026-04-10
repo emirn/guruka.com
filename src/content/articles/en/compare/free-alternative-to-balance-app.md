@@ -30,7 +30,7 @@ Balance creates personalized daily meditation sessions based on your answers to 
 | **Free content** | Full access for 1 year | Full access, always | 200,000+ sessions | 300+ sessions |
 | **Signup required** | Yes | No | Yes | Yes |
 | **Credit card needed** | No (for first year) | No | No | No |
-| **Ads** | No | No | Occasional | No |
+| **Ads** | No | No | Occasional | No intrusive ads |
 | **Personalization** | AI-driven personalized plans | Choose by category | Search/filter library | Curated programs |
 | **Platforms** | iOS, Android app | Any web browser | iOS, Android app | iOS, Android app |
 | **Offline access** | Yes | Yes (works offline) | Premium only | Yes |
@@ -44,7 +44,7 @@ Balance's strength is personalization, but the core meditation techniques it use
 
 - **No account required — start instantly** — no email, no signup, no credit card, no onboarding. Open the page and you're meditating
 - **Completely free** — no subscription, no trial period that expires
-- **No ads** — uninterrupted meditation sessions
+- **No intrusive ads** — uninterrupted meditation sessions
 - **Works on any device** — browser-based, works on phone, tablet, or computer
 - **Works offline** — meditate anywhere, even without internet
 - **Your data stays private** — nothing to sign up for means nothing to track

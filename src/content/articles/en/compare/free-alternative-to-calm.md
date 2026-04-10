@@ -30,7 +30,7 @@ Calm's subscription unlocks Sleep Stories (celebrity-narrated bedtime stories), 
 | **Free content** | 1 daily session + few sounds | Full access | 200,000+ sessions | 300+ sessions |
 | **Signup required** | Yes | No | Yes | Yes |
 | **Credit card needed** | For trial, yes | No | No | No |
-| **Ads** | Upgrade prompts | No | Occasional | No |
+| **Ads** | Upgrade prompts | No | Occasional | No intrusive ads |
 | **Sleep content** | Yes (premium) | Sleep meditation included | Varies by teacher | Limited |
 | **Platforms** | iOS, Android app | Any web browser | iOS, Android app | iOS, Android app |
 | **Offline access** | Premium only | Yes (works offline) | Premium only | Yes |
@@ -44,7 +44,7 @@ Calm's biggest draw is its sleep and relaxation content. [Guruka](/) covers that
 
 - **No account required — start instantly** — no email, no signup, no credit card, no onboarding. Open the page and you're meditating
 - **Completely free** — no subscription fees, ever
-- **No ads** — clean, distraction-free meditation
+- **No intrusive ads** — clean, distraction-free meditation
 - **Works on any device** — phone, tablet, or laptop, no app download needed
 - **Works offline** — meditate anywhere, even without internet
 - **Your data stays private** — no account, no personal data collected

@@ -26,7 +26,7 @@ Calm is one of the most popular meditation and sleep apps, known for its Sleep S
 | **Free content** | 1 Daily Calm session + few nature sounds | Full access to everything |
 | **Account required** | Yes | No |
 | **Credit card needed** | Yes (for free trial) | No |
-| **Ads** | Upgrade prompts on free tier | No |
+| **Ads** | Upgrade prompts on free tier | No intrusive ads |
 | **Platforms** | iOS, Android app | Any web browser — phone, tablet, computer |
 | **Offline access** | Premium only | Yes |
 | **Time to start** | Download → signup → onboarding | Open page → meditate |
@@ -55,7 +55,7 @@ The free trial requires a credit card and auto-renews. Calm has a Trustpilot sco
 
 - **No account required — start instantly** — no email, no signup, no credit card, no onboarding. Open the page and you're meditating
 - **Completely free** — no subscription, no premium tier, no hidden costs
-- **No ads during practice** — your meditation session won't be interrupted
+- **No intrusive ads** — your meditation session won't be interrupted
 - **Works on any device** — phone, tablet, or computer, no app download needed
 - **Works offline** — meditate anywhere, even without internet
 - **Your data stays private** — no account means no personal data collected
