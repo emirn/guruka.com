@@ -163,7 +163,7 @@ transition: none;
 <div id="meditate-hub">
 <div class="mh-header">
 <h1>Guided Meditations</h1>
-<p>Free and without annoying ads. Tap to begin, no account needed.</p>
+<p>Free with no ads interrupting your practice. Tap to begin, no account needed.</p>
 </div>
 
 <div class="mh-grid">

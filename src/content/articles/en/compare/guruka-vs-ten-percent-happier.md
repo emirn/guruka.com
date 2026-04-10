@@ -53,7 +53,7 @@ The free tier of Ten Percent Happier is one of the most restrictive in the indus
 
 - **No account required — start instantly** — no email, no signup, no credit card, no onboarding. Open the page and you're meditating
 - **Completely free** — no subscription, no premium tier, no hidden costs
-- **No ads** — your meditation session won't be interrupted
+- **No ads during practice** — your meditation session won't be interrupted
 - **Works on any device** — phone, tablet, or computer, no app download needed
 - **Works offline** — meditate anywhere, even without internet
 - **Your data stays private** — no account means no personal data collected

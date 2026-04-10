@@ -85,7 +85,7 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 <div class="aff-page">
 <a href="/visuals/" class="aff-back">&larr; All Affirmations & Visuals</a>
 <h1>Sleep & Rest Affirmation</h1>
-<p class="aff-intro">Rest is not a luxury — it is essential. This affirmation prepares your mind and body for deep, peaceful sleep during a calming visual meditation.</p>
+<p class="aff-intro">Rest is not a luxury, it is essential. This affirmation prepares your mind and body for deep, peaceful sleep during a calming visual meditation.</p>
 <div class="aff-lines">
 I give myself permission to rest<br>My body relaxes with each breath<br>I drift into peaceful sleep
 </div>

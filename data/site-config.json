@@ -357,6 +357,10 @@
             "url": "/privacy/"
           },
           {
+            "label": "Your Data",
+            "url": "/your-data/"
+          },
+          {
             "label": "Contact Us",
             "url": "https://docs.google.com/forms/d/e/1FAIpQLSe1ECOGIxdixwDDVyQqCgPRctD83_jqwEp-6bhysm8gu8uZKA/viewform"
           }
@@ -488,6 +492,12 @@
       "name": "Guruka Content Team",
       "url": "/author/content-team/",
       "system": true
+    },
+    {
+      "id": "eugene",
+      "name": "Eugene",
+      "url": "guruka.com",
+      "cost_per_action": 0.02
     }
   ],
   "i18n": {
@@ -551,6 +561,7 @@
         "Ocean Waves": "Olas del Mar",
         "Terms of Service": "Términos de Servicio",
         "Privacy Policy": "Política de Privacidad",
+        "Your Data": "Tus Datos",
         "Contact Us": "Contáctenos",
         "LATEST": "ÚLTIMOS"
       },
@@ -581,6 +592,7 @@
         "Ocean Waves": "Meereswellen",
         "Terms of Service": "Nutzungsbedingungen",
         "Privacy Policy": "Datenschutzrichtlinie",
+        "Your Data": "Ihre Daten",
         "Contact Us": "Kontakt",
         "LATEST": "NEUESTE"
       },
@@ -611,6 +623,7 @@
         "Ocean Waves": "Vagues de l'Océan",
         "Terms of Service": "Conditions d'Utilisation",
         "Privacy Policy": "Politique de Confidentialité",
+        "Your Data": "Vos Données",
         "Contact Us": "Nous Contacter",
         "LATEST": "DERNIERS"
       },
@@ -641,6 +654,7 @@
         "Ocean Waves": "Ondas do Mar",
         "Terms of Service": "Termos de Serviço",
         "Privacy Policy": "Política de Privacidade",
+        "Your Data": "Seus Dados",
         "Contact Us": "Fale Conosco",
         "LATEST": "ÚLTIMOS"
       },
@@ -671,6 +685,7 @@
         "Ocean Waves": "海の波",
         "Terms of Service": "利用規約",
         "Privacy Policy": "プライバシーポリシー",
+        "Your Data": "データについて",
         "Contact Us": "お問い合わせ",
         "LATEST": "最新"
       },
@@ -701,13 +716,14 @@
         "Ocean Waves": "바다 파도",
         "Terms of Service": "이용약관",
         "Privacy Policy": "개인정보처리방침",
+        "Your Data": "내 데이터",
         "Contact Us": "문의하기",
         "LATEST": "최신"
       }
     }
   },
   "build_info": {
-    "git_commit": "5f11b4ac8",
-    "build_date": "2026-03-28T12:11:46.226Z"
+    "git_commit": "090501013",
+    "build_date": "2026-04-10T10:20:32.463Z"
   }
 }
