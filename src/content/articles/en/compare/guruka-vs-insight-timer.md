@@ -26,7 +26,7 @@ Insight Timer is the largest free meditation library in the world, with over 200
 | **Free content** | 200,000+ sessions | Full access to everything |
 | **Account required** | Yes | No |
 | **Credit card needed** | No (for free tier) | No |
-| **Ads** | Yes — in free tier | No |
+| **Ads** | Yes — in free tier | No intrusive ads |
 | **Platforms** | iOS, Android app | Any web browser — phone, tablet, computer |
 | **Offline access** | Premium only | Yes |
 | **Time to start** | Download → signup → browse → choose | Open page → meditate |
@@ -55,7 +55,7 @@ The bigger cost of the free tier isn't financial — it's cognitive. With 200,00
 
 - **No account required — start instantly** — no email, no signup, no credit card, no onboarding. Open the page and you're meditating
 - **Completely free** — no subscription, no premium tier, no hidden costs
-- **No ads during practice** — your meditation session won't be interrupted
+- **No intrusive ads** — your meditation session won't be interrupted
 - **Works on any device** — phone, tablet, or computer, no app download needed
 - **Works offline** — meditate anywhere, even without internet
 - **Your data stays private** — no account means no personal data collected

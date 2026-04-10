@@ -30,7 +30,7 @@ Simple Habit's free tier gives you a limited selection of sessions. The full lib
 | **Free content** | Limited selection | Full access | 200,000+ sessions | 300+ sessions |
 | **Signup required** | Yes | No | Yes | Yes |
 | **Credit card needed** | For trial, yes | No | No | No |
-| **Ads** | No | No | Occasional | No |
+| **Ads** | No | No | Occasional | No intrusive ads |
 | **Short sessions** | Yes (5-minute focus) | Yes (multiple durations) | Varies | Yes |
 | **Platforms** | iOS, Android app | Any web browser | iOS, Android app | iOS, Android app |
 | **Offline access** | Premium only | Yes (works offline) | Premium only | Yes |
@@ -44,7 +44,7 @@ Simple Habit's appeal is quick, accessible meditation. [Guruka](/) delivers the 
 
 - **No account required — start instantly** — no email, no signup, no credit card, no onboarding. Open the page and you're meditating
 - **Completely free** — no subscription, no trial, no hidden charges
-- **No ads** — distraction-free meditation from start to finish
+- **No intrusive ads** — distraction-free meditation from start to finish
 - **Works on any device** — open your browser on phone, tablet, or computer
 - **Works offline** — meditate anywhere, even without internet
 - **Your data stays private** — no account means no personal information collected

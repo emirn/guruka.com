@@ -428,7 +428,7 @@ const defaultConfig: SiteConfig = {
     show_logo: true,
     show_tagline: true,
     columns: [],
-    social_links: { rss: true },
+    social_links: { rss: false },
     copyright_text: '{{YEAR}} {{SITE_NAME}}',
     powered_by_text: '',
     powered_by_url: '',

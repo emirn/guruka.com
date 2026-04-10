@@ -192,7 +192,7 @@ color: var(--color-dark-text-secondary, #cbd5e1);
 <div id="games-hub">
 <div class="gh-header">
 <h1>&#129504; Games</h1>
-<p>Free with no ads interrupting your gameplay. Your scores are saved locally - no account needed.</p>
+<p>Free with no intrusive ads. Your scores are saved locally - no account needed.</p>
 </div>
 
 <div class="gh-grid">

@@ -29,7 +29,7 @@ Insight Timer's biggest strength is also its biggest weakness: choice overload. 
 | **Price** | Free (premium $59.99/year) | Free | Free | $69.99/year (limited free) |
 | **Content volume** | 200,000+ sessions | Curated library | 300+ sessions | ~10 free sessions |
 | **Signup required** | Yes | No | Yes | Yes |
-| **Ads** | Yes (free tier) | No | No | Upgrade prompts |
+| **Ads** | Yes (free tier) | No | No intrusive ads | Upgrade prompts |
 | **Content quality** | Varies widely | Consistently curated | Professionally produced | Professionally produced |
 | **Platforms** | iOS, Android app | Any web browser | iOS, Android app | iOS, Android app |
 | **Offline access** | Premium only | Yes (works offline) | Yes | Premium only |
@@ -44,7 +44,7 @@ If you want the benefits of guided meditation without the decision fatigue, [Gur
 
 - **No account required — start instantly** — no email, no signup, no credit card, no onboarding. Open the page and you're meditating
 - **Completely free** — no subscription, no premium tier
-- **No ads** — clean experience with no interruptions
+- **No intrusive ads** — clean experience with no interruptions
 - **Works on any device** — browser-based, no app download needed
 - **Works offline** — meditate anywhere, even without internet
 - **Your data stays private** — no account means no data collection

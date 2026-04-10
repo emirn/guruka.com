@@ -44,7 +44,7 @@ If you've enjoyed Smiling Mind's free model but want more adult-focused content,
 
 - **No account required — start instantly** — no email, no signup, no credit card, no onboarding. Open the page and you're meditating
 - **Completely free** — no subscription, same as Smiling Mind
-- **No ads** — clean meditation experience
+- **No intrusive ads** — clean meditation experience
 - **Works on any device** — browser-based, no app download required
 - **Works offline** — meditate anywhere, even without internet
 - **Your data stays private** — no account, no data collection

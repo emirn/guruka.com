@@ -30,7 +30,7 @@ The app's subscription unlocks courses taught by well-known meditation teachers 
 | **Free content** | Very limited | Full access | 200,000+ sessions | 300+ sessions |
 | **Signup required** | Yes | No | Yes | Yes |
 | **Credit card needed** | For trial, yes | No | No | No |
-| **Ads** | No | No | Occasional | No |
+| **Ads** | No | No | Occasional | No intrusive ads |
 | **Teaching approach** | Skeptic-friendly, science-based | Guided sessions | Varies by teacher | Evidence-based |
 | **Platforms** | iOS, Android app | Any web browser | iOS, Android app | iOS, Android app |
 | **Offline access** | Premium only | Yes (works offline) | Premium only | Yes |
@@ -45,7 +45,7 @@ Ten Percent Happier's no-nonsense approach resonates with meditation skeptics. [
 
 - **No account required — start instantly** — no email, no signup, no credit card, no onboarding. Open the page and you're meditating
 - **Completely free** — no subscription, no premium tier, no trial that expires
-- **No ads** — nothing between you and your meditation
+- **No intrusive ads** — nothing between you and your meditation
 - **Works on any device** — browser-based, works on phone, tablet, or computer
 - **Works offline** — meditate anywhere, even without internet
 - **Your data stays private** — no account means no personal data to collect
