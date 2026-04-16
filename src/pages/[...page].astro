@@ -6,6 +6,7 @@ import { getConfig } from '../lib/config';
 import { getHomeArticles } from '../lib/sections';
 import { getPageLang, getPageBaseSlug } from '../lib/articles';
 import PdfLightbox from '../components/PdfLightbox.astro';
+import ImageLightbox from '../components/ImageLightbox.astro';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
@@ -122,4 +123,5 @@ if (page.data.blog_grid) {
     </section>
   )}
   <PdfLightbox />
+  <ImageLightbox />
 </BaseLayout>

@@ -429,17 +429,12 @@
   "tracking": {
     "widget_code": "",
     "custom_head_code": "",
-    "custom_body_code": ""
+    "custom_body_code": "<script src=\"https://cdn.jsdelivr.net/gh/aicw-io/aicw-summarize@latest/dist/aicw-summarize.min.js\" \ndata-paths=\"^/$,^/meditate/$,^/visuals/$\"\n></script>"
   },
   "search": {
     "enabled": false,
     "placeholder": "Search articles...",
     "show_in_header": true
-  },
-  "aicw": {
-    "enabled": false,
-    "tracking_id": "",
-    "domain": ""
   },
   "robots_txt": {},
   "llms_txt": {
@@ -723,7 +718,7 @@
     }
   },
   "build_info": {
-    "git_commit": "090501013",
-    "build_date": "2026-04-10T11:20:27.417Z"
+    "git_commit": "00016e97b",
+    "build_date": "2026-04-16T14:15:52.041Z"
   }
 }

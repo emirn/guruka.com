@@ -258,25 +258,6 @@ export interface SiteConfig {
     custom_body_code?: string;
   };
   /**
-   * AICW-specific tracking configuration.
-   * When enabled, injects the AICW analytics script.
-   */
-  aicw?: {
-    /**
-     * Enable/disable AICW tracking. Defaults to false.
-     */
-    enabled?: boolean;
-    /**
-     * AICW tracking ID (e.g., "abc123xyz")
-     */
-    tracking_id?: string;
-    /**
-     * Domain to track. Should match the canonical domain.
-     * If not specified, will use canonical_domain or site.url.
-     */
-    domain?: string;
-  };
-  /**
    * Catalog/directory configuration. Each entry defines a browseable directory of tools/apps/services.
    * Gated by config — sites without catalogs work exactly as before.
    */

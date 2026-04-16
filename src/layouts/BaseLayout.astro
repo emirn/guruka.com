@@ -179,18 +179,6 @@ const cssVars = {
       })} />
     )}
 
-    <!-- AICW Tracking Script -->
-    {config.aicw?.enabled && config.aicw?.tracking_id && (
-      <script
-        is:inline
-        async
-        defer
-        src="https://aicw.io/track.js"
-        data-id={config.aicw.tracking_id}
-        data-domain={config.aicw.domain || config.seo.canonical_domain?.replace(/^https?:\/\//, '').replace(/\/$/, '') || new URL(config.branding.site.url).hostname}
-      />
-    )}
-
     <!-- Tracking Widget Code -->
     {config.tracking.widget_code && <Fragment set:html={config.tracking.widget_code} />}
 
@@ -232,6 +220,80 @@ const cssVars = {
       })();
       </script>
     )}
+
+    <!-- Code block copy button + click-to-select -->
+    <script is:inline>
+    (function() {
+      var copyIcon = '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/></svg>';
+      var checkIcon = '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/></svg>';
+
+      function addCopyButton(container, codeEl) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'code-copy-btn';
+        btn.title = 'Copy';
+        btn.setAttribute('aria-label', 'Copy code');
+        btn.innerHTML = copyIcon;
+
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var text = codeEl.textContent || '';
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function() { showCopied(btn); });
+          } else {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); showCopied(btn); } catch(err) {}
+            document.body.removeChild(ta);
+          }
+        });
+
+        container.appendChild(btn);
+
+        codeEl.addEventListener('click', function() {
+          var sel = window.getSelection();
+          if (!sel || sel.isCollapsed || !codeEl.contains(sel.anchorNode)) {
+            var range = document.createRange();
+            range.selectNodeContents(codeEl);
+            sel.removeAllRanges();
+            sel.addRange(range);
+          }
+        });
+      }
+
+      // pre > code blocks (standard markdown code fences)
+      document.querySelectorAll('pre').forEach(function(pre) {
+        var code = pre.querySelector('code');
+        if (!code) return;
+        addCopyButton(pre, code);
+      });
+
+      // Standalone <code> blocks (not inside <pre>, must be block-level or multi-line)
+      document.querySelectorAll('code').forEach(function(code) {
+        if (code.closest('pre')) return; // already handled
+        var display = getComputedStyle(code).display;
+        var isBlock = display === 'block' || display === 'inline-flex' || display === 'flex';
+        if (!isBlock && code.textContent.length < 40) return; // skip short inline code
+        code.style.position = 'relative';
+        addCopyButton(code, code);
+      });
+
+      function showCopied(btn) {
+        btn.innerHTML = checkIcon;
+        btn.classList.add('copied');
+        btn.title = 'Copied!';
+        setTimeout(function() {
+          btn.innerHTML = copyIcon;
+          btn.classList.remove('copied');
+          btn.title = 'Copy';
+        }, 1500);
+      }
+    })();
+    </script>
 
   </body>
 </html>

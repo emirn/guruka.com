@@ -140,11 +140,6 @@
     "placeholder": "Search articles...",
     "show_in_header": true
   },
-  "aicw": {
-    "enabled": false,
-    "tracking_id": "",
-    "domain": ""
-  },
   "robots_txt": {},
   "llms_txt": {
     "enabled": false,
