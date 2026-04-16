@@ -103,6 +103,56 @@ h6 {
   content: '' !important;
 }
 
+/* Code block copy button */
+pre {
+  position: relative;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s, color 0.15s;
+  z-index: 1;
+  padding: 0;
+  line-height: 1;
+}
+
+[data-theme="dark"] .code-copy-btn {
+  background: var(--color-dark-bg-secondary);
+  border-color: var(--color-dark-border);
+  color: var(--color-dark-text-muted);
+}
+
+pre:hover > .code-copy-btn,
+code:hover > .code-copy-btn {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  color: var(--color-text-secondary);
+}
+
+[data-theme="dark"] .code-copy-btn:hover {
+  color: var(--color-dark-text-secondary);
+}
+
+.code-copy-btn.copied {
+  color: #34d399;
+  opacity: 1;
+}
+
 /* Table hover effect */
 .prose tbody tr:hover {
   background: var(--color-bg-secondary);
@@ -365,6 +415,17 @@ h6 {
 .prose .cta-button-outline:hover {
   background: var(--color-primary);
   color: white !important;
+}
+
+/* CTA buttons: responsive mobile stacking */
+@media (max-width: 640px) {
+  .prose .cta-button,
+  .prose .cta-button-outline {
+    display: block;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
 }
 
 .prose .highlight-box {
